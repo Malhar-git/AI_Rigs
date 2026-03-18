@@ -34,7 +34,7 @@
   --color-input: hsl(240 10% 90%);
 
   /* Semantic State Colors */
-  --color-destructive: hsl(0 72% 51%);
+  --color-danger: hsl(0 72% 51%);
   --color-success: hsl(161 94% 30%);
   --color-warning: hsl(32 95% 44%);
 

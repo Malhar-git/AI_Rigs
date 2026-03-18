@@ -5,8 +5,8 @@ import "./globals.css";
 const dmSans = DM_Sans({
   variable: "--font-dm-sans",
   subsets: ["latin"],
-});
 
+});
 const jetBrainsMono = JetBrains_Mono({
   variable: "--font-jetBrains-mono",
   subsets: ["latin"],
