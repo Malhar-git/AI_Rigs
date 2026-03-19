@@ -1,7 +1,7 @@
 import React from "react";
 import clsx from "clsx";
 
-type ButtonVariant = "primary" | "secondary" | "accent" | "danger" | "success";
+type ButtonVariant = "primary" | "secondary" | "accent" | "danger" | "success" | "ghost";
 type ButtonSize = "sm" | "md" | "lg";
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -19,6 +19,7 @@ const variantStyles: Record<ButtonVariant, string> = {
   accent: "bg-accent text-primary-foreground hover:opacity-90",
   danger: "bg-danger text-primary-foreground hover:opacity-90",
   success: "bg-success text-primary-foreground hover:opacity-90",
+  ghost: "bg-transparent text-inherit border-0 shadow-none backdrop-blur-none hover:bg-transparent hover:opacity-100",
 };
 
 const sizeStyles: Record<ButtonSize, string> = {
