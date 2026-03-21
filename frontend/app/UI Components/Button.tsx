@@ -1,7 +1,7 @@
 import React from "react";
 import clsx from "clsx";
 
-type ButtonVariant = "primary" | "secondary" | "accent" | "danger" | "success" | "ghost";
+type ButtonVariant = "primary" | "secondary" | "accent" | "danger" | "success" | "ghost" | "sweep";
 type ButtonSize = "sm" | "md" | "lg";
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -14,12 +14,13 @@ const baseStyles =
   "inline-flex items-center justify-center rounded-3xl font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent  disabled:opacity-50";
 
 const variantStyles: Record<ButtonVariant, string> = {
-  primary: "bg-primary text-primary-foreground hover:opacity-90",
-  secondary: "bg-secondary text-primary-foreground hover:opacity-90",
-  accent: "bg-accent text-primary-foreground hover:opacity-90",
-  danger: "bg-danger text-primary-foreground hover:opacity-90",
-  success: "bg-success text-primary-foreground hover:opacity-90",
-  ghost: "bg-transparent text-inherit border-0 shadow-none backdrop-blur-none hover:bg-transparent hover:opacity-100",
+  primary: "bg-foreground text-background hover:opacity-90",
+  secondary: "bg-muted text-foreground border border-border hover:bg-muted-foreground/10",
+  accent: "bg-accent text-white hover:opacity-90",
+  danger: "bg-danger text-white hover:opacity-90",
+  success: "bg-success text-white hover:opacity-90",
+  ghost: "bg-transparent text-inherit border-0 shadow-none backdrop-blur-none",
+  sweep: "relative overflow-hidden text-primary-foreground bg-transparent group",
 };
 
 const sizeStyles: Record<ButtonSize, string> = {
@@ -36,6 +37,8 @@ export default function Button({
   children,
   ...props
 }: ButtonProps) {
+  const isSweep = variant === "sweep";
+
   const classes = clsx(
     baseStyles,
     variantStyles[variant] ?? variantStyles.primary,
@@ -45,7 +48,17 @@ export default function Button({
 
   return (
     <button type={type} className={classes} {...props}>
-      {children}
+      {isSweep ? (
+        <>
+          <span className="relative z-10">{children}</span>
+          <span
+            className="absolute inset-0 -translate-x-full bg-linear-to-r from-gray-200 to-gray-500 transition-transform duration-500 ease-in-out group-hover:translate-x-0"
+            aria-hidden="true"
+          />
+        </>
+      ) : (
+        children
+      )}
     </button>
   );
 }
