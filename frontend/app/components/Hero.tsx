@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export default function Hero() {
   return (
-    <div className="hero-card grid grid-cols-1 md:grid-cols-2 gap-16 items-end pt-56">
+    <div className="hero-card grid grid-cols-1 md:grid-cols-2 gap-16 items-end pt-48">
       <div className="descripton&cta flex flex-col max-w-2xs ml-4">
         <p>This is a Local AI Configuration builder that provides user the access to choose the necessry hardware required to achieve their goal</p>
         <div className="cta__button align-top mt-2">
