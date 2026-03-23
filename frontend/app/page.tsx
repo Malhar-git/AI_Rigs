@@ -1,13 +1,14 @@
 import Featured from "./components/Featured";
 import Header from "./components/Header";
 import Hero from "./components/Hero";
-import Button from "./ui components/Button";
+import HeroCard from "./components/HeroCard";
 
 export default function Home() {
   return (
     <div className="flex min-h-screen flex-col bg-g font-primary text-foreground">
       <Header />
       <Hero />
+      <HeroCard />
       <Featured />
       <main className="flex-1">
         {/* <div className="bg-card text-card-foreground border border-border rounded-lg p-4 shadow-sm">

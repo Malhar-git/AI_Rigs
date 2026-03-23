@@ -35,7 +35,7 @@ export default function Featured() {
       <div className="parent-container mx-auto grid w-full max-w-6xl grid-cols-1 place-items-center gap-4 px-4 py-2 sm:grid-cols-2 lg:grid-cols-4">
         {featuredContent.map((card, index) => (
           <div key={index} className="featured-card flex flex-col items-center gap-3">
-            <div className="featured-image relative h-48 w-56 overflow-hidden ">
+            <div className="featured-image relative h-32 w-56 overflow-hidden ">
               <Image src={card.imageUrl} alt={card.alt} fill className="object-contain px-2" />
             </div>
             <div className="featured-product-name text-center text-md text-foreground p-0 m-0">{card.productName}</div>
