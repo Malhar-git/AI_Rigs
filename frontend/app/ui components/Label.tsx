@@ -1,0 +1,86 @@
+import clsx from "clsx";
+
+type Variant = "default" | "active" | "special" | "error";
+
+type LabelProps = {
+  children: React.ReactNode;
+  htmlFor?: string;
+  variant?: Variant;
+  required?: boolean;
+  className?: string;
+  uppercase?: boolean;
+  tooltip?: React.ReactNode;
+  tooltipPosition?: "top" | "bottom";
+  tooltipClassName?: string;
+};
+
+const baseStyles =
+  "inline-flex font-secondary items-center rounded-0 border border-border px-3 py-1 text-xs font-medium tracking-wide select-none";
+
+const variants: Record<Variant, string> = {
+  default: "bg-zinc-200 text-primary-foreground",
+  active: "bg-blue-600 text-white border-blue-600",
+  special: "bg-accent text-primary",
+  error: "bg-danger text-primary-foreground",
+};
+
+export default function Label({
+  children,
+  htmlFor,
+  variant = "default",
+  required = false,
+  className = "",
+  uppercase = true,
+  tooltip,
+  tooltipPosition = "top",
+  tooltipClassName = "",
+}: LabelProps) {
+  const positionClass =
+    tooltipPosition === "top" ? "top-full mt-1" : "bottom-full mb-1";
+
+  const classes = clsx(
+    baseStyles,
+    variants[variant],
+    uppercase && "uppercase",
+    className,
+  );
+
+  const tooltipClasses = clsx(
+    "pointer-events-none absolute left-0 z-20 max-w-xs rounded border border-zinc-300 bg-white px-2 py-1 text-xs text-black opacity-0 transition-opacity duration-150 delay-500 group-hover:opacity-100 group-focus-within:opacity-100",
+    positionClass,
+    tooltipClassName,
+  );
+
+  const content = (
+    <>
+      {children}
+      {required && <span className="ml-1">*</span>}
+    </>
+  );
+
+  if (htmlFor) {
+    return (
+      <span className="group relative inline-flex">
+        <label htmlFor={htmlFor} className={classes}>
+          {content}
+        </label>
+        {tooltip && (
+          <span role="tooltip" className={tooltipClasses}>
+            {tooltip}
+          </span>
+        )}
+      </span>
+    );
+  }
+
+  return (
+    <span className="group relative inline-flex">
+      <span className={classes}>{content}</span>
+      {tooltip && (
+        <span role="tooltip" className={tooltipClasses}>
+          {tooltip}
+        </span>
+      )}
+    </span>
+  );
+}
