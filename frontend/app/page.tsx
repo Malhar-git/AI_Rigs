@@ -2,11 +2,13 @@ import Featured from "./components/Featured";
 import Header from "./components/Header";
 import Hero from "./components/Hero";
 import HeroCard from "./components/HeroCard";
+import Label from "./ui components/Label";
 
 export default function Home() {
   return (
     <div className="flex min-h-screen flex-col bg-g font-primary text-foreground">
       <Header />
+      
       <Hero />
       <HeroCard />
       <Featured />
