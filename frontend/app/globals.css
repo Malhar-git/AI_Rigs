@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/forms";
+@source "../node_modules/@tremor/**/*.{js,ts,jsx,tsx}";
 
 :root {
   --background: var(--color-background);

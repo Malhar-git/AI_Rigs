@@ -1,5 +1,6 @@
 "use client";
-import { ProgressBar, ProgressCircle } from "@tremor/react";
+import { ProgressCircle } from "@tremor/react";
+import { ProgressBar } from "../ui components/ProgressBar";
 import Label from "../ui components/Label";
 import Image from "next/image";
 
@@ -48,7 +49,7 @@ function TechnicalMatrix() {
 }
 
 function PerformanceCard() {
-  const performanceScore = 98;
+  const performanceScore = 90;
   const budgetAlignment = 46;
 
   return (
@@ -71,34 +72,30 @@ function PerformanceCard() {
         >
           <div className="text-center">
             <h4 className="leading-none">{performanceScore}</h4>
-            <small className="font-secondary mt-1 block text-[11px] tracking-[0.08em] text-[#9ba3af]">
+            <small className="font-secondary mt-1 block tracking-wide text-secondary">
               / 100
             </small>
           </div>
         </ProgressCircle>
-        <span className="font-secondary mt-5 rounded-full bg-[#e9f1ff] px-4 py-1 text-[11px] font-bold uppercase tracking-[0.14em] text-[#2d5ed9]">
+        <span className="font-secondary mt-5 rounded-full bg-slate-300 px-4 py-1 text-[11px] font-bold uppercase tracking-[0.14em] text-[#2d5ed9]">
           Rank #1 Global
         </span>
       </div>
 
       <div className="mt-7">
-        <div className="flex items-end justify-between gap-3">
-          <p className="font-primary text-[15px] font-medium text-[#3a4353]">Budget Alignment</p>
-          <div className="text-right">
-            <p className="font-primary text-[20px] leading-none font-semibold text-[#616b7d]">$1,599</p>
-            <small className="font-secondary text-[10px] font-semibold uppercase tracking-[0.12em] text-[#9ca5b3]">
+        <div className="flex justify-between gap-2">
+          <p className="font-medium text-secondary">Budget Alignment</p>
+          <div className="text-right flex justify-center align-middle">
+            <p className="text-secondary">$1,599</p>
+            <small className="font-secondary uppercase tracking-wider text-secondary">
               MSRP
             </small>
           </div>
         </div>
 
-        <ProgressBar
-          value={budgetAlignment}
-          color="blue"
-          className="mt-3 [&>div]:bg-[#edf0f5] [&>div>div]:bg-[#1254dc]"
-        />
+        <ProgressBar value={budgetAlignment} label="${budgetAlignment}75%" ></ProgressBar>
 
-        <small className="mt-3 block text-center font-secondary text-[11px] text-[#a1a8b4]">
+        <small className="mt-4 block text-center font-secondary text-secondary">
           Market price currently 12% above MSRP.
         </small>
       </div>
@@ -106,22 +103,54 @@ function PerformanceCard() {
       <div className="mt-6 space-y-2.5">
         <button
           type="button"
-          className="font-primary flex h-11 w-full items-center justify-center rounded-sm bg-[#1254dc] text-[15px] font-semibold text-white transition hover:bg-[#0f4ac2]"
+          className="font-primary flex h-12 w-full items-center justify-center rounded-sm bg-accent text-md font-semibold text-primary transition hover:bg-accent/90"
         >
           Check on Amazon
-          <span className="ml-2 text-sm" aria-hidden="true">
-            ↗
-          </span>
         </button>
         <button
           type="button"
-          className="font-secondary h-11 w-full rounded-sm border border-[#9eb6ea] bg-white text-[13px] font-bold uppercase tracking-[0.06em] text-[#2d5ed9] transition hover:bg-[#f4f8ff]"
+          className="font-secondary h-12 w-full rounded-sm border border-accent bg-primary text-sm font-bold uppercase tracking-wide text-accent transition hover:bg-ca"
         >
           Add to Compare
         </button>
       </div>
     </aside>
   );
+}
+
+function ModelComaptibility(){
+  interface CompatibiltyCard{
+    model_name: string;
+    model_state: string;
+    vram_load: string;
+    additonal_info: string;
+  }
+
+  const CompatibiltyProps : CompatibiltyCard = [
+    {
+      model_name: "Llama 3 70B",
+      model_state: "Native",
+      vram_load: "24.4",
+      additonal_info:"Full 4-bit quantization support with zero offloading required",
+    },
+    {
+      model_name: "Stable Cascade",
+      model_state: "Active",
+      vram_load: "16.0",
+      additonal_info: "Full 4-bit quantization support with zero offloading required",
+    },
+  ];
+
+  return(
+    <div className="model-compatability w-full h-64">
+      <h4>ML Compatibilty</h4>
+      <div>
+        {CompatibiltyProps.map((item)=>(
+          <div className="flex flex-x"
+        ))}
+      </div>
+    </div>
+  )
 }
 
 
@@ -148,6 +177,7 @@ export default function ProductSpecificatn() {
             />
           </div>
           <TechnicalMatrix />
+          <ModelComaptibility />
         </div>
         <div className="sidebar lg:justify-self-end">
           <PerformanceCard />
