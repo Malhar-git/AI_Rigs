@@ -66,8 +66,8 @@ function Navigation({ onDarkBackground }: { onDarkBackground: boolean }) {
         <Button
           key={item}
           variant="ghost"
-          size="sm"
-          className={`rounded-3xl px-1 text-sm transition-all duration-250 ease-out will-change-transform hover:cursor-pointer hover:scale-[0.92] hover:translate-y-px hover:bg-white/90 hover:shadow-[inset_0_1px_2px_rgba(0,0,0,0.2)] focus-visible:ring-accent/50 active:scale-[0.9] ${onDarkBackground ? "text-black" : "text-foreground"}`}
+          size="md"
+          className={`rounded-3xl px-1 transition-all duration-250 ease-out will-change-transform hover:cursor-pointer hover:scale-[0.92] hover:translate-y-px hover:bg-white/90 hover:shadow-[inset_0_1px_2px_rgba(0,0,0,0.2)] focus-visible:ring-accent/50 active:scale-[0.9] ${onDarkBackground ? "text-black" : "text-foreground"}`}
         >
           {item}
         </Button>
@@ -125,8 +125,8 @@ export default function Header() {
 
   return (
     <header ref={headerRef} className="flex sticky top-0 z-50 w-full pt-2 justify-between rounded-xl transition-colors duration-300">
-      <div className="title ml-10">
-        <h4 className={`text-2xl font-bold tracking-wider transition-colors duration-300 ${onDarkBackground ? "text-white" : "text-foreground"}`}>AI RIGS</h4>
+      <div className="title ml-6">
+        <h2 className={`text-2xl tracking-wider transition-colors duration-300 ${onDarkBackground ? "text-white" : "text-foreground"}`}>AI RIGS</h2>
       </div>
       <div className="navigation mr-32">
         <Navigation onDarkBackground={onDarkBackground} />

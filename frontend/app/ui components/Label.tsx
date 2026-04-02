@@ -1,6 +1,6 @@
 import clsx from "clsx";
 
-type Variant = "default" | "active" | "special" | "error";
+type Variant = "default" | "active" | "special" | "specialCompact" | "error";
 
 type LabelProps = {
   children: React.ReactNode;
@@ -21,6 +21,7 @@ const variants: Record<Variant, string> = {
   default: "bg-zinc-200 text-primary-foreground",
   active: "bg-blue-600 text-white border-blue-600",
   special: "bg-accent text-primary",
+  specialCompact: "bg-accent text-primary px-2! text-[12px]! leading-none!",
   error: "bg-danger text-primary-foreground",
 };
 

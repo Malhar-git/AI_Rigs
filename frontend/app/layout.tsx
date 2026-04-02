@@ -4,12 +4,13 @@ import "./globals.css";
 
 const dmSans = DM_Sans({
   variable: "--font-dm-sans",
-  weight: ["200","300", "400", "500", "600",],
+  weight: ["200","300", "400", "500", "600", "700"],
   subsets: ["latin"],
 
 });
 const jetBrainsMono = JetBrains_Mono({
   variable: "--font-jetBrains-mono",
+  weight: ["200", "300", "400", "500", "600", "700"],
   subsets: ["latin"],
 });
 
