@@ -1,4 +1,5 @@
 import Featured from "./components/Featured";
+import Footer from "./components/Footer";
 import Header from "./components/Header";
 import Hero from "./components/Hero";
 import HeroCard from "./components/HeroCard";
@@ -8,7 +9,7 @@ export default function Home() {
   return (
     <div className="flex min-h-screen flex-col bg-g font-primary text-foreground">
       <Header />
-      
+
       <Hero />
       <HeroCard />
       <Featured />
@@ -26,6 +27,7 @@ export default function Home() {
           <Button variant="ghost">Click me</Button>
         </div> */}
       </main>
+      <Footer />
     </div>
   );
 }

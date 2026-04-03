@@ -4,6 +4,7 @@ import { ProgressBar } from "../ui components/ProgressBar";
 import Label from "../ui components/Label";
 import Image from "next/image";
 import Header from "../components/Header";
+import Footer from "../components/Footer";
 import { useRouter } from "next/navigation";
 
 type SpecItem = {
@@ -290,6 +291,7 @@ export default function ProductSpecification() {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }

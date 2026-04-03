@@ -6,6 +6,7 @@ import { ProgressBar } from "../ui components/ProgressBar";
 import { Fragment } from "react";
 import Header from "../components/Header";
 import Button from "../ui components/Button";
+import Footer from "../components/Footer";
 
 type ComparedGpu = {
   name: string;
@@ -278,6 +279,7 @@ export default function ProductComparison() {
           </section>
         </section>
       </main>
+      <Footer />
     </div>
   );
 }
