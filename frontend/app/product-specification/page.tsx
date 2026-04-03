@@ -4,6 +4,7 @@ import { ProgressBar } from "../ui components/ProgressBar";
 import Label from "../ui components/Label";
 import Image from "next/image";
 import Header from "../components/Header";
+import { useRouter } from "next/navigation";
 
 type SpecItem = {
   label: string;
@@ -52,6 +53,7 @@ function TechnicalMatrix() {
 function PerformanceCard() {
   const performanceScore = 90;
   const budgetAlignment = 46;
+  const router = useRouter();
 
   return (
     <aside className="m-2 min-w-96 rounded-lg border border-border bg-primary p-5 ">
@@ -106,6 +108,7 @@ function PerformanceCard() {
         </button>
         <button
           type="button"
+          onClick={() => router.push("/product-comparison")}
           className="font-secondary h-12 w-full rounded-sm border border-accent bg-primary text-sm font-bold uppercase tracking-wide text-accent transition hover:bg-ca"
         >
           Add to Compare
