@@ -109,7 +109,7 @@ function PerformanceCard() {
         </button>
         <button
           type="button"
-          onClick={() => router.push("/product-comparison")}
+          onClick={() => router.push("/guild-builder")}
           className="font-secondary h-12 w-full rounded-sm border border-accent bg-primary text-sm font-bold uppercase tracking-wide text-accent transition hover:bg-ca"
         >
           Add to Compare
