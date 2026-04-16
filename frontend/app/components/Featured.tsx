@@ -1,52 +1,96 @@
 "use client";
 
-import Image from "next/image";
+import Button from "../ui components/Button";
 import { useRouter } from "next/navigation";
 
-type FeaturedCard = {
-  productName: string;
-  imageUrl: string;
-  alt: string;
+type CuratedBuild = {
+  tier: "Low" | "Medium" | "High";
+  budgetRange: string;
+  targetUse: string;
+  gpu: string;
+  cpu: string;
+  ram: string;
+  storage: string;
+  trainingCapability: string;
+  buildCapability: string;
 };
 
-const featuredContent: FeaturedCard[] = [
+const featuredContent: CuratedBuild[] = [
   {
-    productName: "RTX 4090",
-    imageUrl: "/featured/nvidia-geforce-rtx-4090-product.avif",
-    alt: "GPU",
+    tier: "Low",
+    budgetRange: "$1,200 - $1,800",
+    targetUse: "Entry local AI build for coding assistants and small image generation workflows.",
+    gpu: "RTX 4060 Ti 16GB",
+    cpu: "Ryzen 5 7600",
+    ram: "32GB DDR5",
+    storage: "1TB NVMe Gen4",
+    trainingCapability: "Light LoRA and short fine-tuning runs on 7B class models.",
+    buildCapability: "Reliable local inference for 7B models and fast dev-agent tasks.",
   },
   {
-    productName: "RX 7900-XTX",
-    imageUrl: "/featured/amd-radeon-rx-7900-xtx-product.png",
-    alt: "GPU",
+    tier: "Medium",
+    budgetRange: "$2,200 - $3,200",
+    targetUse: "Balanced workstation for product builders running multi-tool AI workflows.",
+    gpu: "RTX 4080 Super 16GB",
+    cpu: "Ryzen 9 7900",
+    ram: "64GB DDR5",
+    storage: "2TB NVMe Gen4",
+    trainingCapability: "Regular adapter tuning and medium context experimentation on 7B to 14B models.",
+    buildCapability: "Smooth local inference for 14B class models and parallel coding automation.",
   },
   {
-    productName: "ARC B-850",
-    imageUrl: "/featured/intel-arc-b850.png",
-    alt: "Processor",
-  },
-  {
-    productName: "RTX 5080",
-    imageUrl: "/featured/geforce-rtx-5080.png",
-    alt: "GPU",
+    tier: "High",
+    budgetRange: "$4,500 - $7,000",
+    targetUse: "Power build for advanced RAG stacks, larger models, and serious local training.",
+    gpu: "RTX 4090 24GB",
+    cpu: "Ryzen 9 9950X",
+    ram: "128GB DDR5",
+    storage: "4TB NVMe Gen4",
+    trainingCapability: "Longer fine-tuning sessions and higher batch experiments on 14B to 22B models.",
+    buildCapability: "Strong local inference for 22B class models plus heavy multimodal pipelines.",
   },
 ];
 
 export default function Featured() {
-
   const router = useRouter();
+
   return (
-    <section className="featured">
-      <div className="parent-container mx-auto grid w-full max-w-6xl grid-cols-1 place-items-center gap-4 px-4 py-2 sm:grid-cols-2 lg:grid-cols-4">
-        {featuredContent.map((card, index) => (
-          <div key={index} className="featured-card flex flex-col items-center gap-3">
-            <button onClick={() => router.push('/product-specification')}>
-              <div className="featured-image relative h-32 w-56 overflow-hidden ">
-                <Image src={card.imageUrl} alt={card.alt} fill className="object-contain px-2" />
-              </div>
-            </button>
-            <div className="featured-product-name text-center text-md text-foreground p-0 m-0">{card.productName}</div>
-          </div>
+    <section className="featured mx-auto w-full max-w-6xl px-4 py-12">
+      <div className="mb-7">
+        <small className="uppercase tracking-[0.18em] text-secondary">Curated AI Builds</small>
+        <h3 className="mt-2 max-w-2xl tracking-tight">Three practical build paths by budget</h3>
+        <p className="mt-2 max-w-3xl text-secondary">
+          Pick a low, medium, or high budget baseline with clear hardware targets and realistic AI training and build capabilities.
+        </p>
+      </div>
+
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
+        {featuredContent.map((card) => (
+          <article key={card.tier} className="rounded-xl border border-border bg-card p-4">
+            <div className="mb-4 flex items-center justify-between gap-3">
+              <h4 className="font-semibold tracking-tight">{card.tier} Budget</h4>
+              <small className="rounded-full font-secondary border border-border bg-primary px-3 py-1 text-secondary">{card.budgetRange}</small>
+            </div>
+
+            <p className="mb-4 text-secondary">{card.targetUse}</p>
+
+            <div className="font-secondary space-y-2 rounded-xl border border-border bg-primary p-2">
+              <p>GPU: {card.gpu}</p>
+              <p>CPU: {card.cpu}</p>
+              <p>RAM: {card.ram}</p>
+              <p>Storage: {card.storage}</p>
+            </div>
+
+            <div className="mt-4 space-y-2 text-sm text-zinc-700">
+              <p>Training: {card.trainingCapability}</p>
+              <p>Build capability: {card.buildCapability}</p>
+            </div>
+
+            <div className="mt-5 flex items-center justify-between gap-2">
+              <Button variant="secondary" className="bg-primary" onClick={() => router.push("/guild-builder")}>Tune This Build</Button>
+              <Button className="bg-claude!" onClick={() => router.push("/product-specification")}>View Spec</Button>
+            </div>
+          </article>
         ))}
       </div>
     </section>

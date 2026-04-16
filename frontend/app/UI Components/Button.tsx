@@ -11,7 +11,7 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 const baseStyles =
-  "inline-flex items-center justify-center rounded-3xl font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent  disabled:opacity-50";
+  "inline-flex items-center justify-center rounded-3xl font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent disabled:opacity-50 cursor-pointer";
 
 const variantStyles: Record<ButtonVariant, string> = {
   primary: "bg-foreground text-background hover:opacity-90",

@@ -30,8 +30,7 @@ export default function ConversationStep({
     <article
       ref={stepRef}
       className={[
-        "wizard-rise rounded-2xl border p-4 md:p-5",
-        locked ? "border-border/70 bg-muted/50" : "border-border bg-card",
+        "wizard-rise rounded-2xl p-4 md:p-5",
       ].join(" ")}
     >
       <div>

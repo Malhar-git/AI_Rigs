@@ -24,7 +24,7 @@ const FOOTER_SECTIONS: FooterSection[] = [
 
 export default function Footer() {
   return (
-    <footer className="mt-10 border-t border-border bg-muted/35">
+    <footer className="border-t border-border bg-muted/35">
       <div className="mx-auto max-w-7xl py-8">
         <div className="flex flex-col gap-10 md:flex-row md:items-start md:justify-between">
           <section className="md:max-w-xl md:flex-1">

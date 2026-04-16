@@ -41,13 +41,13 @@ export default function Builder() {
           <BuilderSidebar visibleSteps={visibleSteps} activeStepIndex={safeStepIndex} />
         </aside>
 
-        <main className="px-6 py-8 md:px-10">
-          <section className="mb-8">
+        <main className="px-4 pt-8 md:px-10">
+          <section className="mx-auto mb-8 w-full max-w-5xl">
             <small className="uppercase tracking-[0.18em] text-secondary">{wizardConfig.wizard.description}</small>
             <ProgressBar value={progressPercent} variant="neutral" showAnimation className="mt-3 max-w-md" />
           </section>
 
-          <section className="space-y-5">
+          <section className="mx-auto w-full max-w-5xl space-y-5">
             {renderedSteps.map((step, index) => {
               const isCurrent = index === safeStepIndex;
               return (
@@ -72,24 +72,28 @@ export default function Builder() {
             })}
           </section>
 
-          <div className="mt-8 flex flex-wrap items-center gap-3">
-            <Button variant="secondary" onClick={goBack} disabled={safeStepIndex === 0}>
-              Back
-            </Button>
-
-            {currentStep.skippable ? (
-              <Button variant="ghost" onClick={onSkipCurrentStep}>
-                Skip
+          <div className="mx-auto mt-12 w-full max-w-4xl ml-2">
+            <div className="flex flex-wrap items-center justify-between gap-3 rounded-t-xl border border-border bg-muted/70 px-4 py-3 md:px-5">
+              <Button variant="secondary" onClick={goBack} disabled={safeStepIndex === 0}>
+                Back
               </Button>
-            ) : null}
 
-            {!isLastStep ? (
-              <Button onClick={goNext} disabled={!canProceed}>
-                Continue
-              </Button>
-            ) : (
-              <Button onClick={() => router.push("/product-specification")}>{reviewStep?.cta ?? "Generate"}</Button>
-            )}
+              <div className="flex items-center gap-2">
+                {currentStep.skippable ? (
+                  <Button variant="ghost" onClick={onSkipCurrentStep}>
+                    Skip
+                  </Button>
+                ) : null}
+
+                {!isLastStep ? (
+                  <Button onClick={goNext} disabled={!canProceed}>
+                    Continue
+                  </Button>
+                ) : (
+                  <Button onClick={() => router.push("/product-specification")}>{reviewStep?.cta ?? "Generate"}</Button>
+                )}
+              </div>
+            </div>
           </div>
         </main>
       </div>

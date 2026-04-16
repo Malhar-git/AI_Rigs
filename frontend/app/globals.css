@@ -29,6 +29,8 @@
 
   --color-accent: hsl(216 100% 50%); /* Tech Blue */
 
+  --color-claude: hsl(20, 91%, 48%);
+
   /* Muted / Borders (Crucial for separation) */
   --color-muted: hsl(0 0% 96%); /* Light Gray */
   --color-muted-foreground: hsl(0 0% 40%);

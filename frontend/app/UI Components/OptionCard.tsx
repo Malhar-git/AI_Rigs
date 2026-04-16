@@ -25,10 +25,10 @@ export default function OptionCard({
       onClick={onClick}
       disabled={disabled}
       className={[
-        "w-fit max-w-full justify-self-start rounded-2xl border px-3 py-2 text-left transition-colors flex flex-col items-start",
+        "w-fit max-w-full justify-self-start rounded-2xl border px-5 py-4 text-left transition-colors flex flex-col items-start",
         selected
-          ? "border-zinc-500 bg-[#f4f4f4]"
-          : "border-zinc-300 bg-[#f1f1f1] hover:bg-[#f5f5f5]",
+          ? "border-black bg-primary"
+          : "border-zinc-300 bg-primary hover:bg-[#f5f5f5]",
         disabled ? "cursor-not-allowed opacity-60" : "cursor-pointer",
         className,
       ].join(" ")}
@@ -36,7 +36,7 @@ export default function OptionCard({
       <p className="font-primary tracking-tight text-zinc-800">{title}</p>
 
       {sub && (
-        <small className="max-w-[34ch] text-zinc-500">
+        <small className="max-w-[36ch] text-zinc-500">
           {sub}
         </small>
       )}
