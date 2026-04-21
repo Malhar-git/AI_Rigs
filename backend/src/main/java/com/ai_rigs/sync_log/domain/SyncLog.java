@@ -1,4 +1,4 @@
-package com.ai_rigs.sync.domain;
+package com.ai_rigs.sync_log.domain;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -8,28 +8,26 @@ import java.util.UUID;
 
 @Entity
 @Table(name = "sync_log")
+@Builder
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 public class SyncLog {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    @Column(updatable = false, nullable = false)
     private UUID id;
 
-    @Column(nullable = false)
+    @Column(name = "source", nullable = false)
     private String source;
 
-    @Column(nullable = false)
+    @Column(name = "status", nullable = false)
     private String status;
 
-    @Column(name = "rows_upserted", nullable = false)
+    @Column(name = "rows_upserted")
     private Integer rowsUpserted;
 
     @Column(name = "ran_at", nullable = false)
     private LocalDateTime ranAt;
 }
-
