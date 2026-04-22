@@ -1,4 +1,3 @@
--- Stores application user identities and basic profile/role data.
 CREATE TABLE IF NOT EXISTS users (
     id UUID PRIMARY KEY,
     email VARCHAR(255) NOT NULL UNIQUE,
@@ -7,7 +6,6 @@ CREATE TABLE IF NOT EXISTS users (
     role VARCHAR(100) NOT NULL
 );
 
--- Stores each generated build session and the AI input/output payloads.
 CREATE TABLE IF NOT EXISTS builds (
     id UUID PRIMARY KEY,
     user_id UUID,
@@ -19,7 +17,6 @@ CREATE TABLE IF NOT EXISTS builds (
     CONSTRAINT fk_builds_user FOREIGN KEY (user_id) REFERENCES users (id)
 );
 
--- Stores component-level product selections that belong to a build.
 CREATE TABLE IF NOT EXISTS build_items (
     id UUID PRIMARY KEY,
     build_id UUID NOT NULL,
@@ -31,7 +28,6 @@ CREATE TABLE IF NOT EXISTS build_items (
     CONSTRAINT fk_build_items_product FOREIGN KEY (product_id) REFERENCES products (id)
 );
 
--- Stores hardware benchmark metrics for accelerators/GPUs.
 CREATE TABLE IF NOT EXISTS gpu_benchmarks (
     id UUID PRIMARY KEY,
     accelerator VARCHAR(255) NOT NULL,
@@ -41,7 +37,6 @@ CREATE TABLE IF NOT EXISTS gpu_benchmarks (
     localscore INTEGER
 );
 
--- Stores model leaderboard metrics linked to a catalog AI model.
 CREATE TABLE IF NOT EXISTS model_benchmarks (
     id UUID PRIMARY KEY,
     model_id UUID NOT NULL,
@@ -52,7 +47,6 @@ CREATE TABLE IF NOT EXISTS model_benchmarks (
     CONSTRAINT fk_model_benchmarks_model FOREIGN KEY (model_id) REFERENCES ai_model (id)
 );
 
--- Stores ingestion/synchronization run audit records.
 CREATE TABLE IF NOT EXISTS sync_log (
     id UUID PRIMARY KEY,
     source VARCHAR(100) NOT NULL,
@@ -61,7 +55,6 @@ CREATE TABLE IF NOT EXISTS sync_log (
     ran_at TIMESTAMP NOT NULL
 );
 
--- Performance indexes for common lookup and join columns.
 CREATE INDEX IF NOT EXISTS idx_users_email ON users (email);
 CREATE INDEX IF NOT EXISTS idx_builds_user_id ON builds (user_id);
 CREATE INDEX IF NOT EXISTS idx_builds_session_id ON builds (session_id);
