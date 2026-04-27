@@ -1,7 +1,6 @@
 package com.ai_rigs.gpu_benchmarks;
 
 import com.ai_rigs.gpu_benchmarks.domain.GpuBenchmarkDetails;
-import com.ai_rigs.gpu_benchmarks.domain.GpuBenchmarkResult;
 import com.ai_rigs.sync_log.SyncLogRepository;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;

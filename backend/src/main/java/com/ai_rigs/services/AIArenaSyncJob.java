@@ -11,11 +11,14 @@ import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @Service
 public class AIArenaSyncJob {
     private static final String SOURCE = "arena.ai";
     private static final String CATEGORY = "coding";
+    private static final Pattern FIRST_INT_PATTERN = Pattern.compile("(\\d+)");
 
     private final ModelBenchmarkRepository modelBenchmarkRepo;
     private final SyncLogRepository syncLogRepo;
@@ -51,15 +54,9 @@ public class AIArenaSyncJob {
                 String priceText = cols.get(5).text().trim(); //Prices $/M
                 String contextText = cols.size() > 6 ? cols.get(6).text().trim() : null;
 
-                // Parse score — "1521±15" → split on "±"
-                String[] scoreParts = scoreText.split("±");
-                int score = 0;
-                int confidence = 0;
-                try {
-                    score = Integer.parseInt(scoreParts[0].trim());
-                    confidence = scoreParts.length > 1 ? Integer.parseInt(scoreParts[1].trim()) : 0;
-                } catch (NumberFormatException ignored) {
-                }
+                int[] scoreParts = parseScoreAndConfidence(scoreText);
+                int score = scoreParts[0];
+                int confidence = scoreParts[1];
 
                 // Extract model name and provider from the cell
                 // The cell contains provider name + model name concatenated
@@ -71,11 +68,7 @@ public class AIArenaSyncJob {
                 // Format: "Provider · LicenseType"
                 String cellFull = cols.get(2).text().trim();
                 String license = extractLicense(cellFull);
-                int rank = 0;
-                try {
-                    rank = Integer.parseInt(rankText);
-                } catch (NumberFormatException ignored) {
-                }
+                int rank = parseRank(rankText);
 
                 modelBenchmarkRepo.upsertByModelNameAndCategory(
                         modelName,
@@ -110,8 +103,34 @@ public class AIArenaSyncJob {
 
     private int parseVotes(String text) {
         // "3,552" → remove commas → parse
-        try { return Integer.parseInt(text.replace(",", "").trim()); }
-        catch (NumberFormatException e) { return 0; }
+        return parseFirstInt(text, 0);
+    }
+
+    private int parseRank(String rankText) {
+        return parseFirstInt(rankText, 0);
+    }
+
+    private int[] parseScoreAndConfidence(String scoreText) {
+        // Accepts formats like "1521±15", "1521 ± 15", or plain "1521".
+        String[] parts = scoreText.split("±", 2);
+        int score = parseFirstInt(parts.length > 0 ? parts[0] : scoreText, 0);
+        int confidence = parts.length > 1 ? parseFirstInt(parts[1], 0) : 0;
+        return new int[]{score, confidence};
+    }
+
+    private int parseFirstInt(String text, int fallback) {
+        if (text == null || text.isBlank()) {
+            return fallback;
+        }
+        Matcher matcher = FIRST_INT_PATTERN.matcher(text.replace(",", ""));
+        if (!matcher.find()) {
+            return fallback;
+        }
+        try {
+            return Integer.parseInt(matcher.group(1));
+        } catch (NumberFormatException e) {
+            return fallback;
+        }
     }
 
     private String buildFailureStatus(IOException e) {

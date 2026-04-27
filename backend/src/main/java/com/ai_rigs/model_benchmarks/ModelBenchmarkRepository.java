@@ -1,6 +1,5 @@
 package com.ai_rigs.model_benchmarks;
 
-import com.ai_rigs.model_benchmarks.domain.ModelBenchmark;
 import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;

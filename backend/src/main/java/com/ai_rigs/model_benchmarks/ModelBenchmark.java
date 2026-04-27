@@ -1,4 +1,4 @@
-package com.ai_rigs.model_benchmarks.domain;
+package com.ai_rigs.model_benchmarks;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

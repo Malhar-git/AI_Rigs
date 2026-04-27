@@ -1,5 +1,6 @@
-package com.ai_rigs.gpu_benchmarks.domain;
+package com.ai_rigs.gpu_benchmarks;
 
+import com.ai_rigs.gpu_benchmarks.domain.GpuBenchmarkDetails;
 import jakarta.persistence.*;
 import lombok.*;
 

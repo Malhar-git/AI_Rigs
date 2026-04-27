@@ -1,6 +1,5 @@
 package com.ai_rigs.gpu_benchmarks;
 
-import com.ai_rigs.gpu_benchmarks.domain.GpuBenchmarkResult;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -22,6 +21,10 @@ public interface GpuBenchmarkResultRepository extends JpaRepository<GpuBenchmark
     // leaderboard queries
     List<GpuBenchmarkResult> findByAcceleratorTypeOrderByLocalscoreDesc(String type);
     List<GpuBenchmarkResult> findByModelNameContainingIgnoreCase(String modelName);
+    List<GpuBenchmarkResult> findByAcceleratorNameContainingIgnoreCase(String acceleratorName);
+    List<GpuBenchmarkResult> findByAcceleratorNameContainingIgnoreCaseAndModelNameContainingIgnoreCase(
+            String acceleratorName,
+            String modelName);
 
     // find best score per Gpu for a given model
     @Query("""
@@ -34,4 +37,21 @@ public interface GpuBenchmarkResultRepository extends JpaRepository<GpuBenchmark
     // highest test ID we've seen — tells us where to resume pagination
     @Query("SELECT MAX(r.localscoreTestId) FROM GpuBenchmarkResult r")
     Optional<Integer> findMaxTestId();
+
+    // Best result per accelerator across all models
+    @Query(value = """
+        SELECT DISTINCT ON (accelerator_name)*
+        FROM gpu_benchmark_results
+        ORDER BY accelerator_name, localscore DESC NULLS LAST
+    """, nativeQuery = true)
+    List<GpuBenchmarkResult> findTopResultsPerAccelerator();
+
+    // Best result per accelerator for a given model
+    @Query(value = """
+        SELECT DISTINCT ON (accelerator_name) * 
+        FROM gpu_benchmark_results
+        WHERE LOWER(model_name) LIKE LOWER(CONCAT('%', :model, '%'))
+        ORDER BY accelerator_name, localscore DESC NULLS LAST 
+    """, nativeQuery = true)
+    List<GpuBenchmarkResult> findTopResultsPerAcceleratorForModel(@Param("model")  String model);
 }

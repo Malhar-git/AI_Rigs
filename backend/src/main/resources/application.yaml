@@ -23,3 +23,8 @@ app:
   sync:
     arena:
       run-on-startup: false
+    localscore:
+      request-delay-ms: 1200
+      request-max-retries: 3
+      backfill:
+        run-on-startup: false
