@@ -18,8 +18,8 @@ const baseStyles =
   "inline-flex font-secondary items-center rounded-0 border border-border px-3 py-1 text-xs font-medium tracking-wide select-none";
 
 const variants: Record<Variant, string> = {
-  default: "bg-zinc-200 text-primary-foreground",
-  active: "bg-blue-600 text-white border-blue-600",
+  default: "bg-muted text-foreground",
+  active: "bg-accent text-background border-accent",
   special: "bg-accent text-primary",
   specialCompact: "bg-accent text-primary px-2! text-[12px]! leading-none!",
   error: "bg-danger text-primary-foreground",
@@ -47,7 +47,7 @@ export default function Label({
   );
 
   const tooltipClasses = clsx(
-    "pointer-events-none absolute left-0 z-20 max-w-xs rounded border border-zinc-300 bg-white px-2 py-1 text-xs text-black opacity-0 transition-opacity duration-150 delay-500 group-hover:opacity-100 group-focus-within:opacity-100",
+    "pointer-events-none absolute left-0 z-20 max-w-xs rounded border border-border bg-background px-2 py-1 text-xs text-foreground opacity-0 transition-opacity duration-150 delay-500 group-hover:opacity-100 group-focus-within:opacity-100",
     positionClass,
     tooltipClassName,
   );

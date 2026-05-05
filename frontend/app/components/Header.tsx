@@ -60,14 +60,14 @@ function Navigation({ onDarkBackground }: { onDarkBackground: boolean }) {
   return (
     <nav
       aria-label="Main navigation"
-      className={`flex items-center gap-1 rounded-4xl p-0 transition-colors duration-300 ${onDarkBackground ? "bg-white/45 backdrop-blur-md" : "bg-muted/95"}`}
+      className={`flex items-center gap-1 rounded-4xl p-0 transition-colors duration-300 ${onDarkBackground ? "bg-background/45 backdrop-blur-md" : "bg-muted/95"}`}
     >
       {navItems.map((item) => (
         <Button
           key={item}
           variant="ghost"
           size="md"
-          className={`rounded-3xl px-1 transition-all duration-250 ease-out will-change-transform hover:cursor-pointer hover:scale-[0.92] hover:translate-y-px hover:bg-white/90 hover:shadow-[inset_0_1px_2px_rgba(0,0,0,0.2)] focus-visible:ring-accent/50 active:scale-[0.9] ${onDarkBackground ? "text-black" : "text-foreground"}`}
+          className={`rounded-3xl px-1 transition-all duration-250 ease-out will-change-transform hover:cursor-pointer hover:scale-[0.92] hover:translate-y-px hover:bg-background/90 hover:shadow-[inset_0_1px_2px_rgba(0,0,0,0.2)] focus-visible:ring-accent/50 active:scale-[0.9] ${onDarkBackground ? "text-foreground" : "text-foreground"}`}
         >
           {item}
         </Button>
@@ -126,7 +126,7 @@ export default function Header() {
   return (
     <header ref={headerRef} className="flex sticky top-0 z-50 w-full pt-2 justify-between rounded-xl transition-colors duration-300">
       <div className="title ml-6">
-        <h2 className={`text-2xl tracking-wider transition-colors duration-300 ${onDarkBackground ? "text-white" : "text-foreground"}`}>AI RIGS</h2>
+        <h2 className={`text-2xl tracking-wider transition-colors duration-300 ${onDarkBackground ? "text-foreground" : "text-foreground"}`}>AI RIGS</h2>
       </div>
       <div className="navigation mr-32">
         <Navigation onDarkBackground={onDarkBackground} />

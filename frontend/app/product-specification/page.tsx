@@ -42,7 +42,7 @@ function TechnicalMatrix() {
       <h4 className="px-0 pb-4 font-secondary tracking-wide text-secondary sm:text-xl">
         TECHNICAL MATRIX
       </h4>
-      <div className="grid gap-0 sm:grid-cols-2 md:grid-cols-4 bg-muted/60">
+      <div className="grid gap-0 bg-muted/60 sm:grid-cols-2 md:grid-cols-4">
         {TECHNICAL_SPECS.map((spec) => (
           <SpecCell key={spec.label} label={spec.label} value={spec.value} />
         ))}
@@ -110,7 +110,7 @@ function PerformanceCard() {
         <button
           type="button"
           onClick={() => router.push("/guild-builder")}
-          className="font-secondary h-12 w-full rounded-sm border border-accent bg-primary text-sm font-bold uppercase tracking-wide text-accent transition hover:bg-ca"
+          className="font-secondary h-12 w-full rounded-sm border border-accent bg-primary text-sm font-bold uppercase tracking-wide text-accent transition hover:bg-accent/10"
         >
           Add to Compare
         </button>

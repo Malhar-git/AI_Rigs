@@ -64,12 +64,12 @@ export default function Featured() {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
+      <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
         {featuredContent.map((card) => (
-          <article key={card.tier} className="rounded-xl border border-border bg-card p-4">
+          <article key={card.tier} className="flex h-full flex-col rounded-xl border border-border bg-card p-4">
             <div className="mb-4 flex items-center justify-between gap-3">
               <h4 className="font-semibold tracking-tight">{card.tier} Budget</h4>
-              <small className="rounded-full font-secondary border border-border bg-primary px-3 py-1 text-secondary">{card.budgetRange}</small>
+              <small className="rounded-full font-secondary whitespace-nowrap border border-border bg-primary px-3 py-1 text-secondary">{card.budgetRange}</small>
             </div>
 
             <p className="mb-4 text-secondary">{card.targetUse}</p>
@@ -86,9 +86,9 @@ export default function Featured() {
               <p>Build capability: {card.buildCapability}</p>
             </div>
 
-            <div className="mt-5 flex items-center justify-between gap-2">
+            <div className="mt-auto flex items-center justify-between gap-2 pt-5">
               <Button variant="secondary" className="bg-primary" onClick={() => router.push("/guild-builder")}>Tune This Build</Button>
-              <Button className="bg-claude!" onClick={() => router.push("/product-specification")}>View Spec</Button>
+              <Button className="bg-claude! " onClick={() => router.push("/product-specification")}>View Spec</Button>
             </div>
           </article>
         ))}

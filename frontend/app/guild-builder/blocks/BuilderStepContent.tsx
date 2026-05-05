@@ -103,8 +103,8 @@ function MultiSelectStep({
               className={[
                 "rounded-full border px-4 py-2 text-sm transition-colors",
                 selected
-                  ? "border-zinc-600 bg-zinc-800 text-white"
-                  : "border-zinc-300 bg-white text-zinc-700 hover:bg-zinc-50",
+                  ? "border-secondary bg-foreground text-background"
+                  : "border-border bg-background text-secondary hover:bg-muted",
                 shouldDisable ? "cursor-not-allowed opacity-40" : "cursor-pointer",
               ].join(" ")}
             >
@@ -133,11 +133,11 @@ function ReviewStep({
           key={field.key}
           className={[
             "flex items-center justify-between rounded-lg border border-transparent px-3 py-2",
-            field.highlight ? "bg-white border-zinc-300" : "bg-transparent",
+            field.highlight ? "bg-background border-border" : "bg-transparent",
           ].join(" ")}
         >
           <small className="uppercase tracking-wide text-secondary">{field.label}</small>
-          <p className="text-right text-zinc-900">{reviewValues[field.key] ?? "-"}</p>
+          <p className="text-right text-foreground">{reviewValues[field.key] ?? "-"}</p>
         </div>
       ))}
     </div>

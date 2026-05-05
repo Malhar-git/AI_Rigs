@@ -14,21 +14,21 @@ export default function BuilderSidebar({ visibleSteps, activeStepIndex }: Builde
         const isComplete = index < activeStepIndex;
 
         return (
-          <div key={step.id} className={["flex p-1.5", isActive ? "bg-secondary" : ""].join(" ")}>
+          <div key={step.id} className={["flex p-1.5", isActive ? "bg-secondary/15" : ""].join(" ")}>
             <div className="ml-6 flex items-center gap-2">
               <div
                 className={[
                   "flex h-6 w-6 items-center justify-center rounded-full border text-xs",
                   isActive
-                    ? "border-black text-zinc-900"
+                    ? "border-foreground text-foreground"
                     : isComplete
-                      ? "border-zinc-700 bg-zinc-700 text-white"
-                      : "border-secondary/30 text-zinc-400",
+                      ? "border-secondary bg-secondary text-background"
+                      : "border-secondary/30 text-muted-foreground",
                 ].join(" ")}
               >
                 {isComplete ? "✓" : step.display_index ?? String(step.step)}
               </div>
-              <p className={["text-md leading-none tracking-tight", isActive ? "text-zinc-900" : "text-zinc-500"].join(" ")}>
+              <p className={["text-md leading-none tracking-tight", isActive ? "text-foreground" : "text-secondary"].join(" ")}>
                 {getStepDisplayName(step)}
               </p>
             </div>
