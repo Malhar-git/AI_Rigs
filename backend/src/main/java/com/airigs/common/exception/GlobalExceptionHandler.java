@@ -48,7 +48,7 @@ public class GlobalExceptionHandler {
             ValidationException ex) {
         log.warn("Validation failed: {}", ex.getMessage());
 
-        if (ex.hasFieldErrors()) {
+        if (ex.hasFieldError()) {
             // return per-field errors so the frontend can highlight specific fields
             return ResponseEntity
                     .badRequest()
