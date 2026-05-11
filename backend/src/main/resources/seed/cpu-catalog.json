@@ -1,0 +1,1363 @@
+{
+  "catalog_meta": {
+    "version": "1.0.0",
+    "last_updated": "2026-03-15",
+    "category": "CPUs",
+    "total_entries": 20,
+    "schema_notes": {
+      "core_count_note": "AMD uses symmetric SMT (2 threads per core). Intel hybrid: P-cores support HT on Raptor Lake and older; Arrow Lake P-cores do NOT support HT.",
+      "pcie_lanes_note": "CPU-native lanes only. Additional lanes from platform chipset vary by motherboard.",
+      "memory_speed_note": "Native rated speed listed. EXPO (AMD) and XMP (Intel) overclocking can significantly exceed base spec.",
+      "tdp_note": "TDP (PL1/Base Power) is primary. Max Turbo Power (PL2/MTP) listed separately — use MTP for PSU budget calculations.",
+      "compatibility_note": "compatible_chipsets and socket fields power the AI Configurator compatibility engine."
+    }
+  },
+  "cpus": [
+    {
+      "id": "cpu-r9-9950x3d",
+      "series": "Ryzen 9000 X3D",
+      "brand": "AMD",
+      "name": "Ryzen 9 9950X3D",
+      "tier": "flagship",
+      "specifications": {
+        "cores": 16,
+        "threads": 32,
+        "base_clock_ghz": 4.3,
+        "boost_clock_ghz": 5.7,
+        "architecture": "Zen 5",
+        "codename": "Granite Ridge",
+        "process_node": "TSMC 4nm (CCD) + TSMC 6nm (IOD)",
+        "socket": "AM5",
+        "tdp_watts": 170,
+        "max_turbo_power_watts": 230,
+        "cache": {
+          "l1_kb": 1280,
+          "l2_mb": 16,
+          "l3_mb": 128,
+          "l3_type": "2nd-gen 3D V-Cache (one CCD stacked)",
+          "total_cache_mb": 144
+        },
+        "pcie": {
+          "version": "5.0",
+          "total_lanes": 28,
+          "usable_lanes": 24,
+          "lanes_to_gpu": 16,
+          "lanes_to_nvme": 4,
+          "lanes_to_chipset": 4
+        },
+        "memory": {
+          "type": "DDR5",
+          "channels": 2,
+          "max_speed_mts": 5600,
+          "expo_supported_mts": 6400,
+          "max_capacity_gb": 192,
+          "ecc_support": true,
+          "subtype": "UDIMM"
+        },
+        "igpu": "AMD Radeon (RDNA 2, 2 CU, 2000 MHz)",
+        "unlocked": true,
+        "overclocking": ["PBO", "Curve Optimizer", "AMD EXPO", "Ryzen Master"]
+      },
+      "compatibility": {
+        "socket": "AM5 (LGA 1718)",
+        "compatible_chipsets": ["X870E", "X870", "X670E", "X670", "B650E", "B650", "B840", "B850"],
+        "cooler_mount": "AM5 (105mm x 105mm)",
+        "recommended_cooler": "280mm+ AIO or premium tower air",
+        "min_psu_watts": 750,
+        "compatible_gpu_pcie_gen": "5.0 native via CPU",
+        "notes": "Dual-CCD chip — only one CCD has 3D V-Cache. Full overclocking supported (first dual-CCD X3D to support it). Game threads parked on V-Cache CCD automatically."
+      },
+      "pricing": {
+        "msrp_usd": 699,
+        "price_source": "manual",
+        "last_updated": "2026-03-15",
+        "affiliate": {
+          "amazon": { "asin": "B0DK9XXXXX9950X3D", "tag": "yoursite-20", "url": "https://www.amazon.com/dp/B0DK9XXXXX9950X3D?tag=yoursite-20" }
+        }
+      },
+      "meta": {
+        "release_date": "2025-03-12",
+        "popularity_score": 93,
+        "editor_pick": true,
+        "trending": true,
+        "badge": "Best All-Rounder"
+      }
+    },
+    {
+      "id": "cpu-r9-9900x3d",
+      "series": "Ryzen 9000 X3D",
+      "brand": "AMD",
+      "name": "Ryzen 9 9900X3D",
+      "tier": "high-end",
+      "specifications": {
+        "cores": 12,
+        "threads": 24,
+        "base_clock_ghz": 4.0,
+        "boost_clock_ghz": 5.5,
+        "architecture": "Zen 5",
+        "codename": "Granite Ridge",
+        "process_node": "TSMC 4nm (CCD) + TSMC 6nm (IOD)",
+        "socket": "AM5",
+        "tdp_watts": 120,
+        "max_turbo_power_watts": 162,
+        "cache": {
+          "l1_kb": 960,
+          "l2_mb": 12,
+          "l3_mb": 128,
+          "l3_type": "2nd-gen 3D V-Cache (one CCD stacked)",
+          "total_cache_mb": 140
+        },
+        "pcie": {
+          "version": "5.0",
+          "total_lanes": 28,
+          "usable_lanes": 24,
+          "lanes_to_gpu": 16,
+          "lanes_to_nvme": 4,
+          "lanes_to_chipset": 4
+        },
+        "memory": {
+          "type": "DDR5",
+          "channels": 2,
+          "max_speed_mts": 5600,
+          "expo_supported_mts": 6400,
+          "max_capacity_gb": 192,
+          "ecc_support": true,
+          "subtype": "UDIMM"
+        },
+        "igpu": "AMD Radeon (RDNA 2, 2 CU, 2000 MHz)",
+        "unlocked": true,
+        "overclocking": ["PBO", "Curve Optimizer", "AMD EXPO", "Ryzen Master"]
+      },
+      "compatibility": {
+        "socket": "AM5 (LGA 1718)",
+        "compatible_chipsets": ["X870E", "X870", "X670E", "X670", "B650E", "B650", "B840", "B850"],
+        "cooler_mount": "AM5",
+        "recommended_cooler": "240mm+ AIO",
+        "min_psu_watts": 650,
+        "compatible_gpu_pcie_gen": "5.0 native via CPU",
+        "notes": "12-core X3D. Lower TDP than 9950X3D. Excellent creator + gaming balance."
+      },
+      "pricing": {
+        "msrp_usd": 599,
+        "price_source": "manual",
+        "last_updated": "2026-03-15",
+        "affiliate": {
+          "amazon": { "asin": "B0DK9XXXXX9900X3D", "tag": "yoursite-20", "url": "https://www.amazon.com/dp/B0DK9XXXXX9900X3D?tag=yoursite-20" }
+        }
+      },
+      "meta": {
+        "release_date": "2025-03-12",
+        "popularity_score": 82,
+        "editor_pick": false,
+        "trending": true,
+        "badge": "Creator + Gaming"
+      }
+    },
+    {
+      "id": "cpu-r7-9800x3d",
+      "series": "Ryzen 9000 X3D",
+      "brand": "AMD",
+      "name": "Ryzen 7 9800X3D",
+      "tier": "high-end",
+      "specifications": {
+        "cores": 8,
+        "threads": 16,
+        "base_clock_ghz": 4.7,
+        "boost_clock_ghz": 5.2,
+        "architecture": "Zen 5",
+        "codename": "Granite Ridge",
+        "process_node": "TSMC 4nm (CCD) + TSMC 6nm (IOD)",
+        "socket": "AM5",
+        "tdp_watts": 120,
+        "max_turbo_power_watts": 162,
+        "cache": {
+          "l1_kb": 640,
+          "l2_mb": 8,
+          "l3_mb": 96,
+          "l3_type": "2nd-gen 3D V-Cache (under-die stacked)",
+          "total_cache_mb": 104
+        },
+        "pcie": {
+          "version": "5.0",
+          "total_lanes": 28,
+          "usable_lanes": 24,
+          "lanes_to_gpu": 16,
+          "lanes_to_nvme": 4,
+          "lanes_to_chipset": 4
+        },
+        "memory": {
+          "type": "DDR5",
+          "channels": 2,
+          "max_speed_mts": 5600,
+          "expo_supported_mts": 6400,
+          "max_capacity_gb": 192,
+          "ecc_support": true,
+          "subtype": "UDIMM"
+        },
+        "igpu": "AMD Radeon (RDNA 2, 2 CU, 2000 MHz)",
+        "unlocked": true,
+        "overclocking": ["PBO", "Curve Optimizer", "AMD EXPO", "Ryzen Master"]
+      },
+      "compatibility": {
+        "socket": "AM5 (LGA 1718)",
+        "compatible_chipsets": ["X870E", "X870", "X670E", "X670", "B650E", "B650", "A620", "B840", "B850"],
+        "cooler_mount": "AM5",
+        "recommended_cooler": "240mm AIO or premium tower air",
+        "min_psu_watts": 650,
+        "compatible_gpu_pcie_gen": "5.0 native via CPU",
+        "notes": "World's fastest gaming CPU at launch. Single-CCD — no scheduling complexity. First X3D with full PBO overclocking support. Under-die cache placement improves thermals and clock headroom vs gen 1."
+      },
+      "pricing": {
+        "msrp_usd": 479,
+        "price_source": "manual",
+        "last_updated": "2026-03-15",
+        "affiliate": {
+          "amazon": { "asin": "B0DKFMSMYK", "tag": "yoursite-20", "url": "https://www.amazon.com/dp/B0DKFMSMYK?tag=yoursite-20" }
+        }
+      },
+      "meta": {
+        "release_date": "2024-11-07",
+        "popularity_score": 97,
+        "editor_pick": true,
+        "trending": true,
+        "badge": "Top Gaming CPU"
+      }
+    },
+    {
+      "id": "cpu-r7-7800x3d",
+      "series": "Ryzen 7000 X3D",
+      "brand": "AMD",
+      "name": "Ryzen 7 7800X3D",
+      "tier": "high-end",
+      "specifications": {
+        "cores": 8,
+        "threads": 16,
+        "base_clock_ghz": 4.2,
+        "boost_clock_ghz": 5.0,
+        "architecture": "Zen 4",
+        "codename": "Raphael",
+        "process_node": "TSMC 5nm (CCD) + TSMC 6nm (IOD)",
+        "socket": "AM5",
+        "tdp_watts": 120,
+        "max_turbo_power_watts": 162,
+        "cache": {
+          "l1_kb": 512,
+          "l2_mb": 8,
+          "l3_mb": 96,
+          "l3_type": "1st-gen 3D V-Cache (on-top stacked)",
+          "total_cache_mb": 104
+        },
+        "pcie": {
+          "version": "5.0",
+          "total_lanes": 28,
+          "usable_lanes": 24,
+          "lanes_to_gpu": 16,
+          "lanes_to_nvme": 4,
+          "lanes_to_chipset": 4
+        },
+        "memory": {
+          "type": "DDR5",
+          "channels": 2,
+          "max_speed_mts": 5200,
+          "expo_supported_mts": 6000,
+          "max_capacity_gb": 128,
+          "ecc_support": true,
+          "subtype": "UDIMM"
+        },
+        "igpu": "AMD Radeon (RDNA 2, 2 CU, 2200 MHz)",
+        "unlocked": false,
+        "overclocking": ["AMD EXPO memory OC only — no manual core OC"]
+      },
+      "compatibility": {
+        "socket": "AM5 (LGA 1718)",
+        "compatible_chipsets": ["X870E", "X870", "X670E", "X670", "B650E", "B650", "A620", "B840", "B850"],
+        "cooler_mount": "AM5",
+        "recommended_cooler": "280mm AIO — on-top V-Cache limits thermals",
+        "min_psu_watts": 650,
+        "compatible_gpu_pcie_gen": "5.0 native via CPU",
+        "notes": "Previous-gen gaming king. 1st-gen V-Cache on top of die — thermal constraints limit clocks. No manual OC. Excellent value on secondary market."
+      },
+      "pricing": {
+        "msrp_usd": 349,
+        "price_source": "manual",
+        "last_updated": "2026-03-15",
+        "affiliate": {
+          "amazon": { "asin": "B0BTRH9MNS", "tag": "yoursite-20", "url": "https://www.amazon.com/dp/B0BTRH9MNS?tag=yoursite-20" }
+        }
+      },
+      "meta": {
+        "release_date": "2023-04-06",
+        "popularity_score": 85,
+        "editor_pick": false,
+        "trending": false,
+        "badge": "Value Gaming"
+      }
+    },
+    {
+      "id": "cpu-r9-9950x",
+      "series": "Ryzen 9000",
+      "brand": "AMD",
+      "name": "Ryzen 9 9950X",
+      "tier": "flagship",
+      "specifications": {
+        "cores": 16,
+        "threads": 32,
+        "base_clock_ghz": 4.3,
+        "boost_clock_ghz": 5.7,
+        "architecture": "Zen 5",
+        "codename": "Granite Ridge",
+        "process_node": "TSMC 4nm (CCD) + TSMC 6nm (IOD)",
+        "socket": "AM5",
+        "tdp_watts": 170,
+        "max_turbo_power_watts": 230,
+        "cache": {
+          "l1_kb": 1280,
+          "l2_mb": 16,
+          "l3_mb": 64,
+          "l3_type": "Standard L3 (no V-Cache)",
+          "total_cache_mb": 80
+        },
+        "pcie": {
+          "version": "5.0",
+          "total_lanes": 28,
+          "usable_lanes": 24,
+          "lanes_to_gpu": 16,
+          "lanes_to_nvme": 4,
+          "lanes_to_chipset": 4
+        },
+        "memory": {
+          "type": "DDR5",
+          "channels": 2,
+          "max_speed_mts": 5600,
+          "expo_supported_mts": 6400,
+          "max_capacity_gb": 192,
+          "ecc_support": true,
+          "subtype": "UDIMM"
+        },
+        "igpu": "AMD Radeon (RDNA 2, 2 CU, 2000 MHz)",
+        "unlocked": true,
+        "overclocking": ["Manual OC", "PBO", "Curve Optimizer", "AMD EXPO", "Ryzen Master"]
+      },
+      "compatibility": {
+        "socket": "AM5 (LGA 1718)",
+        "compatible_chipsets": ["X870E", "X870", "X670E", "X670", "B650E", "B650"],
+        "cooler_mount": "AM5",
+        "recommended_cooler": "360mm AIO",
+        "min_psu_watts": 750,
+        "compatible_gpu_pcie_gen": "5.0 native via CPU",
+        "notes": "Best AM5 chip for pure productivity without V-Cache premium. Preferred over 9950X3D for non-gaming AI and rendering workloads — same MT performance, lower cost."
+      },
+      "pricing": {
+        "msrp_usd": 649,
+        "price_source": "manual",
+        "last_updated": "2026-03-15",
+        "affiliate": {
+          "amazon": { "asin": "B0CQ2XXXXX9950X", "tag": "yoursite-20", "url": "https://www.amazon.com/dp/B0CQ2XXXXX9950X?tag=yoursite-20" }
+        }
+      },
+      "meta": {
+        "release_date": "2024-07-31",
+        "popularity_score": 80,
+        "editor_pick": true,
+        "trending": false,
+        "badge": "AI Productivity King"
+      }
+    },
+    {
+      "id": "cpu-intel-cu9-285k",
+      "series": "Intel Core Ultra 200S (Arrow Lake)",
+      "brand": "Intel",
+      "name": "Core Ultra 9 285K",
+      "tier": "flagship",
+      "specifications": {
+        "cores": 24,
+        "p_cores": 8,
+        "e_cores": 16,
+        "threads": 24,
+        "hyperthreading": false,
+        "base_clock_ghz": { "p_core": 3.7, "e_core": 2.8 },
+        "boost_clock_ghz": { "p_core_tvb": 5.7, "p_core_max_turbo": 5.6, "e_core": 4.6 },
+        "architecture": "Arrow Lake (Lion Cove P-cores + Skymont E-cores)",
+        "codename": "Arrow Lake-S",
+        "process_node": "TSMC N3B (compute tile)",
+        "socket": "LGA1851",
+        "tdp_watts": 125,
+        "max_turbo_power_watts": 250,
+        "cache": {
+          "l2_mb": 40,
+          "l3_mb": 36,
+          "total_cache_mb": 76
+        },
+        "pcie": {
+          "version": "5.0",
+          "cpu_native_lanes": 24,
+          "chipset_pcie4_lanes": 20,
+          "lanes_to_gpu": 16,
+          "lanes_to_nvme_pcie5": 4,
+          "dmi": "DMI 4.0 x8 to chipset"
+        },
+        "memory": {
+          "type": "DDR5",
+          "channels": 2,
+          "max_speed_udimm_mts": 5600,
+          "max_speed_cudimm_mts": 6400,
+          "max_capacity_gb": 192,
+          "ecc_support": false,
+          "subtype": "UDIMM / CUDIMM"
+        },
+        "igpu": "Intel Graphics (Xe, 4 Xe-cores, 64 EU)",
+        "npu_tops": 13,
+        "unlocked": true,
+        "overclocking": ["Manual OC", "Intel XTU", "AI-assisted OC"],
+        "ai_instruction_sets": ["Intel DL Boost", "AVX2", "OpenVINO", "DirectML", "ONNX RT", "WebNN"]
+      },
+      "compatibility": {
+        "socket": "LGA1851",
+        "compatible_chipsets": ["Z890", "B860", "H870"],
+        "cooler_mount": "LGA1851 (same hole spacing as LGA1700 — most LGA1700 coolers compatible with adapter)",
+        "recommended_cooler": "280mm+ AIO",
+        "min_psu_watts": 750,
+        "compatible_gpu_pcie_gen": "5.0 native via CPU (x16 slot)",
+        "notes": "Arrow Lake removed HT from P-cores — 24 cores = 24 threads only. PCIe 5.0 x16 to GPU is CPU-direct. AVX-512 dropped. Requires new LGA1851 motherboard — not compatible with Z790/Z690."
+      },
+      "pricing": {
+        "msrp_usd": 589,
+        "price_source": "manual",
+        "last_updated": "2026-03-15",
+        "affiliate": {
+          "amazon": { "asin": "B0DFKC99VL", "tag": "yoursite-20", "url": "https://www.amazon.com/dp/B0DFKC99VL?tag=yoursite-20" }
+        }
+      },
+      "meta": {
+        "release_date": "2024-10-24",
+        "popularity_score": 70,
+        "editor_pick": false,
+        "trending": false,
+        "badge": "Intel Flagship"
+      }
+    },
+    {
+      "id": "cpu-intel-cu7-265k",
+      "series": "Intel Core Ultra 200S (Arrow Lake)",
+      "brand": "Intel",
+      "name": "Core Ultra 7 265K",
+      "tier": "high-end",
+      "specifications": {
+        "cores": 20,
+        "p_cores": 8,
+        "e_cores": 12,
+        "threads": 20,
+        "hyperthreading": false,
+        "base_clock_ghz": { "p_core": 3.9, "e_core": 3.3 },
+        "boost_clock_ghz": { "p_core_max_turbo": 5.4, "e_core": 4.6 },
+        "architecture": "Arrow Lake",
+        "codename": "Arrow Lake-S",
+        "process_node": "TSMC N3B",
+        "socket": "LGA1851",
+        "tdp_watts": 125,
+        "max_turbo_power_watts": 250,
+        "cache": {
+          "l2_mb": 36,
+          "l3_mb": 30,
+          "total_cache_mb": 66
+        },
+        "pcie": {
+          "version": "5.0",
+          "cpu_native_lanes": 24,
+          "chipset_pcie4_lanes": 20,
+          "lanes_to_gpu": 16,
+          "lanes_to_nvme_pcie5": 4
+        },
+        "memory": {
+          "type": "DDR5",
+          "channels": 2,
+          "max_speed_udimm_mts": 5600,
+          "max_speed_cudimm_mts": 6400,
+          "max_capacity_gb": 192,
+          "ecc_support": false,
+          "subtype": "UDIMM / CUDIMM"
+        },
+        "igpu": "Intel Graphics (Xe, 4 Xe-cores, 64 EU)",
+        "npu_tops": 13,
+        "unlocked": true,
+        "overclocking": ["Manual OC", "Intel XTU"],
+        "ai_instruction_sets": ["Intel DL Boost", "AVX2", "OpenVINO", "DirectML", "ONNX RT"]
+      },
+      "compatibility": {
+        "socket": "LGA1851",
+        "compatible_chipsets": ["Z890", "B860", "H870"],
+        "cooler_mount": "LGA1851 (LGA1700 cooler compatible via adapter)",
+        "recommended_cooler": "240mm+ AIO",
+        "min_psu_watts": 700,
+        "compatible_gpu_pcie_gen": "5.0 native via CPU",
+        "notes": "Best value Arrow Lake. 4 fewer E-cores vs 285K but significantly lower price. Same Z890 platform — board upgrade path available."
+      },
+      "pricing": {
+        "msrp_usd": 394,
+        "price_source": "manual",
+        "last_updated": "2026-03-15",
+        "affiliate": {
+          "amazon": { "asin": "B0DFKXXXXXX265K", "tag": "yoursite-20", "url": "https://www.amazon.com/dp/B0DFKXXXXXX265K?tag=yoursite-20" }
+        }
+      },
+      "meta": {
+        "release_date": "2024-10-24",
+        "popularity_score": 72,
+        "editor_pick": true,
+        "trending": false,
+        "badge": "Best Intel Value"
+      }
+    },
+    {
+      "id": "cpu-intel-i9-14900k",
+      "series": "Intel 14th Gen (Raptor Lake Refresh)",
+      "brand": "Intel",
+      "name": "Core i9-14900K",
+      "tier": "flagship",
+      "specifications": {
+        "cores": 24,
+        "p_cores": 8,
+        "e_cores": 16,
+        "threads": 32,
+        "hyperthreading": true,
+        "base_clock_ghz": { "p_core": 3.2, "e_core": 2.4 },
+        "boost_clock_ghz": { "p_core_tvb": 6.0, "p_core_max_turbo": 5.8, "e_core": 4.4 },
+        "architecture": "Raptor Lake Refresh",
+        "codename": "Raptor Lake-R",
+        "process_node": "Intel 7 (10nm ESF)",
+        "socket": "LGA1700",
+        "tdp_watts": 125,
+        "max_turbo_power_watts": 253,
+        "cache": {
+          "l2_mb": 32,
+          "l3_mb": 36,
+          "total_cache_mb": 68
+        },
+        "pcie": {
+          "version": "5.0",
+          "cpu_native_lanes": 20,
+          "chipset_pcie4_lanes": 16,
+          "lanes_to_gpu": 16,
+          "lanes_to_nvme_pcie4": 4
+        },
+        "memory": {
+          "type": "DDR5 or DDR4",
+          "channels": 2,
+          "max_speed_ddr5_mts": 5600,
+          "max_speed_ddr4_mts": 3200,
+          "max_capacity_gb": 192,
+          "ecc_support": false,
+          "subtype": "UDIMM (DDR4 or DDR5 — determined by motherboard, not both)"
+        },
+        "igpu": "Intel UHD 770 (32 EU, 1650 MHz)",
+        "npu_tops": null,
+        "unlocked": true,
+        "overclocking": ["Manual OC", "Intel XTU", "MCE"]
+      },
+      "compatibility": {
+        "socket": "LGA1700",
+        "compatible_chipsets": ["Z790", "Z690", "B760", "H770"],
+        "cooler_mount": "LGA1700 (different from LGA1851)",
+        "recommended_cooler": "360mm AIO — 253W sustained TDP demands premium cooling",
+        "min_psu_watts": 750,
+        "compatible_gpu_pcie_gen": "5.0 native via CPU",
+        "notes": "Final generation on LGA1700. 32 threads via P-core HT + E-cores. DDR4 or DDR5 depends on motherboard — flag mismatch in configurator. Sustained draw is 253W — not 125W."
+      },
+      "pricing": {
+        "msrp_usd": 499,
+        "price_source": "manual",
+        "last_updated": "2026-03-15",
+        "affiliate": {
+          "amazon": { "asin": "B0CGJDKLB8", "tag": "yoursite-20", "url": "https://www.amazon.com/dp/B0CGJDKLB8?tag=yoursite-20" }
+        }
+      },
+      "meta": {
+        "release_date": "2023-10-17",
+        "popularity_score": 76,
+        "editor_pick": false,
+        "trending": false,
+        "badge": "Legacy Flagship"
+      }
+    },
+    {
+      "id": "cpu-intel-i9-14900ks",
+      "series": "Intel 14th Gen Special Edition",
+      "brand": "Intel",
+      "name": "Core i9-14900KS",
+      "tier": "flagship",
+      "specifications": {
+        "cores": 24,
+        "p_cores": 8,
+        "e_cores": 16,
+        "threads": 32,
+        "hyperthreading": true,
+        "base_clock_ghz": { "p_core": 3.2, "e_core": 2.5 },
+        "boost_clock_ghz": { "p_core_tvb": 6.2, "p_core_max_turbo": 6.0, "e_core": 4.5 },
+        "architecture": "Raptor Lake Refresh",
+        "codename": "Raptor Lake-R",
+        "process_node": "Intel 7 (10nm ESF)",
+        "socket": "LGA1700",
+        "tdp_watts": 150,
+        "max_turbo_power_watts": 253,
+        "cache": {
+          "l2_mb": 32,
+          "l3_mb": 36,
+          "total_cache_mb": 68
+        },
+        "pcie": {
+          "version": "5.0",
+          "cpu_native_lanes": 20,
+          "chipset_pcie4_lanes": 16,
+          "lanes_to_gpu": 16,
+          "lanes_to_nvme_pcie4": 4
+        },
+        "memory": {
+          "type": "DDR5 or DDR4",
+          "channels": 2,
+          "max_speed_ddr5_mts": 5600,
+          "max_speed_ddr4_mts": 3200,
+          "max_capacity_gb": 192,
+          "ecc_support": false,
+          "subtype": "UDIMM"
+        },
+        "igpu": "Intel UHD 770 (32 EU, 1650 MHz)",
+        "npu_tops": null,
+        "unlocked": true,
+        "overclocking": ["Manual OC", "Intel XTU"]
+      },
+      "compatibility": {
+        "socket": "LGA1700",
+        "compatible_chipsets": ["Z790", "Z690"],
+        "cooler_mount": "LGA1700",
+        "recommended_cooler": "360mm AIO mandatory",
+        "min_psu_watts": 850,
+        "compatible_gpu_pcie_gen": "5.0 native via CPU",
+        "notes": "Highest-clocked consumer Intel CPU ever at 6.2 GHz TVB. Premium-binned silicon. Worth it only for extreme overclocking."
+      },
+      "pricing": {
+        "msrp_usd": 699,
+        "price_source": "manual",
+        "last_updated": "2026-03-15",
+        "affiliate": {
+          "amazon": { "asin": "B0CXX14900KS", "tag": "yoursite-20", "url": "https://www.amazon.com/dp/B0CXX14900KS?tag=yoursite-20" }
+        }
+      },
+      "meta": {
+        "release_date": "2024-03-14",
+        "popularity_score": 65,
+        "editor_pick": false,
+        "trending": false,
+        "badge": "Overclocker's Pick"
+      }
+    },
+    {
+      "id": "cpu-intel-i7-14700k",
+      "series": "Intel 14th Gen (Raptor Lake Refresh)",
+      "brand": "Intel",
+      "name": "Core i7-14700K",
+      "tier": "high-end",
+      "specifications": {
+        "cores": 20,
+        "p_cores": 8,
+        "e_cores": 12,
+        "threads": 28,
+        "hyperthreading": true,
+        "base_clock_ghz": { "p_core": 3.4, "e_core": 2.5 },
+        "boost_clock_ghz": { "p_core_max_turbo": 5.6, "e_core": 4.3 },
+        "architecture": "Raptor Lake Refresh",
+        "codename": "Raptor Lake-R",
+        "process_node": "Intel 7 (10nm ESF)",
+        "socket": "LGA1700",
+        "tdp_watts": 125,
+        "max_turbo_power_watts": 253,
+        "cache": {
+          "l2_mb": 28,
+          "l3_mb": 33,
+          "total_cache_mb": 61
+        },
+        "pcie": {
+          "version": "5.0",
+          "cpu_native_lanes": 20,
+          "chipset_pcie4_lanes": 16,
+          "lanes_to_gpu": 16,
+          "lanes_to_nvme_pcie4": 4
+        },
+        "memory": {
+          "type": "DDR5 or DDR4",
+          "channels": 2,
+          "max_speed_ddr5_mts": 5600,
+          "max_speed_ddr4_mts": 3200,
+          "max_capacity_gb": 192,
+          "ecc_support": false,
+          "subtype": "UDIMM"
+        },
+        "igpu": "Intel UHD 770 (32 EU, 1600 MHz)",
+        "npu_tops": null,
+        "unlocked": true,
+        "overclocking": ["Manual OC", "Intel XTU"]
+      },
+      "compatibility": {
+        "socket": "LGA1700",
+        "compatible_chipsets": ["Z790", "Z690", "B760", "H770"],
+        "cooler_mount": "LGA1700",
+        "recommended_cooler": "240mm+ AIO",
+        "min_psu_watts": 700,
+        "compatible_gpu_pcie_gen": "5.0 native via CPU",
+        "notes": "Standout of the Raptor Lake Refresh lineup — gained 4 E-cores vs 13700K. Near i9-14900K gaming performance at much lower cost. LGA1700 final generation."
+      },
+      "pricing": {
+        "msrp_usd": 349,
+        "price_source": "manual",
+        "last_updated": "2026-03-15",
+        "affiliate": {
+          "amazon": { "asin": "B0CGJ41D97", "tag": "yoursite-20", "url": "https://www.amazon.com/dp/B0CGJ41D97?tag=yoursite-20" }
+        }
+      },
+      "meta": {
+        "release_date": "2023-10-17",
+        "popularity_score": 78,
+        "editor_pick": false,
+        "trending": false,
+        "badge": "Best Intel Value Legacy"
+      }
+    },
+    {
+      "id": "cpu-intel-i9-13900k",
+      "series": "Intel 13th Gen (Raptor Lake)",
+      "brand": "Intel",
+      "name": "Core i9-13900K",
+      "tier": "flagship",
+      "specifications": {
+        "cores": 24,
+        "p_cores": 8,
+        "e_cores": 16,
+        "threads": 32,
+        "hyperthreading": true,
+        "base_clock_ghz": { "p_core": 3.0, "e_core": 2.2 },
+        "boost_clock_ghz": { "p_core_tvb": 5.8, "p_core_max_turbo": 5.7, "e_core": 4.3 },
+        "architecture": "Raptor Lake",
+        "codename": "Raptor Lake",
+        "process_node": "Intel 7 (10nm ESF)",
+        "socket": "LGA1700",
+        "tdp_watts": 125,
+        "max_turbo_power_watts": 253,
+        "cache": {
+          "l2_mb": 32,
+          "l3_mb": 36,
+          "total_cache_mb": 68
+        },
+        "pcie": {
+          "version": "5.0",
+          "cpu_native_lanes": 20,
+          "chipset_pcie4_lanes": 16,
+          "lanes_to_gpu": 16,
+          "lanes_to_nvme_pcie4": 4
+        },
+        "memory": {
+          "type": "DDR5 or DDR4",
+          "channels": 2,
+          "max_speed_ddr5_mts": 5600,
+          "max_speed_ddr4_mts": 3200,
+          "max_capacity_gb": 192,
+          "ecc_support": false,
+          "subtype": "UDIMM"
+        },
+        "igpu": "Intel UHD 770 (32 EU)",
+        "npu_tops": null,
+        "unlocked": true,
+        "overclocking": ["Manual OC", "Intel XTU"]
+      },
+      "compatibility": {
+        "socket": "LGA1700",
+        "compatible_chipsets": ["Z790", "Z690", "B760", "H770"],
+        "cooler_mount": "LGA1700",
+        "recommended_cooler": "360mm AIO",
+        "min_psu_watts": 750,
+        "compatible_gpu_pcie_gen": "5.0 native via CPU",
+        "notes": "Functionally near-identical to 14900K. Strong secondary market value. DDR4 or DDR5 motherboard dependent."
+      },
+      "pricing": {
+        "msrp_usd": 349,
+        "price_source": "manual",
+        "last_updated": "2026-03-15",
+        "affiliate": {
+          "amazon": { "asin": "B0BCF54ZQT", "tag": "yoursite-20", "url": "https://www.amazon.com/dp/B0BCF54ZQT?tag=yoursite-20" }
+        }
+      },
+      "meta": {
+        "release_date": "2022-10-20",
+        "popularity_score": 68,
+        "editor_pick": false,
+        "trending": false,
+        "badge": "Legacy Strong"
+      }
+    },
+    {
+      "id": "cpu-intel-i7-13700k",
+      "series": "Intel 13th Gen (Raptor Lake)",
+      "brand": "Intel",
+      "name": "Core i7-13700K",
+      "tier": "high-end",
+      "specifications": {
+        "cores": 16,
+        "p_cores": 8,
+        "e_cores": 8,
+        "threads": 24,
+        "hyperthreading": true,
+        "base_clock_ghz": { "p_core": 3.4, "e_core": 2.5 },
+        "boost_clock_ghz": { "p_core_max_turbo": 5.4, "e_core": 4.2 },
+        "architecture": "Raptor Lake",
+        "codename": "Raptor Lake",
+        "process_node": "Intel 7 (10nm ESF)",
+        "socket": "LGA1700",
+        "tdp_watts": 125,
+        "max_turbo_power_watts": 253,
+        "cache": {
+          "l2_mb": 24,
+          "l3_mb": 30,
+          "total_cache_mb": 54
+        },
+        "pcie": {
+          "version": "5.0",
+          "cpu_native_lanes": 20,
+          "chipset_pcie4_lanes": 16,
+          "lanes_to_gpu": 16,
+          "lanes_to_nvme_pcie4": 4
+        },
+        "memory": {
+          "type": "DDR5 or DDR4",
+          "channels": 2,
+          "max_speed_ddr5_mts": 5600,
+          "max_speed_ddr4_mts": 3200,
+          "max_capacity_gb": 192,
+          "ecc_support": false,
+          "subtype": "UDIMM"
+        },
+        "igpu": "Intel UHD 770 (32 EU)",
+        "npu_tops": null,
+        "unlocked": true,
+        "overclocking": ["Manual OC", "Intel XTU"]
+      },
+      "compatibility": {
+        "socket": "LGA1700",
+        "compatible_chipsets": ["Z790", "Z690", "B760", "H770"],
+        "cooler_mount": "LGA1700",
+        "recommended_cooler": "240mm+ AIO",
+        "min_psu_watts": 700,
+        "compatible_gpu_pcie_gen": "5.0 native via CPU",
+        "notes": "8 fewer E-cores than 14700K. Excellent secondary market value for AI inference + mid-range GPU pairing."
+      },
+      "pricing": {
+        "msrp_usd": 279,
+        "price_source": "manual",
+        "last_updated": "2026-03-15",
+        "affiliate": {
+          "amazon": { "asin": "B0BCF57W1T", "tag": "yoursite-20", "url": "https://www.amazon.com/dp/B0BCF57W1T?tag=yoursite-20" }
+        }
+      },
+      "meta": {
+        "release_date": "2022-10-20",
+        "popularity_score": 64,
+        "editor_pick": false,
+        "trending": false,
+        "badge": "Budget Performance"
+      }
+    },
+    {
+      "id": "cpu-amd-ryzen-ai-max-395",
+      "series": "Ryzen AI Max (Strix Halo APU)",
+      "brand": "AMD",
+      "name": "Ryzen AI Max+ 395",
+      "tier": "mobile-flagship",
+      "specifications": {
+        "cores": 16,
+        "threads": 32,
+        "boost_clock_ghz": 5.1,
+        "architecture": "Zen 5",
+        "codename": "Strix Halo",
+        "process_node": "TSMC 4nm",
+        "socket": "Soldered BGA (OEM only)",
+        "tdp_watts_ctdp_min": 45,
+        "tdp_watts_ctdp_max": 120,
+        "cache": {
+          "l2_mb": 16,
+          "l3_mb": 64,
+          "total_cache_mb": 80
+        },
+        "pcie": {
+          "version": "4.0",
+          "lanes_available": 8,
+          "notes": "PCIe 4.0 only — critical limit for discrete GPU bandwidth (32 GB/s max vs PCIe 5.0's 64 GB/s)"
+        },
+        "memory": {
+          "type": "LPDDR5X",
+          "channels": 8,
+          "max_speed_mts": 8000,
+          "max_capacity_gb": 128,
+          "bandwidth_gbs": 256,
+          "ecc_support": false,
+          "unified_memory_note": "CPU and iGPU share memory pool. Up to 96GB assignable as VRAM."
+        },
+        "igpu": "AMD Radeon 8060S (RDNA 3.5, 40 CU, 2900 MHz)",
+        "igpu_compute_units": 40,
+        "npu": "XDNA 2",
+        "npu_tops": 50,
+        "total_system_tops": 126,
+        "unlocked": false,
+        "overclocking": ["None — soldered OEM platform"],
+        "ai_instruction_sets": ["XDNA 2 NPU", "ROCm (via iGPU)", "DirectML", "ONNX Runtime", "llama.cpp (unified memory LLM inference)"]
+      },
+      "compatibility": {
+        "socket": "Soldered BGA — not user replaceable",
+        "compatible_form_factors": ["Mini PC (Minisforum MS-S1, GMKtec EVO-X2, Beelink GTR9 Pro)", "Mini-ITX barebone", "Laptop (ASUS ROG Flow Z13, HP OmniBook Ultra)"],
+        "cooler_mount": "OEM vapor chamber solution",
+        "min_psu_watts": 140,
+        "discrete_gpu_compatibility": "PCIe 4.0 x16 available on select mini PCs. Discrete GPU works but bandwidth-limited.",
+        "notes": "Killer feature: 128GB unified memory as VRAM — enables 70B+ LLM inference locally. Not a socketed desktop CPU. PCIe 4.0 limits discrete GPU. Best for compact AI inference systems."
+      },
+      "pricing": {
+        "msrp_usd": null,
+        "price_note": "System-only. Mini PCs from ~$799 (32GB) to $1,599+ (128GB)",
+        "price_source": "manual",
+        "last_updated": "2026-03-15",
+        "affiliate": {
+          "amazon": { "asin": "B0FJQDRZFZ", "tag": "yoursite-20", "url": "https://www.amazon.com/dp/B0FJQDRZFZ?tag=yoursite-20" }
+        }
+      },
+      "meta": {
+        "release_date": "2025-01-06",
+        "popularity_score": 88,
+        "editor_pick": true,
+        "trending": true,
+        "badge": "Local AI Champion"
+      }
+    },
+    {
+      "id": "cpu-amd-ryzen-ai-max-390",
+      "series": "Ryzen AI Max (Strix Halo APU)",
+      "brand": "AMD",
+      "name": "Ryzen AI Max 390",
+      "tier": "mobile-high",
+      "specifications": {
+        "cores": 12,
+        "threads": 24,
+        "boost_clock_ghz": 5.0,
+        "architecture": "Zen 5",
+        "codename": "Strix Halo",
+        "process_node": "TSMC 4nm",
+        "socket": "Soldered BGA",
+        "tdp_watts_ctdp_min": 45,
+        "tdp_watts_ctdp_max": 120,
+        "cache": {
+          "l3_mb": 64,
+          "total_cache_mb": 76
+        },
+        "pcie": { "version": "4.0", "lanes_available": 8 },
+        "memory": {
+          "type": "LPDDR5X",
+          "channels": 8,
+          "max_speed_mts": 8000,
+          "max_capacity_gb": 128,
+          "bandwidth_gbs": 256,
+          "ecc_support": false
+        },
+        "igpu": "AMD Radeon 8060S (RDNA 3.5, 40 CU)",
+        "igpu_compute_units": 40,
+        "npu": "XDNA 2",
+        "npu_tops": 50,
+        "unlocked": false,
+        "ai_instruction_sets": ["XDNA 2 NPU", "ROCm", "DirectML", "ONNX Runtime", "llama.cpp"]
+      },
+      "compatibility": {
+        "socket": "Soldered BGA",
+        "compatible_form_factors": ["Mini PC", "Laptop"],
+        "min_psu_watts": 120,
+        "notes": "12-core Strix Halo. Same 40 CU iGPU and 8-channel 256 GB/s memory as Max+ 395. 4 fewer CPU cores."
+      },
+      "pricing": {
+        "msrp_usd": null,
+        "price_note": "System-only. Mini PCs from ~$699–$1,399",
+        "price_source": "manual",
+        "last_updated": "2026-03-15",
+        "affiliate": { "amazon": { "asin": null, "tag": "yoursite-20", "url": null } }
+      },
+      "meta": {
+        "release_date": "2025-01-06",
+        "popularity_score": 72,
+        "editor_pick": false,
+        "trending": true,
+        "badge": "AI Mini PC"
+      }
+    },
+    {
+      "id": "cpu-tr-pro-7995wx",
+      "series": "Ryzen Threadripper PRO 7000 WX",
+      "brand": "AMD",
+      "name": "Ryzen Threadripper PRO 7995WX",
+      "tier": "workstation-flagship",
+      "specifications": {
+        "cores": 96,
+        "threads": 192,
+        "base_clock_ghz": 2.5,
+        "boost_clock_ghz": 5.1,
+        "architecture": "Zen 4",
+        "codename": "Storm Peak",
+        "process_node": "TSMC 5nm (CCDs) + TSMC 6nm (IOD)",
+        "socket": "sTR5",
+        "tdp_watts": 350,
+        "max_turbo_power_watts": 350,
+        "cache": {
+          "l1_kb_total": 6144,
+          "l2_mb": 96,
+          "l3_mb": 384,
+          "total_cache_mb": 480
+        },
+        "pcie": {
+          "version": "5.0",
+          "total_lanes": 128,
+          "notes": "128 PCIe 5.0 lanes — supports 4x GPUs at x16 each with lanes remaining for NVMe and expansion"
+        },
+        "memory": {
+          "type": "DDR5 ECC RDIMM",
+          "channels": 8,
+          "max_speed_mts": 5200,
+          "max_capacity_gb": 2048,
+          "ecc_support": true,
+          "registered_ecc": true,
+          "subtype": "RDIMM / LRDIMM"
+        },
+        "igpu": null,
+        "npu_tops": null,
+        "unlocked": true,
+        "overclocking": ["Manual OC", "PBO", "Ryzen Master"],
+        "ai_instruction_sets": ["AVX-512", "AVX2", "TensorRT (NVIDIA GPU)", "ROCm (AMD GPU)", "CUDA (NVIDIA GPU)"]
+      },
+      "compatibility": {
+        "socket": "sTR5 (WRX90 platform ONLY)",
+        "compatible_chipsets": ["WRX90"],
+        "compatible_motherboards": ["ASRock WRX90 WS EVO", "ASUS Pro WS WRX90E-SAGE SE", "Gigabyte MZ93-FS0"],
+        "cooler_mount": "sTR5 (requires dedicated Threadripper cooler)",
+        "recommended_cooler": "Custom loop or Noctua NH-U14S TR5-SP6",
+        "min_psu_watts": 1600,
+        "gpu_slots_supported": 4,
+        "compatible_gpu_pcie_gen": "PCIe 5.0 x16 (4 full-bandwidth GPU slots native)",
+        "compatible_gpu_racks": ["WRX90 workstation tower", "Rack-mount WRX90 server chassis"],
+        "notes": "8-channel ECC DDR5 requires WRX90 platform exclusively — not compatible with AM5 or TRX50. 128 PCIe 5.0 lanes enables full 4x GPU AI rack config. No iGPU — requires discrete GPU."
+      },
+      "pricing": {
+        "msrp_usd": 6999,
+        "price_source": "manual",
+        "last_updated": "2026-03-15",
+        "affiliate": {
+          "amazon": { "asin": "B0CK2ZQJZ6", "tag": "yoursite-20", "url": "https://www.amazon.com/dp/B0CK2ZQJZ6?tag=yoursite-20" }
+        }
+      },
+      "meta": {
+        "release_date": "2023-10-19",
+        "popularity_score": 74,
+        "editor_pick": true,
+        "trending": false,
+        "badge": "AI Workstation King"
+      }
+    },
+    {
+      "id": "cpu-tr-pro-7985wx",
+      "series": "Ryzen Threadripper PRO 7000 WX",
+      "brand": "AMD",
+      "name": "Ryzen Threadripper PRO 7985WX",
+      "tier": "workstation-high",
+      "specifications": {
+        "cores": 64,
+        "threads": 128,
+        "base_clock_ghz": 3.2,
+        "boost_clock_ghz": 5.1,
+        "architecture": "Zen 4",
+        "codename": "Storm Peak",
+        "process_node": "TSMC 5nm (CCDs) + TSMC 6nm (IOD)",
+        "socket": "sTR5",
+        "tdp_watts": 350,
+        "max_turbo_power_watts": 350,
+        "cache": {
+          "l2_mb": 64,
+          "l3_mb": 256,
+          "total_cache_mb": 320
+        },
+        "pcie": {
+          "version": "5.0",
+          "total_lanes": 128
+        },
+        "memory": {
+          "type": "DDR5 ECC RDIMM",
+          "channels": 8,
+          "max_speed_mts": 5200,
+          "max_capacity_gb": 2048,
+          "ecc_support": true,
+          "registered_ecc": true,
+          "subtype": "RDIMM"
+        },
+        "igpu": null,
+        "unlocked": true,
+        "overclocking": ["Manual OC", "PBO"]
+      },
+      "compatibility": {
+        "socket": "sTR5 (WRX90)",
+        "compatible_chipsets": ["WRX90"],
+        "compatible_motherboards": ["ASRock WRX90 WS EVO", "ASUS Pro WS WRX90E-SAGE SE"],
+        "cooler_mount": "sTR5",
+        "recommended_cooler": "Custom loop or Noctua NH-U14S TR5-SP6",
+        "min_psu_watts": 1200,
+        "gpu_slots_supported": 4,
+        "compatible_gpu_pcie_gen": "PCIe 5.0 x16 up to 4 slots",
+        "notes": "64-core workstation. Same 128 PCIe 5.0 lanes and 8-channel ECC DDR5 as 7995WX. Higher boost clocks than 7995WX due to fewer cores sharing power budget."
+      },
+      "pricing": {
+        "msrp_usd": 4999,
+        "price_source": "manual",
+        "last_updated": "2026-03-15",
+        "affiliate": {
+          "amazon": { "asin": "B0CK2ZZZZZ7985WX", "tag": "yoursite-20", "url": "https://www.amazon.com/dp/B0CK2ZZZZZ7985WX?tag=yoursite-20" }
+        }
+      },
+      "meta": {
+        "release_date": "2023-10-19",
+        "popularity_score": 65,
+        "editor_pick": false,
+        "trending": false,
+        "badge": "Pro Workstation"
+      }
+    },
+    {
+      "id": "cpu-tr-pro-7975wx",
+      "series": "Ryzen Threadripper PRO 7000 WX",
+      "brand": "AMD",
+      "name": "Ryzen Threadripper PRO 7975WX",
+      "tier": "workstation-mid",
+      "specifications": {
+        "cores": 32,
+        "threads": 64,
+        "base_clock_ghz": 4.0,
+        "boost_clock_ghz": 5.3,
+        "architecture": "Zen 4",
+        "codename": "Storm Peak",
+        "process_node": "TSMC 5nm (CCDs) + TSMC 6nm (IOD)",
+        "socket": "sTR5",
+        "tdp_watts": 350,
+        "max_turbo_power_watts": 350,
+        "cache": {
+          "l2_mb": 32,
+          "l3_mb": 128,
+          "total_cache_mb": 160
+        },
+        "pcie": {
+          "version": "5.0",
+          "total_lanes": 128
+        },
+        "memory": {
+          "type": "DDR5 ECC RDIMM",
+          "channels": 8,
+          "max_speed_mts": 5200,
+          "max_capacity_gb": 2048,
+          "ecc_support": true,
+          "registered_ecc": true,
+          "subtype": "RDIMM"
+        },
+        "igpu": null,
+        "unlocked": true,
+        "overclocking": ["Manual OC", "PBO"]
+      },
+      "compatibility": {
+        "socket": "sTR5 (WRX90)",
+        "compatible_chipsets": ["WRX90"],
+        "cooler_mount": "sTR5",
+        "min_psu_watts": 1000,
+        "gpu_slots_supported": 4,
+        "compatible_gpu_pcie_gen": "PCIe 5.0 x16",
+        "notes": "PRO platform entry point. Highest boost clock in the 7000 WX series (5.3 GHz) due to fewest cores. Full 128 PCIe 5.0 lanes and 8-channel ECC DDR5 retained."
+      },
+      "pricing": {
+        "msrp_usd": 2999,
+        "price_source": "manual",
+        "last_updated": "2026-03-15",
+        "affiliate": {
+          "amazon": { "asin": "B0CK2XXXXXXX7975WX", "tag": "yoursite-20", "url": "https://www.amazon.com/dp/B0CK2XXXXXXX7975WX?tag=yoursite-20" }
+        }
+      },
+      "meta": {
+        "release_date": "2023-10-19",
+        "popularity_score": 58,
+        "editor_pick": false,
+        "trending": false,
+        "badge": "PRO Entry"
+      }
+    },
+    {
+      "id": "cpu-tr-7980x",
+      "series": "Ryzen Threadripper 7000 HEDT (TRX50)",
+      "brand": "AMD",
+      "name": "Ryzen Threadripper 7980X",
+      "tier": "hedt-flagship",
+      "specifications": {
+        "cores": 64,
+        "threads": 128,
+        "base_clock_ghz": 3.2,
+        "boost_clock_ghz": 5.1,
+        "architecture": "Zen 4",
+        "codename": "Storm Peak",
+        "process_node": "TSMC 5nm (CCDs) + TSMC 6nm (IOD)",
+        "socket": "sTR5",
+        "tdp_watts": 350,
+        "max_turbo_power_watts": 350,
+        "cache": {
+          "l2_mb": 64,
+          "l3_mb": 256,
+          "total_cache_mb": 320
+        },
+        "pcie": {
+          "version": "5.0",
+          "total_lanes": 48,
+          "notes": "TRX50 HEDT platform — 48 PCIe 5.0 lanes only vs PRO's 128. Impacts multi-GPU configs."
+        },
+        "memory": {
+          "type": "DDR5",
+          "channels": 4,
+          "max_speed_mts": 5200,
+          "max_capacity_gb": 256,
+          "ecc_support": true,
+          "subtype": "UDIMM / RDIMM (4-channel — not 8-channel like PRO)"
+        },
+        "igpu": null,
+        "unlocked": true,
+        "overclocking": ["Manual OC", "PBO"]
+      },
+      "compatibility": {
+        "socket": "sTR5 (TRX50 platform — NOT WRX90)",
+        "compatible_chipsets": ["TRX50"],
+        "compatible_motherboards": ["ASUS ROG Zenith X Extreme TRX50", "MSI Creator TRX50"],
+        "cooler_mount": "sTR5 (same physical socket as WRX90 — coolers cross-compatible)",
+        "recommended_cooler": "Custom loop",
+        "min_psu_watts": 1200,
+        "gpu_slots_supported": 3,
+        "compatible_gpu_pcie_gen": "PCIe 5.0 (48 total lanes — max 2x x16 GPU configs)",
+        "notes": "HEDT consumer Threadripper. TRX50 and WRX90 share the sTR5 socket but motherboards are NOT interchangeable. 4-channel DDR5 (not 8) and 48 (not 128) PCIe lanes vs PRO 7985WX. More affordable entry into 64-core territory."
+      },
+      "pricing": {
+        "msrp_usd": 2499,
+        "price_source": "manual",
+        "last_updated": "2026-03-15",
+        "affiliate": {
+          "amazon": { "asin": "B0CK2XXXXXXTR7980X", "tag": "yoursite-20", "url": "https://www.amazon.com/dp/B0CK2XXXXXXTR7980X?tag=yoursite-20" }
+        }
+      },
+      "meta": {
+        "release_date": "2023-11-23",
+        "popularity_score": 54,
+        "editor_pick": false,
+        "trending": false,
+        "badge": "HEDT Monster"
+      }
+    },
+    {
+      "id": "cpu-tr-7970x",
+      "series": "Ryzen Threadripper 7000 HEDT (TRX50)",
+      "brand": "AMD",
+      "name": "Ryzen Threadripper 7970X",
+      "tier": "hedt-high",
+      "specifications": {
+        "cores": 32,
+        "threads": 64,
+        "base_clock_ghz": 4.0,
+        "boost_clock_ghz": 5.3,
+        "architecture": "Zen 4",
+        "codename": "Storm Peak",
+        "process_node": "TSMC 5nm (CCDs) + TSMC 6nm (IOD)",
+        "socket": "sTR5",
+        "tdp_watts": 350,
+        "max_turbo_power_watts": 350,
+        "cache": {
+          "l2_mb": 32,
+          "l3_mb": 128,
+          "total_cache_mb": 160
+        },
+        "pcie": {
+          "version": "5.0",
+          "total_lanes": 48
+        },
+        "memory": {
+          "type": "DDR5",
+          "channels": 4,
+          "max_speed_mts": 5200,
+          "max_capacity_gb": 256,
+          "ecc_support": true,
+          "subtype": "UDIMM / RDIMM (4-channel)"
+        },
+        "igpu": null,
+        "unlocked": true,
+        "overclocking": ["Manual OC", "PBO"]
+      },
+      "compatibility": {
+        "socket": "sTR5 (TRX50)",
+        "compatible_chipsets": ["TRX50"],
+        "compatible_motherboards": ["ASUS ROG Zenith X Extreme TRX50", "MSI Creator TRX50"],
+        "cooler_mount": "sTR5",
+        "recommended_cooler": "360mm AIO or sTR5 tower",
+        "min_psu_watts": 1000,
+        "gpu_slots_supported": 3,
+        "compatible_gpu_pcie_gen": "PCIe 5.0 (48 lanes total)",
+        "notes": "Entry-tier HEDT Threadripper. TRX50 platform. 4-channel DDR5 and 48 PCIe 5.0 lanes. Best affordable path into 32-core workstation territory."
+      },
+      "pricing": {
+        "msrp_usd": 1399,
+        "price_source": "manual",
+        "last_updated": "2026-03-15",
+        "affiliate": {
+          "amazon": { "asin": "B0CK2XXXXXXTR7970X", "tag": "yoursite-20", "url": "https://www.amazon.com/dp/B0CK2XXXXXXTR7970X?tag=yoursite-20" }
+        }
+      },
+      "meta": {
+        "release_date": "2023-11-23",
+        "popularity_score": 56,
+        "editor_pick": false,
+        "trending": false,
+        "badge": "HEDT Creator"
+      }
+    }
+  ],
+  "configurator_compatibility_rules_cpu": {
+    "_description": "CPU compatibility rules for the AI PC Configurator feature.",
+    "socket_rules": {
+      "am5": "Ryzen 7000, 8000, 9000 series. Chipsets: X870E, X870, X670E, X670, B650E, B650, B840, B850, A620. DDR5 only.",
+      "lga1700": "Intel 12th, 13th, 14th Gen Core. Chipsets: Z790, Z690, B760, H770. Final Intel generation on this socket. DDR4 or DDR5 — determined by motherboard.",
+      "lga1851": "Intel Core Ultra 200S (Arrow Lake). Chipsets: Z890, B860, H870. DDR5 only. NOT compatible with LGA1700 CPUs.",
+      "str5_wrx90": "Threadripper PRO 7000. Platform: WRX90 only. DDR5 ECC RDIMM 8-channel. NOT interchangeable with TRX50.",
+      "str5_trx50": "Threadripper 7000 HEDT. Platform: TRX50 only. DDR5 4-channel. NOT interchangeable with WRX90.",
+      "bga_strix_halo": "Ryzen AI Max — soldered. Not user-replaceable. OEM system only."
+    },
+    "pcie_compatibility": {
+      "note": "Match GPU pcie_version to CPU native gen for full x16 bandwidth. GPU runs at lower gen on older CPU — warn but do not block.",
+      "intel_lane_note": "Intel consumer CPUs (LGA1700/LGA1851) provide 20–24 native CPU lanes: 16 to GPU + 4 to NVMe. Additional lanes from Z-series chipsets.",
+      "amd_am5_note": "AMD AM5 provides 24 usable CPU lanes (16 GPU + 4 NVMe + 4 chipset). Multi-GPU on AM5 requires x8/x8 bifurcation or PLX switch.",
+      "threadripper_pro_note": "Threadripper PRO 7000 provides 128 PCIe 5.0 lanes — enables 4x x16 GPU configs without bandwidth compromise.",
+      "threadripper_hedt_note": "Threadripper 7000 HEDT (TRX50) provides 48 PCIe 5.0 lanes — max 2x x16 GPU config."
+    },
+    "memory_rules": {
+      "ddr5_only": ["AM5 (all)", "LGA1851", "sTR5 WRX90 (ECC RDIMM)", "sTR5 TRX50"],
+      "ddr4_or_ddr5": ["LGA1700 — motherboard determines which — flag mismatch as INCOMPATIBLE"],
+      "ecc_required": ["sTR5 WRX90 — requires DDR5 ECC RDIMM — flag standard UDIMM as INCOMPATIBLE"]
+    },
+    "cooler_rules": {
+      "am5": "105mm x 105mm mounting. AM4 coolers physically compatible with AM5 adapter bracket.",
+      "lga1700": "Different physical mounting from LGA1851. Not directly interchangeable without adapter.",
+      "lga1851": "Same hole spacing as LGA1700 — most LGA1700 coolers work with included or third-party adapter.",
+      "str5": "sTR5 large IHS requires dedicated Threadripper coolers. WRX90 and TRX50 share same cooler compatibility."
+    },
+    "power_budget_rules": {
+      "note": "Use max_turbo_power_watts (MTP/PL2) for PSU calculations — not base TDP. Add GPU TDP + 15% headroom for PSU selection.",
+      "threadripper_warning": "Threadripper PRO 7995WX (350W) + 2x RTX 5090 (2x575W) = 1500W minimum draw. Flag builds below 1600W PSU as undersized."
+    },
+    "multi_gpu_rules": {
+      "consumer_am5_lga": "Only x8/x8 GPU bifurcation without PLX switch. Flag multi-GPU builds as bandwidth-limited.",
+      "threadripper_pro": "Native 4x x16 PCIe 5.0 — full multi-GPU bandwidth. Recommended platform for GPU rack builds.",
+      "threadripper_hedt": "Max 2x x16 PCIe 5.0 on TRX50. 3rd GPU would require x8 or PLX switch."
+    }
+  }
+}

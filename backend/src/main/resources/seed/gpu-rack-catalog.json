@@ -1,0 +1,1419 @@
+{
+  "catalog_meta": {
+    "version": "1.0.0",
+    "last_updated": "2026-03-15",
+    "category": "GPU Server Rack Chassis",
+    "total_entries": 12,
+    "schema_notes": {
+      "rack_unit_note": "1U = 1.75 inches (44.45mm) of vertical rack space. 4U = 7 inches. All chassis listed mount in standard 19-inch EIA-310 racks.",
+      "depth_note": "Internal usable depth (GPU clearance depth) is less than external chassis depth. Always verify internal GPU clearance depth against GPU length_mm from the GPU catalog.",
+      "load_capacity_note": "Static load rating covers total internal component weight. Includes motherboard, GPUs, drives, PSU, and cooling. Exceeding this limit risks rail failure or chassis deformation under vibration.",
+      "pdu_note": "PDU compatibility refers to standard C13/C14 or C19/C20 IEC rack PDU connections via the chassis PSU inlet. Redundant PSU models typically accept two PDU feeds for failover.",
+      "configurator_note": "Use max_gpu_length_mm and max_gpu_slot_width fields to validate GPU physical fit. Cross-reference GPU slot_size and length_mm from gpu-catalog.json."
+    }
+  },
+
+  "gpu_racks": [
+
+    {
+      "id": "rack-rosewill-rsv-r4000u",
+      "brand": "Rosewill",
+      "model": "RSV-R4000U",
+      "series": "RSV R-Series",
+      "tier": "entry",
+      "form_factor": {
+        "rack_units": 4,
+        "rack_standard": "19-inch EIA-310",
+        "external_dimensions_mm": { "height": 175, "width": 430, "depth": 533 },
+        "internal_gpu_clearance_depth_mm": 380,
+        "max_gpu_length_mm": 380,
+        "max_gpu_slot_width": "dual-slot (2-slot cards only — tight for 3-slot)",
+        "gpu_card_retainer": false,
+        "convertible_tower": false
+      },
+      "build_quality": {
+        "material": "SGCC steel",
+        "thickness_mm": 1.0,
+        "finish": "Painted steel, silver/black",
+        "front_door_lock": true,
+        "dust_filter": true,
+        "tool_less_design": false
+      },
+      "motherboard_support": {
+        "supported_form_factors": ["ATX", "CEB"],
+        "max_mb_size_mm": "305 x 267 (ATX) / 305 x 267 (CEB)",
+        "psu_form_factor": "PS2 / ATX"
+      },
+      "expansion": {
+        "pcie_slots": 7,
+        "full_height_slots": 7,
+        "low_profile_slots": 0,
+        "max_gpus": 2,
+        "gpu_riser_included": false,
+        "notes": "7 PCIe slots support up to 2x dual-slot GPUs comfortably. 3-slot cards require manual verification — clearance is tight."
+      },
+      "storage_bays": {
+        "external_5_25_inch": 3,
+        "external_3_5_inch": 0,
+        "internal_3_5_inch": 8,
+        "hot_swap": false
+      },
+      "cooling": {
+        "pre_installed_fans": [
+          { "position": "front", "size_mm": 120, "quantity": 2, "type": "fixed" },
+          { "position": "rear", "size_mm": 80, "quantity": 2, "type": "fixed" }
+        ],
+        "liquid_cooling_support": false,
+        "max_radiator_mm": null,
+        "airflow_direction": "front-to-rear",
+        "fan_filter": true
+      },
+      "cable_management": {
+        "cable_routing_channels": false,
+        "velcro_tie_points": false,
+        "side_panel_cable_pass": false,
+        "notes": "Basic internal cable routing. No dedicated management channels — manual bundling required."
+      },
+      "power": {
+        "psu_included": false,
+        "psu_slots": 1,
+        "redundant_psu_support": false,
+        "max_psu_wattage": 1000,
+        "pdu_inlet_type": "Standard ATX PSU inlet (IEC C14 via PSU)",
+        "pdu_compatibility": ["C14/C13 standard PDU leads", "ATX 3.0 PSU compatible"],
+        "max_system_power_draw_watts": 1000
+      },
+      "load_capacity": {
+        "static_load_kg": 20,
+        "static_load_lbs": 44,
+        "rail_type": "Sold separately (Rosewill 3-section adjustable rail kit)"
+      },
+      "connectivity": {
+        "front_usb": "2x USB 3.0",
+        "front_audio": false,
+        "leds": ["Power", "HDD Activity", "LAN Activity"]
+      },
+      "compatibility": {
+        "compatible_gpu_ids": ["gpu-rtx-5070", "gpu-rtx-5060-ti-16gb", "gpu-rtx-4070-super", "gpu-rtx-4070", "gpu-rtx-3080", "gpu-rx-7800-xt", "gpu-rx-7700-xt", "gpu-arc-b580"],
+        "incompatible_gpu_notes": "RTX 5090, 5080, 4090, 3090/Ti (336mm length or 3-slot) may not fit without physical modification. Always verify 3-slot GPU width against slot clearance.",
+        "compatible_cpu_sockets": ["AM5", "AM4", "LGA1700", "LGA1851"],
+        "incompatible_cpu_notes": "Threadripper PRO (sTR5) SSI-EEB boards do not fit — ATX/CEB only.",
+        "rack_depth_required_mm": 533,
+        "notes": "Budget-friendly entry rack. Suitable for 1–2 mid-range GPUs. Not recommended for flagship 3-slot triple-fan cards or multi-GPU workstation builds."
+      },
+      "pricing": {
+        "msrp_usd": 189,
+        "price_source": "manual",
+        "last_updated": "2026-03-15",
+        "affiliate": {
+          "amazon": { "asin": "B09HLCNKM3", "tag": "yoursite-20", "url": "https://www.amazon.com/dp/B09HLCNKM3?tag=yoursite-20" }
+        }
+      },
+      "meta": {
+        "release_date": "2021-01-01",
+        "popularity_score": 72,
+        "editor_pick": false,
+        "trending": false,
+        "badge": "Budget Entry",
+        "best_for": ["Home lab", "Entry server", "1–2 mid-range GPU builds"]
+      }
+    },
+
+    {
+      "id": "rack-rosewill-rsv-l4000u",
+      "brand": "Rosewill",
+      "model": "RSV-L4000U",
+      "series": "RSV L-Series (Deep)",
+      "tier": "mid-range",
+      "form_factor": {
+        "rack_units": 4,
+        "rack_standard": "19-inch EIA-310",
+        "external_dimensions_mm": { "height": 175, "width": 430, "depth": 648 },
+        "internal_gpu_clearance_depth_mm": 490,
+        "max_gpu_length_mm": 490,
+        "max_gpu_slot_width": "3-slot (triple-fan flagship cards supported)",
+        "gpu_card_retainer": false,
+        "convertible_tower": false
+      },
+      "build_quality": {
+        "material": "SGCC steel 1mm",
+        "thickness_mm": 1.0,
+        "finish": "Painted steel, silver/black",
+        "front_door_lock": true,
+        "dust_filter": true,
+        "tool_less_design": false
+      },
+      "motherboard_support": {
+        "supported_form_factors": ["ATX", "E-ATX", "CEB"],
+        "max_mb_size_mm": "305 x 330 (E-ATX)",
+        "psu_form_factor": "PS2 / ATX"
+      },
+      "expansion": {
+        "pcie_slots": 7,
+        "full_height_slots": 7,
+        "low_profile_slots": 0,
+        "max_gpus": 3,
+        "gpu_riser_included": false,
+        "notes": "Deep 490mm internal clearance accommodates full-length triple-fan flagship GPUs including RTX 4090 (336mm), RTX 5090 (336mm), and professional cards up to 490mm."
+      },
+      "storage_bays": {
+        "external_5_25_inch": 3,
+        "external_3_5_inch": 0,
+        "internal_3_5_inch": 8,
+        "hot_swap": false
+      },
+      "cooling": {
+        "pre_installed_fans": [
+          { "position": "front", "size_mm": 120, "quantity": 2, "type": "fixed" },
+          { "position": "mid", "size_mm": 120, "quantity": 3, "type": "fixed" },
+          { "position": "rear", "size_mm": 80, "quantity": 2, "type": "fixed" }
+        ],
+        "liquid_cooling_support": false,
+        "max_radiator_mm": null,
+        "airflow_direction": "front-to-rear",
+        "fan_filter": true
+      },
+      "cable_management": {
+        "cable_routing_channels": false,
+        "velcro_tie_points": false,
+        "side_panel_cable_pass": false,
+        "notes": "Extended depth provides more internal real estate for cable routing vs RSV-R4000U. No dedicated management channels — manual bundling required."
+      },
+      "power": {
+        "psu_included": false,
+        "psu_slots": 1,
+        "redundant_psu_support": false,
+        "max_psu_wattage": 1600,
+        "pdu_inlet_type": "Standard ATX PSU inlet (IEC C14 via PSU)",
+        "pdu_compatibility": ["C14/C13 standard PDU", "ATX 3.0 PSU compatible"],
+        "max_system_power_draw_watts": 1600
+      },
+      "load_capacity": {
+        "static_load_kg": 25,
+        "static_load_lbs": 55,
+        "rail_type": "Sold separately (Rosewill 3-section adjustable rail kit)"
+      },
+      "connectivity": {
+        "front_usb": "2x USB 3.0",
+        "front_audio": false,
+        "leds": ["Power", "HDD Activity", "LAN Activity"]
+      },
+      "compatibility": {
+        "compatible_gpu_ids": ["gpu-rtx-5090", "gpu-rtx-5080", "gpu-rtx-5070-ti", "gpu-rtx-5070", "gpu-rtx-5060-ti-16gb", "gpu-rtx-4090", "gpu-rtx-4080-super", "gpu-rtx-4070-ti-super", "gpu-rtx-4070-super", "gpu-rtx-4070", "gpu-rtx-3090-ti", "gpu-rtx-3090", "gpu-rtx-3080-ti", "gpu-rtx-3080", "gpu-rx-9070-xt", "gpu-rx-9070", "gpu-rx-7900-xtx", "gpu-rx-7900-xt", "gpu-rx-7800-xt", "gpu-arc-a770-16gb", "gpu-arc-b580"],
+        "incompatible_gpu_notes": "Professional SXM cards (A100 SXM) require server baseboard — incompatible. PCIe A100 and RTX 6000 Ada fit physically but require 8-channel ECC DDR5 motherboard not supported in this chassis.",
+        "compatible_cpu_sockets": ["AM5", "AM4", "LGA1700", "LGA1851"],
+        "incompatible_cpu_notes": "Threadripper PRO SSI-EEB boards exceed supported E-ATX depth in some configurations.",
+        "rack_depth_required_mm": 648,
+        "notes": "Best value deep Rosewill chassis. 490mm clearance covers all retail GPU lengths. Recommended for flagship GPU builds on a budget. 7-fan cooling is adequate for dual-GPU builds."
+      },
+      "pricing": {
+        "msrp_usd": 209,
+        "price_source": "manual",
+        "last_updated": "2026-03-15",
+        "affiliate": {
+          "amazon": { "asin": "B0025FCV5O", "tag": "yoursite-20", "url": "https://www.amazon.com/dp/B0025FCV5O?tag=yoursite-20" }
+        }
+      },
+      "meta": {
+        "release_date": "2019-01-01",
+        "popularity_score": 80,
+        "editor_pick": true,
+        "trending": false,
+        "badge": "Best Value Deep",
+        "best_for": ["Flagship GPU builds", "Dual GPU AI builds", "Home lab deep rack"]
+      }
+    },
+
+    {
+      "id": "rack-rosewill-rsv-l4500u",
+      "brand": "Rosewill",
+      "model": "RSV-L4500U",
+      "series": "RSV L-Series (Deep XL)",
+      "tier": "mid-range",
+      "form_factor": {
+        "rack_units": 4,
+        "rack_standard": "19-inch EIA-310",
+        "external_dimensions_mm": { "height": 175, "width": 430, "depth": 648 },
+        "internal_gpu_clearance_depth_mm": 490,
+        "max_gpu_length_mm": 490,
+        "max_gpu_slot_width": "3-slot",
+        "gpu_card_retainer": false,
+        "convertible_tower": false
+      },
+      "build_quality": {
+        "material": "SGCC steel 1mm",
+        "thickness_mm": 1.0,
+        "finish": "Painted steel, silver/black",
+        "front_door_lock": true,
+        "dust_filter": true,
+        "tool_less_design": false
+      },
+      "motherboard_support": {
+        "supported_form_factors": ["ATX", "E-ATX"],
+        "max_mb_size_mm": "305 x 330 (E-ATX)",
+        "psu_form_factor": "PS2 / ATX"
+      },
+      "expansion": {
+        "pcie_slots": 7,
+        "full_height_slots": 7,
+        "low_profile_slots": 0,
+        "max_gpus": 3,
+        "gpu_riser_included": false,
+        "notes": "Identical depth to L4000U. Differentiator is 15 HDD bays and 8 pre-installed fans — better for storage-heavy AI builds."
+      },
+      "storage_bays": {
+        "external_5_25_inch": 0,
+        "external_3_5_inch": 0,
+        "internal_3_5_inch": 15,
+        "hot_swap": false
+      },
+      "cooling": {
+        "pre_installed_fans": [
+          { "position": "front", "size_mm": 120, "quantity": 3, "type": "fixed" },
+          { "position": "mid", "size_mm": 120, "quantity": 3, "type": "fixed" },
+          { "position": "rear", "size_mm": 80, "quantity": 2, "type": "fixed" }
+        ],
+        "liquid_cooling_support": false,
+        "max_radiator_mm": null,
+        "airflow_direction": "front-to-rear",
+        "fan_filter": true
+      },
+      "cable_management": {
+        "cable_routing_channels": false,
+        "velcro_tie_points": false,
+        "notes": "15 HDD bays create significant cable density. Manual management essential. Consider modular PSU."
+      },
+      "power": {
+        "psu_included": false,
+        "psu_slots": 1,
+        "redundant_psu_support": false,
+        "max_psu_wattage": 1600,
+        "pdu_inlet_type": "Standard ATX PSU inlet (IEC C14 via PSU)",
+        "pdu_compatibility": ["C14/C13 standard PDU", "ATX 3.0 compatible"],
+        "max_system_power_draw_watts": 1600
+      },
+      "load_capacity": {
+        "static_load_kg": 30,
+        "static_load_lbs": 66,
+        "rail_type": "Sold separately"
+      },
+      "connectivity": {
+        "front_usb": "2x USB 3.0",
+        "front_audio": false,
+        "leds": ["Power", "HDD Activity", "LAN Activity"]
+      },
+      "compatibility": {
+        "compatible_gpu_ids": ["gpu-rtx-5090", "gpu-rtx-5080", "gpu-rtx-5070-ti", "gpu-rtx-4090", "gpu-rtx-4080-super", "gpu-rtx-3090-ti", "gpu-rtx-3090", "gpu-rx-7900-xtx", "gpu-rx-7900-xt", "gpu-rtx-a6000-ada"],
+        "compatible_cpu_sockets": ["AM5", "AM4", "LGA1700", "LGA1851"],
+        "rack_depth_required_mm": 648,
+        "notes": "Best Rosewill option for GPU + mass storage AI builds. 15 bays support NVMe hot-swap cages for large dataset storage alongside GPU workloads."
+      },
+      "pricing": {
+        "msrp_usd": 229,
+        "price_source": "manual",
+        "last_updated": "2026-03-15",
+        "affiliate": {
+          "amazon": { "asin": "B09XXXXXXL4500U", "tag": "yoursite-20", "url": "https://www.amazon.com/dp/B09XXXXXXL4500U?tag=yoursite-20" }
+        }
+      },
+      "meta": {
+        "release_date": "2021-01-01",
+        "popularity_score": 74,
+        "editor_pick": false,
+        "trending": false,
+        "badge": "Storage + GPU",
+        "best_for": ["GPU + large storage builds", "AI dataset server", "Home lab with NAS capability"]
+      }
+    },
+
+    {
+      "id": "rack-silverstone-rm42-502",
+      "brand": "SilverStone",
+      "model": "RM42-502",
+      "series": "RM Series",
+      "tier": "high-end",
+      "form_factor": {
+        "rack_units": 4,
+        "rack_standard": "19-inch EIA-310",
+        "external_dimensions_mm": { "height": 176, "width": 430, "depth": 598 },
+        "internal_gpu_clearance_depth_mm": 337,
+        "max_gpu_length_mm": 337,
+        "max_gpu_slot_width": "dual-slot with retainer (3-slot without retainer at reduced depth)",
+        "gpu_card_retainer": true,
+        "convertible_tower": true,
+        "notes": "Convertible to tower/pedestal orientation via dual rail mounting holes"
+      },
+      "build_quality": {
+        "material": "SECC steel + ABS plastic front",
+        "thickness_mm": 1.2,
+        "finish": "Matte black",
+        "front_door_lock": true,
+        "dust_filter": true,
+        "tool_less_design": false
+      },
+      "motherboard_support": {
+        "supported_form_factors": ["ATX", "E-ATX", "SSI-EEB", "SSI-CEB", "Micro-ATX"],
+        "max_mb_size_mm": "330 x 330 (SSI-EEB — dual-socket workstation boards)",
+        "psu_form_factor": "PS2 / ATX or Mini Redundant"
+      },
+      "expansion": {
+        "pcie_slots": 7,
+        "full_height_slots": 7,
+        "low_profile_slots": 0,
+        "max_gpus": 2,
+        "gpu_riser_included": false,
+        "notes": "Max GPU length is 337mm WITH expansion card retainer installed (RTX 4090 / 5090 at 336mm just fits). Without retainer, 426mm clearance available but no anti-sag support."
+      },
+      "storage_bays": {
+        "external_5_25_inch": 2,
+        "external_2_5_inch": 1,
+        "internal_3_5_inch": 0,
+        "hot_swap": false
+      },
+      "cooling": {
+        "pre_installed_fans": [
+          { "position": "front", "size_mm": 120, "quantity": 1, "type": "fixed" },
+          { "position": "rear", "size_mm": 80, "quantity": 1, "type": "fixed" }
+        ],
+        "liquid_cooling_support": true,
+        "max_radiator_mm": 240,
+        "airflow_direction": "front-to-rear",
+        "fan_filter": true,
+        "cooling_notes": "240mm AIO radiator support is rare for 4U rack chassis — key differentiator. Additional fans sold separately."
+      },
+      "cable_management": {
+        "cable_routing_channels": false,
+        "velcro_tie_points": false,
+        "notes": "Compute-focused (not storage-dense) — minimal cable count improves routing. GPU retainer keeps PCIe power cables organized against card."
+      },
+      "power": {
+        "psu_included": false,
+        "psu_slots": 1,
+        "redundant_psu_support": true,
+        "redundant_psu_note": "Mini Redundant 2U PSU supported (V2.0 or newer)",
+        "max_psu_wattage": 1600,
+        "pdu_inlet_type": "Standard ATX PSU inlet (IEC C14 via PSU) or Mini Redundant dual-feed",
+        "pdu_compatibility": ["C14/C13 standard PDU", "Dual-feed Mini Redundant PDU", "ATX 3.0 compatible"],
+        "max_system_power_draw_watts": 1600
+      },
+      "load_capacity": {
+        "static_load_kg": 25,
+        "static_load_lbs": 55,
+        "rail_type": "SilverStone RMS series (sold separately, multiple length options)"
+      },
+      "connectivity": {
+        "front_usb": "2x USB 3.2 Type-C + 2x USB 3.0 Type-A",
+        "front_audio": true,
+        "leds": ["Power", "HDD Activity"]
+      },
+      "compatibility": {
+        "compatible_gpu_ids": ["gpu-rtx-5090", "gpu-rtx-5080", "gpu-rtx-5070-ti", "gpu-rtx-5070", "gpu-rtx-4090", "gpu-rtx-4080-super", "gpu-rtx-4070-ti-super", "gpu-rtx-3090-ti", "gpu-rtx-3090", "gpu-rx-7900-xtx", "gpu-rx-7900-xt", "gpu-rtx-a6000-ada"],
+        "incompatible_gpu_notes": "RTX 5090 (336mm) fits with retainer installed by exactly 1mm — verify AIB card length. Some AIB partner cards exceed reference length.",
+        "compatible_cpu_sockets": ["AM5", "AM4", "LGA1700", "LGA1851", "LGA4677 (EPYC/Xeon dual-socket with SSI-EEB)"],
+        "rack_depth_required_mm": 598,
+        "notes": "Best all-round 4U rack chassis for dual-socket + GPU builds. SSI-EEB support enables Threadripper PRO / EPYC workstation builds. Compute-focused (minimal storage). 240mm AIO support unique at this price."
+      },
+      "pricing": {
+        "msrp_usd": 379,
+        "price_source": "manual",
+        "last_updated": "2026-03-15",
+        "affiliate": {
+          "amazon": { "asin": "B09227RQV2", "tag": "yoursite-20", "url": "https://www.amazon.com/dp/B09227RQV2?tag=yoursite-20" }
+        }
+      },
+      "meta": {
+        "release_date": "2021-06-01",
+        "popularity_score": 85,
+        "editor_pick": true,
+        "trending": false,
+        "badge": "Best Compute Rack",
+        "best_for": ["Dual-socket workstation builds", "Flagship GPU + AIO cooling", "Threadripper PRO rack builds"]
+      }
+    },
+
+    {
+      "id": "rack-silverstone-rm44",
+      "brand": "SilverStone",
+      "model": "RM44-000",
+      "series": "RM Series",
+      "tier": "high-end",
+      "form_factor": {
+        "rack_units": 4,
+        "rack_standard": "19-inch EIA-310",
+        "external_dimensions_mm": { "height": 176, "width": 430, "depth": 598 },
+        "internal_gpu_clearance_depth_mm": 424,
+        "max_gpu_length_mm": 424,
+        "max_gpu_slot_width": "3-slot (triple-fan cards fully supported)",
+        "gpu_card_retainer": true,
+        "convertible_tower": true
+      },
+      "build_quality": {
+        "material": "SECC steel + ABS plastic",
+        "thickness_mm": 1.2,
+        "finish": "Matte black",
+        "front_door_lock": true,
+        "dust_filter": true,
+        "tool_less_design": false
+      },
+      "motherboard_support": {
+        "supported_form_factors": ["ATX", "E-ATX", "SSI-EEB"],
+        "max_mb_size_mm": "330 x 330 (SSI-EEB)",
+        "psu_form_factor": "PS2 / ATX or Mini Redundant"
+      },
+      "expansion": {
+        "pcie_slots": 7,
+        "full_height_slots": 7,
+        "low_profile_slots": 0,
+        "max_gpus": 2,
+        "gpu_riser_included": false,
+        "notes": "424mm GPU clearance — significant upgrade over RM42-502's 337mm. Accommodates virtually all retail GPUs including oversized AIB partner cards. 360mm AIO support is the headline upgrade over RM42-502."
+      },
+      "storage_bays": {
+        "external_5_25_inch": 2,
+        "external_2_5_inch": 3,
+        "internal_3_5_inch": 2,
+        "hot_swap": false
+      },
+      "cooling": {
+        "pre_installed_fans": [
+          { "position": "front", "size_mm": 120, "quantity": 1, "type": "PWM" },
+          { "position": "rear", "size_mm": 80, "quantity": 1, "type": "PWM" }
+        ],
+        "liquid_cooling_support": true,
+        "max_radiator_mm": 360,
+        "airflow_direction": "front-to-rear",
+        "fan_filter": true,
+        "cooling_notes": "360mm radiator support — one of the very few 4U rack chassis supporting 360mm AIO. Critical advantage for Threadripper PRO builds."
+      },
+      "cable_management": {
+        "cable_routing_channels": false,
+        "velcro_tie_points": false,
+        "notes": "Additional 3x 2.5 inch bays add storage cable count. Still compute-focused vs storage-first chassis."
+      },
+      "power": {
+        "psu_included": false,
+        "psu_slots": 1,
+        "redundant_psu_support": true,
+        "max_psu_wattage": 1600,
+        "pdu_inlet_type": "Standard ATX PSU inlet or Mini Redundant dual-feed",
+        "pdu_compatibility": ["C14/C13 standard PDU", "Dual-feed Mini Redundant PDU", "ATX 3.0 compatible"],
+        "max_system_power_draw_watts": 1600
+      },
+      "load_capacity": {
+        "static_load_kg": 25,
+        "static_load_lbs": 55,
+        "rail_type": "SilverStone RMS series (sold separately)"
+      },
+      "connectivity": {
+        "front_usb": "2x USB 3.2 Type-C + 2x USB 3.0 Type-A",
+        "front_audio": true,
+        "leds": ["Power", "HDD Activity"]
+      },
+      "compatibility": {
+        "compatible_gpu_ids": ["gpu-rtx-5090", "gpu-rtx-5080", "gpu-rtx-5070-ti", "gpu-rtx-5070", "gpu-rtx-5060-ti-16gb", "gpu-rtx-4090", "gpu-rtx-4080-super", "gpu-rtx-4070-ti-super", "gpu-rtx-4070-super", "gpu-rtx-4070", "gpu-rtx-3090-ti", "gpu-rtx-3090", "gpu-rtx-3080-ti", "gpu-rtx-3080", "gpu-rtx-a6000-ada", "gpu-rx-9070-xt", "gpu-rx-9070", "gpu-rx-7900-xtx", "gpu-rx-7900-xt", "gpu-rx-7800-xt", "gpu-arc-a770-16gb"],
+        "compatible_cpu_sockets": ["AM5", "AM4", "LGA1700", "LGA1851", "sTR5 (WRX90 SSI-EEB)", "LGA4677"],
+        "rack_depth_required_mm": 598,
+        "notes": "Flagship SilverStone 4U. 424mm GPU + 360mm AIO makes this the top choice for Threadripper PRO + flagship GPU rackmount builds. Recommended over RM42-502 for new builds."
+      },
+      "pricing": {
+        "msrp_usd": 379,
+        "price_source": "manual",
+        "last_updated": "2026-03-15",
+        "affiliate": {
+          "amazon": { "asin": "B0BFC8FZ8B", "tag": "yoursite-20", "url": "https://www.amazon.com/dp/B0BFC8FZ8B?tag=yoursite-20" }
+        }
+      },
+      "meta": {
+        "release_date": "2022-03-01",
+        "popularity_score": 90,
+        "editor_pick": true,
+        "trending": true,
+        "badge": "Top Recommended",
+        "best_for": ["Flagship GPU builds", "Threadripper PRO rackmount", "360mm AIO + GPU builds", "Professional AI workstation rack"]
+      }
+    },
+
+    {
+      "id": "rack-chenbro-rm41300",
+      "brand": "Chenbro",
+      "model": "RM41300",
+      "series": "RM41300 Series",
+      "tier": "professional",
+      "form_factor": {
+        "rack_units": 4,
+        "rack_standard": "19-inch EIA-310",
+        "external_dimensions_mm": { "height": 176, "width": 430, "depth": 546 },
+        "internal_gpu_clearance_depth_mm": 420,
+        "max_gpu_length_mm": 420,
+        "max_gpu_slot_width": "full-height full-length (FHFL) supported",
+        "gpu_card_retainer": true,
+        "convertible_tower": true
+      },
+      "build_quality": {
+        "material": "SGCC 1.2mm steel",
+        "thickness_mm": 1.2,
+        "finish": "Silver/black industrial finish",
+        "front_door_lock": true,
+        "dust_filter": true,
+        "tool_less_design": false,
+        "anti_vibration": true,
+        "anti_vibration_note": "Truly isolated anti-vibration HDD and drive cage mounts — key differentiator for production environments"
+      },
+      "motherboard_support": {
+        "supported_form_factors": ["Micro-ATX", "ATX", "SSI-CEB", "SSI-EEB", "E-ATX"],
+        "max_mb_size_mm": "330 x 330 (SSI-EEB)",
+        "psu_form_factor": "PS2 / ATX"
+      },
+      "expansion": {
+        "pcie_slots": 7,
+        "full_height_slots": 7,
+        "low_profile_slots": 8,
+        "low_profile_window": "8-slot rear GPU window (RM41300-FS81 variant) supports 4x GPU cards simultaneously",
+        "max_gpus": 4,
+        "gpu_riser_included": false,
+        "notes": "RM41300-FS81 variant has 8-slot rear opening enabling 4x full-size GPU cards. Standard RM41300 has 7-slot standard opening."
+      },
+      "storage_bays": {
+        "external_5_25_inch": 3,
+        "external_3_5_inch": 1,
+        "internal_3_5_inch": 4,
+        "hot_swap": false,
+        "optional_expansion": "Optional second 3x5.25 inch drive cage for up to 6x 5.25 inch + 6x 3.5 inch maximum"
+      },
+      "cooling": {
+        "pre_installed_fans": [
+          { "position": "front", "size_mm": 120, "quantity": 1, "type": "fixed" },
+          { "position": "mid", "size_mm": 120, "quantity": 2, "type": "fixed" },
+          { "position": "rear", "size_mm": 80, "quantity": 2, "type": "fixed" },
+          { "position": "hdd-dedicated", "size_mm": 80, "quantity": 1, "type": "fixed" }
+        ],
+        "liquid_cooling_support": false,
+        "max_radiator_mm": null,
+        "airflow_direction": "front-to-rear",
+        "fan_filter": true,
+        "cooling_notes": "Dedicated 80mm fan for HDD cage cooling — prevents GPU thermal spillover onto drives."
+      },
+      "cable_management": {
+        "cable_routing_channels": false,
+        "velcro_tie_points": false,
+        "card_retainer_cable_note": "Screwless adjustable card retainer accommodates both low-profile and full-height PCIe cables.",
+        "notes": "Industrial chassis — cable management is functional but not consumer-grade. Dual-door front bezel option improves access for cable work."
+      },
+      "power": {
+        "psu_included": false,
+        "psu_slots": 1,
+        "redundant_psu_support": false,
+        "optional_psu": "Optional 1200W PS/2 PSU available as Chenbro accessory",
+        "max_psu_wattage": 1200,
+        "pdu_inlet_type": "Standard ATX PSU inlet (IEC C14 via PSU)",
+        "pdu_compatibility": ["C14/C13 standard PDU", "ATX 3.0 compatible"],
+        "max_system_power_draw_watts": 1200
+      },
+      "load_capacity": {
+        "static_load_kg": 35,
+        "static_load_lbs": 77,
+        "rail_type": "Chenbro compatible rail kits (sold separately)"
+      },
+      "connectivity": {
+        "front_usb": "2x USB 2.0",
+        "front_audio": false,
+        "leds": ["Power", "HDD Activity", "LAN Activity"],
+        "intrusion_switch": true
+      },
+      "compatibility": {
+        "compatible_gpu_ids": ["gpu-rtx-5090", "gpu-rtx-5080", "gpu-rtx-5070-ti", "gpu-rtx-4090", "gpu-rtx-4080-super", "gpu-rtx-4070-ti-super", "gpu-rtx-3090-ti", "gpu-rtx-3090", "gpu-rtx-a6000-ada", "gpu-a100-80gb", "gpu-rx-7900-xtx", "gpu-rx-7900-xt"],
+        "incompatible_gpu_notes": "A100 SXM variant requires dedicated SXM baseboard — PCIe A100 variant supported. 4x GPU config requires RM41300-FS81 variant specifically.",
+        "compatible_cpu_sockets": ["AM5", "AM4", "LGA1700", "LGA1851", "sTR5 (WRX90)", "LGA4677 (EPYC dual-socket)"],
+        "rack_depth_required_mm": 546,
+        "notes": "Purpose-built for GPU compute. 4x GPU support via RM41300-FS81 variant. Anti-vibration drive isolation critical for 24/7 AI training deployments. Industrial-grade construction exceeds consumer alternatives."
+      },
+      "pricing": {
+        "msrp_usd": 299,
+        "price_source": "manual",
+        "last_updated": "2026-03-15",
+        "affiliate": {
+          "amazon": { "asin": "B004IBQDJY", "tag": "yoursite-20", "url": "https://www.amazon.com/dp/B004IBQDJY?tag=yoursite-20" }
+        }
+      },
+      "meta": {
+        "release_date": "2015-01-01",
+        "popularity_score": 76,
+        "editor_pick": true,
+        "trending": false,
+        "badge": "Pro GPU Rack",
+        "best_for": ["4x GPU AI training builds", "Professional GPU workstation rack", "24/7 production compute"]
+      }
+    },
+
+    {
+      "id": "rack-supermicro-sc745tq",
+      "brand": "Supermicro",
+      "model": "SuperChassis SC745TQ-R800",
+      "series": "SC745 Series",
+      "tier": "enterprise",
+      "form_factor": {
+        "rack_units": 4,
+        "rack_standard": "19-inch EIA-310",
+        "external_dimensions_mm": { "height": 176, "width": 430, "depth": 648 },
+        "internal_gpu_clearance_depth_mm": 480,
+        "max_gpu_length_mm": 480,
+        "max_gpu_slot_width": "full-height full-length (FHFL)",
+        "gpu_card_retainer": false,
+        "convertible_tower": true
+      },
+      "build_quality": {
+        "material": "SECC steel",
+        "thickness_mm": 1.2,
+        "finish": "Black industrial",
+        "front_door_lock": true,
+        "dust_filter": true,
+        "tool_less_design": true,
+        "anti_vibration": false,
+        "ipmi_bmc_ready": true,
+        "ipmi_note": "Designed for Supermicro IPMI/BMC motherboards — remote management ready out of box"
+      },
+      "motherboard_support": {
+        "supported_form_factors": ["ATX", "E-ATX", "SSI-EEB", "SSI-CEB"],
+        "max_mb_size_mm": "340 x 330 (SSI-EEB)",
+        "psu_form_factor": "Proprietary Supermicro redundant PSU module"
+      },
+      "expansion": {
+        "pcie_slots": 7,
+        "full_height_slots": 7,
+        "low_profile_slots": 0,
+        "max_gpus": 3,
+        "gpu_riser_included": false,
+        "notes": "7 full-height full-length slots. 3x triple-slot GPUs possible with spacing consideration."
+      },
+      "storage_bays": {
+        "external_5_25_inch": 3,
+        "external_3_5_inch": 8,
+        "internal_3_5_inch": 0,
+        "hot_swap": true,
+        "hot_swap_note": "8x 3.5 inch hot-swap SAS/SATA bays with backplane"
+      },
+      "cooling": {
+        "pre_installed_fans": [
+          { "position": "front", "size_mm": 210, "quantity": 3, "type": "hot-swap PWM 5000 RPM" },
+          { "position": "rear", "size_mm": 80, "quantity": 2, "type": "hot-swap PWM 5000 RPM" }
+        ],
+        "liquid_cooling_support": false,
+        "max_radiator_mm": null,
+        "airflow_direction": "front-to-rear",
+        "fan_filter": true,
+        "cooling_notes": "Hot-swappable 210mm fans — replaceable without powering down. Enterprise-grade high-CFM airflow for sustained GPU workloads."
+      },
+      "cable_management": {
+        "cable_routing_channels": true,
+        "velcro_tie_points": true,
+        "air_shroud": true,
+        "notes": "Air shroud included channels airflow directly over components. Cable routing arms available separately for rack deployments."
+      },
+      "power": {
+        "psu_included": true,
+        "psu_slots": 2,
+        "redundant_psu_support": true,
+        "included_psu_wattage": 800,
+        "included_psu_type": "2x 800W Supermicro redundant hot-swap PSU modules",
+        "max_psu_wattage": 1600,
+        "pdu_inlet_type": "IEC C14 per PSU module (2x independent PDU feeds for redundancy)",
+        "pdu_compatibility": ["Dual C14/C13 PDU feeds (A+B power)", "Standard rack PDU compatible", "ATX 3.0 compatible via adapter"],
+        "max_system_power_draw_watts": 1600,
+        "redundancy_note": "Dual PSU enables N+1 power redundancy — critical for 24/7 production AI systems"
+      },
+      "load_capacity": {
+        "static_load_kg": 40,
+        "static_load_lbs": 88,
+        "rail_type": "Supermicro MCP-290 rail kits (sold separately, multiple depth options)"
+      },
+      "connectivity": {
+        "front_usb": "2x USB 2.0",
+        "front_audio": false,
+        "leds": ["Power", "HDD Activity", "LAN"],
+        "intrusion_switch": true,
+        "sgpio_support": true
+      },
+      "compatibility": {
+        "compatible_gpu_ids": ["gpu-rtx-5090", "gpu-rtx-5080", "gpu-rtx-5070-ti", "gpu-rtx-4090", "gpu-rtx-4080-super", "gpu-rtx-4070-ti-super", "gpu-rtx-3090-ti", "gpu-rtx-3090", "gpu-rtx-a6000-ada", "gpu-a100-80gb", "gpu-rx-7900-xtx"],
+        "incompatible_gpu_notes": "A100 SXM incompatible. PCIe A100 compatible with appropriate motherboard.",
+        "compatible_cpu_sockets": ["LGA1700", "LGA1851", "sTR5 (WRX90)", "LGA4677 (Xeon Sapphire Rapids)", "SP5 (EPYC Genoa)"],
+        "rack_depth_required_mm": 648,
+        "notes": "Enterprise-grade. Redundant hot-swap PSU and fans standard. Designed for Supermicro motherboard ecosystem — best with Supermicro X13/X12 IPMI boards. High static load supports full triple-GPU + hot-swap storage configuration."
+      },
+      "pricing": {
+        "msrp_usd": 549,
+        "price_source": "manual",
+        "last_updated": "2026-03-15",
+        "affiliate": {
+          "amazon": { "asin": "B0XXXXXXSC745", "tag": "yoursite-20", "url": "https://www.amazon.com/dp/B0XXXXXXSC745?tag=yoursite-20" }
+        }
+      },
+      "meta": {
+        "release_date": "2020-01-01",
+        "popularity_score": 78,
+        "editor_pick": true,
+        "trending": false,
+        "badge": "Enterprise Grade",
+        "best_for": ["24/7 enterprise AI", "Redundant power production builds", "Supermicro IPMI ecosystem", "Hot-swap storage + GPU"]
+      }
+    },
+
+    {
+      "id": "rack-istarusa-d400",
+      "brand": "iStarUSA",
+      "model": "D Storm D-400",
+      "series": "D Storm Series",
+      "tier": "mid-range",
+      "form_factor": {
+        "rack_units": 4,
+        "rack_standard": "19-inch EIA-310",
+        "external_dimensions_mm": { "height": 176, "width": 430, "depth": 533 },
+        "internal_gpu_clearance_depth_mm": 390,
+        "max_gpu_length_mm": 390,
+        "max_gpu_slot_width": "full-height full-length",
+        "gpu_card_retainer": false,
+        "convertible_tower": false
+      },
+      "build_quality": {
+        "material": "Steel + optional aluminum body upgrade",
+        "thickness_mm": 1.2,
+        "finish": "Black with aluminum alloy front bezel",
+        "front_door_lock": true,
+        "dust_filter": false,
+        "tool_less_design": false
+      },
+      "motherboard_support": {
+        "supported_form_factors": ["ATX", "E-ATX"],
+        "max_mb_size_mm": "305 x 330 (E-ATX)",
+        "psu_form_factor": "PS2 / ATX or redundant (with optional redundant PSU bracket)"
+      },
+      "expansion": {
+        "pcie_slots": 7,
+        "full_height_slots": 7,
+        "low_profile_slots": 0,
+        "max_gpus": 2,
+        "gpu_riser_included": false,
+        "notes": "7 add-on card slots. Hot-swap storage enabled when combined with iStarUSA BPU or T Series hot-swap backplane modules."
+      },
+      "storage_bays": {
+        "external_5_25_inch": 4,
+        "external_3_5_inch": 0,
+        "internal_3_5_inch": 5,
+        "hot_swap": true,
+        "hot_swap_note": "Hot-swap capable when paired with BPU/T-Series backplane (sold separately). RAID 0/1/5 supported."
+      },
+      "cooling": {
+        "pre_installed_fans": [
+          { "position": "front", "size_mm": 120, "quantity": 1, "type": "fixed" },
+          { "position": "rear", "size_mm": 80, "quantity": 2, "type": "fixed" }
+        ],
+        "liquid_cooling_support": false,
+        "max_radiator_mm": null,
+        "airflow_direction": "front-to-rear",
+        "fan_filter": false,
+        "cooling_notes": "Aluminum body upgrade option improves passive thermal dissipation. Additional fan positions available for upgrade."
+      },
+      "cable_management": {
+        "cable_routing_channels": false,
+        "velcro_tie_points": false,
+        "notes": "Modular hot-swap backplane system keeps storage cables organized via BPU/T-Series connectors. PSU cables require manual routing."
+      },
+      "power": {
+        "psu_included": false,
+        "psu_slots": 1,
+        "redundant_psu_support": true,
+        "redundant_psu_note": "Redundant PSU bracket available as iStarUSA accessory",
+        "max_psu_wattage": 1200,
+        "pdu_inlet_type": "Standard ATX PSU inlet (IEC C14 via PSU)",
+        "pdu_compatibility": ["C14/C13 standard PDU", "ATX 3.0 compatible"],
+        "max_system_power_draw_watts": 1200
+      },
+      "load_capacity": {
+        "static_load_kg": 30,
+        "static_load_lbs": 66,
+        "rail_type": "iStarUSA compatible rail kits (sold separately)"
+      },
+      "connectivity": {
+        "front_usb": "2x USB 3.0",
+        "front_audio": false,
+        "leds": ["Power", "HDD Activity"]
+      },
+      "compatibility": {
+        "compatible_gpu_ids": ["gpu-rtx-5080", "gpu-rtx-5070-ti", "gpu-rtx-5070", "gpu-rtx-4090", "gpu-rtx-4080-super", "gpu-rtx-4070-ti-super", "gpu-rtx-4070-super", "gpu-rtx-3090", "gpu-rtx-3080-ti", "gpu-rx-7900-xtx", "gpu-rx-7900-xt", "gpu-rx-7800-xt"],
+        "incompatible_gpu_notes": "RTX 5090 (336mm) fits at 390mm clearance. Verify specific AIB partner card lengths.",
+        "compatible_cpu_sockets": ["AM5", "AM4", "LGA1700", "LGA1851"],
+        "rack_depth_required_mm": 533,
+        "notes": "Strong industrial build with modular storage expansion. Optional aluminum body unique in this class. Good for builds needing both hot-swap RAID storage and GPU compute."
+      },
+      "pricing": {
+        "msrp_usd": 149,
+        "price_source": "manual",
+        "last_updated": "2026-03-15",
+        "affiliate": {
+          "amazon": { "asin": "B01MRLGOKK", "tag": "yoursite-20", "url": "https://www.amazon.com/dp/B01MRLGOKK?tag=yoursite-20" }
+        }
+      },
+      "meta": {
+        "release_date": "2016-01-01",
+        "popularity_score": 65,
+        "editor_pick": false,
+        "trending": false,
+        "badge": "Industrial Value",
+        "best_for": ["RAID storage + GPU compute", "Industrial server builds", "Budget-conscious professional builds"]
+      }
+    },
+
+    {
+      "id": "rack-rosewill-rsv-l4620",
+      "brand": "Rosewill",
+      "model": "RSV-L4620",
+      "series": "RSV L-Series GPU Focus",
+      "tier": "mid-range",
+      "form_factor": {
+        "rack_units": 4,
+        "rack_standard": "19-inch EIA-310",
+        "external_dimensions_mm": { "height": 176, "width": 430, "depth": 648 },
+        "internal_gpu_clearance_depth_mm": 490,
+        "max_gpu_length_mm": 490,
+        "max_gpu_slot_width": "3-slot",
+        "gpu_card_retainer": false,
+        "convertible_tower": false
+      },
+      "build_quality": {
+        "material": "SGCC steel",
+        "thickness_mm": 1.0,
+        "finish": "Black",
+        "front_door_lock": false,
+        "dust_filter": false,
+        "tool_less_design": false
+      },
+      "motherboard_support": {
+        "supported_form_factors": ["ATX", "E-ATX", "SSI-EEB"],
+        "max_mb_size_mm": "330 x 330 (SSI-EEB)",
+        "psu_form_factor": "PS2 / ATX"
+      },
+      "expansion": {
+        "pcie_slots": 7,
+        "full_height_slots": 7,
+        "low_profile_slots": 0,
+        "max_gpus": 3,
+        "gpu_riser_included": false,
+        "aio_support_note": "360mm AIO radiator support — unique feature at this price point in the Rosewill lineup"
+      },
+      "storage_bays": {
+        "external_5_25_inch": 0,
+        "external_3_5_inch": 2,
+        "internal_2_5_inch": 4,
+        "hot_swap": false
+      },
+      "cooling": {
+        "pre_installed_fans": [
+          { "position": "front", "size_mm": 120, "quantity": 3, "type": "PWM" }
+        ],
+        "liquid_cooling_support": true,
+        "max_radiator_mm": 360,
+        "airflow_direction": "front-to-rear",
+        "fan_filter": false,
+        "cooling_notes": "360mm AIO front radiator support. Designed to maximize GPU compute density with minimal storage footprint."
+      },
+      "cable_management": {
+        "cable_routing_channels": false,
+        "velcro_tie_points": false,
+        "notes": "Minimal storage bays reduce cable density. Cleaner internal routing vs storage-heavy alternatives."
+      },
+      "power": {
+        "psu_included": false,
+        "psu_slots": 1,
+        "redundant_psu_support": false,
+        "max_psu_wattage": 1600,
+        "pdu_inlet_type": "Standard ATX PSU inlet (IEC C14 via PSU)",
+        "pdu_compatibility": ["C14/C13 standard PDU", "ATX 3.0 compatible"],
+        "max_system_power_draw_watts": 1600
+      },
+      "load_capacity": {
+        "static_load_kg": 25,
+        "static_load_lbs": 55,
+        "rail_type": "Sold separately"
+      },
+      "connectivity": {
+        "front_usb": "2x USB 3.2 Type-C",
+        "front_audio": false,
+        "leds": ["Power", "HDD Activity"]
+      },
+      "compatibility": {
+        "compatible_gpu_ids": ["gpu-rtx-5090", "gpu-rtx-5080", "gpu-rtx-5070-ti", "gpu-rtx-4090", "gpu-rtx-4080-super", "gpu-rtx-3090-ti", "gpu-rtx-3090", "gpu-rtx-a6000-ada", "gpu-rx-9070-xt", "gpu-rx-7900-xtx"],
+        "compatible_cpu_sockets": ["AM5", "AM4", "LGA1700", "LGA1851", "sTR5 (WRX90)"],
+        "rack_depth_required_mm": 648,
+        "notes": "GPU-first design philosophy — minimized storage to maximize compute clearance. 360mm AIO allows Threadripper PRO to run full TDP alongside flagship GPU. Best value 360mm AIO rack chassis."
+      },
+      "pricing": {
+        "msrp_usd": 199,
+        "price_source": "manual",
+        "last_updated": "2026-03-15",
+        "affiliate": {
+          "amazon": { "asin": "B0BXXXXRSV4620", "tag": "yoursite-20", "url": "https://www.amazon.com/dp/B0BXXXXRSV4620?tag=yoursite-20" }
+        }
+      },
+      "meta": {
+        "release_date": "2023-01-01",
+        "popularity_score": 77,
+        "editor_pick": true,
+        "trending": true,
+        "badge": "GPU-First Rack",
+        "best_for": ["Pure GPU compute builds", "360mm AIO + flagship GPU", "AI inference compact rack"]
+      }
+    },
+
+    {
+      "id": "rack-rosewill-rsv-h424",
+      "brand": "Rosewill",
+      "model": "RSV-H424",
+      "series": "RSV H-Series (Hot-Swap)",
+      "tier": "professional",
+      "form_factor": {
+        "rack_units": 4,
+        "rack_standard": "19-inch EIA-310",
+        "external_dimensions_mm": { "height": 176, "width": 430, "depth": 648 },
+        "internal_gpu_clearance_depth_mm": 400,
+        "max_gpu_length_mm": 400,
+        "max_gpu_slot_width": "full-height full-length",
+        "gpu_card_retainer": false,
+        "convertible_tower": false
+      },
+      "build_quality": {
+        "material": "SGCC steel",
+        "thickness_mm": 1.2,
+        "finish": "Black industrial",
+        "front_door_lock": true,
+        "dust_filter": true,
+        "tool_less_design": false
+      },
+      "motherboard_support": {
+        "supported_form_factors": ["ATX", "E-ATX", "SSI-EEB"],
+        "max_mb_size_mm": "330 x 330 (SSI-EEB)",
+        "psu_form_factor": "PS2 / ATX"
+      },
+      "expansion": {
+        "pcie_slots": 7,
+        "full_height_slots": 7,
+        "low_profile_slots": 0,
+        "max_gpus": 2,
+        "gpu_riser_included": false
+      },
+      "storage_bays": {
+        "external_5_25_inch": 0,
+        "external_3_5_inch": 24,
+        "internal_3_5_inch": 0,
+        "hot_swap": true,
+        "hot_swap_note": "24x 3.5 inch 12Gbps hot-swap SAS/SATA bays — highest density in Rosewill lineup"
+      },
+      "cooling": {
+        "pre_installed_fans": [
+          { "position": "mid", "size_mm": 120, "quantity": 3, "type": "PWM 38mm high-static-pressure" }
+        ],
+        "liquid_cooling_support": false,
+        "max_radiator_mm": null,
+        "airflow_direction": "front-to-rear",
+        "fan_filter": true,
+        "cooling_notes": "38mm deep 120mm fans provide high static pressure needed to push air through dense 24-drive backplane."
+      },
+      "cable_management": {
+        "cable_routing_channels": true,
+        "velcro_tie_points": false,
+        "backplane_integrated": true,
+        "notes": "Integrated backplane significantly reduces cable count — only SAS/SATA expander cables required per backplane zone."
+      },
+      "power": {
+        "psu_included": false,
+        "psu_slots": 1,
+        "redundant_psu_support": false,
+        "max_psu_wattage": 1600,
+        "pdu_inlet_type": "Standard ATX PSU inlet (IEC C14 via PSU)",
+        "pdu_compatibility": ["C14/C13 standard PDU", "ATX 3.0 compatible"],
+        "max_system_power_draw_watts": 1600
+      },
+      "load_capacity": {
+        "static_load_kg": 45,
+        "static_load_lbs": 99,
+        "rail_type": "Sold separately — verify depth clearance for 648mm chassis"
+      },
+      "connectivity": {
+        "front_usb": "2x USB 3.2 Type-C",
+        "front_audio": false,
+        "leds": ["Power", "HDD Activity"]
+      },
+      "compatibility": {
+        "compatible_gpu_ids": ["gpu-rtx-4090", "gpu-rtx-4080-super", "gpu-rtx-3090", "gpu-rtx-a6000-ada", "gpu-rx-7900-xtx"],
+        "incompatible_gpu_notes": "24 hot-swap drives + 2x triple-fan GPUs will exceed thermal capacity of included fans. Recommended: 2x dual-slot GPUs maximum alongside full drive population.",
+        "compatible_cpu_sockets": ["AM5", "LGA1700", "LGA1851", "sTR5 (WRX90)"],
+        "rack_depth_required_mm": 648,
+        "notes": "Storage-first chassis with GPU capability. Best for AI training builds needing massive local dataset storage alongside GPU compute. Not suitable as pure GPU compute chassis."
+      },
+      "pricing": {
+        "msrp_usd": 499,
+        "price_source": "manual",
+        "last_updated": "2026-03-15",
+        "affiliate": {
+          "amazon": { "asin": "B0BXXXXRSVH424", "tag": "yoursite-20", "url": "https://www.amazon.com/dp/B0BXXXXRSVH424?tag=yoursite-20" }
+        }
+      },
+      "meta": {
+        "release_date": "2023-01-01",
+        "popularity_score": 62,
+        "editor_pick": false,
+        "trending": false,
+        "badge": "Storage + GPU",
+        "best_for": ["AI training with large local dataset", "NAS + GPU hybrid", "24-drive storage compute rack"]
+      }
+    },
+
+    {
+      "id": "rack-silverstone-rm41-506",
+      "brand": "SilverStone",
+      "model": "RM41-506",
+      "series": "RM Series Professional",
+      "tier": "professional",
+      "form_factor": {
+        "rack_units": 4,
+        "rack_standard": "19-inch EIA-310",
+        "external_dimensions_mm": { "height": 176, "width": 430, "depth": 570 },
+        "internal_gpu_clearance_depth_mm": 400,
+        "max_gpu_length_mm": 400,
+        "max_gpu_slot_width": "full-height full-length",
+        "gpu_card_retainer": true,
+        "convertible_tower": true
+      },
+      "build_quality": {
+        "material": "SECC steel 1.2mm",
+        "thickness_mm": 1.2,
+        "finish": "Industrial black",
+        "front_door_lock": true,
+        "dust_filter": true,
+        "tool_less_design": false
+      },
+      "motherboard_support": {
+        "supported_form_factors": ["ATX", "SSI-CEB", "Micro-ATX"],
+        "max_mb_size_mm": "305 x 267 (SSI-CEB)",
+        "psu_form_factor": "ATX / PS2 or Mini Redundant"
+      },
+      "expansion": {
+        "pcie_slots": 7,
+        "full_height_slots": 7,
+        "low_profile_slots": 0,
+        "max_gpus": 2,
+        "gpu_riser_included": false
+      },
+      "storage_bays": {
+        "external_5_25_inch": 6,
+        "external_3_5_inch": 0,
+        "internal_3_5_inch": 0,
+        "hot_swap": false,
+        "notes": "6x 5.25 inch bays accept hot-swap drive cages (SilverStone compatible accessories)"
+      },
+      "cooling": {
+        "pre_installed_fans": [
+          { "position": "front", "size_mm": 120, "quantity": 1, "type": "fixed" },
+          { "position": "rear", "size_mm": 80, "quantity": 2, "type": "fixed" }
+        ],
+        "liquid_cooling_support": false,
+        "max_radiator_mm": null,
+        "airflow_direction": "front-to-rear",
+        "fan_filter": true
+      },
+      "cable_management": {
+        "cable_routing_channels": false,
+        "velcro_tie_points": false,
+        "notes": "6x 5.25 drive bays with hot-swap cage accessories increase cable count significantly. Modular PSU recommended."
+      },
+      "power": {
+        "psu_included": false,
+        "psu_slots": 1,
+        "redundant_psu_support": true,
+        "max_psu_wattage": 1200,
+        "pdu_inlet_type": "Standard ATX or Mini Redundant dual-feed",
+        "pdu_compatibility": ["C14/C13 standard PDU", "Dual-feed Mini Redundant PDU"],
+        "max_system_power_draw_watts": 1200
+      },
+      "load_capacity": {
+        "static_load_kg": 30,
+        "static_load_lbs": 66,
+        "rail_type": "SilverStone RMS series (sold separately)"
+      },
+      "connectivity": {
+        "front_usb": "2x USB 3.0",
+        "front_audio": false,
+        "leds": ["Power", "HDD Activity"]
+      },
+      "compatibility": {
+        "compatible_gpu_ids": ["gpu-rtx-5080", "gpu-rtx-5070-ti", "gpu-rtx-4090", "gpu-rtx-4080-super", "gpu-rtx-3090", "gpu-rtx-a6000-ada", "gpu-rx-7900-xtx"],
+        "compatible_cpu_sockets": ["AM5", "AM4", "LGA1700", "LGA1851"],
+        "incompatible_cpu_notes": "SSI-EEB (Threadripper PRO) boards exceed SSI-CEB max size — incompatible.",
+        "rack_depth_required_mm": 570,
+        "notes": "Professional rack chassis with 6x 5.25 inch flexible bays. Mid-depth at 570mm. Limited to SSI-CEB max board size — Threadripper PRO requires RM44/RM42-502. Good for CEB Xeon workstation builds."
+      },
+      "pricing": {
+        "msrp_usd": 289,
+        "price_source": "manual",
+        "last_updated": "2026-03-15",
+        "affiliate": {
+          "amazon": { "asin": "B0XXXXXXRM41506", "tag": "yoursite-20", "url": "https://www.amazon.com/dp/B0XXXXXXRM41506?tag=yoursite-20" }
+        }
+      },
+      "meta": {
+        "release_date": "2020-01-01",
+        "popularity_score": 67,
+        "editor_pick": false,
+        "trending": false,
+        "badge": "Pro Flexible",
+        "best_for": ["Xeon workstation rackmount", "Drive cage flexible builds", "Professional CEB board builds"]
+      }
+    },
+
+    {
+      "id": "rack-rosewill-rsv-z2006",
+      "brand": "Rosewill",
+      "model": "RSV-Z2006",
+      "series": "RSV Z-Series (2U)",
+      "tier": "compact",
+      "form_factor": {
+        "rack_units": 2,
+        "rack_standard": "19-inch EIA-310",
+        "external_dimensions_mm": { "height": 88, "width": 430, "depth": 600 },
+        "internal_gpu_clearance_depth_mm": 320,
+        "max_gpu_length_mm": 320,
+        "max_gpu_slot_width": "dual-slot only (horizontal full-size GPU supported via riser)",
+        "gpu_card_retainer": false,
+        "convertible_tower": false,
+        "horizontal_gpu_mount": true,
+        "horizontal_gpu_note": "Horizontal full-size GPU support via riser card — key feature for 2U form factor"
+      },
+      "build_quality": {
+        "material": "SGCC steel",
+        "thickness_mm": 1.0,
+        "finish": "Black",
+        "front_door_lock": false,
+        "dust_filter": false,
+        "tool_less_design": false
+      },
+      "motherboard_support": {
+        "supported_form_factors": ["ATX", "Micro-ATX"],
+        "max_mb_size_mm": "305 x 244 (ATX)",
+        "psu_form_factor": "ATX"
+      },
+      "expansion": {
+        "pcie_slots": 1,
+        "full_height_slots": 1,
+        "low_profile_slots": 0,
+        "max_gpus": 1,
+        "gpu_riser_included": false,
+        "notes": "Single GPU only via horizontal riser mount. 320mm clearance accommodates most consumer GPUs except longest flagship cards."
+      },
+      "storage_bays": {
+        "external_5_25_inch": 0,
+        "external_3_5_inch": 6,
+        "internal_3_5_inch": 0,
+        "hot_swap": false
+      },
+      "cooling": {
+        "pre_installed_fans": [
+          { "position": "rear", "size_mm": 80, "quantity": 5, "type": "fixed" }
+        ],
+        "liquid_cooling_support": false,
+        "max_radiator_mm": null,
+        "airflow_direction": "rear exhaust",
+        "fan_filter": false
+      },
+      "cable_management": {
+        "notes": "Compact 2U form — cable management is tight. Modular PSU essential. GPU riser cable routing requires planning."
+      },
+      "power": {
+        "psu_included": false,
+        "psu_slots": 1,
+        "redundant_psu_support": false,
+        "max_psu_wattage": 850,
+        "pdu_inlet_type": "Standard ATX PSU inlet (IEC C14 via PSU)",
+        "pdu_compatibility": ["C14/C13 standard PDU"],
+        "max_system_power_draw_watts": 850
+      },
+      "load_capacity": {
+        "static_load_kg": 15,
+        "static_load_lbs": 33,
+        "rail_type": "Sold separately"
+      },
+      "connectivity": {
+        "front_usb": "2x USB 3.2 Type-C",
+        "front_audio": false,
+        "leds": ["Power", "HDD Activity"]
+      },
+      "compatibility": {
+        "compatible_gpu_ids": ["gpu-rtx-5070", "gpu-rtx-5060-ti-16gb", "gpu-rtx-4070-super", "gpu-rtx-4070", "gpu-rtx-3080", "gpu-rx-7800-xt", "gpu-arc-b580"],
+        "incompatible_gpu_notes": "Flagship 3-slot 336mm+ GPUs do not fit. 2U limits practical GPU size to mid-range dual-slot cards.",
+        "compatible_cpu_sockets": ["AM5", "AM4", "LGA1700", "LGA1851"],
+        "rack_depth_required_mm": 600,
+        "notes": "2U compact chassis. Best for space-constrained deployments needing GPU inference capability. Single mid-range GPU only. Not suitable for AI training workloads."
+      },
+      "pricing": {
+        "msrp_usd": 139,
+        "price_source": "manual",
+        "last_updated": "2026-03-15",
+        "affiliate": {
+          "amazon": { "asin": "B0BXXXXXXZ2006", "tag": "yoursite-20", "url": "https://www.amazon.com/dp/B0BXXXXXXZ2006?tag=yoursite-20" }
+        }
+      },
+      "meta": {
+        "release_date": "2023-01-01",
+        "popularity_score": 55,
+        "editor_pick": false,
+        "trending": false,
+        "badge": "2U Compact",
+        "best_for": ["Space-constrained rack builds", "Single GPU inference node", "Dense rack deployments"]
+      }
+    },
+
+    {
+      "id": "rack-supermicro-sc847",
+      "brand": "Supermicro",
+      "model": "SuperChassis SC847",
+      "series": "SC847 Series",
+      "tier": "enterprise-deep",
+      "form_factor": {
+        "rack_units": 4,
+        "rack_standard": "19-inch EIA-310",
+        "external_dimensions_mm": { "height": 176, "width": 430, "depth": 790 },
+        "internal_gpu_clearance_depth_mm": 620,
+        "max_gpu_length_mm": 620,
+        "max_gpu_slot_width": "full-height full-length",
+        "gpu_card_retainer": false,
+        "convertible_tower": false
+      },
+      "build_quality": {
+        "material": "SECC steel heavy-gauge",
+        "thickness_mm": 1.5,
+        "finish": "Industrial black",
+        "front_door_lock": true,
+        "dust_filter": true,
+        "tool_less_design": true,
+        "anti_vibration": false,
+        "ipmi_bmc_ready": true
+      },
+      "motherboard_support": {
+        "supported_form_factors": ["ATX", "E-ATX", "SSI-EEB"],
+        "max_mb_size_mm": "340 x 330 (SSI-EEB dual-socket)",
+        "psu_form_factor": "Proprietary Supermicro redundant PSU"
+      },
+      "expansion": {
+        "pcie_slots": 7,
+        "full_height_slots": 7,
+        "low_profile_slots": 7,
+        "max_gpus": 3,
+        "gpu_riser_included": false,
+        "notes": "620mm internal clearance — deepest GPU clearance in this catalog. Accommodates all PCIe add-in cards including extended-length professional accelerators."
+      },
+      "storage_bays": {
+        "external_3_5_inch": 36,
+        "internal_3_5_inch": 0,
+        "hot_swap": true,
+        "hot_swap_note": "36x 3.5 inch hot-swap SAS3/SATA3 bays with backplane expander — highest storage density in this catalog"
+      },
+      "cooling": {
+        "pre_installed_fans": [
+          { "position": "mid", "size_mm": 80, "quantity": 7, "type": "hot-swap PWM high-speed" }
+        ],
+        "liquid_cooling_support": false,
+        "max_radiator_mm": null,
+        "airflow_direction": "front-to-rear",
+        "fan_filter": true,
+        "cooling_notes": "7x hot-swap 80mm high-speed fans. Replaceable without system downtime — enterprise 24/7 requirement."
+      },
+      "cable_management": {
+        "cable_routing_channels": true,
+        "velcro_tie_points": true,
+        "backplane_integrated": true,
+        "air_shroud": true,
+        "notes": "Integrated multi-zone backplane dramatically reduces cable count. Air shroud directs flow through compute zone. Cable management arm compatible."
+      },
+      "power": {
+        "psu_included": true,
+        "psu_slots": 2,
+        "redundant_psu_support": true,
+        "included_psu_wattage": 1200,
+        "included_psu_type": "2x 1200W Supermicro hot-swap redundant PSU",
+        "max_psu_wattage": 2400,
+        "pdu_inlet_type": "IEC C20 per PSU module (2x independent C20 PDU feeds)",
+        "pdu_compatibility": ["Dual C20/C19 high-power PDU feeds (A+B)", "Standard rack PDU C20 outlets", "High-density PDU compatible"],
+        "max_system_power_draw_watts": 2400,
+        "redundancy_note": "Dual C20 feeds (20A each) support full N+1 power redundancy. Required for production AI training deployments."
+      },
+      "load_capacity": {
+        "static_load_kg": 68,
+        "static_load_lbs": 150,
+        "rail_type": "Supermicro MCP-290 heavy-duty rails (included or optional)",
+        "notes": "150 lbs static load accommodates 36 fully-populated HDDs + dual-socket motherboard + 3x GPUs + redundant PSUs"
+      },
+      "connectivity": {
+        "front_usb": "2x USB 2.0",
+        "front_audio": false,
+        "leds": ["Power", "HDD Activity", "NIC"],
+        "intrusion_switch": true,
+        "sgpio_support": true,
+        "ses3_support": true
+      },
+      "compatibility": {
+        "compatible_gpu_ids": ["gpu-rtx-5090", "gpu-rtx-5080", "gpu-rtx-4090", "gpu-rtx-a6000-ada", "gpu-a100-80gb"],
+        "incompatible_gpu_notes": "A100 SXM requires SXM baseboard — PCIe A100 compatible. High drive population reduces available GPU slots to 2 effectively.",
+        "compatible_cpu_sockets": ["LGA4677 (Xeon Sapphire Rapids)", "SP5 (EPYC Genoa)", "sTR5 WRX90", "LGA1851"],
+        "compatible_gpu_racks_self": ["DGX A100 (A100 PCIe variant only)", "HGX A100 PCIe builds"],
+        "rack_depth_required_mm": 790,
+        "notes": "Deep enterprise storage + GPU chassis. 790mm depth requires deep rack cabinet (min 1000mm internal depth). Dual C20 PDU feeds required for full power. Best for AI training clusters needing collocated GPU compute + petabyte-scale local storage."
+      },
+      "pricing": {
+        "msrp_usd": 1299,
+        "price_source": "manual",
+        "last_updated": "2026-03-15",
+        "affiliate": {
+          "amazon": { "asin": "B0XXXXXXSC847", "tag": "yoursite-20", "url": "https://www.amazon.com/dp/B0XXXXXXSC847?tag=yoursite-20" }
+        }
+      },
+      "meta": {
+        "release_date": "2019-01-01",
+        "popularity_score": 68,
+        "editor_pick": false,
+        "trending": false,
+        "badge": "Enterprise Deep Rack",
+        "best_for": ["Enterprise AI training cluster", "36-drive + GPU collocated build", "Supermicro IPMI production environment", "Deep rack AI storage node"]
+      }
+    }
+
+  ],
+
+  "configurator_compatibility_rules_racks": {
+    "_description": "GPU rack chassis compatibility rules for the AI PC Configurator feature.",
+    "gpu_fit_rules": {
+      "primary_check": "Compare GPU length_mm (from gpu-catalog.json) against rack internal_gpu_clearance_depth_mm. Flag as INCOMPATIBLE if GPU length > clearance.",
+      "slot_width_check": "Compare GPU slot_size (1-slot / 2-slot / 3-slot) against rack max_gpu_slot_width. Flag 3-slot GPU in dual-slot-only chassis as WARNING.",
+      "multi_gpu_check": "Compare number of GPUs in build against rack max_gpus field. Flag as INCOMPATIBLE if GPU count exceeds max.",
+      "aio_check": "If build includes AIO cooler, compare radiator size against rack max_radiator_mm. Flag if radiator exceeds rack support."
+    },
+    "motherboard_fit_rules": {
+      "note": "Compare CPU motherboard form factor against rack supported_form_factors. SSI-EEB (Threadripper PRO WRX90) requires chassis explicitly listing SSI-EEB support.",
+      "critical": "Most ATX chassis do NOT support SSI-EEB (330x330mm) — flag as INCOMPATIBLE for Threadripper PRO builds unless SSI-EEB is in supported_form_factors list."
+    },
+    "power_rules": {
+      "note": "Sum GPU TDP (from gpu-catalog) + CPU max_turbo_power_watts (from cpu-catalog) + 150W system overhead. Flag if total exceeds rack max_system_power_draw_watts.",
+      "pdu_rules": "Rack pdu_compatibility field lists PDU connection types. Enterprise racks with redundant PSU require dual PDU feeds. Flag single-feed deployments of redundant PSU chassis as sub-optimal.",
+      "c20_note": "Supermicro SC847 requires C20 PDU outlets — standard C14 PDU incompatible with SC847 PSU inlet. Flag mismatch."
+    },
+    "depth_rules": {
+      "note": "Rack external chassis depth must be ≤ internal rack cabinet depth. Standard 19-inch 4-post cabinets: 800–1000mm internal depth. Warn if chassis depth > 700mm as deep cabinet required.",
+      "deep_rack_flag": "SC847 at 790mm requires minimum 1000mm internal rack depth. Flag with 'Deep rack cabinet required' warning."
+    },
+    "load_rules": {
+      "note": "Calculate total populated weight: chassis empty weight + (GPU count × avg GPU weight 1.5kg) + (HDD count × 0.7kg) + PSU weight + MB weight + cooling weight. Flag if total approaches static_load_kg limit."
+    },
+    "pdu_compatibility_summary": {
+      "c14_c13_standard": "All consumer/prosumer chassis. 10–15A circuits. Standard rack PDU.",
+      "c20_c19_high_power": "Supermicro SC847, enterprise chassis. 20A circuits. High-density PDU required.",
+      "dual_feed": "Redundant PSU chassis (SC745TQ, SC847, RM44 mini-redundant). Two independent PDU feeds for A+B power path."
+    }
+  }
+}

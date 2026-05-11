@@ -15,19 +15,9 @@ import java.util.UUID;
 @Repository
 public interface ProductRepository extends JpaRepository<Product, UUID> {
 
-//  Basic Lookups
-    Page<Product> findByCategory(String category, Pageable pageable);
-    Page<Product> findByCategoryAndInStock(String category, Boolean inStock, Pageable pageable);
+    boolean existsByName(String name);
+
     List<Product> findByCategoryIgnoreCase(String category);
-    List<Product> findByBrandIgnoreCaseContaining(String brand);
-
-//  Budget Filter
-    @Query("SELECT p FROM Product p WHERE p.priceInr BETWEEN :min AND :max")
-    List<Product> findByPriceRange(@Param("min") BigDecimal min, @Param("max") BigDecimal max);
-
-//   VRAM Filter (GPU Only)
-@Query("SELECT p FROM Product p WHERE p.category = 'gpu' AND p.vramGb >= :minVram")
-List<Product> findGpusByMinVram(@Param("minVram") int minVram);
 
     // ── Core filter used by BuildService ─────────────────────────────────────
     // Returns all in-stock products within budget AND meeting VRAM floor.
@@ -48,7 +38,7 @@ List<Product> findGpusByMinVram(@Param("minVram") int minVram);
                                        @Param("budgetMax") BigDecimal budgetMax,
                                        @Param("vramMin")   int vramMin);
 
-    // ── Dynamic filter used by product catalog page ───────────────────────────
+    // ── Dynamic filter used by product catalog page ─────────────────────────
     @Query("""
         SELECT p FROM Product p
         WHERE (:category IS NULL OR LOWER(p.category) = LOWER(:category))
@@ -67,7 +57,7 @@ List<Product> findGpusByMinVram(@Param("minVram") int minVram);
             @Param("inStock")   Boolean    inStock,
             Pageable pageable);
 
-    // ── Distinct values for filter dropdowns ──────────────────────────────────
+    // ── Distinct values for filter dropdowns ─────────────────────────────────-
 
     @Query("SELECT DISTINCT p.category FROM Product p ORDER BY p.category")
     List<String> findDistinctCategories();

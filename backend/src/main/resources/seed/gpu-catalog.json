@@ -1,0 +1,1675 @@
+{
+  "catalog_meta": {
+    "version": "1.0.0",
+    "last_updated": "2026-03-15",
+    "total_entries": 32,
+    "notes": "Prices are approximate MSRPs at time of research. Always sync via PA API or manual review. Compatibility fields are structured for AI PC Configurator feature use."
+  },
+
+  "gpus": [
+
+    {
+      "id": "gpu-rtx-5090",
+      "series": "RTX 50",
+      "brand": "NVIDIA",
+      "name": "GeForce RTX 5090",
+      "tier": "flagship",
+      "specifications": {
+        "vram_gb": 32,
+        "vram_type": "GDDR7",
+        "cuda_cores": 21760,
+        "tensor_cores": 680,
+        "tensor_core_gen": "5th",
+        "rt_cores": 170,
+        "rt_core_gen": "4th",
+        "tdp_watts": 575,
+        "recommended_psu_watts": 1000,
+        "architecture": "Blackwell",
+        "die": "GB202",
+        "process_node": "TSMC 4N",
+        "memory_bandwidth_gbs": 1792,
+        "memory_bus_bits": 512,
+        "boost_clock_mhz": 2407,
+        "ai_tops": 3352
+      },
+      "ai_capabilities": {
+        "supported_precision": ["FP4", "FP8", "FP16", "BF16", "TF32", "FP32", "INT8", "INT4"],
+        "ai_instruction_sets": ["DLSS 4", "Multi Frame Generation", "5th-gen Tensor Cores", "TensorRT", "NVENC AV1 9th-gen", "NVDEC"],
+        "compatible_ai_models": [
+          "Stable Diffusion XL", "Flux", "Llama 3 70B (FP8)", "Llama 3 405B (INT4)",
+          "Whisper Large v3", "CLIP", "ControlNet", "GPT-J 6B", "Mistral 7B"
+        ]
+      },
+      "compatibility": {
+        "pcie_version": "5.0",
+        "pcie_lanes": 16,
+        "pcie_minimum_supported": "4.0",
+        "pcie_slot_width": "x16",
+        "power_connector": "1x 16-pin (600W ATX 3.0)",
+        "nvlink_supported": true,
+        "nvlink_gen": "4th",
+        "multi_gpu": true,
+        "slot_size": "3-slot",
+        "length_mm": 336,
+        "height_mm": 140,
+        "compatible_sockets": ["LGA1851", "AM5", "SP6", "LGA4710", "LGA4677"],
+        "min_pcie_gen_for_full_bw": "5.0",
+        "display_outputs": ["3x DisplayPort 2.1", "1x HDMI 2.1b"],
+        "resizable_bar": true,
+        "notes": "Requires ATX 3.0 or 3.1 PSU with 16-pin connector for optimal power delivery. NVLink bridge sold separately."
+      },
+      "pricing": {
+        "msrp_usd": 1999,
+        "price_source": "manual",
+        "last_updated": "2026-03-15",
+        "affiliate": {
+          "amazon": { "asin": "B0DXXXXXXXRTX5090", "tag": "yoursite-20", "url": "https://www.amazon.com/dp/B0DXXXXXXXRTX5090?tag=yoursite-20" }
+        }
+      },
+      "meta": {
+        "release_date": "2025-01-30",
+        "popularity_score": 96,
+        "editor_pick": true,
+        "trending": true,
+        "badge": "Flagship"
+      }
+    },
+
+    {
+      "id": "gpu-rtx-5080",
+      "series": "RTX 50",
+      "brand": "NVIDIA",
+      "name": "GeForce RTX 5080",
+      "tier": "high-end",
+      "specifications": {
+        "vram_gb": 16,
+        "vram_type": "GDDR7",
+        "cuda_cores": 10752,
+        "tensor_cores": 336,
+        "tensor_core_gen": "5th",
+        "rt_cores": 84,
+        "rt_core_gen": "4th",
+        "tdp_watts": 360,
+        "recommended_psu_watts": 850,
+        "architecture": "Blackwell",
+        "die": "GB203",
+        "process_node": "TSMC 4N",
+        "memory_bandwidth_gbs": 960,
+        "memory_bus_bits": 256,
+        "boost_clock_mhz": 2617,
+        "ai_tops": 1801
+      },
+      "ai_capabilities": {
+        "supported_precision": ["FP4", "FP8", "FP16", "BF16", "TF32", "FP32", "INT8", "INT4"],
+        "ai_instruction_sets": ["DLSS 4", "Multi Frame Generation", "5th-gen Tensor Cores", "TensorRT", "NVENC AV1"],
+        "compatible_ai_models": [
+          "Stable Diffusion XL", "Flux", "Llama 3 13B (FP16)", "Llama 3 70B (INT4)",
+          "Whisper Large v3", "CLIP", "ControlNet", "Mistral 7B"
+        ]
+      },
+      "compatibility": {
+        "pcie_version": "5.0",
+        "pcie_lanes": 16,
+        "pcie_minimum_supported": "4.0",
+        "pcie_slot_width": "x16",
+        "power_connector": "1x 16-pin (ATX 3.0)",
+        "nvlink_supported": false,
+        "multi_gpu": false,
+        "slot_size": "3-slot",
+        "length_mm": 317,
+        "height_mm": 137,
+        "compatible_sockets": ["LGA1851", "AM5", "SP6", "LGA4710", "LGA4677"],
+        "min_pcie_gen_for_full_bw": "5.0",
+        "display_outputs": ["3x DisplayPort 2.1", "1x HDMI 2.1b"],
+        "resizable_bar": true,
+        "notes": "No NVLink. ATX 3.0 PSU strongly recommended."
+      },
+      "pricing": {
+        "msrp_usd": 999,
+        "price_source": "manual",
+        "last_updated": "2026-03-15",
+        "affiliate": {
+          "amazon": { "asin": "B0DXXXXXXXRTX5080", "tag": "yoursite-20", "url": "https://www.amazon.com/dp/B0DXXXXXXXRTX5080?tag=yoursite-20" }
+        }
+      },
+      "meta": {
+        "release_date": "2025-01-30",
+        "popularity_score": 88,
+        "editor_pick": true,
+        "trending": true,
+        "badge": "Top Rated"
+      }
+    },
+
+    {
+      "id": "gpu-rtx-5070-ti",
+      "series": "RTX 50",
+      "brand": "NVIDIA",
+      "name": "GeForce RTX 5070 Ti",
+      "tier": "high-end",
+      "specifications": {
+        "vram_gb": 16,
+        "vram_type": "GDDR7",
+        "cuda_cores": 8960,
+        "tensor_cores": 280,
+        "tensor_core_gen": "5th",
+        "rt_cores": 70,
+        "rt_core_gen": "4th",
+        "tdp_watts": 300,
+        "recommended_psu_watts": 750,
+        "architecture": "Blackwell",
+        "die": "GB203",
+        "process_node": "TSMC 4N",
+        "memory_bandwidth_gbs": 896,
+        "memory_bus_bits": 256,
+        "boost_clock_mhz": 2452,
+        "ai_tops": 1400
+      },
+      "ai_capabilities": {
+        "supported_precision": ["FP4", "FP8", "FP16", "BF16", "TF32", "FP32", "INT8", "INT4"],
+        "ai_instruction_sets": ["DLSS 4", "Multi Frame Generation", "5th-gen Tensor Cores", "TensorRT", "NVENC AV1"],
+        "compatible_ai_models": [
+          "Stable Diffusion XL", "Flux", "Llama 3 13B (FP16)", "Llama 3 70B (INT4)",
+          "Whisper Large v3", "CLIP", "Mistral 7B"
+        ]
+      },
+      "compatibility": {
+        "pcie_version": "5.0",
+        "pcie_lanes": 16,
+        "pcie_minimum_supported": "4.0",
+        "pcie_slot_width": "x16",
+        "power_connector": "1x 16-pin (ATX 3.0)",
+        "nvlink_supported": false,
+        "multi_gpu": false,
+        "slot_size": "3-slot",
+        "length_mm": 310,
+        "height_mm": 137,
+        "compatible_sockets": ["LGA1851", "AM5", "SP6", "LGA4710"],
+        "min_pcie_gen_for_full_bw": "5.0",
+        "display_outputs": ["3x DisplayPort 2.1", "1x HDMI 2.1b"],
+        "resizable_bar": true,
+        "notes": "Excellent mid-flagship value. No NVLink support."
+      },
+      "pricing": {
+        "msrp_usd": 749,
+        "price_source": "manual",
+        "last_updated": "2026-03-15",
+        "affiliate": {
+          "amazon": { "asin": "B0DXXXXXX5070TI", "tag": "yoursite-20", "url": "https://www.amazon.com/dp/B0DXXXXXX5070TI?tag=yoursite-20" }
+        }
+      },
+      "meta": {
+        "release_date": "2025-02-20",
+        "popularity_score": 85,
+        "editor_pick": false,
+        "trending": true,
+        "badge": "Best Value"
+      }
+    },
+
+    {
+      "id": "gpu-rtx-5070",
+      "series": "RTX 50",
+      "brand": "NVIDIA",
+      "name": "GeForce RTX 5070",
+      "tier": "mid-high",
+      "specifications": {
+        "vram_gb": 12,
+        "vram_type": "GDDR7",
+        "cuda_cores": 6144,
+        "tensor_cores": 192,
+        "tensor_core_gen": "5th",
+        "rt_cores": 48,
+        "rt_core_gen": "4th",
+        "tdp_watts": 250,
+        "recommended_psu_watts": 700,
+        "architecture": "Blackwell",
+        "die": "GB205",
+        "process_node": "TSMC 4N",
+        "memory_bandwidth_gbs": 672,
+        "memory_bus_bits": 192,
+        "boost_clock_mhz": 2512,
+        "ai_tops": 988
+      },
+      "ai_capabilities": {
+        "supported_precision": ["FP4", "FP8", "FP16", "BF16", "TF32", "FP32", "INT8", "INT4"],
+        "ai_instruction_sets": ["DLSS 4", "Multi Frame Generation", "5th-gen Tensor Cores", "TensorRT"],
+        "compatible_ai_models": [
+          "Stable Diffusion XL", "Llama 3 7B (FP16)", "Llama 3 13B (INT4)",
+          "Whisper Large v3", "CLIP", "Mistral 7B"
+        ]
+      },
+      "compatibility": {
+        "pcie_version": "5.0",
+        "pcie_lanes": 16,
+        "pcie_minimum_supported": "4.0",
+        "pcie_slot_width": "x16",
+        "power_connector": "1x 16-pin (ATX 3.0)",
+        "nvlink_supported": false,
+        "multi_gpu": false,
+        "slot_size": "2-slot",
+        "length_mm": 267,
+        "height_mm": 112,
+        "compatible_sockets": ["LGA1851", "AM5", "LGA4710"],
+        "min_pcie_gen_for_full_bw": "4.0",
+        "display_outputs": ["3x DisplayPort 2.1", "1x HDMI 2.1b"],
+        "resizable_bar": true,
+        "notes": "12GB VRAM is a consideration for large AI model workloads. Excellent for 1440p and moderate inference."
+      },
+      "pricing": {
+        "msrp_usd": 549,
+        "price_source": "manual",
+        "last_updated": "2026-03-15",
+        "affiliate": {
+          "amazon": { "asin": "B0DXXXXXXRTX5070", "tag": "yoursite-20", "url": "https://www.amazon.com/dp/B0DXXXXXXRTX5070?tag=yoursite-20" }
+        }
+      },
+      "meta": {
+        "release_date": "2025-03-05",
+        "popularity_score": 82,
+        "editor_pick": false,
+        "trending": true,
+        "badge": "Popular"
+      }
+    },
+
+    {
+      "id": "gpu-rtx-5060-ti-16gb",
+      "series": "RTX 50",
+      "brand": "NVIDIA",
+      "name": "GeForce RTX 5060 Ti 16GB",
+      "tier": "mid-range",
+      "specifications": {
+        "vram_gb": 16,
+        "vram_type": "GDDR7",
+        "cuda_cores": 4608,
+        "tensor_cores": 144,
+        "tensor_core_gen": "5th",
+        "rt_cores": 36,
+        "rt_core_gen": "4th",
+        "tdp_watts": 180,
+        "recommended_psu_watts": 600,
+        "architecture": "Blackwell",
+        "die": "GB206",
+        "process_node": "TSMC 4N",
+        "memory_bandwidth_gbs": 448,
+        "memory_bus_bits": 128,
+        "boost_clock_mhz": 2572,
+        "ai_tops": 759
+      },
+      "ai_capabilities": {
+        "supported_precision": ["FP4", "FP8", "FP16", "BF16", "TF32", "FP32", "INT8", "INT4"],
+        "ai_instruction_sets": ["DLSS 4", "Multi Frame Generation", "5th-gen Tensor Cores", "TensorRT"],
+        "compatible_ai_models": [
+          "Stable Diffusion XL", "Llama 3 7B (FP16)", "Llama 3 13B (INT4)",
+          "Whisper Medium", "CLIP"
+        ]
+      },
+      "compatibility": {
+        "pcie_version": "5.0",
+        "pcie_lanes": 16,
+        "pcie_minimum_supported": "4.0",
+        "pcie_slot_width": "x16",
+        "power_connector": "1x 8-pin",
+        "nvlink_supported": false,
+        "multi_gpu": false,
+        "slot_size": "2-slot",
+        "length_mm": 244,
+        "height_mm": 112,
+        "compatible_sockets": ["LGA1851", "AM5", "LGA1700"],
+        "min_pcie_gen_for_full_bw": "4.0",
+        "display_outputs": ["3x DisplayPort 2.1", "1x HDMI 2.1b"],
+        "resizable_bar": true,
+        "notes": "16GB variant strongly preferred over 8GB for AI workloads despite same core count."
+      },
+      "pricing": {
+        "msrp_usd": 429,
+        "price_source": "manual",
+        "last_updated": "2026-03-15",
+        "affiliate": {
+          "amazon": { "asin": "B0DXXXXX5060TI16", "tag": "yoursite-20", "url": "https://www.amazon.com/dp/B0DXXXXX5060TI16?tag=yoursite-20" }
+        }
+      },
+      "meta": {
+        "release_date": "2025-05-01",
+        "popularity_score": 78,
+        "editor_pick": false,
+        "trending": false,
+        "badge": "Best Mid-Range"
+      }
+    },
+
+    {
+      "id": "gpu-rtx-4090",
+      "series": "RTX 40",
+      "brand": "NVIDIA",
+      "name": "GeForce RTX 4090",
+      "tier": "flagship",
+      "specifications": {
+        "vram_gb": 24,
+        "vram_type": "GDDR6X",
+        "cuda_cores": 16384,
+        "tensor_cores": 512,
+        "tensor_core_gen": "4th",
+        "rt_cores": 128,
+        "rt_core_gen": "3rd",
+        "tdp_watts": 450,
+        "recommended_psu_watts": 850,
+        "architecture": "Ada Lovelace",
+        "die": "AD102",
+        "process_node": "TSMC 4N",
+        "memory_bandwidth_gbs": 1008,
+        "memory_bus_bits": 384,
+        "boost_clock_mhz": 2520,
+        "ai_tops": 1321
+      },
+      "ai_capabilities": {
+        "supported_precision": ["FP8", "FP16", "BF16", "TF32", "FP32", "INT8", "INT4"],
+        "ai_instruction_sets": ["DLSS 3.5", "Frame Generation", "4th-gen Tensor Cores", "TensorRT", "NVENC AV1 8th-gen"],
+        "compatible_ai_models": [
+          "Stable Diffusion XL", "Flux", "Llama 3 13B (FP16)", "Llama 3 70B (INT4)",
+          "Whisper Large v3", "CLIP", "ControlNet", "GPT-J 6B"
+        ]
+      },
+      "compatibility": {
+        "pcie_version": "4.0",
+        "pcie_lanes": 16,
+        "pcie_minimum_supported": "3.0",
+        "pcie_slot_width": "x16",
+        "power_connector": "1x 16-pin (600W) or 3x 8-pin adapter",
+        "nvlink_supported": false,
+        "multi_gpu": false,
+        "slot_size": "3-slot",
+        "length_mm": 336,
+        "height_mm": 140,
+        "compatible_sockets": ["LGA1700", "LGA1851", "AM4", "AM5", "SP6", "LGA4677"],
+        "min_pcie_gen_for_full_bw": "4.0",
+        "display_outputs": ["3x DisplayPort 1.4a", "1x HDMI 2.1"],
+        "resizable_bar": true,
+        "notes": "16-pin to 3x8-pin adapter included in box. Monitor connector melting issues resolved post-launch via cable replacement program."
+      },
+      "pricing": {
+        "msrp_usd": 1599,
+        "price_source": "manual",
+        "last_updated": "2026-03-15",
+        "affiliate": {
+          "amazon": { "asin": "B0BGP86GN4", "tag": "yoursite-20", "url": "https://www.amazon.com/dp/B0BGP86GN4?tag=yoursite-20" }
+        }
+      },
+      "meta": {
+        "release_date": "2022-10-12",
+        "popularity_score": 91,
+        "editor_pick": true,
+        "trending": false,
+        "badge": "AI Workhorse"
+      }
+    },
+
+    {
+      "id": "gpu-rtx-4080-super",
+      "series": "RTX 40",
+      "brand": "NVIDIA",
+      "name": "GeForce RTX 4080 Super",
+      "tier": "high-end",
+      "specifications": {
+        "vram_gb": 16,
+        "vram_type": "GDDR6X",
+        "cuda_cores": 10240,
+        "tensor_cores": 320,
+        "tensor_core_gen": "4th",
+        "rt_cores": 80,
+        "rt_core_gen": "3rd",
+        "tdp_watts": 320,
+        "recommended_psu_watts": 750,
+        "architecture": "Ada Lovelace",
+        "die": "AD103",
+        "process_node": "TSMC 4N",
+        "memory_bandwidth_gbs": 736,
+        "memory_bus_bits": 256,
+        "boost_clock_mhz": 2550,
+        "ai_tops": 836
+      },
+      "ai_capabilities": {
+        "supported_precision": ["FP8", "FP16", "BF16", "TF32", "FP32", "INT8", "INT4"],
+        "ai_instruction_sets": ["DLSS 3.5", "Frame Generation", "4th-gen Tensor Cores", "TensorRT", "NVENC AV1"],
+        "compatible_ai_models": [
+          "Stable Diffusion XL", "Llama 3 13B (FP8)", "Llama 3 70B (INT4)",
+          "Whisper Large v3", "CLIP", "Mistral 7B"
+        ]
+      },
+      "compatibility": {
+        "pcie_version": "4.0",
+        "pcie_lanes": 16,
+        "pcie_minimum_supported": "3.0",
+        "pcie_slot_width": "x16",
+        "power_connector": "1x 16-pin or 3x 8-pin adapter",
+        "nvlink_supported": false,
+        "multi_gpu": false,
+        "slot_size": "3-slot",
+        "length_mm": 336,
+        "height_mm": 140,
+        "compatible_sockets": ["LGA1700", "LGA1851", "AM4", "AM5", "SP6"],
+        "min_pcie_gen_for_full_bw": "4.0",
+        "display_outputs": ["3x DisplayPort 1.4a", "1x HDMI 2.1"],
+        "resizable_bar": true,
+        "notes": "Strong all-around card for AI + 4K gaming. No NVLink on 40-series below 4090."
+      },
+      "pricing": {
+        "msrp_usd": 999,
+        "price_source": "manual",
+        "last_updated": "2026-03-15",
+        "affiliate": {
+          "amazon": { "asin": "B0CT2X94TK", "tag": "yoursite-20", "url": "https://www.amazon.com/dp/B0CT2X94TK?tag=yoursite-20" }
+        }
+      },
+      "meta": {
+        "release_date": "2024-01-31",
+        "popularity_score": 84,
+        "editor_pick": false,
+        "trending": false,
+        "badge": "High Value"
+      }
+    },
+
+    {
+      "id": "gpu-rtx-4070-ti-super",
+      "series": "RTX 40",
+      "brand": "NVIDIA",
+      "name": "GeForce RTX 4070 Ti Super",
+      "tier": "high-end",
+      "specifications": {
+        "vram_gb": 16,
+        "vram_type": "GDDR6X",
+        "cuda_cores": 8448,
+        "tensor_cores": 264,
+        "tensor_core_gen": "4th",
+        "rt_cores": 66,
+        "rt_core_gen": "3rd",
+        "tdp_watts": 285,
+        "recommended_psu_watts": 700,
+        "architecture": "Ada Lovelace",
+        "die": "AD103",
+        "process_node": "TSMC 4N",
+        "memory_bandwidth_gbs": 672,
+        "memory_bus_bits": 256,
+        "boost_clock_mhz": 2610,
+        "ai_tops": 661
+      },
+      "ai_capabilities": {
+        "supported_precision": ["FP8", "FP16", "BF16", "TF32", "FP32", "INT8", "INT4"],
+        "ai_instruction_sets": ["DLSS 3.5", "Frame Generation", "4th-gen Tensor Cores", "TensorRT"],
+        "compatible_ai_models": [
+          "Stable Diffusion XL", "Llama 3 13B (FP8)", "Llama 3 70B (INT4)",
+          "Whisper Large v3", "CLIP", "Mistral 7B"
+        ]
+      },
+      "compatibility": {
+        "pcie_version": "4.0",
+        "pcie_lanes": 16,
+        "pcie_minimum_supported": "3.0",
+        "pcie_slot_width": "x16",
+        "power_connector": "1x 16-pin or 2x 8-pin adapter",
+        "nvlink_supported": false,
+        "multi_gpu": false,
+        "slot_size": "3-slot",
+        "length_mm": 310,
+        "height_mm": 137,
+        "compatible_sockets": ["LGA1700", "LGA1851", "AM4", "AM5", "SP6"],
+        "min_pcie_gen_for_full_bw": "4.0",
+        "display_outputs": ["3x DisplayPort 1.4a", "1x HDMI 2.1"],
+        "resizable_bar": true,
+        "notes": "Uses AD103 die (same as 4080). Excellent multi-GPU AI topology option via PCIe switch boards."
+      },
+      "pricing": {
+        "msrp_usd": 799,
+        "price_source": "manual",
+        "last_updated": "2026-03-15",
+        "affiliate": {
+          "amazon": { "asin": "B0CQFNPXNQ", "tag": "yoursite-20", "url": "https://www.amazon.com/dp/B0CQFNPXNQ?tag=yoursite-20" }
+        }
+      },
+      "meta": {
+        "release_date": "2024-01-24",
+        "popularity_score": 80,
+        "editor_pick": false,
+        "trending": false,
+        "badge": "Popular"
+      }
+    },
+
+    {
+      "id": "gpu-rtx-4070-super",
+      "series": "RTX 40",
+      "brand": "NVIDIA",
+      "name": "GeForce RTX 4070 Super",
+      "tier": "mid-high",
+      "specifications": {
+        "vram_gb": 12,
+        "vram_type": "GDDR6X",
+        "cuda_cores": 7168,
+        "tensor_cores": 224,
+        "tensor_core_gen": "4th",
+        "rt_cores": 56,
+        "rt_core_gen": "3rd",
+        "tdp_watts": 220,
+        "recommended_psu_watts": 650,
+        "architecture": "Ada Lovelace",
+        "die": "AD104",
+        "process_node": "TSMC 4N",
+        "memory_bandwidth_gbs": 504,
+        "memory_bus_bits": 192,
+        "boost_clock_mhz": 2475,
+        "ai_tops": 530
+      },
+      "ai_capabilities": {
+        "supported_precision": ["FP8", "FP16", "BF16", "TF32", "FP32", "INT8", "INT4"],
+        "ai_instruction_sets": ["DLSS 3.5", "Frame Generation", "4th-gen Tensor Cores", "TensorRT"],
+        "compatible_ai_models": [
+          "Stable Diffusion XL", "Llama 3 7B (FP16)", "Llama 3 13B (INT4)",
+          "Whisper Large", "CLIP"
+        ]
+      },
+      "compatibility": {
+        "pcie_version": "4.0",
+        "pcie_lanes": 16,
+        "pcie_minimum_supported": "3.0",
+        "pcie_slot_width": "x16",
+        "power_connector": "1x 16-pin or 2x 8-pin adapter",
+        "nvlink_supported": false,
+        "multi_gpu": false,
+        "slot_size": "2-slot",
+        "length_mm": 244,
+        "height_mm": 112,
+        "compatible_sockets": ["LGA1700", "LGA1851", "AM4", "AM5"],
+        "min_pcie_gen_for_full_bw": "4.0",
+        "display_outputs": ["3x DisplayPort 1.4a", "1x HDMI 2.1"],
+        "resizable_bar": true,
+        "notes": "12GB VRAM limits larger model inference. Strong value for inference tasks and creative AI."
+      },
+      "pricing": {
+        "msrp_usd": 599,
+        "price_source": "manual",
+        "last_updated": "2026-03-15",
+        "affiliate": {
+          "amazon": { "asin": "B0CNPNCM3Q", "tag": "yoursite-20", "url": "https://www.amazon.com/dp/B0CNPNCM3Q?tag=yoursite-20" }
+        }
+      },
+      "meta": {
+        "release_date": "2024-01-17",
+        "popularity_score": 76,
+        "editor_pick": false,
+        "trending": false,
+        "badge": "Value Pick"
+      }
+    },
+
+    {
+      "id": "gpu-rtx-4070",
+      "series": "RTX 40",
+      "brand": "NVIDIA",
+      "name": "GeForce RTX 4070",
+      "tier": "mid-range",
+      "specifications": {
+        "vram_gb": 12,
+        "vram_type": "GDDR6X",
+        "cuda_cores": 5888,
+        "tensor_cores": 184,
+        "tensor_core_gen": "4th",
+        "rt_cores": 46,
+        "rt_core_gen": "3rd",
+        "tdp_watts": 200,
+        "recommended_psu_watts": 600,
+        "architecture": "Ada Lovelace",
+        "die": "AD104",
+        "process_node": "TSMC 4N",
+        "memory_bandwidth_gbs": 504,
+        "memory_bus_bits": 192,
+        "boost_clock_mhz": 2475,
+        "ai_tops": 466
+      },
+      "ai_capabilities": {
+        "supported_precision": ["FP8", "FP16", "BF16", "TF32", "FP32", "INT8", "INT4"],
+        "ai_instruction_sets": ["DLSS 3.5", "Frame Generation", "4th-gen Tensor Cores", "TensorRT"],
+        "compatible_ai_models": [
+          "Stable Diffusion 1.5 / XL", "Llama 3 7B (FP16)", "Whisper Large", "CLIP"
+        ]
+      },
+      "compatibility": {
+        "pcie_version": "4.0",
+        "pcie_lanes": 16,
+        "pcie_minimum_supported": "3.0",
+        "pcie_slot_width": "x16",
+        "power_connector": "1x 16-pin or 2x 8-pin adapter",
+        "nvlink_supported": false,
+        "multi_gpu": false,
+        "slot_size": "2-slot",
+        "length_mm": 244,
+        "height_mm": 112,
+        "compatible_sockets": ["LGA1700", "LGA1851", "AM4", "AM5"],
+        "min_pcie_gen_for_full_bw": "4.0",
+        "display_outputs": ["3x DisplayPort 1.4a", "1x HDMI 2.1"],
+        "resizable_bar": true,
+        "notes": "Entry point for solid Ada AI inference. 12GB remains the main bottleneck for larger models."
+      },
+      "pricing": {
+        "msrp_usd": 549,
+        "price_source": "manual",
+        "last_updated": "2026-03-15",
+        "affiliate": {
+          "amazon": { "asin": "B0BGLP11WM", "tag": "yoursite-20", "url": "https://www.amazon.com/dp/B0BGLP11WM?tag=yoursite-20" }
+        }
+      },
+      "meta": {
+        "release_date": "2023-04-13",
+        "popularity_score": 72,
+        "editor_pick": false,
+        "trending": false,
+        "badge": "Reliable"
+      }
+    },
+
+    {
+      "id": "gpu-rtx-3090-ti",
+      "series": "RTX 30",
+      "brand": "NVIDIA",
+      "name": "GeForce RTX 3090 Ti",
+      "tier": "flagship",
+      "specifications": {
+        "vram_gb": 24,
+        "vram_type": "GDDR6X",
+        "cuda_cores": 10752,
+        "tensor_cores": 336,
+        "tensor_core_gen": "3rd",
+        "rt_cores": 84,
+        "rt_core_gen": "2nd",
+        "tdp_watts": 450,
+        "recommended_psu_watts": 850,
+        "architecture": "Ampere",
+        "die": "GA102",
+        "process_node": "Samsung 8nm",
+        "memory_bandwidth_gbs": 1008,
+        "memory_bus_bits": 384,
+        "boost_clock_mhz": 1860,
+        "ai_tops": 320
+      },
+      "ai_capabilities": {
+        "supported_precision": ["FP16", "BF16", "TF32", "FP32", "INT8", "INT4"],
+        "ai_instruction_sets": ["DLSS 2", "3rd-gen Tensor Cores", "NVLink 3rd-gen", "TensorRT", "NVENC 7th-gen"],
+        "compatible_ai_models": [
+          "Stable Diffusion XL", "Llama 2 13B (FP16)", "Llama 2 70B (INT4)",
+          "Whisper Large v2", "CLIP", "GPT-J 6B"
+        ]
+      },
+      "compatibility": {
+        "pcie_version": "4.0",
+        "pcie_lanes": 16,
+        "pcie_minimum_supported": "3.0",
+        "pcie_slot_width": "x16",
+        "power_connector": "1x 16-pin or 3x 8-pin",
+        "nvlink_supported": true,
+        "nvlink_gen": "3rd",
+        "multi_gpu": true,
+        "slot_size": "3-slot",
+        "length_mm": 336,
+        "height_mm": 140,
+        "compatible_sockets": ["LGA1700", "LGA1200", "AM4", "AM5", "SP3", "LGA4189"],
+        "min_pcie_gen_for_full_bw": "4.0",
+        "display_outputs": ["3x DisplayPort 1.4a", "1x HDMI 2.1"],
+        "resizable_bar": true,
+        "notes": "Supports 2-way NVLink for multi-GPU setups. 24GB VRAM makes it viable for large model inference on older platform."
+      },
+      "pricing": {
+        "msrp_usd": 699,
+        "price_source": "manual",
+        "last_updated": "2026-03-15",
+        "affiliate": {
+          "amazon": { "asin": "B09WGN85X7", "tag": "yoursite-20", "url": "https://www.amazon.com/dp/B09WGN85X7?tag=yoursite-20" }
+        }
+      },
+      "meta": {
+        "release_date": "2022-03-29",
+        "popularity_score": 68,
+        "editor_pick": false,
+        "trending": false,
+        "badge": "Legacy Pro"
+      }
+    },
+
+    {
+      "id": "gpu-rtx-3090",
+      "series": "RTX 30",
+      "brand": "NVIDIA",
+      "name": "GeForce RTX 3090",
+      "tier": "flagship",
+      "specifications": {
+        "vram_gb": 24,
+        "vram_type": "GDDR6X",
+        "cuda_cores": 10496,
+        "tensor_cores": 328,
+        "tensor_core_gen": "3rd",
+        "rt_cores": 82,
+        "rt_core_gen": "2nd",
+        "tdp_watts": 350,
+        "recommended_psu_watts": 750,
+        "architecture": "Ampere",
+        "die": "GA102",
+        "process_node": "Samsung 8nm",
+        "memory_bandwidth_gbs": 936,
+        "memory_bus_bits": 384,
+        "boost_clock_mhz": 1695,
+        "ai_tops": 285
+      },
+      "ai_capabilities": {
+        "supported_precision": ["FP16", "BF16", "TF32", "FP32", "INT8", "INT4"],
+        "ai_instruction_sets": ["DLSS 2", "3rd-gen Tensor Cores", "NVLink 3rd-gen", "TensorRT"],
+        "compatible_ai_models": [
+          "Stable Diffusion XL", "Llama 2 13B (FP16)", "Llama 2 70B (INT4)",
+          "Whisper Large v2", "CLIP"
+        ]
+      },
+      "compatibility": {
+        "pcie_version": "4.0",
+        "pcie_lanes": 16,
+        "pcie_minimum_supported": "3.0",
+        "pcie_slot_width": "x16",
+        "power_connector": "2x 8-pin",
+        "nvlink_supported": true,
+        "nvlink_gen": "3rd",
+        "multi_gpu": true,
+        "slot_size": "3-slot",
+        "length_mm": 336,
+        "height_mm": 140,
+        "compatible_sockets": ["LGA1700", "LGA1200", "AM4", "AM5", "SP3", "LGA4189"],
+        "min_pcie_gen_for_full_bw": "4.0",
+        "display_outputs": ["3x DisplayPort 1.4a", "1x HDMI 2.1"],
+        "resizable_bar": true,
+        "notes": "Still excellent for 24GB VRAM AI tasks. NVLink supported for 2-way setups."
+      },
+      "pricing": {
+        "msrp_usd": 549,
+        "price_source": "manual",
+        "last_updated": "2026-03-15",
+        "affiliate": {
+          "amazon": { "asin": "B08HR6ZBYJ", "tag": "yoursite-20", "url": "https://www.amazon.com/dp/B08HR6ZBYJ?tag=yoursite-20" }
+        }
+      },
+      "meta": {
+        "release_date": "2020-09-24",
+        "popularity_score": 65,
+        "editor_pick": false,
+        "trending": false,
+        "badge": "Value Legacy"
+      }
+    },
+
+    {
+      "id": "gpu-rtx-3080-ti",
+      "series": "RTX 30",
+      "brand": "NVIDIA",
+      "name": "GeForce RTX 3080 Ti",
+      "tier": "high-end",
+      "specifications": {
+        "vram_gb": 12,
+        "vram_type": "GDDR6X",
+        "cuda_cores": 10240,
+        "tensor_cores": 320,
+        "tensor_core_gen": "3rd",
+        "rt_cores": 80,
+        "rt_core_gen": "2nd",
+        "tdp_watts": 350,
+        "recommended_psu_watts": 750,
+        "architecture": "Ampere",
+        "die": "GA102",
+        "process_node": "Samsung 8nm",
+        "memory_bandwidth_gbs": 912,
+        "memory_bus_bits": 384,
+        "boost_clock_mhz": 1665,
+        "ai_tops": 272
+      },
+      "ai_capabilities": {
+        "supported_precision": ["FP16", "BF16", "TF32", "FP32", "INT8", "INT4"],
+        "ai_instruction_sets": ["DLSS 2", "3rd-gen Tensor Cores", "TensorRT"],
+        "compatible_ai_models": [
+          "Stable Diffusion 1.5 / XL", "Llama 2 7B (FP16)", "Whisper Large v2", "CLIP"
+        ]
+      },
+      "compatibility": {
+        "pcie_version": "4.0",
+        "pcie_lanes": 16,
+        "pcie_minimum_supported": "3.0",
+        "pcie_slot_width": "x16",
+        "power_connector": "2x 8-pin",
+        "nvlink_supported": false,
+        "multi_gpu": false,
+        "slot_size": "2-slot",
+        "length_mm": 285,
+        "height_mm": 112,
+        "compatible_sockets": ["LGA1700", "LGA1200", "AM4", "AM5"],
+        "min_pcie_gen_for_full_bw": "4.0",
+        "display_outputs": ["3x DisplayPort 1.4a", "1x HDMI 2.1"],
+        "resizable_bar": true,
+        "notes": "No NVLink. 12GB VRAM is a limitation vs RTX 3090 for large-model AI work."
+      },
+      "pricing": {
+        "msrp_usd": 399,
+        "price_source": "manual",
+        "last_updated": "2026-03-15",
+        "affiliate": {
+          "amazon": { "asin": "B092PH7QTX", "tag": "yoursite-20", "url": "https://www.amazon.com/dp/B092PH7QTX?tag=yoursite-20" }
+        }
+      },
+      "meta": {
+        "release_date": "2021-06-03",
+        "popularity_score": 60,
+        "editor_pick": false,
+        "trending": false,
+        "badge": "Legacy"
+      }
+    },
+
+    {
+      "id": "gpu-rtx-3080",
+      "series": "RTX 30",
+      "brand": "NVIDIA",
+      "name": "GeForce RTX 3080 12GB",
+      "tier": "high-end",
+      "specifications": {
+        "vram_gb": 12,
+        "vram_type": "GDDR6X",
+        "cuda_cores": 8960,
+        "tensor_cores": 280,
+        "tensor_core_gen": "3rd",
+        "rt_cores": 70,
+        "rt_core_gen": "2nd",
+        "tdp_watts": 350,
+        "recommended_psu_watts": 750,
+        "architecture": "Ampere",
+        "die": "GA102",
+        "process_node": "Samsung 8nm",
+        "memory_bandwidth_gbs": 912,
+        "memory_bus_bits": 384,
+        "boost_clock_mhz": 1710,
+        "ai_tops": 238
+      },
+      "ai_capabilities": {
+        "supported_precision": ["FP16", "BF16", "TF32", "FP32", "INT8"],
+        "ai_instruction_sets": ["DLSS 2", "3rd-gen Tensor Cores", "TensorRT"],
+        "compatible_ai_models": [
+          "Stable Diffusion 1.5 / XL", "Llama 2 7B (FP16)", "Whisper Medium", "CLIP"
+        ]
+      },
+      "compatibility": {
+        "pcie_version": "4.0",
+        "pcie_lanes": 16,
+        "pcie_minimum_supported": "3.0",
+        "pcie_slot_width": "x16",
+        "power_connector": "2x 8-pin",
+        "nvlink_supported": false,
+        "multi_gpu": false,
+        "slot_size": "2-slot",
+        "length_mm": 285,
+        "height_mm": 112,
+        "compatible_sockets": ["LGA1700", "LGA1200", "AM4"],
+        "min_pcie_gen_for_full_bw": "4.0",
+        "display_outputs": ["3x DisplayPort 1.4a", "1x HDMI 2.1"],
+        "resizable_bar": true,
+        "notes": "Budget entry into Ampere AI. Suitable for inference and SD workflows."
+      },
+      "pricing": {
+        "msrp_usd": 299,
+        "price_source": "manual",
+        "last_updated": "2026-03-15",
+        "affiliate": {
+          "amazon": { "asin": "B08HMNPTZY", "tag": "yoursite-20", "url": "https://www.amazon.com/dp/B08HMNPTZY?tag=yoursite-20" }
+        }
+      },
+      "meta": {
+        "release_date": "2022-01-11",
+        "popularity_score": 55,
+        "editor_pick": false,
+        "trending": false,
+        "badge": "Budget Legacy"
+      }
+    },
+
+    {
+      "id": "gpu-a100-80gb",
+      "series": "Professional",
+      "brand": "NVIDIA",
+      "name": "NVIDIA A100 80GB SXM",
+      "tier": "data-center",
+      "specifications": {
+        "vram_gb": 80,
+        "vram_type": "HBM2e",
+        "cuda_cores": 6912,
+        "tensor_cores": 432,
+        "tensor_core_gen": "3rd",
+        "rt_cores": 0,
+        "rt_core_gen": null,
+        "tdp_watts": 400,
+        "recommended_psu_watts": null,
+        "architecture": "Ampere",
+        "die": "GA100",
+        "process_node": "TSMC 7nm",
+        "memory_bandwidth_gbs": 2039,
+        "memory_bus_bits": 5120,
+        "boost_clock_mhz": 1410,
+        "ai_tops": 624
+      },
+      "ai_capabilities": {
+        "supported_precision": ["FP64", "FP32", "TF32", "FP16", "BF16", "INT8", "INT4"],
+        "ai_instruction_sets": ["3rd-gen Tensor Cores w/ Sparsity", "MIG (Multi-Instance GPU)", "NVLink 3rd-gen", "NVSwitch", "TensorRT", "cuDNN", "CUDA 11+"],
+        "compatible_ai_models": [
+          "GPT-3 / GPT-J", "LLaMA 70B (full precision)", "BERT Large", "ResNet-152",
+          "Stable Diffusion XL", "Whisper Large v3", "T5-11B", "Megatron-LM"
+        ]
+      },
+      "compatibility": {
+        "pcie_version": "4.0",
+        "pcie_lanes": 16,
+        "pcie_minimum_supported": "4.0",
+        "pcie_slot_width": "x16",
+        "power_connector": "SXM board slot (server only) / PCIe variant available",
+        "nvlink_supported": true,
+        "nvlink_gen": "3rd (600 GB/s)",
+        "multi_gpu": true,
+        "slot_size": "SXM / PCIe dual-slot",
+        "length_mm": 267,
+        "height_mm": 112,
+        "compatible_sockets": ["LGA4189", "SP3", "LGA4677"],
+        "compatible_gpu_racks": ["DGX A100", "HGX A100 4-GPU", "HGX A100 8-GPU"],
+        "min_pcie_gen_for_full_bw": "4.0",
+        "display_outputs": null,
+        "resizable_bar": false,
+        "notes": "Server/workstation only. Requires SXM baseboard for full NVLink performance. PCIe variant also available with reduced bandwidth."
+      },
+      "pricing": {
+        "msrp_usd": 10000,
+        "price_source": "manual",
+        "last_updated": "2026-03-15",
+        "affiliate": {
+          "amazon": { "asin": null, "tag": "yoursite-20", "url": null }
+        }
+      },
+      "meta": {
+        "release_date": "2020-11-16",
+        "popularity_score": 72,
+        "editor_pick": true,
+        "trending": false,
+        "badge": "Data Center"
+      }
+    },
+
+    {
+      "id": "gpu-rtx-a6000-ada",
+      "series": "Professional",
+      "brand": "NVIDIA",
+      "name": "RTX 6000 Ada Generation",
+      "tier": "workstation",
+      "specifications": {
+        "vram_gb": 48,
+        "vram_type": "GDDR6 ECC",
+        "cuda_cores": 18176,
+        "tensor_cores": 568,
+        "tensor_core_gen": "4th",
+        "rt_cores": 142,
+        "rt_core_gen": "3rd",
+        "tdp_watts": 300,
+        "recommended_psu_watts": 750,
+        "architecture": "Ada Lovelace",
+        "die": "AD102",
+        "process_node": "TSMC 4N",
+        "memory_bandwidth_gbs": 960,
+        "memory_bus_bits": 384,
+        "boost_clock_mhz": 2505,
+        "ai_tops": 1457
+      },
+      "ai_capabilities": {
+        "supported_precision": ["FP8", "FP32", "FP16", "BF16", "INT8", "INT4"],
+        "ai_instruction_sets": ["4th-gen Tensor Cores", "NVLink 4th-gen", "TensorRT", "cuDNN", "ECC Memory"],
+        "compatible_ai_models": [
+          "LLaMA 70B (FP16 full)", "GPT-J 6B", "Stable Diffusion XL",
+          "Whisper Large v3", "BERT Large", "ControlNet", "Megatron"
+        ]
+      },
+      "compatibility": {
+        "pcie_version": "4.0",
+        "pcie_lanes": 16,
+        "pcie_minimum_supported": "3.0",
+        "pcie_slot_width": "x16",
+        "power_connector": "1x 16-pin",
+        "nvlink_supported": true,
+        "nvlink_gen": "4th (112 GB/s)",
+        "multi_gpu": true,
+        "slot_size": "dual-slot",
+        "length_mm": 267,
+        "height_mm": 112,
+        "compatible_sockets": ["LGA1700", "LGA1851", "SP6", "LGA4677", "LGA4710"],
+        "compatible_gpu_racks": ["Standard PCIe workstation rack"],
+        "min_pcie_gen_for_full_bw": "4.0",
+        "display_outputs": ["4x DisplayPort 1.4"],
+        "resizable_bar": true,
+        "notes": "Professional card — ECC memory critical for production AI workloads. NVLink enables 96GB combined VRAM in 2-card config."
+      },
+      "pricing": {
+        "msrp_usd": 6800,
+        "price_source": "manual",
+        "last_updated": "2026-03-15",
+        "affiliate": {
+          "amazon": { "asin": "B0BPWNTMX2", "tag": "yoursite-20", "url": "https://www.amazon.com/dp/B0BPWNTMX2?tag=yoursite-20" }
+        }
+      },
+      "meta": {
+        "release_date": "2022-11-09",
+        "popularity_score": 69,
+        "editor_pick": true,
+        "trending": false,
+        "badge": "Pro Workstation"
+      }
+    },
+
+    {
+      "id": "gpu-rx-9070-xt",
+      "series": "Radeon RX 9000",
+      "brand": "AMD",
+      "name": "Radeon RX 9070 XT",
+      "tier": "high-end",
+      "specifications": {
+        "vram_gb": 16,
+        "vram_type": "GDDR6",
+        "stream_processors": 4096,
+        "compute_units": 64,
+        "ai_accelerators": 128,
+        "ray_accelerators": 64,
+        "tdp_watts": 304,
+        "recommended_psu_watts": 750,
+        "architecture": "RDNA 4",
+        "die": "Navi 48",
+        "process_node": "TSMC N5",
+        "memory_bandwidth_gbs": 640,
+        "memory_bus_bits": 256,
+        "boost_clock_mhz": 2970,
+        "ai_tops": null
+      },
+      "ai_capabilities": {
+        "supported_precision": ["FP32", "FP16", "INT8"],
+        "ai_instruction_sets": ["FSR 4", "2nd-gen AI Accelerators", "ROCm 6+", "DirectML", "OpenCL 2.0"],
+        "compatible_ai_models": [
+          "Stable Diffusion XL (DirectML/ROCm)", "Whisper (ONNX)", "CLIP", "ONNX Runtime models"
+        ]
+      },
+      "compatibility": {
+        "pcie_version": "5.0",
+        "pcie_lanes": 16,
+        "pcie_minimum_supported": "4.0",
+        "pcie_slot_width": "x16",
+        "power_connector": "2x 8-pin",
+        "nvlink_supported": false,
+        "multi_gpu": false,
+        "slot_size": "3.5-slot",
+        "length_mm": 310,
+        "height_mm": 135,
+        "compatible_sockets": ["AM5", "AM4", "LGA1700", "LGA1851"],
+        "min_pcie_gen_for_full_bw": "4.0",
+        "display_outputs": ["3x DisplayPort 2.1a", "1x HDMI 2.1"],
+        "resizable_bar": true,
+        "notes": "AIB-only launch, no reference card. ROCm AI support improving but still behind CUDA ecosystem. Best AMD AI card for DirectML/ONNX workflows."
+      },
+      "pricing": {
+        "msrp_usd": 599,
+        "price_source": "manual",
+        "last_updated": "2026-03-15",
+        "affiliate": {
+          "amazon": { "asin": "B0DXXXXX9070XT", "tag": "yoursite-20", "url": "https://www.amazon.com/dp/B0DXXXXX9070XT?tag=yoursite-20" }
+        }
+      },
+      "meta": {
+        "release_date": "2025-03-06",
+        "popularity_score": 81,
+        "editor_pick": true,
+        "trending": true,
+        "badge": "AMD Best Buy"
+      }
+    },
+
+    {
+      "id": "gpu-rx-9070",
+      "series": "Radeon RX 9000",
+      "brand": "AMD",
+      "name": "Radeon RX 9070",
+      "tier": "mid-high",
+      "specifications": {
+        "vram_gb": 16,
+        "vram_type": "GDDR6",
+        "stream_processors": 3584,
+        "compute_units": 56,
+        "ai_accelerators": 112,
+        "ray_accelerators": 56,
+        "tdp_watts": 220,
+        "recommended_psu_watts": 650,
+        "architecture": "RDNA 4",
+        "die": "Navi 48",
+        "process_node": "TSMC N5",
+        "memory_bandwidth_gbs": 640,
+        "memory_bus_bits": 256,
+        "boost_clock_mhz": 2540,
+        "ai_tops": null
+      },
+      "ai_capabilities": {
+        "supported_precision": ["FP32", "FP16", "INT8"],
+        "ai_instruction_sets": ["FSR 4", "2nd-gen AI Accelerators", "ROCm 6+", "DirectML", "OpenCL 2.0"],
+        "compatible_ai_models": [
+          "Stable Diffusion XL (DirectML)", "Whisper (ONNX)", "CLIP", "ONNX Runtime models"
+        ]
+      },
+      "compatibility": {
+        "pcie_version": "5.0",
+        "pcie_lanes": 16,
+        "pcie_minimum_supported": "4.0",
+        "pcie_slot_width": "x16",
+        "power_connector": "2x 8-pin",
+        "nvlink_supported": false,
+        "multi_gpu": false,
+        "slot_size": "3-slot",
+        "length_mm": 295,
+        "height_mm": 130,
+        "compatible_sockets": ["AM5", "AM4", "LGA1700", "LGA1851"],
+        "min_pcie_gen_for_full_bw": "4.0",
+        "display_outputs": ["3x DisplayPort 2.1a", "1x HDMI 2.1"],
+        "resizable_bar": true,
+        "notes": "Same die and memory as XT, just binned lower. Same 16GB VRAM is a standout advantage at price point."
+      },
+      "pricing": {
+        "msrp_usd": 549,
+        "price_source": "manual",
+        "last_updated": "2026-03-15",
+        "affiliate": {
+          "amazon": { "asin": "B0DXXXXXXRX9070", "tag": "yoursite-20", "url": "https://www.amazon.com/dp/B0DXXXXXXRX9070?tag=yoursite-20" }
+        }
+      },
+      "meta": {
+        "release_date": "2025-03-06",
+        "popularity_score": 75,
+        "editor_pick": false,
+        "trending": true,
+        "badge": "Strong Value"
+      }
+    },
+
+    {
+      "id": "gpu-rx-7900-xtx",
+      "series": "Radeon RX 7900",
+      "brand": "AMD",
+      "name": "Radeon RX 7900 XTX",
+      "tier": "flagship",
+      "specifications": {
+        "vram_gb": 24,
+        "vram_type": "GDDR6",
+        "stream_processors": 6144,
+        "compute_units": 96,
+        "ai_accelerators": 192,
+        "ray_accelerators": 96,
+        "tdp_watts": 355,
+        "recommended_psu_watts": 800,
+        "architecture": "RDNA 3",
+        "die": "Navi 31 (GCD 5nm + MCD 6nm chiplet)",
+        "process_node": "TSMC 5nm GCD / 6nm MCD",
+        "memory_bandwidth_gbs": 960,
+        "memory_bus_bits": 384,
+        "boost_clock_mhz": 2499,
+        "ai_tops": null
+      },
+      "ai_capabilities": {
+        "supported_precision": ["FP32", "FP16", "INT8"],
+        "ai_instruction_sets": ["FSR 3", "RDNA 3 AI Accelerators", "ROCm 5+", "DirectML", "OpenVINO (limited)"],
+        "compatible_ai_models": [
+          "Stable Diffusion XL (ROCm/DirectML)", "Whisper Medium", "ONNX models", "CLIP"
+        ]
+      },
+      "compatibility": {
+        "pcie_version": "4.0",
+        "pcie_lanes": 16,
+        "pcie_minimum_supported": "3.0",
+        "pcie_slot_width": "x16",
+        "power_connector": "2x 8-pin",
+        "nvlink_supported": false,
+        "multi_gpu": false,
+        "slot_size": "3-slot",
+        "length_mm": 287,
+        "height_mm": 123,
+        "compatible_sockets": ["AM5", "AM4", "LGA1700", "LGA1851"],
+        "min_pcie_gen_for_full_bw": "4.0",
+        "display_outputs": ["2x DisplayPort 2.1", "1x HDMI 2.1", "1x USB-C"],
+        "resizable_bar": true,
+        "notes": "24GB VRAM advantage vs competing Nvidia cards in price range. ROCm AI support lags CUDA."
+      },
+      "pricing": {
+        "msrp_usd": 999,
+        "price_source": "manual",
+        "last_updated": "2026-03-15",
+        "affiliate": {
+          "amazon": { "asin": "B0BPRLDXG7", "tag": "yoursite-20", "url": "https://www.amazon.com/dp/B0BPRLDXG7?tag=yoursite-20" }
+        }
+      },
+      "meta": {
+        "release_date": "2022-12-13",
+        "popularity_score": 74,
+        "editor_pick": false,
+        "trending": false,
+        "badge": "VRAM Leader"
+      }
+    },
+
+    {
+      "id": "gpu-rx-7900-xt",
+      "series": "Radeon RX 7900",
+      "brand": "AMD",
+      "name": "Radeon RX 7900 XT",
+      "tier": "high-end",
+      "specifications": {
+        "vram_gb": 20,
+        "vram_type": "GDDR6",
+        "stream_processors": 5376,
+        "compute_units": 84,
+        "ai_accelerators": 168,
+        "ray_accelerators": 84,
+        "tdp_watts": 315,
+        "recommended_psu_watts": 750,
+        "architecture": "RDNA 3",
+        "die": "Navi 31",
+        "process_node": "TSMC 5nm GCD / 6nm MCD",
+        "memory_bandwidth_gbs": 800,
+        "memory_bus_bits": 320,
+        "boost_clock_mhz": 2394,
+        "ai_tops": null
+      },
+      "ai_capabilities": {
+        "supported_precision": ["FP32", "FP16", "INT8"],
+        "ai_instruction_sets": ["FSR 3", "RDNA 3 AI Accelerators", "ROCm 5+", "DirectML"],
+        "compatible_ai_models": [
+          "Stable Diffusion XL (DirectML)", "Whisper Medium", "ONNX models"
+        ]
+      },
+      "compatibility": {
+        "pcie_version": "4.0",
+        "pcie_lanes": 16,
+        "pcie_minimum_supported": "3.0",
+        "pcie_slot_width": "x16",
+        "power_connector": "2x 8-pin",
+        "nvlink_supported": false,
+        "multi_gpu": false,
+        "slot_size": "3-slot",
+        "length_mm": 276,
+        "height_mm": 123,
+        "compatible_sockets": ["AM5", "AM4", "LGA1700", "LGA1851"],
+        "min_pcie_gen_for_full_bw": "4.0",
+        "display_outputs": ["2x DisplayPort 2.1", "1x HDMI 2.1", "1x USB-C"],
+        "resizable_bar": true,
+        "notes": "20GB VRAM is a unique capacity point. Good for VRAM-heavy workloads where ROCm is viable."
+      },
+      "pricing": {
+        "msrp_usd": 899,
+        "price_source": "manual",
+        "last_updated": "2026-03-15",
+        "affiliate": {
+          "amazon": { "asin": "B0BPRLCYVK", "tag": "yoursite-20", "url": "https://www.amazon.com/dp/B0BPRLCYVK?tag=yoursite-20" }
+        }
+      },
+      "meta": {
+        "release_date": "2022-12-13",
+        "popularity_score": 67,
+        "editor_pick": false,
+        "trending": false,
+        "badge": "VRAM Pick"
+      }
+    },
+
+    {
+      "id": "gpu-rx-7800-xt",
+      "series": "Radeon RX 7800",
+      "brand": "AMD",
+      "name": "Radeon RX 7800 XT",
+      "tier": "mid-high",
+      "specifications": {
+        "vram_gb": 16,
+        "vram_type": "GDDR6",
+        "stream_processors": 3840,
+        "compute_units": 60,
+        "ai_accelerators": 120,
+        "ray_accelerators": 60,
+        "tdp_watts": 263,
+        "recommended_psu_watts": 700,
+        "architecture": "RDNA 3",
+        "die": "Navi 32",
+        "process_node": "TSMC 5nm GCD / 6nm MCD",
+        "memory_bandwidth_gbs": 624,
+        "memory_bus_bits": 256,
+        "boost_clock_mhz": 2430,
+        "ai_tops": null
+      },
+      "ai_capabilities": {
+        "supported_precision": ["FP32", "FP16", "INT8"],
+        "ai_instruction_sets": ["FSR 3", "120 AI Accelerators", "ROCm 5+", "DirectML"],
+        "compatible_ai_models": [
+          "Stable Diffusion 1.5 / XL (DirectML)", "Whisper Small/Medium", "ONNX inference"
+        ]
+      },
+      "compatibility": {
+        "pcie_version": "4.0",
+        "pcie_lanes": 16,
+        "pcie_minimum_supported": "3.0",
+        "pcie_slot_width": "x16",
+        "power_connector": "2x 8-pin",
+        "nvlink_supported": false,
+        "multi_gpu": false,
+        "slot_size": "2-slot",
+        "length_mm": 267,
+        "height_mm": 120,
+        "compatible_sockets": ["AM5", "AM4", "LGA1700", "LGA1851"],
+        "min_pcie_gen_for_full_bw": "4.0",
+        "display_outputs": ["1x DisplayPort 2.1", "2x DisplayPort 1.4", "1x HDMI 2.1"],
+        "resizable_bar": true,
+        "notes": "Best mid-range AMD option with 16GB. Solid for DirectML workflows."
+      },
+      "pricing": {
+        "msrp_usd": 499,
+        "price_source": "manual",
+        "last_updated": "2026-03-15",
+        "affiliate": {
+          "amazon": { "asin": "B0CGR2BKFL", "tag": "yoursite-20", "url": "https://www.amazon.com/dp/B0CGR2BKFL?tag=yoursite-20" }
+        }
+      },
+      "meta": {
+        "release_date": "2023-09-06",
+        "popularity_score": 70,
+        "editor_pick": false,
+        "trending": false,
+        "badge": "AMD Value"
+      }
+    },
+
+    {
+      "id": "gpu-rx-7700-xt",
+      "series": "Radeon RX 7700",
+      "brand": "AMD",
+      "name": "Radeon RX 7700 XT",
+      "tier": "mid-range",
+      "specifications": {
+        "vram_gb": 12,
+        "vram_type": "GDDR6",
+        "stream_processors": 3456,
+        "compute_units": 54,
+        "ai_accelerators": 108,
+        "ray_accelerators": 54,
+        "tdp_watts": 245,
+        "recommended_psu_watts": 650,
+        "architecture": "RDNA 3",
+        "die": "Navi 32",
+        "process_node": "TSMC 5nm GCD / 6nm MCD",
+        "memory_bandwidth_gbs": 432,
+        "memory_bus_bits": 192,
+        "boost_clock_mhz": 2599,
+        "ai_tops": null
+      },
+      "ai_capabilities": {
+        "supported_precision": ["FP32", "FP16", "INT8"],
+        "ai_instruction_sets": ["FSR 3", "AI Accelerators", "DirectML"],
+        "compatible_ai_models": [
+          "Stable Diffusion 1.5 (DirectML)", "Whisper Small", "Light ONNX inference"
+        ]
+      },
+      "compatibility": {
+        "pcie_version": "4.0",
+        "pcie_lanes": 16,
+        "pcie_minimum_supported": "3.0",
+        "pcie_slot_width": "x16",
+        "power_connector": "1x 8-pin",
+        "nvlink_supported": false,
+        "multi_gpu": false,
+        "slot_size": "2-slot",
+        "length_mm": 250,
+        "height_mm": 110,
+        "compatible_sockets": ["AM5", "AM4", "LGA1700", "LGA1851"],
+        "min_pcie_gen_for_full_bw": "4.0",
+        "display_outputs": ["3x DisplayPort 2.1", "1x HDMI 2.1"],
+        "resizable_bar": true,
+        "notes": "12GB VRAM limits AI headroom. Better suited for light creative/gaming AI tasks."
+      },
+      "pricing": {
+        "msrp_usd": 449,
+        "price_source": "manual",
+        "last_updated": "2026-03-15",
+        "affiliate": {
+          "amazon": { "asin": "B0CGXXXXXXRX7700", "tag": "yoursite-20", "url": "https://www.amazon.com/dp/B0CGXXXXXXRX7700?tag=yoursite-20" }
+        }
+      },
+      "meta": {
+        "release_date": "2023-09-06",
+        "popularity_score": 58,
+        "editor_pick": false,
+        "trending": false,
+        "badge": null
+      }
+    },
+
+    {
+      "id": "gpu-rx-6900-xt",
+      "series": "Radeon RX 6000",
+      "brand": "AMD",
+      "name": "Radeon RX 6900 XT",
+      "tier": "flagship",
+      "specifications": {
+        "vram_gb": 16,
+        "vram_type": "GDDR6",
+        "stream_processors": 5120,
+        "compute_units": 80,
+        "ai_accelerators": 0,
+        "ray_accelerators": 80,
+        "tdp_watts": 300,
+        "recommended_psu_watts": 750,
+        "architecture": "RDNA 2",
+        "die": "Navi 21",
+        "process_node": "TSMC 7nm",
+        "memory_bandwidth_gbs": 512,
+        "memory_bus_bits": 256,
+        "boost_clock_mhz": 2250,
+        "ai_tops": null
+      },
+      "ai_capabilities": {
+        "supported_precision": ["FP32", "FP16"],
+        "ai_instruction_sets": ["DirectML", "OpenCL", "ROCm (limited)"],
+        "compatible_ai_models": [
+          "Stable Diffusion 1.5 (DirectML)", "Light ONNX inference"
+        ]
+      },
+      "compatibility": {
+        "pcie_version": "4.0",
+        "pcie_lanes": 16,
+        "pcie_minimum_supported": "3.0",
+        "pcie_slot_width": "x16",
+        "power_connector": "2x 8-pin",
+        "nvlink_supported": false,
+        "multi_gpu": false,
+        "slot_size": "2-slot",
+        "length_mm": 267,
+        "height_mm": 120,
+        "compatible_sockets": ["AM4", "AM5", "LGA1200", "LGA1700"],
+        "min_pcie_gen_for_full_bw": "4.0",
+        "display_outputs": ["2x DisplayPort 1.4", "1x HDMI 2.1", "1x USB-C"],
+        "resizable_bar": true,
+        "notes": "RDNA 2 has no dedicated AI accelerators. Suitable only for basic inference via DirectML. Legacy status."
+      },
+      "pricing": {
+        "msrp_usd": 279,
+        "price_source": "manual",
+        "last_updated": "2026-03-15",
+        "affiliate": {
+          "amazon": { "asin": "B08RGM49GH", "tag": "yoursite-20", "url": "https://www.amazon.com/dp/B08RGM49GH?tag=yoursite-20" }
+        }
+      },
+      "meta": {
+        "release_date": "2020-12-08",
+        "popularity_score": 45,
+        "editor_pick": false,
+        "trending": false,
+        "badge": "Legacy"
+      }
+    },
+
+    {
+      "id": "gpu-arc-a770-16gb",
+      "series": "Intel Arc Alchemist",
+      "brand": "Intel",
+      "name": "Arc A770 16GB",
+      "tier": "mid-range",
+      "specifications": {
+        "vram_gb": 16,
+        "vram_type": "GDDR6",
+        "xe_cores": 32,
+        "execution_units": 4096,
+        "xmx_engines": 512,
+        "ray_tracing_units": 32,
+        "tdp_watts": 225,
+        "recommended_psu_watts": 600,
+        "architecture": "Xe-HPG (Alchemist)",
+        "die": "ACM-G10",
+        "process_node": "TSMC 6nm",
+        "memory_bandwidth_gbs": 560,
+        "memory_bus_bits": 256,
+        "boost_clock_mhz": 2100,
+        "ai_tops": 315
+      },
+      "ai_capabilities": {
+        "supported_precision": ["FP32", "FP16", "INT8", "INT4"],
+        "ai_instruction_sets": ["XMX Engines (1st-gen)", "OpenVINO", "IPEX", "IPEX-LLM", "DirectML", "ONNX Runtime"],
+        "compatible_ai_models": [
+          "Stable Diffusion (OpenVINO / DirectML)", "Llama 7B–13B (IPEX-LLM INT4)",
+          "Whisper (ONNX)", "CLIP"
+        ]
+      },
+      "compatibility": {
+        "pcie_version": "4.0",
+        "pcie_lanes": 16,
+        "pcie_minimum_supported": "4.0",
+        "pcie_slot_width": "x16",
+        "power_connector": "2x 8-pin",
+        "nvlink_supported": false,
+        "multi_gpu": false,
+        "slot_size": "2-slot",
+        "length_mm": 272,
+        "height_mm": 120,
+        "compatible_sockets": ["LGA1700", "LGA1851", "AM5", "AM4"],
+        "min_pcie_gen_for_full_bw": "4.0",
+        "display_outputs": ["3x DisplayPort 2.0", "1x HDMI 2.1"],
+        "resizable_bar": true,
+        "notes": "Requires PCIe 4.0 for full performance (significant degradation on Gen 3). IPEX-LLM enables solid on-device LLM inference. ReBAR MUST be enabled in BIOS."
+      },
+      "pricing": {
+        "msrp_usd": 349,
+        "price_source": "manual",
+        "last_updated": "2026-03-15",
+        "affiliate": {
+          "amazon": { "asin": "B0B8V3FKJG", "tag": "yoursite-20", "url": "https://www.amazon.com/dp/B0B8V3FKJG?tag=yoursite-20" }
+        }
+      },
+      "meta": {
+        "release_date": "2022-10-12",
+        "popularity_score": 55,
+        "editor_pick": false,
+        "trending": false,
+        "badge": "Intel AI Pick"
+      }
+    },
+
+    {
+      "id": "gpu-arc-b580",
+      "series": "Intel Arc Battlemage",
+      "brand": "Intel",
+      "name": "Arc B580 12GB",
+      "tier": "mid-range",
+      "specifications": {
+        "vram_gb": 12,
+        "vram_type": "GDDR6",
+        "xe_cores": 20,
+        "execution_units": 2560,
+        "xmx_engines": 160,
+        "ray_tracing_units": 20,
+        "tdp_watts": 190,
+        "recommended_psu_watts": 550,
+        "architecture": "Xe2-HPG (Battlemage)",
+        "die": "BMG-G21",
+        "process_node": "TSMC 5nm",
+        "memory_bandwidth_gbs": 456,
+        "memory_bus_bits": 192,
+        "boost_clock_mhz": 2670,
+        "ai_tops": 233
+      },
+      "ai_capabilities": {
+        "supported_precision": ["FP32", "FP16", "INT8"],
+        "ai_instruction_sets": ["XMX Engines (2nd-gen Xe2)", "OpenVINO 2024+", "IPEX-LLM", "DirectML", "ONNX Runtime"],
+        "compatible_ai_models": [
+          "Stable Diffusion XL (OpenVINO)", "Llama 3 7B (IPEX-LLM INT4)",
+          "Whisper (ONNX)", "CLIP"
+        ]
+      },
+      "compatibility": {
+        "pcie_version": "4.0",
+        "pcie_lanes": 16,
+        "pcie_minimum_supported": "4.0",
+        "pcie_slot_width": "x16",
+        "power_connector": "1x 8-pin",
+        "nvlink_supported": false,
+        "multi_gpu": false,
+        "slot_size": "2-slot",
+        "length_mm": 240,
+        "height_mm": 110,
+        "compatible_sockets": ["LGA1700", "LGA1851", "AM5"],
+        "min_pcie_gen_for_full_bw": "4.0",
+        "display_outputs": ["3x DisplayPort 2.1", "1x HDMI 2.1"],
+        "resizable_bar": true,
+        "notes": "Gen 2 XMX engines improve AI throughput over A770. Excellent OpenVINO inference performance. Still requires PCIe 4.0 minimum."
+      },
+      "pricing": {
+        "msrp_usd": 249,
+        "price_source": "manual",
+        "last_updated": "2026-03-15",
+        "affiliate": {
+          "amazon": { "asin": "B0DPXXXXXXB580", "tag": "yoursite-20", "url": "https://www.amazon.com/dp/B0DPXXXXXXB580?tag=yoursite-20" }
+        }
+      },
+      "meta": {
+        "release_date": "2024-12-05",
+        "popularity_score": 62,
+        "editor_pick": false,
+        "trending": true,
+        "badge": "Budget AI"
+      }
+    }
+
+  ],
+
+  "configurator_compatibility_rules": {
+    "_description": "Rules for the AI PC Configurator feature. Use these fields to validate GPU + CPU + motherboard + PSU compatibility.",
+    "pcie_rules": {
+      "note": "GPU pcie_version must be <= motherboard PCIe slot version. GPU will operate at lower gen if slot is older — flag with warning not block.",
+      "critical_flag": "Intel Arc GPUs require PCIe 4.0 minimum for full performance. Flag PCIe 3.0 motherboards as incompatible with Arc."
+    },
+    "power_rules": {
+      "note": "Sum all component TDP values. PSU wattage should be total_tdp * 1.25 minimum. Flag if PSU < recommended_psu_watts on GPU spec.",
+      "connector_note": "16-pin (ATX 3.0/3.1) connector required for RTX 50 and RTX 40 series. Flag if PSU only has 8-pin connectors without adapter."
+    },
+    "slot_physical_rules": {
+      "note": "Check case clearance. slot_size and length_mm must fit within chosen case maximum GPU length and slot clearance."
+    },
+    "nvlink_rules": {
+      "note": "NVLink requires both GPUs to be identical model and same NVLink generation. Only supported on RTX 3090/3090Ti (Ampere) and RTX 6000 Ada (Pro). Flag mismatch as incompatible.",
+      "consumer_nvlink_dropped": "NVLink dropped on all consumer GeForce RTX 40 and RTX 50 series. Multi-GPU only via PCIe switch boards for those generations."
+    },
+    "socket_compatibility": {
+      "note": "GPU compatible_sockets field lists CPU socket families the GPU is validated/recommended with. This is informational — GPUs are not socket-specific, but flags unusual pairings for review."
+    },
+    "gpu_rack_compatibility": {
+      "note": "For professional/data-center GPUs, compatible_gpu_racks lists validated rack enclosures. Consumer GPUs default to standard ATX/EATX workstation cases."
+    }
+  }
+}
