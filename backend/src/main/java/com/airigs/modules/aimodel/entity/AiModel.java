@@ -5,9 +5,12 @@ import lombok.*;
 import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.type.SqlTypes;
 
-import java.util.Map;
+import java.util.List;
 import java.util.UUID;
 
+/**
+ * ai_model catalog entry seeded from ai-model-catalog.json.
+ */
 @Entity
 @Table(name = "ai_model")
 @Getter
@@ -33,7 +36,11 @@ public class AiModel {
 
     @JdbcTypeCode(SqlTypes.JSON)
     @Column(name = "precision_variants", columnDefinition = "jsonb")
-    private Map<String, Object> precisionVariants;
+    private List<String> precisionVariants;
+
+    @JdbcTypeCode(SqlTypes.JSON)
+    @Column(name = "task_types", columnDefinition = "jsonb")
+    private List<String> taskTypes;
 
     @Column(name = "skip_precision", nullable = false)
     private boolean skipPrecision;

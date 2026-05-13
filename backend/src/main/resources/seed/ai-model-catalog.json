@@ -1,0 +1,868 @@
+{
+  "models":[
+    {
+      "name": "Claude 4.5 Opus (Thinking 32K, Nov 2025)",
+      "model_family": "Claude",
+      "vram_min_gb": null,
+      "precision_variants": [],
+      "skip_precision": true,
+      "task_types": ["text-generation", "reasoning", "agentic-workflows", "complex-analysis"]
+    },
+    {
+      "name": "Claude 4.6 Opus Thinking",
+      "model_family": "Claude",
+      "vram_min_gb": null,
+      "precision_variants": [],
+      "skip_precision": true,
+      "task_types": ["text-generation", "reasoning", "agentic-workflows"]
+    },
+    {
+      "name": "Claude 4.6 Opus",
+      "model_family": "Claude",
+      "vram_min_gb": null,
+      "precision_variants": [],
+      "skip_precision": true,
+      "task_types": ["text-generation", "complex-analysis"]
+    },
+    {
+      "name": "Claude 4.7 Opus",
+      "model_family": "Claude",
+      "vram_min_gb": null,
+      "precision_variants": [],
+      "skip_precision": true,
+      "task_types": ["text-generation", "reasoning", "vision-language", "agentic-workflows"]
+    },
+    {
+      "name": "Gemini 3.1 Pro Preview",
+      "model_family": "Gemini",
+      "vram_min_gb": null,
+      "precision_variants": [],
+      "skip_precision": true,
+      "task_types": ["text-generation", "vision-language", "abstract-reasoning", "terminal-coding"]
+    },
+    {
+      "name": "Muse Spark",
+      "model_family": "Muse",
+      "vram_min_gb": null,
+      "precision_variants": [],
+      "skip_precision": true,
+      "task_types": ["image-generation", "multimodal"]
+    },
+    {
+      "name": "GPT-5.4 High",
+      "model_family": "GPT",
+      "vram_min_gb": null,
+      "precision_variants": [],
+      "skip_precision": true,
+      "task_types": ["text-generation", "reasoning", "coding"]
+    },
+    {
+      "name": "GLM-5.1 754B",
+      "model_family": "GLM",
+      "vram_min_gb": 400,
+      "precision_variants": ["fp8", "int4"],
+      "skip_precision": false,
+      "task_types": ["text-generation", "agentic-coding", "reasoning"]
+    },
+    {
+      "name": "Dola Seed 2.0 Pro",
+      "model_family": "Dola",
+      "vram_min_gb": 24,
+      "precision_variants": ["bf16", "int8", "int4"],
+      "skip_precision": false,
+      "task_types": ["text-generation", "function-calling"]
+    },
+    {
+      "name": "Claude 4.5 Sonnet (Sep 2025)",
+      "model_family": "Claude",
+      "vram_min_gb": null,
+      "precision_variants": [],
+      "skip_precision": true,
+      "task_types": ["text-generation", "agentic-coding", "computer-use"]
+    },
+    {
+      "name": "Grok 4.20 Beta 1",
+      "model_family": "Grok",
+      "vram_min_gb": null,
+      "precision_variants": [],
+      "skip_precision": true,
+      "task_types": ["text-generation", "multi-agent-collaboration", "coding"]
+    },
+    {
+      "name": "Kimi K2.5 Thinking 1T",
+      "model_family": "Kimi",
+      "vram_min_gb": 512,
+      "precision_variants": ["fp8", "int4"],
+      "skip_precision": false,
+      "task_types": ["text-generation", "reasoning", "vision-language", "agent-swarm"]
+    },
+    {
+      "name": "Qwen3.5 Max Preview",
+      "model_family": "Qwen",
+      "vram_min_gb": null,
+      "precision_variants": [],
+      "skip_precision": true,
+      "task_types": ["text-generation", "vision-language", "reasoning"]
+    },
+    {
+      "name": "Grok 4.1 Thinking",
+      "model_family": "Grok",
+      "vram_min_gb": null,
+      "precision_variants": [],
+      "skip_precision": true,
+      "task_types": ["text-generation", "reasoning"]
+    },
+    {
+      "name": "Claude 4.1 Opus (Aug 2025)",
+      "model_family": "Claude",
+      "vram_min_gb": null,
+      "precision_variants": [],
+      "skip_precision": true,
+      "task_types": ["text-generation", "complex-analysis"]
+    },
+    {
+      "name": "Qwen 3.6 Plus",
+      "model_family": "Qwen",
+      "vram_min_gb": null,
+      "precision_variants": [],
+      "skip_precision": true,
+      "task_types": ["text-generation", "vision-language"]
+    },
+    {
+      "name": "Kimi K2.5 Instant",
+      "model_family": "Kimi",
+      "vram_min_gb": null,
+      "precision_variants": [],
+      "skip_precision": true,
+      "task_types": ["text-generation", "rapid-response"]
+    },
+    {
+      "name": "GPT-5.3 Chat Latest",
+      "model_family": "GPT",
+      "vram_min_gb": null,
+      "precision_variants": [],
+      "skip_precision": true,
+      "task_types": ["text-generation", "conversational"]
+    },
+    {
+      "name": "GPT-5.2",
+      "model_family": "GPT",
+      "vram_min_gb": null,
+      "precision_variants": [],
+      "skip_precision": true,
+      "task_types": ["text-generation", "reasoning"]
+    },
+    {
+      "name": "Claude 4.6 Sonnet",
+      "model_family": "Claude",
+      "vram_min_gb": null,
+      "precision_variants": [],
+      "skip_precision": true,
+      "task_types": ["text-generation", "agentic-coding"]
+    },
+    {
+      "name": "Kimi K2 Thinking Turbo",
+      "model_family": "Kimi",
+      "vram_min_gb": null,
+      "precision_variants": [],
+      "skip_precision": true,
+      "task_types": ["text-generation", "reasoning"]
+    },
+    {
+      "name": "Grok 4.20 Multi-Agent Beta",
+      "model_family": "Grok",
+      "vram_min_gb": null,
+      "precision_variants": [],
+      "skip_precision": true,
+      "task_types": ["text-generation", "multi-agent-collaboration", "reasoning"]
+    },
+    {
+      "name": "Claude 4.5 Sonnet (Thinking 32K, Sep 2025)",
+      "model_family": "Claude",
+      "vram_min_gb": null,
+      "precision_variants": [],
+      "skip_precision": true,
+      "task_types": ["text-generation", "reasoning", "agentic-coding"]
+    },
+    {
+      "name": "GPT-5.2 Chat (Feb 2026)",
+      "model_family": "GPT",
+      "vram_min_gb": null,
+      "precision_variants": [],
+      "skip_precision": true,
+      "task_types": ["text-generation", "conversational"]
+    },
+    {
+      "name": "Grok 4.20 Beta Reasoning",
+      "model_family": "Grok",
+      "vram_min_gb": null,
+      "precision_variants": [],
+      "skip_precision": true,
+      "task_types": ["text-generation", "reasoning"]
+    },
+    {
+      "name": "Claude 4.5 Opus (Nov 2025)",
+      "model_family": "Claude",
+      "vram_min_gb": null,
+      "precision_variants": [],
+      "skip_precision": true,
+      "task_types": ["text-generation", "complex-analysis"]
+    },
+    {
+      "name": "Gemini 3 Pro",
+      "model_family": "Gemini",
+      "vram_min_gb": null,
+      "precision_variants": [],
+      "skip_precision": true,
+      "task_types": ["text-generation", "vision-language", "reasoning"]
+    },
+    {
+      "name": "GPT-5.4",
+      "model_family": "GPT",
+      "vram_min_gb": null,
+      "precision_variants": [],
+      "skip_precision": true,
+      "task_types": ["text-generation", "reasoning"]
+    },
+    {
+      "name": "Gemini 3 Flash",
+      "model_family": "Gemini",
+      "vram_min_gb": null,
+      "precision_variants": [],
+      "skip_precision": true,
+      "task_types": ["text-generation", "vision-language", "rapid-response"]
+    },
+    {
+      "name": "GPT-5.4 Mini High",
+      "model_family": "GPT",
+      "vram_min_gb": null,
+      "precision_variants": [],
+      "skip_precision": true,
+      "task_types": ["text-generation", "reasoning", "coding"]
+    },
+    {
+      "name": "MIMO v2 Pro",
+      "model_family": "MIMO",
+      "vram_min_gb": null,
+      "precision_variants": [],
+      "skip_precision": true,
+      "task_types": ["text-generation", "reasoning"]
+    },
+    {
+      "name": "Gemini 3 Flash (Thinking Minimal)",
+      "model_family": "Gemini",
+      "vram_min_gb": null,
+      "precision_variants": [],
+      "skip_precision": true,
+      "task_types": ["text-generation", "reasoning", "rapid-response"]
+    },
+    {
+      "name": "Gemma 4 31B",
+      "model_family": "Gemma",
+      "vram_min_gb": 24,
+      "precision_variants": ["bf16", "int8", "int4"],
+      "skip_precision": false,
+      "task_types": ["text-generation", "coding", "reasoning"]
+    },
+    {
+      "name": "Claude 4 Opus (Thinking 16K, May 2025)",
+      "model_family": "Claude",
+      "vram_min_gb": null,
+      "precision_variants": [],
+      "skip_precision": true,
+      "task_types": ["text-generation", "reasoning", "complex-analysis"]
+    },
+    {
+      "name": "Longcat Flash Chat (Exp 2602)",
+      "model_family": "Longcat",
+      "vram_min_gb": null,
+      "precision_variants": [],
+      "skip_precision": true,
+      "task_types": ["text-generation", "long-context", "conversational"]
+    },
+    {
+      "name": "GPT-5.2 High",
+      "model_family": "GPT",
+      "vram_min_gb": null,
+      "precision_variants": [],
+      "skip_precision": true,
+      "task_types": ["text-generation", "reasoning", "coding"]
+    },
+    {
+      "name": "Ernie 5.0 (Jan)",
+      "model_family": "Ernie",
+      "vram_min_gb": null,
+      "precision_variants": [],
+      "skip_precision": true,
+      "task_types": ["text-generation", "vision-language"]
+    },
+    {
+      "name": "GLM-5 754B",
+      "model_family": "GLM",
+      "vram_min_gb": 400,
+      "precision_variants": ["fp8", "int4"],
+      "skip_precision": false,
+      "task_types": ["text-generation", "reasoning"]
+    },
+    {
+      "name": "GPT-5.1 High",
+      "model_family": "GPT",
+      "vram_min_gb": null,
+      "precision_variants": [],
+      "skip_precision": true,
+      "task_types": ["text-generation", "reasoning", "coding"]
+    },
+    {
+      "name": "Grok 4.1",
+      "model_family": "Grok",
+      "vram_min_gb": null,
+      "precision_variants": [],
+      "skip_precision": true,
+      "task_types": ["text-generation", "conversational"]
+    },
+    {
+      "name": "Amazon Nova Experimental Chat (Feb 2026)",
+      "model_family": "Amazon Nova",
+      "vram_min_gb": null,
+      "precision_variants": [],
+      "skip_precision": true,
+      "task_types": ["text-generation", "conversational"]
+    },
+    {
+      "name": "Qwen 3.5 397B (MoE 17B active)",
+      "model_family": "Qwen",
+      "vram_min_gb": 120,
+      "precision_variants": ["fp8", "int4"],
+      "skip_precision": false,
+      "task_types": ["text-generation", "vision-language", "reasoning", "ui-interaction"]
+    },
+    {
+      "name": "GLM-4.7",
+      "model_family": "GLM",
+      "vram_min_gb": 24,
+      "precision_variants": ["bf16", "int4"],
+      "skip_precision": false,
+      "task_types": ["text-generation", "coding"]
+    },
+    {
+      "name": "Qwen3 Max Preview",
+      "model_family": "Qwen",
+      "vram_min_gb": null,
+      "precision_variants": [],
+      "skip_precision": true,
+      "task_types": ["text-generation", "vision-language"]
+    },
+    {
+      "name": "Gemma 4 26B (MoE 4B active)",
+      "model_family": "Gemma",
+      "vram_min_gb": 16,
+      "precision_variants": ["bf16", "int8", "int4"],
+      "skip_precision": false,
+      "task_types": ["text-generation", "coding"]
+    },
+    {
+      "name": "Amazon Nova Experimental Chat (Jan 2026)",
+      "model_family": "Amazon Nova",
+      "vram_min_gb": null,
+      "precision_variants": [],
+      "skip_precision": true,
+      "task_types": ["text-generation", "conversational"]
+    },
+    {
+      "name": "Claude 4.5 Haiku (Oct 2025)",
+      "model_family": "Claude",
+      "vram_min_gb": null,
+      "precision_variants": [],
+      "skip_precision": true,
+      "task_types": ["text-generation", "rapid-response"]
+    },
+    {
+      "name": "DeepSeek V3.2 Thinking",
+      "model_family": "DeepSeek",
+      "vram_min_gb": 350,
+      "precision_variants": ["fp8", "int4"],
+      "skip_precision": false,
+      "task_types": ["text-generation", "reasoning", "coding"]
+    },
+    {
+      "name": "Qwen3 Max (Sep 2025)",
+      "model_family": "Qwen",
+      "vram_min_gb": null,
+      "precision_variants": [],
+      "skip_precision": true,
+      "task_types": ["text-generation", "vision-language"]
+    },
+    {
+      "name": "Longcat Flash Chat",
+      "model_family": "Longcat",
+      "vram_min_gb": null,
+      "precision_variants": [],
+      "skip_precision": true,
+      "task_types": ["text-generation", "conversational"]
+    },
+    {
+      "name": "GPT-5.1",
+      "model_family": "GPT",
+      "vram_min_gb": null,
+      "precision_variants": [],
+      "skip_precision": true,
+      "task_types": ["text-generation", "reasoning"]
+    },
+    {
+      "name": "DeepSeek V3.2 Exp Thinking 685B",
+      "model_family": "DeepSeek",
+      "vram_min_gb": 400,
+      "precision_variants": ["fp8", "int4"],
+      "skip_precision": false,
+      "task_types": ["text-generation", "reasoning", "coding", "agentic-workflows"]
+    },
+    {
+      "name": "Claude 4 Sonnet (Thinking 32K, May 2025)",
+      "model_family": "Claude",
+      "vram_min_gb": null,
+      "precision_variants": [],
+      "skip_precision": true,
+      "task_types": ["text-generation", "reasoning", "coding"]
+    },
+    {
+      "name": "GPT-5.5 High",
+      "model_family": "GPT",
+      "vram_min_gb": null,
+      "precision_variants": [],
+      "skip_precision": true,
+      "task_types": ["text-generation", "reasoning", "computer-use", "coding"]
+    },
+    {
+      "name": "Ernie 5.1 Preview",
+      "model_family": "Ernie",
+      "vram_min_gb": null,
+      "precision_variants": [],
+      "skip_precision": true,
+      "task_types": ["text-generation", "vision-language", "reasoning"]
+    },
+    {
+      "name": "ChatGPT 4o Latest (Mar 2025)",
+      "model_family": "GPT",
+      "vram_min_gb": null,
+      "precision_variants": [],
+      "skip_precision": true,
+      "task_types": ["text-generation", "vision-language", "audio", "conversational"]
+    },
+    {
+      "name": "DeepSeek V3.2",
+      "model_family": "DeepSeek",
+      "vram_min_gb": 350,
+      "precision_variants": ["fp8", "int4"],
+      "skip_precision": false,
+      "task_types": ["text-generation", "coding", "reasoning"]
+    },
+    {
+      "name": "Mistral Large 3 (675B)",
+      "model_family": "Mistral",
+      "vram_min_gb": 350,
+      "precision_variants": ["bf16", "int8", "int4"],
+      "skip_precision": false,
+      "task_types": ["text-generation", "multilingual", "reasoning", "vision-language"]
+    },
+    {
+      "name": "Kimi K2 Preview (Sep)",
+      "model_family": "Kimi",
+      "vram_min_gb": null,
+      "precision_variants": [],
+      "skip_precision": true,
+      "task_types": ["text-generation", "reasoning"]
+    },
+    {
+      "name": "GPT-5.4 Nano High",
+      "model_family": "GPT",
+      "vram_min_gb": null,
+      "precision_variants": [],
+      "skip_precision": true,
+      "task_types": ["text-generation", "rapid-response", "coding"]
+    },
+    {
+      "name": "GPT-5 High",
+      "model_family": "GPT",
+      "vram_min_gb": null,
+      "precision_variants": [],
+      "skip_precision": true,
+      "task_types": ["text-generation", "reasoning", "coding"]
+    },
+    {
+      "name": "MiniMax M2.7",
+      "model_family": "MiniMax",
+      "vram_min_gb": null,
+      "precision_variants": [],
+      "skip_precision": true,
+      "task_types": ["text-generation", "conversational"]
+    },
+    {
+      "name": "Gemini 2.5 Pro",
+      "model_family": "Gemini",
+      "vram_min_gb": null,
+      "precision_variants": [],
+      "skip_precision": true,
+      "task_types": ["text-generation", "vision-language", "coding"]
+    },
+    {
+      "name": "Qwen3 VL 235B (MoE 22B active)",
+      "model_family": "Qwen",
+      "vram_min_gb": 120,
+      "precision_variants": ["fp8", "int4"],
+      "skip_precision": false,
+      "task_types": ["text-generation", "vision-language", "instruction-following"]
+    },
+    {
+      "name": "DeepSeek V3.2 Exp",
+      "model_family": "DeepSeek",
+      "vram_min_gb": 350,
+      "precision_variants": ["fp8", "int4"],
+      "skip_precision": false,
+      "task_types": ["text-generation", "coding"]
+    },
+    {
+      "name": "DeepSeek R1 (May)",
+      "model_family": "DeepSeek",
+      "vram_min_gb": 350,
+      "precision_variants": ["fp8", "int4"],
+      "skip_precision": false,
+      "task_types": ["text-generation", "reasoning"]
+    },
+    {
+      "name": "Claude 4 Opus (May 2025)",
+      "model_family": "Claude",
+      "vram_min_gb": null,
+      "precision_variants": [],
+      "skip_precision": true,
+      "task_types": ["text-generation", "complex-analysis"]
+    },
+    {
+      "name": "GPT-5 Chat",
+      "model_family": "GPT",
+      "vram_min_gb": null,
+      "precision_variants": [],
+      "skip_precision": true,
+      "task_types": ["text-generation", "conversational"]
+    },
+    {
+      "name": "DeepSeek V3.1 Terminus Thinking",
+      "model_family": "DeepSeek",
+      "vram_min_gb": 350,
+      "precision_variants": ["fp8", "int4"],
+      "skip_precision": false,
+      "task_types": ["text-generation", "reasoning"]
+    },
+    {
+      "name": "Gemini 3.1 Flash Lite Preview",
+      "model_family": "Gemini",
+      "vram_min_gb": null,
+      "precision_variants": [],
+      "skip_precision": true,
+      "task_types": ["text-generation", "rapid-response", "vision-language"]
+    },
+    {
+      "name": "GLM-4.6",
+      "model_family": "GLM",
+      "vram_min_gb": 24,
+      "precision_variants": ["bf16", "int4"],
+      "skip_precision": false,
+      "task_types": ["text-generation", "coding"]
+    },
+    {
+      "name": "Kimi K2 Preview (Jul)",
+      "model_family": "Kimi",
+      "vram_min_gb": null,
+      "precision_variants": [],
+      "skip_precision": true,
+      "task_types": ["text-generation", "reasoning"]
+    },
+    {
+      "name": "GPT-4.5 Preview (Feb 2025)",
+      "model_family": "GPT",
+      "vram_min_gb": null,
+      "precision_variants": [],
+      "skip_precision": true,
+      "task_types": ["text-generation", "reasoning", "coding"]
+    },
+    {
+      "name": "Grok 4 Fast Chat",
+      "model_family": "Grok",
+      "vram_min_gb": null,
+      "precision_variants": [],
+      "skip_precision": true,
+      "task_types": ["text-generation", "conversational", "rapid-response"]
+    },
+    {
+      "name": "OpenAI o3 (Apr 2025)",
+      "model_family": "o-series",
+      "vram_min_gb": null,
+      "precision_variants": [],
+      "skip_precision": true,
+      "task_types": ["text-generation", "heavy-reasoning", "coding", "math"]
+    },
+    {
+      "name": "Qwen3 Coder 480B (MoE 35B active)",
+      "model_family": "Qwen",
+      "vram_min_gb": 200,
+      "precision_variants": ["fp8", "int4"],
+      "skip_precision": false,
+      "task_types": ["text-generation", "coding", "agentic-workflows"]
+    },
+    {
+      "name": "DeepSeek V3.1 Thinking",
+      "model_family": "DeepSeek",
+      "vram_min_gb": 350,
+      "precision_variants": ["fp8", "int4"],
+      "skip_precision": false,
+      "task_types": ["text-generation", "reasoning", "coding"]
+    },
+    {
+      "name": "GPT-4.1 (Apr 2025)",
+      "model_family": "GPT",
+      "vram_min_gb": null,
+      "precision_variants": [],
+      "skip_precision": true,
+      "task_types": ["text-generation", "reasoning"]
+    },
+    {
+      "name": "Qwen3 VL Thinking 235B (MoE 22B active)",
+      "model_family": "Qwen",
+      "vram_min_gb": 120,
+      "precision_variants": ["fp8", "int4"],
+      "skip_precision": false,
+      "task_types": ["text-generation", "vision-language", "reasoning"]
+    },
+    {
+      "name": "GLM-4.5",
+      "model_family": "GLM",
+      "vram_min_gb": 24,
+      "precision_variants": ["bf16", "int4"],
+      "skip_precision": false,
+      "task_types": ["text-generation", "coding"]
+    },
+    {
+      "name": "MiniMax M2.5",
+      "model_family": "MiniMax",
+      "vram_min_gb": null,
+      "precision_variants": [],
+      "skip_precision": true,
+      "task_types": ["text-generation", "conversational"]
+    },
+    {
+      "name": "Mistral Medium (Aug 2025)",
+      "model_family": "Mistral",
+      "vram_min_gb": null,
+      "precision_variants": [],
+      "skip_precision": true,
+      "task_types": ["text-generation", "reasoning"]
+    },
+    {
+      "name": "Qwen 3.5 122B (MoE 10B active)",
+      "model_family": "Qwen",
+      "vram_min_gb": 48,
+      "precision_variants": ["bf16", "int8", "int4"],
+      "skip_precision": false,
+      "task_types": ["text-generation", "coding", "reasoning"]
+    },
+    {
+      "name": "Claude 3.7 Sonnet (Thinking 32K, Feb 2025)",
+      "model_family": "Claude",
+      "vram_min_gb": null,
+      "precision_variants": [],
+      "skip_precision": true,
+      "task_types": ["text-generation", "reasoning", "coding"]
+    },
+    {
+      "name": "Claude 4 Sonnet (May 2025)",
+      "model_family": "Claude",
+      "vram_min_gb": null,
+      "precision_variants": [],
+      "skip_precision": true,
+      "task_types": ["text-generation", "coding"]
+    },
+    {
+      "name": "Step 3.5 Flash",
+      "model_family": "Step",
+      "vram_min_gb": null,
+      "precision_variants": [],
+      "skip_precision": true,
+      "task_types": ["text-generation", "rapid-response"]
+    },
+    {
+      "name": "MIMO v2 Flash",
+      "model_family": "MIMO",
+      "vram_min_gb": null,
+      "precision_variants": [],
+      "skip_precision": true,
+      "task_types": ["text-generation", "rapid-response"]
+    },
+    {
+      "name": "DeepSeek V3.1",
+      "model_family": "DeepSeek",
+      "vram_min_gb": 350,
+      "precision_variants": ["fp8", "int4"],
+      "skip_precision": false,
+      "task_types": ["text-generation", "coding", "reasoning"]
+    },
+    {
+      "name": "Qwen3 235B No Thinking (MoE 22B active)",
+      "model_family": "Qwen",
+      "vram_min_gb": 120,
+      "precision_variants": ["fp8", "int4"],
+      "skip_precision": false,
+      "task_types": ["text-generation", "coding"]
+    },
+    {
+      "name": "Qwen3 Next 80B (MoE 3B active)",
+      "model_family": "Qwen",
+      "vram_min_gb": 32,
+      "precision_variants": ["bf16", "int4"],
+      "skip_precision": false,
+      "task_types": ["text-generation", "instruction-following"]
+    },
+    {
+      "name": "DeepSeek R1",
+      "model_family": "DeepSeek",
+      "vram_min_gb": 350,
+      "precision_variants": ["fp8", "int4"],
+      "skip_precision": false,
+      "task_types": ["text-generation", "reasoning", "coding"]
+    },
+    {
+      "name": "Qwen 3.5 27B",
+      "model_family": "Qwen",
+      "vram_min_gb": 16,
+      "precision_variants": ["bf16", "int8", "int4"],
+      "skip_precision": false,
+      "task_types": ["text-generation", "vision-language", "reasoning"]
+    },
+    {
+      "name": "Grok 3 Preview (Feb)",
+      "model_family": "Grok",
+      "vram_min_gb": null,
+      "precision_variants": [],
+      "skip_precision": true,
+      "task_types": ["text-generation", "reasoning", "coding"]
+    },
+    {
+      "name": "Trinity Large Preview",
+      "model_family": "Trinity",
+      "vram_min_gb": null,
+      "precision_variants": [],
+      "skip_precision": true,
+      "task_types": ["text-generation", "reasoning"]
+    },
+    {
+      "name": "Qwen3 Thinking 235B (MoE 22B active, Jul)",
+      "model_family": "Qwen",
+      "vram_min_gb": 120,
+      "precision_variants": ["fp8", "int4"],
+      "skip_precision": false,
+      "task_types": ["text-generation", "reasoning"]
+    },
+    {
+      "name": "MiniMax M2.1 Preview",
+      "model_family": "MiniMax",
+      "vram_min_gb": null,
+      "precision_variants": [],
+      "skip_precision": true,
+      "task_types": ["text-generation", "conversational"]
+    },
+    {
+      "name": "Qwen3 30B Instruct (MoE 3B active, Jul)",
+      "model_family": "Qwen",
+      "vram_min_gb": 16,
+      "precision_variants": ["bf16", "int4"],
+      "skip_precision": false,
+      "task_types": ["text-generation", "instruction-following"]
+    },
+    {
+      "name": "DeepSeek V3.1 Terminus",
+      "model_family": "DeepSeek",
+      "vram_min_gb": 350,
+      "precision_variants": ["fp8", "int4"],
+      "skip_precision": false,
+      "task_types": ["text-generation", "coding", "reasoning"]
+    },
+    {
+      "name": "Hunyuan Vision 1.5 Thinking",
+      "model_family": "Hunyuan",
+      "vram_min_gb": null,
+      "precision_variants": [],
+      "skip_precision": true,
+      "task_types": ["vision-language", "reasoning"]
+    },
+    {
+      "name": "Grok 4 Fast Reasoning",
+      "model_family": "Grok",
+      "vram_min_gb": null,
+      "precision_variants": [],
+      "skip_precision": true,
+      "task_types": ["text-generation", "reasoning", "rapid-response"]
+    },
+    {
+      "name": "Qwen 3.5 35B (MoE 3B active)",
+      "model_family": "Qwen",
+      "vram_min_gb": 24,
+      "precision_variants": ["bf16", "int8", "int4"],
+      "skip_precision": false,
+      "task_types": ["text-generation", "vision-language", "reasoning"]
+    },
+    {
+      "name": "Grok 4 (Jul)",
+      "model_family": "Grok",
+      "vram_min_gb": null,
+      "precision_variants": [],
+      "skip_precision": true,
+      "task_types": ["text-generation", "conversational", "coding"]
+    },
+    {
+      "name": "Ernie 5.0 Preview (Oct)",
+      "model_family": "Ernie",
+      "vram_min_gb": null,
+      "precision_variants": [],
+      "skip_precision": true,
+      "task_types": ["text-generation", "vision-language"]
+    },
+    {
+      "name": "Qwen3 235B (MoE 22B active)",
+      "model_family": "Qwen",
+      "vram_min_gb": 120,
+      "precision_variants": ["fp8", "int4"],
+      "skip_precision": false,
+      "task_types": ["text-generation", "coding", "reasoning"]
+    },
+    {
+      "name": "Qwen 3.5 Flash",
+      "model_family": "Qwen",
+      "vram_min_gb": null,
+      "precision_variants": [],
+      "skip_precision": true,
+      "task_types": ["text-generation", "vision-language", "rapid-response"]
+    },
+    {
+      "name": "MIMO v2.5 Pro",
+      "model_family": "MIMO",
+      "vram_min_gb": null,
+      "precision_variants": [],
+      "skip_precision": true,
+      "task_types": ["text-generation", "reasoning"]
+    },
+    {
+      "name": "GPT-5.5",
+      "model_family": "GPT",
+      "vram_min_gb": null,
+      "precision_variants": [],
+      "skip_precision": true,
+      "task_types": ["text-generation", "reasoning", "coding", "agentic-workflows"]
+    },
+    {
+      "name": "DeepSeek V4 Flash Thinking",
+      "model_family": "DeepSeek",
+      "vram_min_gb": null,
+      "precision_variants": [],
+      "skip_precision": true,
+      "task_types": ["text-generation", "reasoning", "rapid-response"]
+    }
+  ]
+}
