@@ -37,12 +37,17 @@ public class ProductSeeder implements ApplicationRunner {
         int totalInserted = 0;
         int totalSkipped  = 0;
 
-        CatalogResult gpuResult  = seedFile("seed/gpu-catalog.json",      "gpus",      "gpu");
-        CatalogResult cpuResult  = seedFile("seed/cpu-catalog.json",      "cpus",      "cpu");
-        CatalogResult rackResult = seedFile("seed/gpu-rack-catalog.json", "gpu_racks", "rack");
+        CatalogResult gpuResult  = seedFile("seed/gpu-catalog.json",      "gpus",         "gpu");
+        CatalogResult cpuResult  = seedFile("seed/cpu-catalog.json",      "cpus",         "cpu");
+        CatalogResult rackResult = seedFile("seed/gpu-rack-catalog.json", "gpu_racks",    "rack");
+        CatalogResult moboResult = seedFile("seed/motherboard-catalog.json", "motherboards", "motherboard");
+        CatalogResult ramResult  = seedFile("seed/ram-catalog.json",      "ram",          "ram");
+        CatalogResult psuResult  = seedFile("seed/psu-catalog.json",      "psus",         "psu");
 
-        totalInserted = gpuResult.inserted + cpuResult.inserted + rackResult.inserted;
-        totalSkipped  = gpuResult.skipped  + cpuResult.skipped  + rackResult.skipped;
+        totalInserted = gpuResult.inserted + cpuResult.inserted + rackResult.inserted
+                + moboResult.inserted + ramResult.inserted + psuResult.inserted;
+        totalSkipped  = gpuResult.skipped + cpuResult.skipped + rackResult.skipped
+                + moboResult.skipped + ramResult.skipped + psuResult.skipped;
 
         log.info("Product seeder complete — {} inserted, {} skipped",
                 totalInserted, totalSkipped);
@@ -127,6 +132,7 @@ public class ProductSeeder implements ApplicationRunner {
             case "gpu"  -> buildGpu(item, name);
             case "cpu"  -> buildCpu(item, name);
             case "rack" -> buildRack(item, name);
+            case "motherboard", "ram", "psu" -> buildCatalogItem(item, name, category);
             default     -> buildGeneric(item, name, category);
         };
     }
@@ -219,6 +225,35 @@ public class ProductSeeder implements ApplicationRunner {
         return Product.builder()
                 .name(name)
                 .category("rack")
+                .brand(item.path("brand").asText(null))
+                .priceInr(usdToInr(pricing.path("msrp_usd")))
+                .vramGb(null)
+                .inStock(true)
+                .specs(toMap(specsNode))
+                .build();
+    }
+
+    private Product buildCatalogItem(JsonNode item, String name, String category) {
+        JsonNode specs   = item.path("specifications");
+        JsonNode pricing = item.path("pricing");
+        JsonNode meta    = item.path("meta");
+
+        ObjectNode specsNode = objectMapper.createObjectNode();
+        mergeInto(specsNode, specs);
+        specsNode.set("ai_capabilities", item.path("ai_capabilities"));
+        specsNode.set("compatibility", item.path("compatibility"));
+        specsNode.put("catalog_id", item.path("id").asText(null));
+        specsNode.put("tier", item.path("tier").asText(null));
+        specsNode.put("series", item.path("series").asText(null));
+        specsNode.put("badge", meta.path("badge").asText(null));
+        specsNode.put("editor_pick", meta.path("editor_pick").asBoolean(false));
+        specsNode.put("trending", meta.path("trending").asBoolean(false));
+        specsNode.put("release_date", meta.path("release_date").asText(null));
+        specsNode.put("popularity_score", meta.path("popularity_score").asInt(0));
+
+        return Product.builder()
+                .name(name)
+                .category(category)
                 .brand(item.path("brand").asText(null))
                 .priceInr(usdToInr(pricing.path("msrp_usd")))
                 .vramGb(null)

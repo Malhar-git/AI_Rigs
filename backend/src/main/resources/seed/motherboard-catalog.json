@@ -1,0 +1,741 @@
+{
+  "catalog_meta": {
+    "version": "1.0",
+    "last_updated": "2026-05-01",
+    "category": "motherboard",
+    "total_entries": 8,
+    "schema_notes": "Compatibility fields cross-reference CPU socket, RAM type and slots, GPU PCIe gen, M.2 count, and PSU connectors required. AI fields describe DIMM upgrade path, NVMe model storage slots, and multi-GPU capability."
+  },
+  "motherboards": [
+    {
+      "id": "mobo-asus-rog-crosshair-x870e-hero",
+      "series": "ROG Crosshair X870E Hero",
+      "brand": "ASUS",
+      "name": "ASUS ROG Crosshair X870E Hero",
+      "tier": "flagship",
+      "specifications": {
+        "chipset": "AMD X870E",
+        "socket": "AM5 (LGA 1718)",
+        "form_factor": "ATX",
+        "vrm": {
+          "phases": 20,
+          "mosfets": "110A SPS",
+          "total_amps": 2200,
+          "heatsink": "Triple-stack with heatpipe"
+        },
+        "memory": {
+          "type": "DDR5",
+          "slots": 4,
+          "max_capacity_gb": 256,
+          "max_speed_mts": 8800,
+          "expo_support": true,
+          "xmp_support": true,
+          "ecc_support": true
+        },
+        "storage": {
+          "m2_slots": 5,
+          "m2_pcie_gen": ["5.0 x4", "5.0 x4", "4.0 x4", "4.0 x4", "4.0 x4"],
+          "sata_ports": 4,
+          "raid_support": ["0", "1", "10"]
+        },
+        "expansion": {
+          "pcie_x16_slots": 2,
+          "pcie_x16_gen": ["5.0 x16", "4.0 x4"],
+          "pcie_x1_slots": 1,
+          "multi_gpu": false,
+          "pcie_bifurcation": true
+        },
+        "connectivity": {
+          "usb_rear": ["4x USB 3.2 Gen2x2 Type-C", "4x USB 3.2 Gen2", "4x USB 2.0"],
+          "ethernet": ["2.5GbE Intel i226-V", "10GbE Marvell AQtion"],
+          "wifi": "Wi-Fi 7 (802.11be)",
+          "bluetooth": "5.4",
+          "thunderbolt": "Thunderbolt 4 (2 ports)"
+        },
+        "power_connectors": {
+          "atx_24pin": 1,
+          "eps_8pin": 2,
+          "recommended_psu_watts": 850
+        },
+        "bios": {
+          "name": "UEFI BIOS",
+          "flashback": true,
+          "dual_bios": false,
+          "ai_overclocking": "AI Overclocking 3.0"
+        }
+      },
+      "ai_capabilities": {
+        "ai_use": "Best AM5 AI board — 5 M.2 slots for large model libraries, 10GbE for fast dataset transfer, 256GB DDR5 ECC ceiling, Thunderbolt 4 for external storage.",
+        "workload_suitability": ["llm_inference", "fine_tuning", "training", "ai_dev", "image_gen", "edge_deploy"],
+        "dimm_slots": 4,
+        "dimm_upgrade_path": "Start at 2x32GB, expand to 4x64GB = 256GB without replacing kit",
+        "nvme_slots_for_models": 5,
+        "multi_gpu_capable": false,
+        "notes": "10GbE eliminates need for add-in NIC for dataset streaming. EXPO auto-tuning simplifies high-speed RAM setup."
+      },
+      "compatibility": {
+        "socket": "AM5 (LGA 1718)",
+        "cpu_support": ["Ryzen 9000 series", "Ryzen 7000 series", "Ryzen AI 300 series"],
+        "ram_type": "DDR5 only",
+        "gpu_pcie_gen": "PCIe 5.0 x16 via CPU lanes",
+        "gpu_length_max_mm": 380,
+        "cooler_height_max_mm": 180,
+        "psu_connectors_required": { "atx_24pin": 1, "eps_8pin": 2 },
+        "min_psu_watts": 850,
+        "case_form_factor": "ATX",
+        "notes": "X870E mandatory for PCIe 5.0 on GPU and primary NVMe simultaneously. Requires ATX case."
+      },
+      "pricing": {
+        "msrp_usd": 699,
+        "price_source": "manual",
+        "last_updated": "2026-04-01"
+      },
+      "meta": {
+        "release_date": "2024-09-01",
+        "popularity_score": 88,
+        "editor_pick": true,
+        "trending": false,
+        "badge": "Best AM5 AI Board"
+      }
+    },
+    {
+      "id": "mobo-msi-meg-x870e-ace",
+      "series": "MEG X870E ACE",
+      "brand": "MSI",
+      "name": "MSI MEG X870E ACE",
+      "tier": "flagship",
+      "specifications": {
+        "chipset": "AMD X870E",
+        "socket": "AM5 (LGA 1718)",
+        "form_factor": "ATX",
+        "vrm": {
+          "phases": 24,
+          "mosfets": "105A SPS",
+          "total_amps": 2520,
+          "heatsink": "Dual fin-stack with thermal pad"
+        },
+        "memory": {
+          "type": "DDR5",
+          "slots": 4,
+          "max_capacity_gb": 256,
+          "max_speed_mts": 9000,
+          "expo_support": true,
+          "xmp_support": true,
+          "ecc_support": true
+        },
+        "storage": {
+          "m2_slots": 6,
+          "m2_pcie_gen": ["5.0 x4", "5.0 x4", "4.0 x4", "4.0 x4", "4.0 x4", "4.0 x4"],
+          "sata_ports": 4,
+          "raid_support": ["0", "1", "10"]
+        },
+        "expansion": {
+          "pcie_x16_slots": 3,
+          "pcie_x16_gen": ["5.0 x16", "4.0 x8", "4.0 x4"],
+          "pcie_x1_slots": 0,
+          "multi_gpu": true,
+          "multi_gpu_config": "x16/x8 split — dual GPU capable",
+          "pcie_bifurcation": true
+        },
+        "connectivity": {
+          "usb_rear": ["2x USB4 40Gbps Type-C", "4x USB 3.2 Gen2", "4x USB 2.0"],
+          "ethernet": ["2.5GbE + 5GbE dual NIC"],
+          "wifi": "Wi-Fi 7 (802.11be)",
+          "bluetooth": "5.4",
+          "thunderbolt": "USB4 40Gbps (2 ports)"
+        },
+        "power_connectors": {
+          "atx_24pin": 1,
+          "eps_8pin": 2,
+          "recommended_psu_watts": 1000
+        },
+        "bios": {
+          "name": "Click BIOS 5",
+          "flashback": true,
+          "dual_bios": false,
+          "ai_overclocking": "MSI AI OC Engine"
+        }
+      },
+      "ai_capabilities": {
+        "ai_use": "Only AM5 board with credible dual-GPU capability — x16/x8 PCIe split enables two GPUs for distributed inference or parallel model serving.",
+        "workload_suitability": ["training", "fine_tuning", "llm_inference", "edge_deploy"],
+        "dimm_slots": 4,
+        "dimm_upgrade_path": "4x slots up to 256GB DDR5 ECC",
+        "nvme_slots_for_models": 6,
+        "multi_gpu_capable": true,
+        "notes": "x8 on second GPU slot is fine for inference but sub-optimal for training vs dedicated HEDT. 6 M.2 slots is best-in-class for model storage."
+      },
+      "compatibility": {
+        "socket": "AM5 (LGA 1718)",
+        "cpu_support": ["Ryzen 9000 series", "Ryzen 7000 series"],
+        "ram_type": "DDR5 only",
+        "gpu_pcie_gen": "PCIe 5.0 x16 primary, PCIe 4.0 x8 secondary",
+        "gpu_length_max_mm": 380,
+        "cooler_height_max_mm": 175,
+        "psu_connectors_required": { "atx_24pin": 1, "eps_8pin": 2 },
+        "min_psu_watts": 1000,
+        "case_form_factor": "ATX",
+        "notes": "1000W+ PSU mandatory for dual-GPU. Second PCIe slot at x8 PCIe 4.0 — adequate for inference."
+      },
+      "pricing": {
+        "msrp_usd": 649,
+        "price_source": "manual",
+        "last_updated": "2026-04-01"
+      },
+      "meta": {
+        "release_date": "2024-09-01",
+        "popularity_score": 84,
+        "editor_pick": false,
+        "trending": true,
+        "badge": "Best Dual-GPU AM5"
+      }
+    },
+    {
+      "id": "mobo-gigabyte-x870e-aorus-master",
+      "series": "X870E AORUS Master",
+      "brand": "Gigabyte",
+      "name": "Gigabyte X870E AORUS Master",
+      "tier": "high-end",
+      "specifications": {
+        "chipset": "AMD X870E",
+        "socket": "AM5 (LGA 1718)",
+        "form_factor": "ATX",
+        "vrm": {
+          "phases": 20,
+          "mosfets": "105A SPS",
+          "total_amps": 2100,
+          "heatsink": "Stacked fin-array with heatpipe"
+        },
+        "memory": {
+          "type": "DDR5",
+          "slots": 4,
+          "max_capacity_gb": 256,
+          "max_speed_mts": 8600,
+          "expo_support": true,
+          "xmp_support": true,
+          "ecc_support": true
+        },
+        "storage": {
+          "m2_slots": 4,
+          "m2_pcie_gen": ["5.0 x4", "4.0 x4", "4.0 x4", "4.0 x4"],
+          "sata_ports": 6,
+          "raid_support": ["0", "1", "10"]
+        },
+        "expansion": {
+          "pcie_x16_slots": 2,
+          "pcie_x16_gen": ["5.0 x16", "4.0 x4"],
+          "pcie_x1_slots": 1,
+          "multi_gpu": false,
+          "pcie_bifurcation": true
+        },
+        "connectivity": {
+          "usb_rear": ["2x USB 3.2 Gen2x2 Type-C", "4x USB 3.2 Gen2", "2x USB 2.0"],
+          "ethernet": ["5GbE Intel i226-AT"],
+          "wifi": "Wi-Fi 7 (802.11be)",
+          "bluetooth": "5.4",
+          "thunderbolt": null
+        },
+        "power_connectors": {
+          "atx_24pin": 1,
+          "eps_8pin": 2,
+          "recommended_psu_watts": 850
+        },
+        "bios": {
+          "name": "Gigabyte UEFI",
+          "flashback": true,
+          "dual_bios": true,
+          "ai_overclocking": "Auto-Tuning"
+        }
+      },
+      "ai_capabilities": {
+        "ai_use": "Solid AI workstation board — 4 M.2, 256GB ECC RAM support, 5GbE networking, dual BIOS for safe updates during long training runs.",
+        "workload_suitability": ["llm_inference", "fine_tuning", "ai_dev", "image_gen"],
+        "dimm_slots": 4,
+        "dimm_upgrade_path": "Start 2x32GB, expand to 4x32GB = 128GB",
+        "nvme_slots_for_models": 4,
+        "multi_gpu_capable": false,
+        "notes": "Dual BIOS is a safety net during BIOS updates on always-on inference servers."
+      },
+      "compatibility": {
+        "socket": "AM5 (LGA 1718)",
+        "cpu_support": ["Ryzen 9000 series", "Ryzen 7000 series"],
+        "ram_type": "DDR5 only",
+        "gpu_pcie_gen": "PCIe 5.0 x16",
+        "gpu_length_max_mm": 370,
+        "cooler_height_max_mm": 178,
+        "psu_connectors_required": { "atx_24pin": 1, "eps_8pin": 2 },
+        "min_psu_watts": 850,
+        "case_form_factor": "ATX",
+        "notes": "6 SATA ports above average — good for bulk dataset storage alongside NVMe model drives."
+      },
+      "pricing": {
+        "msrp_usd": 499,
+        "price_source": "manual",
+        "last_updated": "2026-04-01"
+      },
+      "meta": {
+        "release_date": "2024-09-01",
+        "popularity_score": 85,
+        "editor_pick": false,
+        "trending": false,
+        "badge": "Best Value X870E"
+      }
+    },
+    {
+      "id": "mobo-msi-mag-b650-tomahawk-wifi",
+      "series": "MAG B650 TOMAHAWK",
+      "brand": "MSI",
+      "name": "MSI MAG B650 TOMAHAWK WiFi",
+      "tier": "mid-range",
+      "specifications": {
+        "chipset": "AMD B650",
+        "socket": "AM5 (LGA 1718)",
+        "form_factor": "ATX",
+        "vrm": {
+          "phases": 16,
+          "mosfets": "75A SPS",
+          "total_amps": 1200,
+          "heatsink": "Extended aluminum heatsink"
+        },
+        "memory": {
+          "type": "DDR5",
+          "slots": 4,
+          "max_capacity_gb": 128,
+          "max_speed_mts": 7800,
+          "expo_support": true,
+          "xmp_support": true,
+          "ecc_support": false
+        },
+        "storage": {
+          "m2_slots": 3,
+          "m2_pcie_gen": ["4.0 x4", "4.0 x4", "4.0 x4"],
+          "sata_ports": 4,
+          "raid_support": ["0", "1"]
+        },
+        "expansion": {
+          "pcie_x16_slots": 2,
+          "pcie_x16_gen": ["5.0 x16", "4.0 x1"],
+          "pcie_x1_slots": 1,
+          "multi_gpu": false,
+          "pcie_bifurcation": false
+        },
+        "connectivity": {
+          "usb_rear": ["1x USB 3.2 Gen2x2 Type-C", "2x USB 3.2 Gen2", "4x USB 2.0"],
+          "ethernet": ["2.5GbE Realtek RTL8125BG"],
+          "wifi": "Wi-Fi 6E (802.11ax)",
+          "bluetooth": "5.3",
+          "thunderbolt": null
+        },
+        "power_connectors": {
+          "atx_24pin": 1,
+          "eps_8pin": 2,
+          "recommended_psu_watts": 750
+        },
+        "bios": {
+          "name": "Click BIOS 5",
+          "flashback": true,
+          "dual_bios": false,
+          "ai_overclocking": false
+        }
+      },
+      "ai_capabilities": {
+        "ai_use": "Best value AI entry board — 4 DIMM slots for 128GB RAM, PCIe 5.0 GPU slot, 3 NVMe slots for model storage at significantly lower cost than X870E.",
+        "workload_suitability": ["llm_inference", "ai_dev", "image_gen"],
+        "dimm_slots": 4,
+        "dimm_upgrade_path": "4x DIMM up to 128GB — good starter config",
+        "nvme_slots_for_models": 3,
+        "multi_gpu_capable": false,
+        "notes": "B650 M.2 slots are PCIe 4.0 only — slightly slower NVMe vs X870E but adequate for model loading."
+      },
+      "compatibility": {
+        "socket": "AM5 (LGA 1718)",
+        "cpu_support": ["Ryzen 9000 series", "Ryzen 7000 series"],
+        "ram_type": "DDR5 only",
+        "gpu_pcie_gen": "PCIe 5.0 x16",
+        "gpu_length_max_mm": 360,
+        "cooler_height_max_mm": 168,
+        "psu_connectors_required": { "atx_24pin": 1, "eps_8pin": 2 },
+        "min_psu_watts": 750,
+        "case_form_factor": "ATX",
+        "notes": "Strong mid-range B650. Two EPS connectors better than single-EPS B650 boards for high-TDP CPUs."
+      },
+      "pricing": {
+        "msrp_usd": 189,
+        "price_source": "manual",
+        "last_updated": "2026-04-01"
+      },
+      "meta": {
+        "release_date": "2022-10-01",
+        "popularity_score": 91,
+        "editor_pick": true,
+        "trending": true,
+        "badge": "Best Budget AM5 Board"
+      }
+    },
+    {
+      "id": "mobo-asus-prime-x670-p-wifi",
+      "series": "PRIME X670-P",
+      "brand": "ASUS",
+      "name": "ASUS PRIME X670-P WiFi",
+      "tier": "mid-range",
+      "specifications": {
+        "chipset": "AMD X670",
+        "socket": "AM5 (LGA 1718)",
+        "form_factor": "ATX",
+        "vrm": {
+          "phases": 14,
+          "mosfets": "60A SPS",
+          "total_amps": 840,
+          "heatsink": "Single heatsink"
+        },
+        "memory": {
+          "type": "DDR5",
+          "slots": 4,
+          "max_capacity_gb": 128,
+          "max_speed_mts": 6400,
+          "expo_support": true,
+          "xmp_support": true,
+          "ecc_support": false
+        },
+        "storage": {
+          "m2_slots": 3,
+          "m2_pcie_gen": ["5.0 x4", "4.0 x4", "4.0 x4"],
+          "sata_ports": 4,
+          "raid_support": ["0", "1"]
+        },
+        "expansion": {
+          "pcie_x16_slots": 2,
+          "pcie_x16_gen": ["5.0 x16", "4.0 x1"],
+          "pcie_x1_slots": 2,
+          "multi_gpu": false,
+          "pcie_bifurcation": false
+        },
+        "connectivity": {
+          "usb_rear": ["1x USB 3.2 Gen2x2 Type-C", "2x USB 3.2 Gen2", "4x USB 2.0"],
+          "ethernet": ["2.5GbE Realtek RTL8125BG"],
+          "wifi": "Wi-Fi 6E (802.11ax)",
+          "bluetooth": "5.3",
+          "thunderbolt": null
+        },
+        "power_connectors": {
+          "atx_24pin": 1,
+          "eps_8pin": 1,
+          "recommended_psu_watts": 750
+        },
+        "bios": {
+          "name": "UEFI BIOS",
+          "flashback": true,
+          "dual_bios": false,
+          "ai_overclocking": false
+        }
+      },
+      "ai_capabilities": {
+        "ai_use": "Entry AM5 AI board — capable for single GPU inference builds, one PCIe 5.0 M.2 slot for fast model loading, 128GB RAM ceiling covers most LLM workloads.",
+        "workload_suitability": ["llm_inference", "ai_dev", "image_gen"],
+        "dimm_slots": 4,
+        "dimm_upgrade_path": "4x DIMM up to 128GB",
+        "nvme_slots_for_models": 3,
+        "multi_gpu_capable": false,
+        "notes": "Single EPS 8-pin limits extreme CPU OC — fine for stock Ryzen operation under AI workloads."
+      },
+      "compatibility": {
+        "socket": "AM5 (LGA 1718)",
+        "cpu_support": ["Ryzen 9000 series", "Ryzen 7000 series"],
+        "ram_type": "DDR5 only",
+        "gpu_pcie_gen": "PCIe 5.0 x16",
+        "gpu_length_max_mm": 360,
+        "cooler_height_max_mm": 165,
+        "psu_connectors_required": { "atx_24pin": 1, "eps_8pin": 1 },
+        "min_psu_watts": 750,
+        "case_form_factor": "ATX",
+        "notes": "Single EPS 8-pin — not ideal for Ryzen 9 high-TDP CPUs at full load. Fine for Ryzen 7 or stock operation."
+      },
+      "pricing": {
+        "msrp_usd": 229,
+        "price_source": "manual",
+        "last_updated": "2026-04-01"
+      },
+      "meta": {
+        "release_date": "2022-10-01",
+        "popularity_score": 80,
+        "editor_pick": false,
+        "trending": false,
+        "badge": "Best Entry AM5"
+      }
+    },
+    {
+      "id": "mobo-msi-pro-z890-a-wifi",
+      "series": "PRO Z890-A",
+      "brand": "MSI",
+      "name": "MSI PRO Z890-A WiFi",
+      "tier": "mid-range",
+      "specifications": {
+        "chipset": "Intel Z890",
+        "socket": "LGA1851",
+        "form_factor": "ATX",
+        "vrm": {
+          "phases": 16,
+          "mosfets": "80A SPS",
+          "total_amps": 1280,
+          "heatsink": "Double aluminum heatsink"
+        },
+        "memory": {
+          "type": "DDR5",
+          "slots": 4,
+          "max_capacity_gb": 192,
+          "max_speed_mts": 9600,
+          "expo_support": false,
+          "xmp_support": true,
+          "ecc_support": false
+        },
+        "storage": {
+          "m2_slots": 4,
+          "m2_pcie_gen": ["5.0 x4", "4.0 x4", "4.0 x4", "4.0 x4"],
+          "sata_ports": 4,
+          "raid_support": ["0", "1", "5"]
+        },
+        "expansion": {
+          "pcie_x16_slots": 2,
+          "pcie_x16_gen": ["5.0 x16", "4.0 x4"],
+          "pcie_x1_slots": 1,
+          "multi_gpu": false,
+          "pcie_bifurcation": false
+        },
+        "connectivity": {
+          "usb_rear": ["1x USB 3.2 Gen2x2 Type-C", "3x USB 3.2 Gen2", "2x USB 2.0"],
+          "ethernet": ["2.5GbE Intel i226-V"],
+          "wifi": "Wi-Fi 7 (802.11be)",
+          "bluetooth": "5.4",
+          "thunderbolt": null
+        },
+        "power_connectors": {
+          "atx_24pin": 1,
+          "eps_8pin": 2,
+          "recommended_psu_watts": 850
+        },
+        "bios": {
+          "name": "Click BIOS 5",
+          "flashback": true,
+          "dual_bios": false,
+          "ai_overclocking": false
+        }
+      },
+      "ai_capabilities": {
+        "ai_use": "Best value Intel AI board — rare 4-DIMM Z890 at 192GB max, 4 M.2 slots, Wi-Fi 7 for fast wireless dataset transfer.",
+        "workload_suitability": ["llm_inference", "fine_tuning", "ai_dev", "image_gen"],
+        "dimm_slots": 4,
+        "dimm_upgrade_path": "Start at 2x32GB, expand to 4x48GB = 192GB",
+        "nvme_slots_for_models": 4,
+        "multi_gpu_capable": false,
+        "notes": "4-DIMM Z890 is rare — most Z890 boards are 2-DIMM. The 192GB ceiling is higher than most Intel consumer boards."
+      },
+      "compatibility": {
+        "socket": "LGA1851",
+        "cpu_support": ["Intel Core Ultra 200 series (Arrow Lake)"],
+        "ram_type": "DDR5 only",
+        "gpu_pcie_gen": "PCIe 5.0 x16",
+        "gpu_length_max_mm": 360,
+        "cooler_height_max_mm": 175,
+        "psu_connectors_required": { "atx_24pin": 1, "eps_8pin": 2 },
+        "min_psu_watts": 850,
+        "case_form_factor": "ATX",
+        "notes": "4-DIMM Z890 — verify RAM QVL for 4-DIMM operation at rated speed. Z890 only, not compatible with 12th/13th gen."
+      },
+      "pricing": {
+        "msrp_usd": 299,
+        "price_source": "manual",
+        "last_updated": "2026-04-01"
+      },
+      "meta": {
+        "release_date": "2024-10-01",
+        "popularity_score": 83,
+        "editor_pick": true,
+        "trending": true,
+        "badge": "Best Value Intel AI Board"
+      }
+    },
+    {
+      "id": "mobo-asus-rog-maximus-z890-apex",
+      "series": "ROG Maximus Z890 APEX",
+      "brand": "ASUS",
+      "name": "ASUS ROG Maximus Z890 APEX",
+      "tier": "flagship",
+      "specifications": {
+        "chipset": "Intel Z890",
+        "socket": "LGA1851",
+        "form_factor": "ATX",
+        "vrm": {
+          "phases": 24,
+          "mosfets": "110A SPS",
+          "total_amps": 2640,
+          "heatsink": "Large fin-stack with heatpipe"
+        },
+        "memory": {
+          "type": "DDR5",
+          "slots": 2,
+          "max_capacity_gb": 96,
+          "max_speed_mts": 9200,
+          "expo_support": false,
+          "xmp_support": true,
+          "ecc_support": false
+        },
+        "storage": {
+          "m2_slots": 5,
+          "m2_pcie_gen": ["5.0 x4", "4.0 x4", "4.0 x4", "4.0 x4", "4.0 x4"],
+          "sata_ports": 4,
+          "raid_support": ["0", "1", "5", "10"]
+        },
+        "expansion": {
+          "pcie_x16_slots": 2,
+          "pcie_x16_gen": ["5.0 x16", "4.0 x4"],
+          "pcie_x1_slots": 1,
+          "multi_gpu": false,
+          "pcie_bifurcation": false
+        },
+        "connectivity": {
+          "usb_rear": ["2x Thunderbolt 4 (40Gbps)", "4x USB 3.2 Gen2", "2x USB 2.0"],
+          "ethernet": ["5GbE Intel i226-AT + 2.5GbE"],
+          "wifi": "Wi-Fi 7 (802.11be)",
+          "bluetooth": "5.4",
+          "thunderbolt": "Thunderbolt 4 (2 ports)"
+        },
+        "power_connectors": {
+          "atx_24pin": 1,
+          "eps_8pin": 2,
+          "recommended_psu_watts": 1000
+        },
+        "bios": {
+          "name": "UEFI BIOS",
+          "flashback": true,
+          "dual_bios": false,
+          "ai_overclocking": "AI Overclocking 3.0"
+        }
+      },
+      "ai_capabilities": {
+        "ai_use": "Top Intel AI board — 5 M.2 slots for full model library, Thunderbolt 4 for external NVMe at 40Gbps, 5GbE onboard for dataset transfer.",
+        "workload_suitability": ["llm_inference", "fine_tuning", "ai_dev", "image_gen"],
+        "dimm_slots": 2,
+        "dimm_upgrade_path": "2-slot limit — max 96GB (2x48GB). No free slots after full population.",
+        "nvme_slots_for_models": 5,
+        "multi_gpu_capable": false,
+        "notes": "Only 2 DIMM slots is a constraint — memory ceiling capped at 96GB. Thunderbolt 4 compensates with fast external storage access."
+      },
+      "compatibility": {
+        "socket": "LGA1851",
+        "cpu_support": ["Intel Core Ultra 200 series (Arrow Lake)"],
+        "ram_type": "DDR5 only",
+        "gpu_pcie_gen": "PCIe 5.0 x16",
+        "gpu_length_max_mm": 380,
+        "cooler_height_max_mm": 180,
+        "psu_connectors_required": { "atx_24pin": 1, "eps_8pin": 2 },
+        "min_psu_watts": 1000,
+        "case_form_factor": "ATX",
+        "notes": "2 DIMM slots only — verify 48GB stick QVL support. Z890 exclusive — not compatible with previous gen Intel."
+      },
+      "pricing": {
+        "msrp_usd": 699,
+        "price_source": "manual",
+        "last_updated": "2026-04-01"
+      },
+      "meta": {
+        "release_date": "2024-10-01",
+        "popularity_score": 81,
+        "editor_pick": false,
+        "trending": false,
+        "badge": "Best Z890 Flagship"
+      }
+    },
+    {
+      "id": "mobo-asus-pro-ws-trx50-sage-wifi",
+      "series": "Pro WS TRX50-SAGE WiFi",
+      "brand": "ASUS",
+      "name": "ASUS Pro WS TRX50-SAGE WiFi",
+      "tier": "workstation",
+      "specifications": {
+        "chipset": "AMD TRX50",
+        "socket": "sTR5",
+        "form_factor": "EATX",
+        "vrm": {
+          "phases": 24,
+          "mosfets": "110A SPS",
+          "total_amps": 2640,
+          "heatsink": "Industrial fin-array heatsink"
+        },
+        "memory": {
+          "type": "DDR5",
+          "slots": 8,
+          "max_capacity_gb": 2048,
+          "max_speed_mts": 6400,
+          "expo_support": true,
+          "xmp_support": true,
+          "ecc_support": true
+        },
+        "storage": {
+          "m2_slots": 6,
+          "m2_pcie_gen": ["5.0 x4", "5.0 x4", "4.0 x4", "4.0 x4", "4.0 x4", "4.0 x4"],
+          "sata_ports": 8,
+          "raid_support": ["0", "1", "5", "10"]
+        },
+        "expansion": {
+          "pcie_x16_slots": 7,
+          "pcie_x16_gen": ["5.0 x16", "5.0 x16", "5.0 x16", "5.0 x16", "4.0 x16", "4.0 x16", "4.0 x4"],
+          "pcie_x1_slots": 0,
+          "multi_gpu": true,
+          "multi_gpu_config": "Up to 4 GPUs at full PCIe 5.0 x16 bandwidth simultaneously",
+          "pcie_bifurcation": true
+        },
+        "connectivity": {
+          "usb_rear": ["2x USB4 Gen3x2 (40Gbps)", "4x USB 3.2 Gen2", "2x USB 2.0"],
+          "ethernet": ["10GbE Marvell AQtion + 2.5GbE Intel i226-V"],
+          "wifi": "Wi-Fi 6E (802.11ax)",
+          "bluetooth": "5.3",
+          "thunderbolt": "USB4 40Gbps (2 ports)"
+        },
+        "power_connectors": {
+          "atx_24pin": 1,
+          "eps_8pin": 3,
+          "recommended_psu_watts": 1600
+        },
+        "bios": {
+          "name": "UEFI BIOS",
+          "flashback": true,
+          "dual_bios": false,
+          "ai_overclocking": false
+        }
+      },
+      "ai_capabilities": {
+        "ai_use": "HEDT training platform — 4x full-bandwidth PCIe 5.0 x16 GPU slots, 8 DIMM slots for 2TB ECC RAM, 10GbE onboard. Only platform for true multi-GPU distributed training.",
+        "workload_suitability": ["training", "fine_tuning", "edge_deploy", "llm_inference"],
+        "dimm_slots": 8,
+        "dimm_upgrade_path": "8x DIMM — start 4x32GB = 128GB, scale to 8x256GB = 2TB ECC",
+        "nvme_slots_for_models": 6,
+        "multi_gpu_capable": true,
+        "notes": "Each PCIe 5.0 x16 slot is direct CPU lanes — no bandwidth sharing. Only platform that runs 4x RTX 4090 at full speed."
+      },
+      "compatibility": {
+        "socket": "sTR5",
+        "cpu_support": ["AMD Threadripper 7000 series"],
+        "ram_type": "DDR5 (UDIMM or RDIMM)",
+        "gpu_pcie_gen": "PCIe 5.0 x16 (all primary slots)",
+        "gpu_length_max_mm": 400,
+        "cooler_height_max_mm": 185,
+        "psu_connectors_required": { "atx_24pin": 1, "eps_8pin": 3 },
+        "min_psu_watts": 1600,
+        "case_form_factor": "EATX — full tower or server chassis required",
+        "notes": "3x EPS 8-pin mandatory — only Seasonic Prime TX-1300 and Corsair AX1600i provide this. Not compatible with standard ATX cases."
+      },
+      "pricing": {
+        "msrp_usd": 1499,
+        "price_source": "manual",
+        "last_updated": "2026-04-01"
+      },
+      "meta": {
+        "release_date": "2024-01-01",
+        "popularity_score": 68,
+        "editor_pick": false,
+        "trending": false,
+        "badge": "Best HEDT Multi-GPU Board"
+      }
+    }
+  ]
+}

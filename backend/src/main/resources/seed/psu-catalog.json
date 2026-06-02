@@ -1,0 +1,664 @@
+{
+  "catalog_meta": {
+    "version": "1.0",
+    "last_updated": "2026-05-01",
+    "category": "psu",
+    "total_entries": 10,
+    "schema_notes": "All PSUs are fully modular. Wattage recommendations based on GPU + CPU TDP sums with 20% headroom. Compatibility fields include exact connector counts matched to GPU and motherboard requirements. AI fields state max GPU TDP supported and workload fit."
+  },
+  "psus": [
+    {
+      "id": "psu-corsair-rm750x-shift",
+      "series": "RM Shift",
+      "brand": "Corsair",
+      "name": "Corsair RM750x SHIFT 750W 80+ Gold",
+      "tier": "mid-range",
+      "specifications": {
+        "wattage": 750,
+        "efficiency_rating": "80+ Gold",
+        "efficiency_at_50_load_pct": 92,
+        "modular": "Fully modular",
+        "form_factor": "ATX",
+        "fan_size_mm": 135,
+        "fan_bearing": "Fluid dynamic",
+        "semi_fanless": true,
+        "fanless_threshold_watts": 375,
+        "atx_version": "ATX 3.1",
+        "protections": ["OVP", "UVP", "OCP", "OPP", "SCP", "OTP"],
+        "mtbf_hours": 100000,
+        "warranty_years": 7,
+        "dimensions_mm": "150 x 86 x 160",
+        "connectors": {
+          "atx_24pin": 1,
+          "eps_8pin": 2,
+          "pcie_16pin_600w_native": 1,
+          "pcie_8pin": 2,
+          "sata": 6,
+          "molex": 2
+        }
+      },
+      "ai_capabilities": {
+        "ai_use": "Fits RTX 4070 Ti Super and below — 750W handles 285W GPU + 170W CPU + system overhead with comfortable margin.",
+        "max_gpu_tdp_watts": 285,
+        "max_cpu_tdp_watts": 170,
+        "recommended_for_gpus": ["RTX 4060", "RTX 4060 Ti", "RTX 4070", "RTX 4070 Super", "RTX 4070 Ti Super", "RX 7900 GRE"],
+        "workload_suitability": ["llm_inference", "ai_dev", "image_gen"],
+        "sustained_load_watts": 750,
+        "notes": "Semi-fanless reduces noise between inference calls. Not suitable for RTX 4090 — insufficient headroom for 450W sustained GPU load."
+      },
+      "compatibility": {
+        "motherboard_connectors": {
+          "atx_24pin": true,
+          "dual_eps_8pin": true,
+          "triple_eps_8pin": false
+        },
+        "gpu_native_16pin": true,
+        "pcie_8pin_count": 2,
+        "gpu_tdp_max_watts": 285,
+        "min_case_clearance_mm": 160,
+        "sfx_compatible": false,
+        "notes": "ATX 3.1 native 16-pin eliminates adapter cables for RTX 40/50 series. Side-connector (SHIFT) design improves cable routing."
+      },
+      "pricing": {
+        "msrp_usd": 129,
+        "price_source": "manual",
+        "last_updated": "2026-04-01"
+      },
+      "meta": {
+        "release_date": "2023-07-01",
+        "popularity_score": 87,
+        "editor_pick": false,
+        "trending": false,
+        "badge": "Best Mid-Range PSU"
+      }
+    },
+    {
+      "id": "psu-seasonic-focus-gx-850",
+      "series": "FOCUS GX",
+      "brand": "Seasonic",
+      "name": "Seasonic FOCUS GX-850 850W 80+ Gold",
+      "tier": "mid-range",
+      "specifications": {
+        "wattage": 850,
+        "efficiency_rating": "80+ Gold",
+        "efficiency_at_50_load_pct": 92,
+        "modular": "Fully modular",
+        "form_factor": "ATX",
+        "fan_size_mm": 120,
+        "fan_bearing": "Fluid dynamic",
+        "semi_fanless": true,
+        "fanless_threshold_watts": 425,
+        "atx_version": "ATX 3.0",
+        "protections": ["OVP", "UVP", "OCP", "OPP", "SCP", "OTP"],
+        "mtbf_hours": 100000,
+        "warranty_years": 10,
+        "dimensions_mm": "150 x 86 x 160",
+        "connectors": {
+          "atx_24pin": 1,
+          "eps_8pin": 2,
+          "pcie_16pin_600w_native": 1,
+          "pcie_8pin": 4,
+          "sata": 8,
+          "molex": 3
+        }
+      },
+      "ai_capabilities": {
+        "ai_use": "Ideal for single RTX 4090 builds — 850W provides 20% headroom over 450W GPU + 170W CPU at full training load.",
+        "max_gpu_tdp_watts": 450,
+        "max_cpu_tdp_watts": 170,
+        "recommended_for_gpus": ["RTX 4090", "RTX 4080 Super", "RX 7900 XTX"],
+        "workload_suitability": ["llm_inference", "fine_tuning", "training", "image_gen"],
+        "sustained_load_watts": 850,
+        "notes": "10-year warranty is the longest in class. 4x PCIe 8-pin gives flexibility for any GPU wiring configuration alongside the native 16-pin."
+      },
+      "compatibility": {
+        "motherboard_connectors": {
+          "atx_24pin": true,
+          "dual_eps_8pin": true,
+          "triple_eps_8pin": false
+        },
+        "gpu_native_16pin": true,
+        "pcie_8pin_count": 4,
+        "gpu_tdp_max_watts": 450,
+        "min_case_clearance_mm": 160,
+        "sfx_compatible": false,
+        "notes": "ATX 3.0 native 16-pin included. Best RTX 4090 single-GPU PSU — do not use for dual GPU."
+      },
+      "pricing": {
+        "msrp_usd": 149,
+        "price_source": "manual",
+        "last_updated": "2026-04-01"
+      },
+      "meta": {
+        "release_date": "2022-06-01",
+        "popularity_score": 93,
+        "editor_pick": true,
+        "trending": false,
+        "badge": "Best RTX 4090 PSU"
+      }
+    },
+    {
+      "id": "psu-bequiet-straight-power-12-1000w",
+      "series": "Straight Power 12",
+      "brand": "be quiet!",
+      "name": "be quiet! Straight Power 12 1000W 80+ Platinum",
+      "tier": "high-end",
+      "specifications": {
+        "wattage": 1000,
+        "efficiency_rating": "80+ Platinum",
+        "efficiency_at_50_load_pct": 94,
+        "modular": "Fully modular",
+        "form_factor": "ATX",
+        "fan_size_mm": 135,
+        "fan_bearing": "Fluid dynamic",
+        "semi_fanless": true,
+        "fanless_threshold_watts": 500,
+        "atx_version": "ATX 3.0",
+        "protections": ["OVP", "UVP", "OCP", "OPP", "SCP", "OTP"],
+        "mtbf_hours": 100000,
+        "warranty_years": 10,
+        "dimensions_mm": "150 x 86 x 170",
+        "connectors": {
+          "atx_24pin": 1,
+          "eps_8pin": 2,
+          "pcie_16pin_600w_native": 2,
+          "pcie_8pin": 4,
+          "sata": 8,
+          "molex": 3
+        }
+      },
+      "ai_capabilities": {
+        "ai_use": "RTX 4090 with generous headroom — Platinum efficiency reduces electricity costs significantly on always-on inference servers vs Gold-rated alternatives.",
+        "max_gpu_tdp_watts": 575,
+        "max_cpu_tdp_watts": 280,
+        "recommended_for_gpus": ["RTX 4090", "RTX 5090", "RTX 5080", "RX 7900 XTX"],
+        "workload_suitability": ["training", "fine_tuning", "llm_inference", "always_on"],
+        "sustained_load_watts": 1000,
+        "notes": "Platinum at 94% vs Gold at 92% saves ~60W at 800W continuous load — around 500 kWh/year cost saving for always-on servers."
+      },
+      "compatibility": {
+        "motherboard_connectors": {
+          "atx_24pin": true,
+          "dual_eps_8pin": true,
+          "triple_eps_8pin": false
+        },
+        "gpu_native_16pin": true,
+        "pcie_8pin_count": 4,
+        "gpu_tdp_max_watts": 575,
+        "min_case_clearance_mm": 170,
+        "sfx_compatible": false,
+        "notes": "2x native 16-pin — ready for next-gen high-power GPUs. be quiet! silent fan profile ideal for always-on builds."
+      },
+      "pricing": {
+        "msrp_usd": 199,
+        "price_source": "manual",
+        "last_updated": "2026-04-01"
+      },
+      "meta": {
+        "release_date": "2023-04-01",
+        "popularity_score": 89,
+        "editor_pick": true,
+        "trending": true,
+        "badge": "Best Always-On PSU"
+      }
+    },
+    {
+      "id": "psu-corsair-hx1200i",
+      "series": "HXi Digital",
+      "brand": "Corsair",
+      "name": "Corsair HX1200i 1200W 80+ Platinum",
+      "tier": "high-end",
+      "specifications": {
+        "wattage": 1200,
+        "efficiency_rating": "80+ Platinum",
+        "efficiency_at_50_load_pct": 94,
+        "modular": "Fully modular",
+        "form_factor": "ATX",
+        "fan_size_mm": 135,
+        "fan_bearing": "Fluid dynamic",
+        "semi_fanless": false,
+        "digital_monitoring": true,
+        "usb_monitoring": true,
+        "atx_version": "ATX 3.0",
+        "protections": ["OVP", "UVP", "OCP", "OPP", "SCP", "OTP"],
+        "mtbf_hours": 160000,
+        "warranty_years": 10,
+        "dimensions_mm": "150 x 86 x 200",
+        "connectors": {
+          "atx_24pin": 1,
+          "eps_8pin": 2,
+          "pcie_16pin_600w_native": 2,
+          "pcie_8pin": 6,
+          "sata": 12,
+          "molex": 4
+        }
+      },
+      "ai_capabilities": {
+        "ai_use": "Dual RTX 4090 or single RTX 5090 under full training load — digital monitoring via iCUE tracks real-time wattage per rail for training cost profiling.",
+        "max_gpu_tdp_watts": 575,
+        "max_cpu_tdp_watts": 350,
+        "recommended_for_gpus": ["Dual RTX 4090", "RTX 5090", "Dual RTX 4080 Super"],
+        "workload_suitability": ["training", "fine_tuning", "edge_deploy"],
+        "sustained_load_watts": 1200,
+        "notes": "Digital monitoring invaluable for training rigs — iCUE shows real per-rail power draw to help optimise GPU clock speed vs power limits."
+      },
+      "compatibility": {
+        "motherboard_connectors": {
+          "atx_24pin": true,
+          "dual_eps_8pin": true,
+          "triple_eps_8pin": false
+        },
+        "gpu_native_16pin": true,
+        "pcie_8pin_count": 6,
+        "gpu_tdp_max_watts": 575,
+        "min_case_clearance_mm": 200,
+        "sfx_compatible": false,
+        "notes": "200mm depth — check full tower clearance. Required for MSI MEG X870E ACE dual-GPU configurations."
+      },
+      "pricing": {
+        "msrp_usd": 279,
+        "price_source": "manual",
+        "last_updated": "2026-04-01"
+      },
+      "meta": {
+        "release_date": "2023-09-01",
+        "popularity_score": 82,
+        "editor_pick": false,
+        "trending": false,
+        "badge": "Best Multi-GPU PSU"
+      }
+    },
+    {
+      "id": "psu-seasonic-prime-tx-1300",
+      "series": "PRIME TX",
+      "brand": "Seasonic",
+      "name": "Seasonic PRIME TX-1300 1300W 80+ Titanium",
+      "tier": "flagship",
+      "specifications": {
+        "wattage": 1300,
+        "efficiency_rating": "80+ Titanium",
+        "efficiency_at_50_load_pct": 96,
+        "modular": "Fully modular",
+        "form_factor": "ATX",
+        "fan_size_mm": 135,
+        "fan_bearing": "Fluid dynamic",
+        "semi_fanless": true,
+        "fanless_threshold_watts": 650,
+        "atx_version": "ATX 3.1",
+        "protections": ["OVP", "UVP", "OCP", "OPP", "SCP", "OTP"],
+        "mtbf_hours": 100000,
+        "warranty_years": 12,
+        "dimensions_mm": "150 x 86 x 190",
+        "connectors": {
+          "atx_24pin": 1,
+          "eps_8pin": 3,
+          "pcie_16pin_600w_native": 2,
+          "pcie_8pin": 6,
+          "sata": 12,
+          "molex": 4
+        }
+      },
+      "ai_capabilities": {
+        "ai_use": "HEDT training rigs — 3x EPS 8-pin mandatory for ASUS Pro WS TRX50-SAGE and similar HEDT boards. Titanium efficiency saves most electricity at sustained high loads.",
+        "max_gpu_tdp_watts": 575,
+        "max_cpu_tdp_watts": 350,
+        "recommended_for_gpus": ["Dual RTX 4090", "RTX 5090", "Quad RTX 3090"],
+        "workload_suitability": ["training", "edge_deploy", "always_on"],
+        "sustained_load_watts": 1300,
+        "notes": "3x EPS 8-pin is the critical differentiator — required for ASUS Pro WS TRX50-SAGE. Most PSUs provide 2 EPS max. 12-year warranty is industry-leading."
+      },
+      "compatibility": {
+        "motherboard_connectors": {
+          "atx_24pin": true,
+          "dual_eps_8pin": true,
+          "triple_eps_8pin": true
+        },
+        "gpu_native_16pin": true,
+        "pcie_8pin_count": 6,
+        "gpu_tdp_max_watts": 575,
+        "min_case_clearance_mm": 190,
+        "sfx_compatible": false,
+        "notes": "Mandatory for ASUS Pro WS TRX50-SAGE WiFi and other HEDT boards requiring 3x EPS. Only PSU in this tier with 3x EPS standard."
+      },
+      "pricing": {
+        "msrp_usd": 349,
+        "price_source": "manual",
+        "last_updated": "2026-04-01"
+      },
+      "meta": {
+        "release_date": "2023-01-01",
+        "popularity_score": 79,
+        "editor_pick": false,
+        "trending": false,
+        "badge": "Best HEDT PSU"
+      }
+    },
+    {
+      "id": "psu-corsair-ax1600i",
+      "series": "AXi Digital",
+      "brand": "Corsair",
+      "name": "Corsair AX1600i 1600W 80+ Titanium",
+      "tier": "workstation",
+      "specifications": {
+        "wattage": 1600,
+        "efficiency_rating": "80+ Titanium",
+        "efficiency_at_50_load_pct": 96,
+        "modular": "Fully modular",
+        "form_factor": "ATX",
+        "fan_size_mm": 140,
+        "fan_bearing": "Fluid dynamic",
+        "semi_fanless": false,
+        "digital_monitoring": true,
+        "usb_monitoring": true,
+        "atx_version": "ATX 3.0",
+        "protections": ["OVP", "UVP", "OCP", "OPP", "SCP", "OTP"],
+        "mtbf_hours": 160000,
+        "warranty_years": 10,
+        "dimensions_mm": "150 x 86 x 225",
+        "connectors": {
+          "atx_24pin": 1,
+          "eps_8pin": 4,
+          "pcie_16pin_600w_native": 4,
+          "pcie_8pin": 8,
+          "sata": 14,
+          "molex": 6
+        }
+      },
+      "ai_capabilities": {
+        "ai_use": "Maximum 4-GPU training capacity — 4x native 16-pin connectors and 4x EPS 8-pin cover Threadripper + quad RTX 4090 at full TDP simultaneously.",
+        "max_gpu_tdp_watts": 575,
+        "max_cpu_tdp_watts": 350,
+        "recommended_for_gpus": ["Quad RTX 4090", "Quad RTX 3090", "Triple RTX 5090"],
+        "workload_suitability": ["training", "edge_deploy"],
+        "sustained_load_watts": 1600,
+        "notes": "Digital monitoring essential at this power level. iCUE logs per-rail current and total power draw for training cost analysis."
+      },
+      "compatibility": {
+        "motherboard_connectors": {
+          "atx_24pin": true,
+          "dual_eps_8pin": true,
+          "triple_eps_8pin": true,
+          "quad_eps_8pin": true
+        },
+        "gpu_native_16pin": true,
+        "pcie_8pin_count": 8,
+        "gpu_tdp_max_watts": 575,
+        "min_case_clearance_mm": 225,
+        "sfx_compatible": false,
+        "notes": "225mm depth — full tower and server chassis only. Required for 4x RTX 4090 at full TDP."
+      },
+      "pricing": {
+        "msrp_usd": 599,
+        "price_source": "manual",
+        "last_updated": "2026-04-01"
+      },
+      "meta": {
+        "release_date": "2023-03-01",
+        "popularity_score": 65,
+        "editor_pick": false,
+        "trending": false,
+        "badge": "Best 4-GPU Training PSU"
+      }
+    },
+    {
+      "id": "psu-asus-rog-thor-1000w-platinum-ii",
+      "series": "ROG THOR",
+      "brand": "ASUS",
+      "name": "ASUS ROG THOR 1000W Platinum II",
+      "tier": "high-end",
+      "specifications": {
+        "wattage": 1000,
+        "efficiency_rating": "80+ Platinum",
+        "efficiency_at_50_load_pct": 94,
+        "modular": "Fully modular",
+        "form_factor": "ATX",
+        "fan_size_mm": 135,
+        "fan_bearing": "Fluid dynamic",
+        "semi_fanless": true,
+        "fanless_threshold_watts": 500,
+        "atx_version": "ATX 3.1",
+        "oled_display": true,
+        "protections": ["OVP", "UVP", "OCP", "OPP", "SCP", "OTP"],
+        "mtbf_hours": 100000,
+        "warranty_years": 10,
+        "dimensions_mm": "150 x 86 x 180",
+        "connectors": {
+          "atx_24pin": 1,
+          "eps_8pin": 2,
+          "pcie_16pin_600w_native": 2,
+          "pcie_8pin": 4,
+          "sata": 10,
+          "molex": 3
+        }
+      },
+      "ai_capabilities": {
+        "ai_use": "Premium 1000W with built-in OLED watt display — real-time power consumption visible without software, useful for monitoring GPU power during training experiments.",
+        "max_gpu_tdp_watts": 575,
+        "max_cpu_tdp_watts": 280,
+        "recommended_for_gpus": ["RTX 4090", "RTX 5090", "RTX 5080"],
+        "workload_suitability": ["llm_inference", "fine_tuning", "training"],
+        "sustained_load_watts": 1000,
+        "notes": "Built-in OLED watt meter shows real-time total system power without any software — useful for quick power profiling during inference benchmarks."
+      },
+      "compatibility": {
+        "motherboard_connectors": {
+          "atx_24pin": true,
+          "dual_eps_8pin": true,
+          "triple_eps_8pin": false
+        },
+        "gpu_native_16pin": true,
+        "pcie_8pin_count": 4,
+        "gpu_tdp_max_watts": 575,
+        "min_case_clearance_mm": 180,
+        "sfx_compatible": false,
+        "notes": "OLED display faces upward — best viewed in side-window tower cases. ATX 3.1 native spec."
+      },
+      "pricing": {
+        "msrp_usd": 229,
+        "price_source": "manual",
+        "last_updated": "2026-04-01"
+      },
+      "meta": {
+        "release_date": "2024-01-01",
+        "popularity_score": 80,
+        "editor_pick": false,
+        "trending": true,
+        "badge": "Best Monitored PSU"
+      }
+    },
+    {
+      "id": "psu-nzxt-c850-gold",
+      "series": "C Gold",
+      "brand": "NZXT",
+      "name": "NZXT C850 Gold 850W 80+ Gold",
+      "tier": "mid-range",
+      "specifications": {
+        "wattage": 850,
+        "efficiency_rating": "80+ Gold",
+        "efficiency_at_50_load_pct": 92,
+        "modular": "Fully modular",
+        "form_factor": "ATX",
+        "fan_size_mm": 135,
+        "fan_bearing": "Fluid dynamic",
+        "semi_fanless": false,
+        "atx_version": "ATX 3.0",
+        "protections": ["OVP", "UVP", "OCP", "OPP", "SCP", "OTP"],
+        "mtbf_hours": 100000,
+        "warranty_years": 10,
+        "dimensions_mm": "150 x 86 x 160",
+        "connectors": {
+          "atx_24pin": 1,
+          "eps_8pin": 2,
+          "pcie_16pin_600w_native": 1,
+          "pcie_8pin": 4,
+          "sata": 8,
+          "molex": 3
+        }
+      },
+      "ai_capabilities": {
+        "ai_use": "Clean compact 850W for RTX 4090 — 160mm depth fits most mid-tower cases, reliable for daily inference workloads.",
+        "max_gpu_tdp_watts": 450,
+        "max_cpu_tdp_watts": 170,
+        "recommended_for_gpus": ["RTX 4090", "RTX 4080 Super", "RX 7900 XTX"],
+        "workload_suitability": ["llm_inference", "fine_tuning", "image_gen"],
+        "sustained_load_watts": 850,
+        "notes": "160mm depth fits mid-tower unlike longer 1000W+ units — good when case space is limited."
+      },
+      "compatibility": {
+        "motherboard_connectors": {
+          "atx_24pin": true,
+          "dual_eps_8pin": true,
+          "triple_eps_8pin": false
+        },
+        "gpu_native_16pin": true,
+        "pcie_8pin_count": 4,
+        "gpu_tdp_max_watts": 450,
+        "min_case_clearance_mm": 160,
+        "sfx_compatible": false,
+        "notes": "Compact for 850W class. ATX 3.0 native 16-pin prevents GPU power spikes that adapters can miss."
+      },
+      "pricing": {
+        "msrp_usd": 139,
+        "price_source": "manual",
+        "last_updated": "2026-04-01"
+      },
+      "meta": {
+        "release_date": "2023-05-01",
+        "popularity_score": 84,
+        "editor_pick": false,
+        "trending": false,
+        "badge": "Best Compact 850W"
+      }
+    },
+    {
+      "id": "psu-coolermaster-v850-sfx-gold",
+      "series": "V SFX Gold",
+      "brand": "Cooler Master",
+      "name": "Cooler Master V850 SFX Gold 850W",
+      "tier": "mid-range",
+      "specifications": {
+        "wattage": 850,
+        "efficiency_rating": "80+ Gold",
+        "efficiency_at_50_load_pct": 92,
+        "modular": "Fully modular",
+        "form_factor": "SFX-L",
+        "fan_size_mm": 92,
+        "fan_bearing": "Fluid dynamic",
+        "semi_fanless": false,
+        "atx_version": "ATX 3.0",
+        "protections": ["OVP", "UVP", "OCP", "OPP", "SCP", "OTP"],
+        "mtbf_hours": 100000,
+        "warranty_years": 10,
+        "dimensions_mm": "130 x 63 x 155",
+        "connectors": {
+          "atx_24pin": 1,
+          "eps_8pin": 2,
+          "pcie_16pin_600w_native": 1,
+          "pcie_8pin": 3,
+          "sata": 6,
+          "molex": 2
+        }
+      },
+      "ai_capabilities": {
+        "ai_use": "RTX 4090 in compact ITX or mATX AI deployment — SFX-L form factor enables serious inference workloads in space-constrained edge deployments.",
+        "max_gpu_tdp_watts": 450,
+        "max_cpu_tdp_watts": 125,
+        "recommended_for_gpus": ["RTX 4090", "RTX 4080 Super"],
+        "workload_suitability": ["llm_inference", "ai_dev", "edge_deploy"],
+        "sustained_load_watts": 850,
+        "notes": "SFX-L enables edge AI server deployments in compact 2U/4U chassis. ATX bracket included for standard ATX cases."
+      },
+      "compatibility": {
+        "motherboard_connectors": {
+          "atx_24pin": true,
+          "dual_eps_8pin": true,
+          "triple_eps_8pin": false
+        },
+        "gpu_native_16pin": true,
+        "pcie_8pin_count": 3,
+        "gpu_tdp_max_watts": 450,
+        "min_case_clearance_mm": 155,
+        "sfx_compatible": true,
+        "sfx_l_compatible": true,
+        "notes": "SFX-L requires SFX or SFX-L compatible case. ATX adapter bracket included. Smaller fan = more noise at high load than ATX units."
+      },
+      "pricing": {
+        "msrp_usd": 159,
+        "price_source": "manual",
+        "last_updated": "2026-04-01"
+      },
+      "meta": {
+        "release_date": "2023-08-01",
+        "popularity_score": 77,
+        "editor_pick": false,
+        "trending": false,
+        "badge": "Best SFX AI PSU"
+      }
+    },
+    {
+      "id": "psu-fractal-ion-gold-660w",
+      "series": "ION Gold",
+      "brand": "Fractal Design",
+      "name": "Fractal Design ION Gold 660W",
+      "tier": "entry",
+      "specifications": {
+        "wattage": 660,
+        "efficiency_rating": "80+ Gold",
+        "efficiency_at_50_load_pct": 92,
+        "modular": "Fully modular",
+        "form_factor": "ATX",
+        "fan_size_mm": 120,
+        "fan_bearing": "LLC",
+        "semi_fanless": false,
+        "atx_version": "ATX 2.0",
+        "protections": ["OVP", "UVP", "OCP", "OPP", "SCP"],
+        "mtbf_hours": 100000,
+        "warranty_years": 10,
+        "dimensions_mm": "150 x 86 x 140",
+        "connectors": {
+          "atx_24pin": 1,
+          "eps_8pin": 2,
+          "pcie_16pin_600w_native": 0,
+          "pcie_8pin": 4,
+          "sata": 6,
+          "molex": 2
+        }
+      },
+      "ai_capabilities": {
+        "ai_use": "Entry AI builds with RTX 4060 Ti or below — 660W covers 165W GPU + 105W CPU + system overhead for light inference.",
+        "max_gpu_tdp_watts": 200,
+        "max_cpu_tdp_watts": 125,
+        "recommended_for_gpus": ["RTX 4060", "RTX 4060 Ti", "RX 7600"],
+        "workload_suitability": ["llm_inference", "ai_dev", "image_gen"],
+        "sustained_load_watts": 660,
+        "notes": "No native 16-pin — requires adapter for RTX 40 series. Entry GPUs include adapter in box. Not recommended for RTX 4070 or above."
+      },
+      "compatibility": {
+        "motherboard_connectors": {
+          "atx_24pin": true,
+          "dual_eps_8pin": true,
+          "triple_eps_8pin": false
+        },
+        "gpu_native_16pin": false,
+        "adapter_required_for_16pin": true,
+        "pcie_8pin_count": 4,
+        "gpu_tdp_max_watts": 200,
+        "min_case_clearance_mm": 140,
+        "sfx_compatible": false,
+        "notes": "140mm depth is very compact. No ATX 3.0 — use adapter cables for RTX 40 series GPUs. Only for entry GPU builds."
+      },
+      "pricing": {
+        "msrp_usd": 99,
+        "price_source": "manual",
+        "last_updated": "2026-04-01"
+      },
+      "meta": {
+        "release_date": "2021-06-01",
+        "popularity_score": 78,
+        "editor_pick": false,
+        "trending": false,
+        "badge": "Best Entry PSU"
+      }
+    }
+  ]
+}
