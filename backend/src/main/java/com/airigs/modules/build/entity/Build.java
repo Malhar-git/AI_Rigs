@@ -1,13 +1,15 @@
 package com.airigs.modules.build.entity;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import io.hypersistence.utils.hibernate.type.json.JsonType;
 import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.annotations.JdbcTypeCode;
-import org.hibernate.type.SqlTypes;
+import org.hibernate.annotations.Type;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -19,29 +21,67 @@ import java.util.UUID;
 @Builder
 public class Build {
 
+
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    @Column(updatable = false, nullable = false)
     private UUID id;
+
+    @Column(name = "session_id")
+    private String sessionId;
 
     @Column(name = "user_id")
     private UUID userId;
 
-    @Column(name = "session_id", nullable = false)
-    private String sessionId;
+    // Full wizard answers stored as JSONB for auditability
+    @Type(JsonType.class)
+    @Column(name = "answers", columnDefinition = "jsonb")
+    private JsonNode answers;
 
-    @JdbcTypeCode(SqlTypes.JSON)
-    @Column(columnDefinition = "jsonb")
-    private Map<String, Object> answers;
+    // Raw Claude API response kept for debugging prompt issues
+    @Type(JsonType.class)
+    @Column(name = "ai_raw_response", columnDefinition = "jsonb")
+    private JsonNode aiRawResponse;
 
-    @JdbcTypeCode(SqlTypes.JSON)
-    @Column(name = "ai_response", columnDefinition = "jsonb")
-    private Map<String, Object> aiResponse;
+    @Column(name = "build_name")
+    private String buildName;
 
-    @Column(name = "total_price_inr", precision = 10, scale = 2)
+    @Column(name = "total_price_inr", precision = 12, scale = 2)
     private BigDecimal totalPriceInr;
+
+    @Column(name = "summary_reasoning", columnDefinition = "text")
+    private String summaryReasoning;
+
+    @Column(name = "zoom_level")
+    private String zoomLevel;
+
+    @Column(name = "dim_others")
+    private Boolean dimOthers;
+
+    @Column(name = "vram_floor_gb")
+    private Integer vramFloorGb;
+
+    @Column(name = "task")
+    private String task;
+
+    @Column(name = "model_name")
+    private String modelName;
+
+    @Column(name = "budget_tier")
+    private String budgetTier;
 
     @Column(name = "created_at", nullable = false)
     private LocalDateTime createdAt;
+
+    @OneToMany(mappedBy = "build",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true)
+    @Builder.Default
+    private List<BuildItem> items = new ArrayList<>();
+
+    @PrePersist
+    public void prePersist() {
+        this.createdAt = LocalDateTime.now();
+    }
+
 }
 

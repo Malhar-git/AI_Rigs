@@ -3,6 +3,7 @@ package com.airigs.modules.build.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.math.BigDecimal;
 import java.util.UUID;
 
 @Entity
@@ -16,22 +17,39 @@ public class BuildItem {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    @Column(updatable = false, nullable = false)
     private UUID id;
 
-    @Column(name = "build_id", nullable = false)
-    private UUID buildId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "build_id", nullable = false)
+    private Build build;
 
-    @Column(name = "product_id", nullable = false)
+    // Soft reference — no FK so catalog updates never break old builds
+    @Column(name = "product_id")
     private UUID productId;
 
-    @Column(nullable = false)
+    @Column(name = "category", nullable = false)
     private String category;
 
-    @Column(name = "ai_reason")
+    @Column(name = "product_name", nullable = false)
+    private String productName;
+
+    @Column(name = "brand")
+    private String brand;
+
+    @Column(name = "price_inr", precision = 12, scale = 2)
+    private BigDecimal priceInr;
+
+    @Column(name = "vram_gb")
+    private Integer vramGb;
+
+    @Column(name = "is_primary")
+    private Boolean isPrimary;
+
+    @Column(name = "ai_reason", columnDefinition = "text")
     private String aiReason;
 
-    @Column(name = "is_primary", nullable = false)
-    private boolean isPrimary;
+    @Column(name = "sku")
+    private String sku;   // catalog_id from product specs
+
 }
 
