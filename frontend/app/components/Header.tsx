@@ -1,8 +1,16 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 import Button from "../ui components/Button";
 
-const navItems = ["About", "Configurator", "Categories", "Top Grossing", "Contact Us"];
+const navItems = [
+  { label: "About" },
+  { label: "Configurator", href: "/guild-builder" },
+  { label: "Categories" },
+  { label: "Top Grossing", href: "/grossing" },
+  { label: "Contact Us" },
+];
 
 function parseRgbValues(color: string) {
   // Supports rgb(...) and rgba(...) strings from computed styles.
@@ -57,6 +65,8 @@ function isBackgroundLightFromElement(element: Element | null) {
 }
 
 function Navigation({ onDarkBackground }: { onDarkBackground: boolean }) {
+  const router = useRouter();
+
   return (
     <nav
       aria-label="Main navigation"
@@ -64,12 +74,15 @@ function Navigation({ onDarkBackground }: { onDarkBackground: boolean }) {
     >
       {navItems.map((item) => (
         <Button
-          key={item}
+          key={item.label}
           variant="ghost"
           size="md"
+          onClick={() => {
+            if (item.href) router.push(item.href);
+          }}
           className={`rounded-3xl px-1 transition-all duration-250 ease-out will-change-transform hover:cursor-pointer hover:scale-[0.92] hover:translate-y-px hover:bg-background/90 hover:shadow-[inset_0_1px_2px_rgba(0,0,0,0.2)] focus-visible:ring-accent/50 active:scale-[0.9] ${onDarkBackground ? "text-foreground" : "text-foreground"}`}
         >
-          {item}
+          {item.label}
         </Button>
       ))}
     </nav>
@@ -126,7 +139,11 @@ export default function Header() {
   return (
     <header ref={headerRef} className="flex sticky top-0 z-50 w-full pt-2 justify-between rounded-xl transition-colors duration-300">
       <div className="title ml-6">
-        <h2 className={`text-2xl tracking-wider transition-colors duration-300 ${onDarkBackground ? "text-foreground" : "text-foreground"}`}>AI RIGS</h2>
+        <Link href="/" className="inline-flex items-center">
+          <h3 className={`font-bold ttracking-wider transition-colors duration-300 ${onDarkBackground ? "text-foreground" : "text-foreground"}`}>
+            AI RIGS
+          </h3>
+        </Link>
       </div>
       <div className="navigation mr-32">
         <Navigation onDarkBackground={onDarkBackground} />
