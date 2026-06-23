@@ -63,7 +63,7 @@ public class ProductService {
                                                   BigDecimal budgetMax,
                                                   int vramFloorGb) {
         return productRepository
-                .findEligibleForBuild(budgetMin, budgetMax, vramFloorGb)
+                .findEligibleForBuild(budgetMax, vramFloorGb)
                 .stream()
                 .map(this::toDTO)
                 .toList();

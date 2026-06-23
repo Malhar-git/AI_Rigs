@@ -26,7 +26,6 @@ public interface ProductRepository extends JpaRepository<Product, UUID> {
         SELECT p FROM Product p
         WHERE p.inStock = true
           AND p.priceInr <= :budgetMax
-          AND (:budgetMin IS NULL OR p.priceInr >= :budgetMin)
           AND (
                 p.category != 'gpu'
                 OR p.vramGb IS NULL
@@ -34,8 +33,7 @@ public interface ProductRepository extends JpaRepository<Product, UUID> {
               )
         ORDER BY p.category ASC, p.priceInr ASC
         """)
-    List<Product> findEligibleForBuild(@Param("budgetMin") BigDecimal budgetMin,
-                                       @Param("budgetMax") BigDecimal budgetMax,
+    List<Product> findEligibleForBuild(@Param("budgetMax") BigDecimal budgetMax,
                                        @Param("vramMin")   int vramMin);
 
     // ── Dynamic filter used by product catalog page ─────────────────────────
