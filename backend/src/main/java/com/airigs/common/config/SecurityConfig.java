@@ -21,6 +21,7 @@ public class SecurityConfig {
                         .requestMatchers("/api/benchmarks/**").permitAll()
                         .requestMatchers("/api/products/**").permitAll()
                         .requestMatchers("/api/models/**").permitAll()
+                        .requestMatchers("/api/builds/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .httpBasic(Customizer.withDefaults());
