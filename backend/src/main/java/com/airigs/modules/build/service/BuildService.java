@@ -3,6 +3,8 @@ package com.airigs.modules.build.service;
 import com.airigs.common.exception.ResourceNotFoundException;
 import com.airigs.common.exception.ValidationException;
 import com.airigs.modules.aimodel.service.AiModelService;
+import com.airigs.modules.benchmark.dto.PerformanceEstimateDTO;
+import com.airigs.modules.benchmark.service.BenchmarkService;
 import com.airigs.modules.build.client.GeminiClient;
 import com.airigs.modules.build.client.GeminiClient.GeminiApiException;
 import com.airigs.modules.build.dto.*;
@@ -59,6 +61,7 @@ public class BuildService {
     private final BuildResponseParser responseParser;
     private final GeminiClient       geminiClient;
     private final ObjectMapper       objectMapper;
+    private final BenchmarkService   benchmarkService;
 
     // ─── Generate ─────────────────────────────────────────────────────────────
 
@@ -124,8 +127,17 @@ public class BuildService {
         // 9. Persist
         Build build = persistBuild(answers, parsed, canvasHints, vramFloor, rawResponse);
 
-        // 10. Return response
-        return toResponseDTO(build, parsed, canvasHints);
+        // 10. Resolve performance estimate from benchmark data
+        String gpuName = parsed.components().stream()
+                .filter(c -> "gpu".equalsIgnoreCase(c.category()))
+                .findFirst()
+                .map(ParsedComponent::productName)
+                .orElse(null);
+        PerformanceEstimateDTO estimate = resolvePerformanceEstimate(
+                gpuName, answers.getModelName(), answers.getPrecision());
+
+        // 11. Return response
+        return toResponseDTO(build, parsed, canvasHints, estimate);
     }
 
     // ─── Retrieve ─────────────────────────────────────────────────────────────
@@ -135,12 +147,24 @@ public class BuildService {
         Build build = buildRepository.findIdWithItems(buildId)
                 .orElseThrow(() -> new ResourceNotFoundException("Build", "id", buildId));
 
+        String gpuName = build.getItems().stream()
+                .filter(item -> "gpu".equalsIgnoreCase(item.getCategory()))
+                .findFirst()
+                .map(BuildItem::getProductName)
+                .orElse(null);
+        String precision = build.getAnswers() != null && build.getAnswers().has("precision")
+                ? build.getAnswers().get("precision").asText(null)
+                : null;
+        PerformanceEstimateDTO estimate = resolvePerformanceEstimate(
+                gpuName, build.getModelName(), precision);
+
         return BuildResponseDTO.builder()
                 .buildId(build.getId())
                 .buildName(build.getBuildName())
                 .totalPriceInr(build.getTotalPriceInr())
                 .components(build.getItems().stream().map(this::itemToDTO).toList())
                 .summaryReasoning(build.getSummaryReasoning())
+                .performanceEstimate(estimate)
                 .task(build.getTask())
                 .modelName(build.getModelName())
                 .budgetTier(build.getBudgetTier())
@@ -224,12 +248,6 @@ public class BuildService {
     private Map<String, ProductDto> buildLookup(List<ProductDto> catalog) {
         Map<String, ProductDto> lookup = new HashMap<>();
         for (ProductDto p : catalog) {
-            // Primary key: catalog_id from specs
-            if (p.getSpecs() != null && p.getSpecs().has("catalog_id")) {
-                String catId = p.getSpecs().get("catalog_id").asText(null);
-                if (catId != null) lookup.put(catId, p);
-            }
-            // Fallback key: product UUID
             if (p.getId() != null) lookup.put(p.getId().toString(), p);
         }
         return lookup;
@@ -312,7 +330,8 @@ public class BuildService {
 
     private BuildResponseDTO toResponseDTO(Build build,
                                            ParsedBuildResult parsed,
-                                           CanvasHintsDTO canvasHints) {
+                                           CanvasHintsDTO canvasHints,
+                                           PerformanceEstimateDTO estimate) {
         return BuildResponseDTO.builder()
                 .buildId(build.getId())
                 .buildName(build.getBuildName())
@@ -321,6 +340,7 @@ public class BuildService {
                 .summaryReasoning(build.getSummaryReasoning())
                 .canvasHints(canvasHints)
                 .upgradePaths(parsed.upgradePaths())
+                .performanceEstimate(estimate)
                 .sessionId(build.getSessionId())
                 .createdAt(build.getCreatedAt())
                 .task(build.getTask())
@@ -328,6 +348,13 @@ public class BuildService {
                 .budgetTier(build.getBudgetTier())
                 .vramFloorGb(build.getVramFloorGb())
                 .build();
+    }
+
+    private PerformanceEstimateDTO resolvePerformanceEstimate(
+            String gpuProductName, String modelName, String precision) {
+        if (gpuProductName == null) return null;
+        return benchmarkService.findBestMatchForBuild(gpuProductName, modelName, precision)
+                .orElse(null);
     }
 
     private BuildItemDTO itemToDTO(BuildItem item) {
