@@ -33,6 +33,8 @@ public class BuildPromptBuilder {
 
             HARD RULES — never violate these:
             1. Only recommend products from the provided catalog. Never invent components.
+               Each catalog entry has a catalog_id that is a UUID (e.g. "a1b2c3d4-...").
+               Copy it character-for-character into your response — do not shorten, guess, or rephrase it.
             2. Total price of all selected components MUST NOT exceed budget_max INR.
             3. If vram_floor_gb > 0, the selected GPU must have vram_gb >= vram_floor_gb.
                If no GPU meets this, pick the highest VRAM available and explain in summary_reasoning.
@@ -127,8 +129,7 @@ public class BuildPromptBuilder {
         sb.append("── ").append(category.toUpperCase()).append(" ──\n");
 
         for (ProductDto p : items) {
-            String catalogId = specStr(p.getSpecs(), "catalog_id");
-            sb.append("  catalog_id: ").append(catalogId != null ? catalogId : p.getId())
+            sb.append("  catalog_id: ").append(p.getId())
                     .append(" | ").append(p.getName())
                     .append(" | ₹").append(p.getPriceInr());
 

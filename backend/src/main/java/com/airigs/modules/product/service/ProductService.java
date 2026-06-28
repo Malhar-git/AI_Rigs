@@ -9,6 +9,8 @@ import com.airigs.modules.product.repository.ProductRepository;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -16,6 +18,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -23,6 +26,9 @@ import java.util.UUID;
 @RequiredArgsConstructor()
 @Transactional(readOnly = true)
 public class ProductService {
+
+    private static final Logger log = LoggerFactory.getLogger(ProductService.class);
+
     private final ProductRepository productRepository;
     private final ObjectMapper objectMapper;
 
@@ -57,16 +63,27 @@ public class ProductService {
     }
 
     // ── Build wizard — catalog slice for Claude ───────────────────────────────
-    // Called by BuildService before constructing the Claude prompt.
-    // Returns in-stock products within budget that meet the VRAM floor.
     public List<ProductDto> filterByBudgetAndVram(BigDecimal budgetMin,
                                                   BigDecimal budgetMax,
                                                   int vramFloorGb) {
-        return productRepository
-                .findEligibleForBuild(budgetMax, vramFloorGb)
-                .stream()
-                .map(this::toDTO)
-                .toList();
+        List<Product> eligible = productRepository.findEligibleForBuild(budgetMax, vramFloorGb);
+
+        boolean hasGpu = eligible.stream().anyMatch(p -> "gpu".equalsIgnoreCase(p.getCategory()));
+        if (!hasGpu) {
+            // No GPU met the VRAM floor within budget — inject best available as fallback
+            // so Gemini always has GPU options and can explain the VRAM shortfall.
+            List<Product> fallback = productRepository.findTopVramGpusWithinBudget(
+                    budgetMax, PageRequest.of(0, 3));
+            if (!fallback.isEmpty()) {
+                log.warn("No GPU meets {}GB VRAM floor within ₹{} — adding {} fallback GPU(s)",
+                        vramFloorGb, budgetMax, fallback.size());
+                List<Product> merged = new ArrayList<>(eligible);
+                merged.addAll(fallback);
+                return merged.stream().map(this::toDTO).toList();
+            }
+        }
+
+        return eligible.stream().map(this::toDTO).toList();
     }
 
     // ── Category browsing ─────────────────────────────────────────────────────
@@ -155,10 +172,10 @@ public class ProductService {
 
     private String resolveSortField(String sortBy) {
         return switch (sortBy == null ? "" : sortBy.toLowerCase()) {
-            case "vram_gb"   -> "vramGb";
+            case "vram_gb"   -> "vram_gb";
             case "name"      -> "name";
-            case "price_inr" -> "priceInr";
-            default          -> "priceInr";
+            case "price_inr" -> "price_inr";
+            default          -> "price_inr";
         };
     }
 

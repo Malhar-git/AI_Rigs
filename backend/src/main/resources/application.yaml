@@ -3,6 +3,9 @@ spring:
     active : dev
   config:
     import: optional:file:.env[.properties]
+  docker:
+    compose:
+      enabled: false
   datasource:
     url: jdbc:postgresql://127.0.0.1:55433/airigs_db
     username: postgres
@@ -33,4 +36,4 @@ app:
   gemini:
     api-key: ${GEMINI_API_KEY:}
     model: gemini-2.5-flash
-    max-token: 2048
+    max-token: 8192
