@@ -4,9 +4,8 @@ import Image from "next/image";
 import { ProgressCircle } from "@tremor/react";
 import { ProgressBar } from "../ui components/ProgressBar";
 import { Fragment } from "react";
-import Header from "../components/Header";
 import Button from "../ui components/Button";
-import Footer from "../components/Footer";
+import PageShell from "../components/PageShell";
 
 type ComparedGpu = {
   name: string;
@@ -141,12 +140,8 @@ function ScoreDial({ value }: { value: number }) {
 
 export default function ProductComparison() {
   return (
-    <div className="product-comparison min-h-screen">
-      <header className="header">
-        <Header />
-      </header>
-
-      <main className="mx-auto flex w-full max-w-310 gap-5 px-3 py-8 sm:px-6 lg:gap-8 lg:px-8">
+    <PageShell>
+      <div className="flex gap-5 lg:gap-8">
         <aside className="hidden w-52 mt-2 shrink-0 border-r border-border pr-5 lg:block">
           <h4 className="text-accent">COMPARE</h4>
           <small className="font-secondary mt-1 block uppercase text-secondary">
@@ -168,13 +163,13 @@ export default function ProductComparison() {
         </aside>
 
         <section className="min-w-0 flex-1">
-          <h2 className="sm:text-5xl">GPU Technical Comparison</h2>
+          <h2>GPU Technical Comparison</h2>
           <p className="mt-1 text-secondary">
             Detailed analysis of top-tier silicon for LLM training and high-fidelity rendering.
           </p>
 
           <div className="mt-6 overflow-x-auto border border-border bg-background">
-            <div className="grid min-w-230 grid-cols-[210px_repeat(3,minmax(0,1fr))]">
+            <div className="grid min-w-[57.5rem] grid-cols-[210px_repeat(3,minmax(0,1fr))]">
               <div className="border-b border-r border-border p-4" />
               {COMPARED_GPUS.map((gpu) => (
                 <div key={gpu.name} className="border-b border-r border-border p-4 last:border-r-0">
@@ -253,11 +248,11 @@ export default function ProductComparison() {
           </div>
 
           <section className="mt-8 grid gap-5 border border-border bg-background p-5 md:grid-cols-[210px_repeat(3,minmax(0,1fr))]">
-            <h3 className="font-primary text-3xl italic leading-tight text-foreground">Architect&apos;s Verdict</h3>
+            <h3 className="font-primary italic leading-tight text-foreground">Architect&apos;s Verdict</h3>
             {COMPARED_GPUS.map((gpu) => (
               <article key={`${gpu.name}-verdict`} className="border border-border bg-card p-5">
                 <span className="inline-block h-2 w-2 rounded-full bg-accent" />
-                <h4 className="mt-3 text-xl font-bold text-foreground">{gpu.verdict.title}</h4>
+                <h4 className="mt-3 font-bold text-foreground">{gpu.verdict.title}</h4>
                 <p className="mt-2 text-sm leading-normal text-secondary">{gpu.verdict.body}</p>
                 <small className="mt-5 block font-secondary text-[0.62rem] uppercase tracking-[0.2em] text-accent">
                   {gpu.verdict.tag}
@@ -270,7 +265,7 @@ export default function ProductComparison() {
             {COMPARED_GPUS.map((gpu) => (
               <article key={`${gpu.name}-recommendation`} className="border border-border bg-background p-6 text-center">
                 <small className="font-secondary text-[0.62rem] uppercase tracking-[0.24em] text-accent">Recommended For</small>
-                <h4 className="mt-3 text-2xl font-semibold text-foreground">{gpu.recommendation}</h4>
+                <h4 className="mt-3 font-semibold text-foreground">{gpu.recommendation}</h4>
                 <small className="mt-2 block font-secondary text-[0.62rem] uppercase tracking-[0.2em] text-secondary">
                   {gpu.name}
                 </small>
@@ -278,8 +273,7 @@ export default function ProductComparison() {
             ))}
           </section>
         </section>
-      </main>
-      <Footer />
-    </div>
+      </div>
+    </PageShell>
   );
 }

@@ -81,7 +81,7 @@ export default function Featured() {
               <p>Storage: {card.storage}</p>
             </div>
 
-            <div className="mt-4 space-y-2 text-sm text-zinc-700">
+            <div className="mt-4 space-y-2 text-sm text-secondary">
               <p>Training: {card.trainingCapability}</p>
               <p>Build capability: {card.buildCapability}</p>
             </div>

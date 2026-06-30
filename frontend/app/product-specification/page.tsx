@@ -3,8 +3,7 @@ import { ProgressCircle } from "@tremor/react";
 import { ProgressBar } from "../ui components/ProgressBar";
 import Label from "../ui components/Label";
 import Image from "next/image";
-import Header from "../components/Header";
-import Footer from "../components/Footer";
+import PageShell from "../components/PageShell";
 import { useRouter } from "next/navigation";
 
 type SpecItem = {
@@ -31,7 +30,7 @@ function SpecCell({ label, value }: SpecItem) {
   return (
     <article className="flex min-h-24 flex-col justify-between border-primary border-2 px-2 py-4 sm:min-h-24">
       <small className="font-secondary text-xs tracking-[0.18em] text-muted-foreground">{label}</small>
-      <h3 className="font-secondary mt-3 text-foreground sm:text-5xl">{value}</h3>
+      <h3 className="font-secondary mt-3 text-foreground">{value}</h3>
     </article>
   );
 }
@@ -39,7 +38,7 @@ function SpecCell({ label, value }: SpecItem) {
 function TechnicalMatrix() {
   return (
     <section className="mt-10 rounded-sm px-0 py-3 ">
-      <h4 className="px-0 pb-4 font-secondary tracking-wide text-secondary sm:text-xl">
+      <h4 className="px-0 pb-4 font-secondary tracking-wide text-secondary">
         TECHNICAL MATRIX
       </h4>
       <div className="grid gap-0 bg-muted/60 sm:grid-cols-2 md:grid-cols-4">
@@ -260,38 +259,34 @@ function RequiredInfrastructure() {
 
 export default function ProductSpecification() {
   return (
-    <div className="product-specification">
-      <Header />
-      <div className="product_specification-page px-4 py-6 sm:px-6">
-        <div className="grid gap-4 lg:grid-cols-[5fr_2fr]">
-          <div className="main_section">
-            <h2>NVIDIA RTX 5090</h2>
-            <div className="mt-0 flex w-full flex-wrap items-center gap-1">
-              <Label variant="active" tooltip="Recommended by benchmark and thermals analysis.">
-                AI RECOMMENDED
-              </Label>
-              <Label tooltip="NVIDIA Blackwell generation architecture.">BLACKWELL ARCH</Label>
-              <Label tooltip="24 GB dedicated + 8 GB shared memory profile.">32GB VRAM</Label>
-            </div>
-            <div className="relative mt-6 h-64 w-full overflow-hidden rounded-sm">
-              <Image
-                src="/product/pexels-googledeepmind.jpg"
-                alt="Product Image"
-                fill
-                className="object-cover"
-              />
-            </div>
-            <TechnicalMatrix />
-            <ModelComaptibility />
-            <ClinicalVerdict />
+    <PageShell>
+      <div className="grid gap-4 lg:grid-cols-[5fr_2fr]">
+        <div className="main_section">
+          <h2>NVIDIA RTX 5090</h2>
+          <div className="mt-0 flex w-full flex-wrap items-center gap-1">
+            <Label variant="active" tooltip="Recommended by benchmark and thermals analysis.">
+              AI RECOMMENDED
+            </Label>
+            <Label tooltip="NVIDIA Blackwell generation architecture.">BLACKWELL ARCH</Label>
+            <Label tooltip="24 GB dedicated + 8 GB shared memory profile.">32GB VRAM</Label>
           </div>
-          <div className="sidebar lg:justify-self-end">
-            <PerformanceCard />
-            <RequiredInfrastructure />
+          <div className="relative mt-6 h-64 w-full overflow-hidden rounded-sm">
+            <Image
+              src="/product/pexels-googledeepmind.jpg"
+              alt="Product Image"
+              fill
+              className="object-cover"
+            />
           </div>
+          <TechnicalMatrix />
+          <ModelComaptibility />
+          <ClinicalVerdict />
+        </div>
+        <div className="sidebar lg:justify-self-end">
+          <PerformanceCard />
+          <RequiredInfrastructure />
         </div>
       </div>
-      <Footer />
-    </div>
+    </PageShell>
   );
 }

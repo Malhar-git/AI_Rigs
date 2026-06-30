@@ -52,7 +52,7 @@ export default function Button({
         <>
           <span className="relative z-10">{children}</span>
           <span
-            className="absolute inset-0 -translate-x-full bg-linear-to-r from-gray-200 to-gray-500 transition-transform duration-500 ease-in-out group-hover:translate-x-0"
+            className="absolute inset-0 -translate-x-full bg-linear-to-r from-muted to-secondary transition-transform duration-500 ease-in-out group-hover:translate-x-0"
             aria-hidden="true"
           />
         </>

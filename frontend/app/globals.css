@@ -48,12 +48,6 @@
   --text-muted: hsl(0 0% 55%); /* Medium Gray */
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: var(--color-background);
-    --foreground: var(--color-foreground);
-  }
-}
 
 *,
 *::before,
