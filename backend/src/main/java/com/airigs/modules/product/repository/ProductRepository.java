@@ -22,18 +22,20 @@ public interface ProductRepository extends JpaRepository<Product, UUID> {
     // ── Core filter used by BuildService ─────────────────────────────────────
     // Returns all in-stock products within budget AND meeting VRAM floor.
     // vramMin is applied only to GPUs — other categories are unaffected.
+    // GPUs with null vram_gb are excluded from eligible (they don't prove VRAM fit).
     @Query("""
         SELECT p FROM Product p
         WHERE p.inStock = true
+          AND p.priceInr >= :budgetMin
           AND p.priceInr <= :budgetMax
           AND (
                 p.category != 'gpu'
-                OR p.vramGb IS NULL
                 OR p.vramGb >= :vramMin
               )
         ORDER BY p.category ASC, p.priceInr ASC
         """)
-    List<Product> findEligibleForBuild(@Param("budgetMax") BigDecimal budgetMax,
+    List<Product> findEligibleForBuild(@Param("budgetMin") BigDecimal budgetMin,
+                                       @Param("budgetMax") BigDecimal budgetMax,
                                        @Param("vramMin")   int vramMin);
 
     // ── Dynamic filter used by product catalog page ─────────────────────────

@@ -101,24 +101,22 @@ public class GeminiClient {
             String content = extractContent(response.getBody());
             log.info("Gemini API returned content: {}", content.length());
             return content;
-        }catch(HttpClientErrorException e){
-            log.error("Gemini API client error [{}]: {}", e.getMessage(), e.getResponseBodyAsString());
-
+        } catch (HttpClientErrorException e) {
+            log.error("Gemini API HTTP error [{}]: {}", e.getStatusCode(), e.getResponseBodyAsString());
             throw new GeminiApiException(
-                    "Gemini API error" + e.getStatusCode() + ": " + e.getMessage()
-            );
-        }catch (GeminiApiException e){
+                    "Gemini API error " + e.getStatusCode() + ": " + e.getMessage());
+        } catch (GeminiApiException e) {
             throw e;
         } catch (Exception e) {
-            log.error("Gemini API client error [{}]: {}", e.getMessage(), e.getStackTrace());
-            throw new GeminiApiException("Gemini API call failed" + e.getMessage());
+            log.error("Gemini API call failed: {}", e.getMessage(), e);
+            throw new GeminiApiException("Gemini API call failed: " + e.getMessage());
         }
     }
 
 //    Request Builder
     private String buildRequestBody(String systemPrompt, String userPrompt){
         try{
-            ObjectNode root = new ObjectMapper().createObjectNode();
+            ObjectNode root = objectMapper.createObjectNode();
 
             // System Instruction
             ObjectNode systemInstruction = objectMapper.createObjectNode();
@@ -173,12 +171,17 @@ public class GeminiClient {
             JsonNode firstCandidate = candidates.get(0);
 
             String finishReason = firstCandidate.path("finishReason").asText("");
-            if("SAFETY".equals(finishReason)){
-                log.warn("Gemini has blocked response due to safety filters");
+            if ("SAFETY".equals(finishReason)) {
+                log.warn("Gemini blocked response due to safety filters");
                 throw new GeminiApiException(
                         "Gemini blocked the response due to safety filters. " +
-                                "Try rephrasing the system prompt."
-                );
+                                "Try rephrasing the system prompt.");
+            }
+            if ("MAX_TOKENS".equals(finishReason)) {
+                log.error("Gemini response truncated at token limit — increase app.gemini.max-tokens");
+                throw new GeminiApiException(
+                        "Gemini response was cut off (token limit). " +
+                                "The build catalog may be too large for the current token budget.");
             }
 
             JsonNode part = firstCandidate.path("content").path("parts");

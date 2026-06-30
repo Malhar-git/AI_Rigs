@@ -38,28 +38,34 @@ public class BuildResponseParser {
     // ─── Main parse ───────────────────────────────────────────────────────────
 
     public ParsedBuildResult parse(String rawResponse,
-                                   Map<String, ProductDto> catalogLookup) {
+                                   Map<String, ProductDto> catalogLookup,
+                                   BigDecimal budgetMax) {
         String cleaned = stripFences(rawResponse);
 
         JsonNode root;
         try {
             root = objectMapper.readTree(cleaned);
         } catch (Exception e) {
-            log.error("Claude returned invalid JSON: {}", e.getMessage());
+            log.error("Gemini returned invalid JSON: {}", e.getMessage());
             log.debug("Raw response: {}", rawResponse);
-            throw new ParseException("Claude returned invalid JSON: " + e.getMessage());
+            throw new ParseException("Gemini returned invalid JSON: " + e.getMessage());
         }
 
         String buildName        = root.path("build_name").asText("AI Workstation Build");
         String summaryReasoning = root.path("summary_reasoning").asText("");
         CanvasHintsDTO  canvasHints  = parseCanvasHints(root.path("canvas_hints"));
         List<UpgradePathDTO> upgrades = parseUpgradePaths(root.path("upgrade_paths"));
-        List<ParsedComponent> components = parseComponents(root.path("components"), catalogLookup);
+        List<ParsedComponent> components = deduplicateByCategory(
+                parseComponents(root.path("components"), catalogLookup));
 
-        // Always compute total from real catalog prices — not Claude's values
+        // Always compute total from real catalog prices — never trust Gemini's values
         BigDecimal total = components.stream()
                 .map(c -> c.priceInr() != null ? c.priceInr() : BigDecimal.ZERO)
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
+
+        if (budgetMax != null && total.compareTo(budgetMax) > 0) {
+            log.warn("Generated build total ₹{} exceeds budget cap ₹{}", total, budgetMax);
+        }
 
         return new ParsedBuildResult(buildName, summaryReasoning,
                 components, canvasHints, upgrades, total);
@@ -83,9 +89,9 @@ public class BuildResponseParser {
                 // Primary match: catalog_id
                 ProductDto product = catalogId != null ? lookup.get(catalogId) : null;
 
-                // Fallback: name substring match
+                // Fallback: name substring match scoped to same category
                 if (product == null) {
-                    product = findByName(lookup, aiName);
+                    product = findByName(lookup, aiName, category);
                     if (product != null)
                         log.warn("catalog_id '{}' not matched — fell back to name match: {}",
                                 catalogId, product.getName());
@@ -109,6 +115,22 @@ public class BuildResponseParser {
             }
         }
         return result;
+    }
+
+    // Keep only the first component per category — Gemini occasionally suggests two GPUs, etc.
+    private List<ParsedComponent> deduplicateByCategory(List<ParsedComponent> components) {
+        Set<String> seen = new LinkedHashSet<>();
+        List<ParsedComponent> deduped = new ArrayList<>();
+        for (ParsedComponent c : components) {
+            String cat = c.category() == null ? "" : c.category().toLowerCase();
+            if (seen.add(cat)) {
+                deduped.add(c);
+            } else {
+                log.warn("Duplicate category '{}' in build — dropping extra component '{}'",
+                        c.category(), c.productName());
+            }
+        }
+        return deduped;
     }
 
     private CanvasHintsDTO parseCanvasHints(JsonNode node) {
@@ -162,10 +184,13 @@ public class BuildResponseParser {
         return t.trim();
     }
 
-    private ProductDto findByName(Map<String, ProductDto> lookup, String name) {
+    // Category-scoped name match to prevent a short brand/series token matching a wrong-category product.
+    private ProductDto findByName(Map<String, ProductDto> lookup, String name, String category) {
         if (name == null) return null;
         String lower = name.toLowerCase();
+        String cat   = category == null ? "" : category.toLowerCase();
         return lookup.values().stream()
+                .filter(p -> cat.isEmpty() || cat.equalsIgnoreCase(p.getCategory()))
                 .filter(p -> p.getName().toLowerCase().contains(lower)
                         || lower.contains(p.getName().toLowerCase()))
                 .findFirst().orElse(null);

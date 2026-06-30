@@ -56,17 +56,32 @@ public class ProductService {
         return PagedResponse.of(page, this::toDTO);
     }
 
-    // ── Build wizard — catalog slice for Claude ───────────────────────────────
-    // Called by BuildService before constructing the Claude prompt.
-    // Returns in-stock products within budget that meet the VRAM floor.
+<<<<<<< Updated upstream
+    // ── Build wizard — catalog slice for Gemini ──────────────────────────────
     public List<ProductDto> filterByBudgetAndVram(BigDecimal budgetMin,
                                                   BigDecimal budgetMax,
                                                   int vramFloorGb) {
-        return productRepository
-                .findEligibleForBuild(budgetMax, vramFloorGb)
-                .stream()
-                .map(this::toDTO)
-                .toList();
+        List<Product> eligible = productRepository.findEligibleForBuild(budgetMin, budgetMax, vramFloorGb);
+
+        boolean hasGpu = eligible.stream().anyMatch(p -> "gpu".equalsIgnoreCase(p.getCategory()));
+        if (!hasGpu) {
+            // No GPU met the VRAM floor within budget — inject best available as fallback
+            // so Gemini always has GPU options and can explain the VRAM shortfall.
+            List<Product> fallback = productRepository.findTopVramGpusWithinBudget(
+                    budgetMax, PageRequest.of(0, 3));
+            if (!fallback.isEmpty()) {
+                log.warn("No GPU meets {}GB VRAM floor within ₹{} — adding {} fallback GPU(s)",
+                        vramFloorGb, budgetMax, fallback.size());
+                // De-dup by UUID so fallback GPUs already in eligible don't appear twice
+                java.util.Set<UUID> seen = new java.util.LinkedHashSet<>();
+                List<Product> merged = new ArrayList<>(eligible);
+                eligible.forEach(p -> seen.add(p.getId()));
+                fallback.stream().filter(p -> seen.add(p.getId())).forEach(merged::add);
+                return merged.stream().map(this::toDTO).toList();
+            }
+        }
+
+        return eligible.stream().map(this::toDTO).toList();
     }
 
     // ── Category browsing ─────────────────────────────────────────────────────

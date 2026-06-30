@@ -9,7 +9,6 @@ import org.jsoup.select.Elements;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
-import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -85,7 +84,7 @@ public class AIArenaSyncJob {
                 );
                 upserted++;
             }
-        } catch (IOException e) {
+        } catch (Exception e) {
             status = buildFailureStatus(e);
         }
 
@@ -133,7 +132,7 @@ public class AIArenaSyncJob {
         }
     }
 
-    private String buildFailureStatus(IOException e) {
+    private String buildFailureStatus(Exception e) {
         String message = e.getMessage() == null ? "unknown_error" : e.getMessage();
         String full = "failed: " + message;
         return full.length() > 255 ? full.substring(0, 255) : full;

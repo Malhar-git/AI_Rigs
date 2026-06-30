@@ -62,7 +62,6 @@ public class BuildService {
 
     // ─── Generate ─────────────────────────────────────────────────────────────
 
-    @Transactional
     public BuildResponseDTO generateBuild(WizardAnswersDTO answers) {
 
         // 1. Validate
@@ -110,7 +109,7 @@ public class BuildService {
         }
 
         // 7. Parse response
-        ParsedBuildResult parsed = responseParser.parse(rawResponse, catalogLookup);
+        ParsedBuildResult parsed = responseParser.parse(rawResponse, catalogLookup, answers.getBudgetMax());
 
         if (parsed.components().isEmpty()) {
             throw new RuntimeException(
@@ -260,7 +259,8 @@ public class BuildService {
 
     // ─── Persistence ──────────────────────────────────────────────────────────
 
-    private Build persistBuild(WizardAnswersDTO answers,
+    @Transactional
+    Build persistBuild(WizardAnswersDTO answers,
                                ParsedBuildResult parsed,
                                CanvasHintsDTO canvasHints,
                                int vramFloor,

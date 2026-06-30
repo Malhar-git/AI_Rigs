@@ -299,18 +299,18 @@ public final class ParseUtil {
      * Returns LocalDateTime.now() as fallback if pattern not found.
      */
     public static LocalDateTime parseLocalScoreDate(String text) {
-        if (text == null) return LocalDateTime.now();
+        if (text == null) return null;
 
         Matcher m = Pattern.compile(
                 "(\\d{2}/\\d{2}/\\d{4} - \\d{1,2}:\\d{2} (?:AM|PM))")
                 .matcher(text);
-        if (!m.find()) return LocalDateTime.now();
+        if (!m.find()) return null;
 
         try {
             return LocalDateTime.parse(m.group(1), LOCALSCORE_DATE_FMT);
         } catch (Exception e) {
             log.warn("Could not parse date '{}': {}", m.group(1), e.getMessage());
-            return LocalDateTime.now();
+            return null;
         }
     }
 

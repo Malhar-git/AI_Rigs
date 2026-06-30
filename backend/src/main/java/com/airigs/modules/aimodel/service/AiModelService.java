@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.UUID;
 
 @Service
@@ -22,6 +23,14 @@ import java.util.UUID;
 public class AiModelService {
 
     private final AiModelRepository aiModelRepository;
+
+    // Wizard sends q4/q8/fp16; catalog stores int4/int8/bf16/fp8.
+    // Map wizard vocab → catalog-canonical form so the support check works.
+    private static final Map<String, String> PRECISION_ALIASES = Map.of(
+            "q4",   "int4",
+            "q8",   "int8",
+            "fp16", "bf16"
+    );
 
     // ── Wizard step 2 — model dropdown grouped by family ──────────────────────
 
@@ -98,9 +107,11 @@ public class AiModelService {
             return model.getVramMinGb() != null ? model.getVramMinGb() : 0;
         }
 
-        String key = (precision == null || precision.isBlank())
+        String raw = (precision == null || precision.isBlank())
                 ? "auto"
                 : precision.toLowerCase(Locale.ROOT).trim();
+        // Normalize wizard vocab to catalog vocab before matching
+        String key = PRECISION_ALIASES.getOrDefault(raw, raw);
 
         List<String> variants = model.getPrecisionVariants();
 
@@ -125,11 +136,15 @@ public class AiModelService {
         if (baseVramGb == null || baseVramGb <= 0) return 0;
         if (precision == null) return baseVramGb;
 
-        return switch (precision.toLowerCase(Locale.ROOT).trim()) {
-            case "q4", "int4" -> baseVramGb;                           // already the Q4 floor
-            case "q8", "int8" -> (int) Math.ceil(baseVramGb * 1.5);   // Q8 ≈ 1.5× Q4
-            case "fp16"       -> (int) Math.ceil(baseVramGb * 2.0);   // FP16 ≈ 2× Q4
-            default           -> baseVramGb;                           // auto, fp32, etc.
+        String normalized = PRECISION_ALIASES.getOrDefault(
+                precision.toLowerCase(Locale.ROOT).trim(),
+                precision.toLowerCase(Locale.ROOT).trim());
+        return switch (normalized) {
+            case "q4", "int4"        -> baseVramGb;                           // already the Q4 floor
+            case "q8", "int8"        -> (int) Math.ceil(baseVramGb * 1.5);   // Q8 ≈ 1.5× Q4
+            case "fp16", "bf16"      -> (int) Math.ceil(baseVramGb * 2.0);   // FP16/BF16 ≈ 2× Q4
+            case "fp8"               -> (int) Math.ceil(baseVramGb * 1.5);   // FP8 ≈ between Q4 and FP16
+            default                  -> baseVramGb;                           // auto, fp32, etc.
         };
     }
 

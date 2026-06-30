@@ -23,8 +23,8 @@ public class ProductController {
     public ResponseEntity<ApiResponse<PagedResponse<ProductDto>>> getProducts(
             @RequestParam(required = false) String category,
             @RequestParam(required = false) String brand,
-            @RequestParam(required = false, name = "budget_min") BigDecimal budgetMax,
-            @RequestParam(required = false, name = "budget_max") BigDecimal budgetMin,
+            @RequestParam(required = false, name = "budget_min") BigDecimal budgetMin,
+            @RequestParam(required = false, name = "budget_max") BigDecimal budgetMax,
             @RequestParam(required = false, name = "vram_min") Integer vramMin,
             @RequestParam(required = false, name = "in_stock") Boolean inStock,
             @RequestParam(defaultValue = "0") int page,

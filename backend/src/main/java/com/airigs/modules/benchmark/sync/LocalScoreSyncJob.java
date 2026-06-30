@@ -146,6 +146,10 @@ public class LocalScoreSyncJob {
 
             // --- Date ---
             LocalDateTime testedAt = parseDate(text);
+            if (testedAt == null) {
+                log.warn("Skipping testId={}: could not parse tested_at date", testId);
+                return null;
+            }
 
             // ---Accelerator--
             Element accelLink = doc.selectFirst("a[href^=/accelerator/]");
@@ -245,7 +249,7 @@ public class LocalScoreSyncJob {
 
             return result;
         } catch (Exception e) {
-            System.err.println("Failed to scrape results: " + testId + e.getMessage());
+            log.warn("Failed to scrape result testId={}: {}", testId, e.getMessage());
             return null;
         }
     }
@@ -458,13 +462,14 @@ public class LocalScoreSyncJob {
                 .compile("(\\d{2}/\\d{2}/\\d{4} - \\d{1,2}:\\d{2} (?:AM|PM))")
                 .matcher(text);
         if (!matcher.find()) {
-            return LocalDateTime.now();
+            return null;
         }
         try {
             DateTimeFormatter fmt = DateTimeFormatter.ofPattern("MM/dd/yyyy - h:mm a", Locale.ENGLISH);
             return LocalDateTime.parse(matcher.group(1), fmt);
         } catch (Exception e) {
-            return LocalDateTime.now();
+            log.warn("Could not parse date '{}': {}", matcher.group(1), e.getMessage());
+            return null;
         }
     }
 
