@@ -143,9 +143,14 @@ public class GeminiClient {
             // responseMimeType = application/json tells Gemini to return
             // valid JSON — equivalent to Claude's "respond only with JSON" instruction
             ObjectNode genConfig = objectMapper.createObjectNode();
-            genConfig.put("temperature",       0.2);     // low temp for deterministic builds
+            genConfig.put("temperature",       0.2);
             genConfig.put("maxOutputTokens",   maxTokens);
             genConfig.put("responseMimeType",  "application/json");
+            // Disable thinking — gemini-2.5-flash thinks by default and those tokens
+            // count against maxOutputTokens, starving the actual JSON response.
+            ObjectNode thinkingConfig = objectMapper.createObjectNode();
+            thinkingConfig.put("thinkingBudget", 0);
+            genConfig.set("thinkingConfig", thinkingConfig);
             root.set("generationConfig", genConfig);
 
             return objectMapper.writeValueAsString(root);

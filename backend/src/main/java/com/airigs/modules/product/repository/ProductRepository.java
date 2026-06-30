@@ -38,16 +38,41 @@ public interface ProductRepository extends JpaRepository<Product, UUID> {
                                        @Param("budgetMax") BigDecimal budgetMax,
                                        @Param("vramMin")   int vramMin);
 
-    // ── Dynamic filter used by product catalog page ─────────────────────────
+    // Fallback: highest-VRAM GPUs in budget when none meet the VRAM floor
     @Query("""
         SELECT p FROM Product p
-        WHERE (:category IS NULL OR LOWER(p.category) = LOWER(:category))
-          AND (:brand    IS NULL OR LOWER(p.brand)    LIKE LOWER(CONCAT('%', :brand, '%')))
-          AND (:budgetMax IS NULL OR p.priceInr <= :budgetMax)
-          AND (:budgetMin IS NULL OR p.priceInr >= :budgetMin)
-          AND (:vramMin   IS NULL OR p.vramGb   >= :vramMin)
-          AND (:inStock   IS NULL OR p.inStock   = :inStock)
+        WHERE p.inStock = true
+          AND p.category = 'gpu'
+          AND p.priceInr <= :budgetMax
+        ORDER BY p.vramGb DESC NULLS LAST, p.priceInr ASC
         """)
+    List<Product> findTopVramGpusWithinBudget(@Param("budgetMax") BigDecimal budgetMax,
+                                              Pageable pageable);
+
+    // ── Dynamic filter used by product catalog page ─────────────────────────
+    // Native query: CAST(:x AS VARCHAR) gives the null parameter an explicit type,
+    // avoiding PostgreSQL's "lower(bytea) does not exist" error from untyped nulls.
+    @Query(
+        value = """
+            SELECT * FROM products p
+            WHERE (CAST(:category AS VARCHAR) IS NULL OR LOWER(p.category) = LOWER(CAST(:category AS VARCHAR)))
+              AND (CAST(:brand AS VARCHAR)    IS NULL OR LOWER(p.brand)    LIKE LOWER('%' || CAST(:brand AS VARCHAR) || '%'))
+              AND (:budgetMax IS NULL OR p.price_inr <= :budgetMax)
+              AND (:budgetMin IS NULL OR p.price_inr >= :budgetMin)
+              AND (:vramMin   IS NULL OR p.vram_gb   >= :vramMin)
+              AND (:inStock   IS NULL OR p.in_stock   = :inStock)
+            """,
+        countQuery = """
+            SELECT COUNT(*) FROM products p
+            WHERE (CAST(:category AS VARCHAR) IS NULL OR LOWER(p.category) = LOWER(CAST(:category AS VARCHAR)))
+              AND (CAST(:brand AS VARCHAR)    IS NULL OR LOWER(p.brand)    LIKE LOWER('%' || CAST(:brand AS VARCHAR) || '%'))
+              AND (:budgetMax IS NULL OR p.price_inr <= :budgetMax)
+              AND (:budgetMin IS NULL OR p.price_inr >= :budgetMin)
+              AND (:vramMin   IS NULL OR p.vram_gb   >= :vramMin)
+              AND (:inStock   IS NULL OR p.in_stock   = :inStock)
+            """,
+        nativeQuery = true
+    )
     Page<Product> findWithFilters(
             @Param("category")  String     category,
             @Param("brand")     String     brand,

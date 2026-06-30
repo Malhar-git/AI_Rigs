@@ -1,5 +1,6 @@
 package com.airigs.modules.build.dto;
 
+import com.airigs.modules.benchmark.dto.PerformanceEstimateDTO;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Builder;
 import lombok.Data;
@@ -23,6 +24,8 @@ public class BuildResponseDTO {
     private List<UpgradePathDTO> upgradePaths;
     private String               sessionId;
     private LocalDateTime        createdAt;
+
+    private PerformanceEstimateDTO performanceEstimate;
 
     // Wizard echo — helps frontend display what was configured
     private String  task;

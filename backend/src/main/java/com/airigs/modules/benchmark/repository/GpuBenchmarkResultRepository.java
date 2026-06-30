@@ -39,6 +39,18 @@ public interface GpuBenchmarkResultRepository extends JpaRepository<GpuBenchmark
     @Query("SELECT MAX(r.localscoreTestId) FROM GpuBenchmarkResult r")
     Optional<Integer> findMaxTestId();
 
+    // fuzzy GPU + model lookup for performance estimate (used by BenchmarkService.findBestMatchForBuild)
+    @Query("""
+        SELECT r FROM GpuBenchmarkResult r
+        WHERE LOWER(r.acceleratorName) LIKE LOWER(CONCAT('%', :gpuToken, '%'))
+          AND (:modelName IS NULL OR LOWER(r.modelName) LIKE LOWER(CONCAT('%', :modelName, '%')))
+        ORDER BY r.localscore DESC NULLS LAST
+        """)
+    List<GpuBenchmarkResult> findByGpuAndModel(
+        @Param("gpuToken") String gpuToken,
+        @Param("modelName") String modelName
+    );
+
     // Best result per accelerator across all models
     @Query(value = """
         SELECT DISTINCT ON (accelerator_name)*

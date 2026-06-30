@@ -3,7 +3,6 @@ package com.airigs.modules.build.controller;
 import com.airigs.common.response.ApiResponse;
 import com.airigs.modules.build.dto.BuildResponseDTO;
 import com.airigs.modules.build.dto.WizardAnswersDTO;
-import com.airigs.modules.build.entity.Build;
 import com.airigs.modules.build.service.BuildService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -37,8 +36,9 @@ public class BuildController {
     }
 
 //  GET /api/builds?sessionId=xxx
-//    @GetMapping
-//    public ResponseEntity<ApiResponse<List<BuildResponseDTO>>> getBySession(@RequestParam String sessionId){
-//        return ResponseEntity.ok(ApiResponse.ok(buildService.getBuildBySession(sessionId)));
-//    }
+    @GetMapping
+    public ResponseEntity<ApiResponse<List<BuildResponseDTO>>> getBySession(
+            @RequestParam String sessionId) {
+        return ResponseEntity.ok(ApiResponse.ok(buildService.getBuildsBySession(sessionId)));
+    }
 }

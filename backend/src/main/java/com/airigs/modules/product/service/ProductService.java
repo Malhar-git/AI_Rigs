@@ -9,6 +9,8 @@ import com.airigs.modules.product.repository.ProductRepository;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -16,6 +18,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -23,6 +26,9 @@ import java.util.UUID;
 @RequiredArgsConstructor()
 @Transactional(readOnly = true)
 public class ProductService {
+
+    private static final Logger log = LoggerFactory.getLogger(ProductService.class);
+
     private final ProductRepository productRepository;
     private final ObjectMapper objectMapper;
 
@@ -56,7 +62,6 @@ public class ProductService {
         return PagedResponse.of(page, this::toDTO);
     }
 
-<<<<<<< Updated upstream
     // ── Build wizard — catalog slice for Gemini ──────────────────────────────
     public List<ProductDto> filterByBudgetAndVram(BigDecimal budgetMin,
                                                   BigDecimal budgetMax,
@@ -170,10 +175,10 @@ public class ProductService {
 
     private String resolveSortField(String sortBy) {
         return switch (sortBy == null ? "" : sortBy.toLowerCase()) {
-            case "vram_gb"   -> "vramGb";
+            case "vram_gb"   -> "vram_gb";
             case "name"      -> "name";
-            case "price_inr" -> "priceInr";
-            default          -> "priceInr";
+            case "price_inr" -> "price_inr";
+            default          -> "price_inr";
         };
     }
 
