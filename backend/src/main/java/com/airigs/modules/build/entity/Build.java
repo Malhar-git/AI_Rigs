@@ -1,10 +1,10 @@
 package com.airigs.modules.build.entity;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import io.hypersistence.utils.hibernate.type.json.JsonType;
 import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.annotations.Type;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -33,12 +33,12 @@ public class Build {
     private UUID userId;
 
     // Full wizard answers stored as JSONB for auditability
-    @Type(JsonType.class)
+    @JdbcTypeCode(SqlTypes.JSON)
     @Column(name = "answers", columnDefinition = "jsonb")
     private JsonNode answers;
 
     // Raw Claude API response kept for debugging prompt issues
-    @Type(JsonType.class)
+    @JdbcTypeCode(SqlTypes.JSON)
     @Column(name = "ai_raw_response", columnDefinition = "jsonb")
     private JsonNode aiRawResponse;
 
