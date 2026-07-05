@@ -241,6 +241,9 @@ export function useBuilderFlow() {
     canProceed,
     isLastStep,
     reviewValues,
+    // derived model info the page passes into the answers-mapper context
+    selectedModel,
+    resolvedVramFloor,
     resolveQuestion,
     setSingleAnswer,
     togglePriority,
