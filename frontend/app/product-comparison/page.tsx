@@ -1,279 +1,324 @@
 "use client";
 
+import { Fragment, Suspense, useEffect, useState } from "react";
+import { useSearchParams } from "next/navigation";
 import Image from "next/image";
-import { ProgressCircle } from "@tremor/react";
 import { ProgressBar } from "../ui components/ProgressBar";
-import { Fragment } from "react";
-import Button from "../ui components/Button";
+import Label from "../ui components/Label";
 import PageShell from "../components/PageShell";
+import { getProduct, getProducts } from "@/lib/products";
+import type { ProductDto } from "@/lib/types";
 
-type ComparedGpu = {
-  name: string;
-  image: string;
-  score: number;
-  budgetAlignment: number;
-  budgetTier: string;
-  specs: {
-    vram: string;
-    memoryBus: string;
-    bandwidth: string;
-    tdp: string;
-  };
-  telemetry: {
-    rayTracing: number;
-    fp32Compute: number;
-  };
-  verdict: {
-    title: string;
-    body: string;
-    tag: string;
-  };
-  recommendation: string;
+// ─── helpers ────────────────────────────────────────────────────────────────
+const inr = (n?: number) =>
+  n == null ? "—" : `₹${Math.round(n).toLocaleString("en-IN")}`;
+
+const amazonSearch = (name: string) =>
+  `https://www.amazon.in/s?k=${encodeURIComponent(name)}&tag=airigs-21`;
+
+const cap = (s?: string) => (s ? s.charAt(0).toUpperCase() + s.slice(1) : "");
+
+// scalar (string|number) out of the open-ended specs jsonb, if present
+const specScalar = (specs: ProductDto["specs"], key: string): string | number | null => {
+  const v = specs?.[key];
+  return typeof v === "string" || typeof v === "number" ? v : null;
 };
 
-const SIDE_NAV = ["Overview", "Specs", "Efficiency", "Thermal", "Value"];
+const specObj = (specs: ProductDto["specs"], key: string): Record<string, unknown> | null => {
+  const v = specs?.[key];
+  return v && typeof v === "object" && !Array.isArray(v) ? (v as Record<string, unknown>) : null;
+};
 
-const COMPARED_GPUS: ComparedGpu[] = [
+const nestedStr = (obj: Record<string, unknown> | null, key: string): string | null => {
+  const v = obj?.[key];
+  return typeof v === "string" ? v : null;
+};
+
+// AI TOPS per ₹1,000 — a real value-for-money metric derived from catalog data
+const topsPerK = (p: ProductDto): number =>
+  p.aiTops != null && p.priceInr ? p.aiTops / (p.priceInr / 1000) : 0;
+
+// ─── spec rows (each pulls a real field, "—" when the product lacks it) ───────
+type SpecRow = { label: string; highlight?: boolean; get: (p: ProductDto) => string | null };
+
+const SPEC_ROWS: SpecRow[] = [
   {
-    name: "NVIDIA RTX 5090",
-    image: "/product/pexels-googledeepmind.jpg",
-    score: 95,
-    budgetAlignment: 88,
-    budgetTier: "Premium Tier",
-    specs: {
-      vram: "32GB GDDR7",
-      memoryBus: "512-bit",
-      bandwidth: "1.8 TB/s",
-      tdp: "600W",
-    },
-    telemetry: {
-      rayTracing: 92,
-      fp32Compute: 96,
-    },
-    verdict: {
-      title: "Absolute Titan",
-      body: "Unrivaled throughput for large-scale local model training and full-context inference workloads.",
-      tag: "Extends Power Req",
-    },
-    recommendation: "Large Model Training",
+    label: "VRAM",
+    highlight: true,
+    get: (p) => (p.vramGb != null ? `${p.vramGb}GB${p.memoryType ? ` ${p.memoryType}` : ""}` : null),
   },
   {
-    name: "NVIDIA RTX 5080",
-    image: "/featured/geforce-rtx-5080.png",
-    score: 82,
-    budgetAlignment: 72,
-    budgetTier: "High Performance",
-    specs: {
-      vram: "16GB GDDR7",
-      memoryBus: "256-bit",
-      bandwidth: "0.9 TB/s",
-      tdp: "320W",
+    label: "Memory Bus",
+    get: (p) => {
+      const v = specScalar(p.specs, "memory_bus_bits");
+      return v != null ? `${v}-bit` : null;
     },
-    telemetry: {
-      rayTracing: 80,
-      fp32Compute: 84,
-    },
-    verdict: {
-      title: "Efficiency Lead",
-      body: "Balanced compute profile for workstation tuning and sustained mixed AI development tasks.",
-      tag: "Thermal Bottleneck",
-    },
-    recommendation: "Standard AI Dev",
   },
   {
-    name: "RX 8900 XTX",
-    image: "/featured/amd-radeon-rx-7900-xtx-product.png",
-    score: 75,
-    budgetAlignment: 58,
-    budgetTier: "Enthusiast Value",
-    specs: {
-      vram: "24GB GDDR6X",
-      memoryBus: "384-bit",
-      bandwidth: "1.1 TB/s",
-      tdp: "355W",
+    label: "Bandwidth",
+    get: (p) => {
+      const v = specScalar(p.specs, "memory_bandwidth_gbs");
+      return v != null ? `${v} GB/s` : null;
     },
-    telemetry: {
-      rayTracing: 68,
-      fp32Compute: 70,
+  },
+  { label: "TDP", get: (p) => (p.tdpWatts ? `${p.tdpWatts}W` : null) },
+  {
+    label: "Boost Clock",
+    get: (p) => {
+      const v = specScalar(p.specs, "boost_clock_mhz");
+      return v != null ? `${v} MHz` : null;
     },
-    verdict: {
-      title: "Value Vanguard",
-      body: "Strong memory capacity at a favorable price, best suited for budget-sensitive model iteration.",
-      tag: "ML Support Lags",
+  },
+  {
+    label: "Tensor Cores",
+    get: (p) => {
+      const v = specScalar(p.specs, "tensor_cores");
+      return v != null ? String(v) : null;
     },
-    recommendation: "Hardware Value",
   },
 ];
 
-type SpecKey = keyof ComparedGpu["specs"];
-
-const SPEC_ROWS: { label: string; key: SpecKey }[] = [
-  { label: "VRAM", key: "vram" },
-  { label: "Memory Bus", key: "memoryBus" },
-  { label: "Bandwidth", key: "bandwidth" },
-  { label: "TDP", key: "tdp" },
-];
-
-function MetricLabel({ eyebrow, title }: { eyebrow?: string; title: string }) {
+// ─── presentational pieces ───────────────────────────────────────────────────
+function RowLabel({ eyebrow, title }: { eyebrow?: string; title: string }) {
   return (
-    <div className="space-y-2 p-4 sm:p-5">
-      <small className="block font-secondary uppercase text-accent">
-        {eyebrow}
-      </small>
-      <h4>{title}</h4>
+    <div className="space-y-1 p-4">
+      {eyebrow ? (
+        <small className="block font-secondary uppercase text-accent">{eyebrow}</small>
+      ) : null}
+      <h4 className="font-primary text-lg font-medium text-foreground">{title}</h4>
     </div>
   );
 }
 
-function ScoreDial({ value }: { value: number }) {
+function CenteredMessage({ children, tone }: { children: React.ReactNode; tone?: "error" }) {
   return (
-    <ProgressCircle
-      value={value}
-      size="md"
-      strokeWidth={4}
-      className="rounded-full [&>svg>circle:first-child]:stroke-border [&>svg>circle:last-child]:stroke-accent"
-    >
-      <span className="text-lg font-semibold">{value}</span>
-    </ProgressCircle>
+    <PageShell>
+      <div className={`py-24 text-center ${tone === "error" ? "text-red-500" : "text-secondary"}`}>
+        {children}
+      </div>
+    </PageShell>
   );
 }
 
-export default function ProductComparison() {
+// ─── data-driven content ─────────────────────────────────────────────────────
+function ProductComparisonContent() {
+  const searchParams = useSearchParams();
+  const ids = searchParams.get("ids");
+
+  const [products, setProducts] = useState<ProductDto[]>([]);
+  const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    let cancelled = false;
+    setLoading(true);
+    setError(null);
+
+    const load = async (): Promise<ProductDto[]> => {
+      const idList = ids ? ids.split(",").map((s) => s.trim()).filter(Boolean) : [];
+      if (idList.length) {
+        // compare exactly what was asked for (cap at 4 so the grid stays readable)
+        return Promise.all(idList.slice(0, 4).map(getProduct));
+      }
+      // no ids → fall back to the top few GPUs so the page is never empty
+      const paged = await getProducts({ category: "gpu", size: 3, sortBy: "price_inr", sortDir: "desc" });
+      return paged.content;
+    };
+
+    load()
+      .then((ps) => {
+        if (!cancelled) setProducts(ps);
+      })
+      .catch((e) => {
+        if (!cancelled) setError(e instanceof Error ? e.message : "Failed to load products");
+      })
+      .finally(() => {
+        if (!cancelled) setLoading(false);
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [ids]);
+
+  if (loading) return <CenteredMessage>Loading comparison…</CenteredMessage>;
+  if (error) return <CenteredMessage tone="error">{error}</CenteredMessage>;
+  if (products.length === 0) return <CenteredMessage>No products to compare.</CenteredMessage>;
+
+  // group maxima for the normalized bars
+  const maxTops = Math.max(1, ...products.map((p) => p.aiTops ?? 0));
+  const maxValue = Math.max(0.0001, ...products.map(topsPerK));
+  const pricedValues = products.filter((p) => p.priceInr != null).map((p) => p.priceInr as number);
+  const minPrice = pricedValues.length ? Math.min(...pricedValues) : null;
+
+  const cols = `210px repeat(${products.length}, minmax(0,1fr))`;
+
   return (
     <PageShell>
-      <div className="flex gap-5 lg:gap-8">
-        <aside className="hidden w-52 mt-2 shrink-0 border-r border-border pr-5 lg:block">
-          <h4 className="text-accent">COMPARE</h4>
-          <small className="font-secondary mt-1 block uppercase text-secondary">
-            Precision Hardware Analysis
-          </small>
-          <div className="mt-8 space-y-2">
-            {SIDE_NAV.map((item) => (
-              <Button
-                variant="ghost"
-                key={item}
-                type="button"
-                className={`flex w-full items-center gap-2 text-sm uppercase tracking-wide transition ${item === "Specs" ? "bg-background text-accent" : "text-secondary hover:bg-background hover:text-foreground"}`}
-              >
-                <span className={`h-2 w-2 border ${item === "Specs" ? "border-accent bg-accent" : "border-border bg-transparent"}`} />
-                {item}
-              </Button>
-            ))}
-          </div>
-        </aside>
+      <section className="min-w-0">
+        <h2>GPU Technical Comparison</h2>
+        <p className="mt-1 text-secondary">
+          Side-by-side analysis driven by the live catalog — specs, AI throughput and value for money.
+        </p>
 
-        <section className="min-w-0 flex-1">
-          <h2>GPU Technical Comparison</h2>
-          <p className="mt-1 text-secondary">
-            Detailed analysis of top-tier silicon for LLM training and high-fidelity rendering.
-          </p>
-
-          <div className="mt-6 overflow-x-auto border border-border bg-background">
-            <div className="grid min-w-[57.5rem] grid-cols-[210px_repeat(3,minmax(0,1fr))]">
-              <div className="border-b border-r border-border p-4" />
-              {COMPARED_GPUS.map((gpu) => (
-                <div key={gpu.name} className="border-b border-r border-border p-4 last:border-r-0">
-                  <div className="relative h-24 overflow-hidden border border-border bg-card">
-                    <Image src={gpu.image} alt={gpu.name} fill className="object-cover" />
-                  </div>
-                  <h4 className="mt-2">{gpu.name}</h4>
-                  <Button
-                    type="button"
-                    variant="accent"
-                    className="mt-2 w-full bg-accent text-md font-semibold transition hover:bg-accent/90"
-                  >
-                    Buy on Amazon
-                  </Button>
+        <div className="mt-6 overflow-x-auto border border-border bg-background">
+          <div className="grid min-w-[57.5rem]" style={{ gridTemplateColumns: cols }}>
+            {/* header row */}
+            <div className="border-b border-r border-border p-4" />
+            {products.map((p) => (
+              <div key={p.id} className="border-b border-r border-border p-4 last:border-r-0">
+                <div className="relative h-24 overflow-hidden border border-border bg-card">
+                  <Image src="/product/pexels-googledeepmind.jpg" alt={p.name} fill className="object-cover" />
                 </div>
-              ))}
-
-              <div className="border-b border-r border-border">
-                <MetricLabel eyebrow="Compute Metric" title="AI Performance Score" />
-              </div>
-              {COMPARED_GPUS.map((gpu) => (
-                <div
-                  key={`${gpu.name}-score`}
-                  className="flex items-center justify-center border-b border-r border-border p-5 last:border-r-0"
+                <h4 className="mt-2">{p.name}</h4>
+                {p.brand ? (
+                  <small className="font-secondary uppercase tracking-wide text-secondary">{cap(p.brand)}</small>
+                ) : null}
+                <a
+                  href={amazonSearch(p.name)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-primary mt-2 flex h-10 w-full items-center justify-center rounded-sm bg-accent text-md font-semibold text-primary no-underline transition hover:bg-accent/90"
                 >
-                  <ScoreDial value={gpu.score} />
-                </div>
-              ))}
-
-              <div className="border-b border-r border-border">
-                <MetricLabel title="Budget Alignment" />
+                  Check on Amazon
+                </a>
               </div>
-              {COMPARED_GPUS.map((gpu) => (
-                <div key={`${gpu.name}-budget`} className="border-b border-r border-border p-5 last:border-r-0 flex flex-col justify-center">
-                  <ProgressBar value={gpu.budgetAlignment} variant="default" />
-                  <small className="mt-2 block font-secondary uppercase tracking-wide text-secondary">
-                    {gpu.budgetTier}
-                  </small>
-                </div>
-              ))}
+            ))}
 
-              {SPEC_ROWS.map((specRow) => (
-                <Fragment key={specRow.label}>
-                  <div key={`${specRow.label}-label`} className="border-b border-r border-border p-4">
-                    <h4 className="font-primary text-lg font-medium text-foreground">{specRow.label}</h4>
-                  </div>
-                  {COMPARED_GPUS.map((gpu) => (
-                    <div
-                      key={`${gpu.name}-${specRow.label}`}
-                      className="border-b border-r border-border p-4 last:border-r-0"
-                    >
-                      <p className={`font-secondary text-sm uppercase tracking-[0.12em] ${specRow.key === "vram" ? "font-semibold text-accent" : "text-secondary"}`}>
-                        {gpu.specs[specRow.key]}
+            {/* AI Performance — real Tensor TOPS */}
+            <div className="border-b border-r border-border">
+              <RowLabel eyebrow="Compute" title="AI Performance" />
+            </div>
+            {products.map((p) => (
+              <div
+                key={`${p.id}-tops`}
+                className="flex flex-col justify-center border-b border-r border-border p-4 last:border-r-0"
+              >
+                {p.aiTops != null ? (
+                  <>
+                    <ProgressBar value={p.aiTops} max={maxTops} variant="default" />
+                    <small className="mt-2 block font-secondary uppercase tracking-wide text-secondary">
+                      {p.aiTops} Tensor TOPS
+                    </small>
+                  </>
+                ) : (
+                  <span className="font-secondary text-sm text-muted-foreground">—</span>
+                )}
+              </div>
+            ))}
+
+            {/* Value — AI TOPS per ₹1,000 */}
+            <div className="border-b border-r border-border">
+              <RowLabel eyebrow="Value" title="TOPS per ₹1k" />
+            </div>
+            {products.map((p) => {
+              const v = topsPerK(p);
+              return (
+                <div
+                  key={`${p.id}-value`}
+                  className="flex flex-col justify-center border-b border-r border-border p-4 last:border-r-0"
+                >
+                  {v > 0 ? (
+                    <>
+                      <ProgressBar value={v} max={maxValue} variant="neutral" />
+                      <small className="mt-2 block font-secondary uppercase tracking-wide text-secondary">
+                        {v.toFixed(1)} TOPS / ₹1k
+                      </small>
+                    </>
+                  ) : (
+                    <span className="font-secondary text-sm text-muted-foreground">—</span>
+                  )}
+                </div>
+              );
+            })}
+
+            {/* Price — cheapest highlighted */}
+            <div className="border-b border-r border-border">
+              <RowLabel title="Price" />
+            </div>
+            {products.map((p) => (
+              <div
+                key={`${p.id}-price`}
+                className="flex items-center border-b border-r border-border p-4 last:border-r-0"
+              >
+                <span
+                  className={`font-primary text-lg font-semibold ${
+                    minPrice != null && p.priceInr === minPrice ? "text-accent" : "text-foreground"
+                  }`}
+                >
+                  {inr(p.priceInr)}
+                </span>
+                {minPrice != null && p.priceInr === minPrice ? (
+                  <Label variant="active" className="ml-2">
+                    Best price
+                  </Label>
+                ) : null}
+              </div>
+            ))}
+
+            {/* real spec rows */}
+            {SPEC_ROWS.map((row) => (
+              <Fragment key={row.label}>
+                <div className="border-b border-r border-border p-4">
+                  <h4 className="font-primary text-lg font-medium text-foreground">{row.label}</h4>
+                </div>
+                {products.map((p) => {
+                  const value = row.get(p);
+                  return (
+                    <div key={`${p.id}-${row.label}`} className="border-b border-r border-border p-4 last:border-r-0">
+                      <p
+                        className={`font-secondary text-sm uppercase tracking-[0.12em] ${
+                          row.highlight ? "font-semibold text-accent" : "text-secondary"
+                        }`}
+                      >
+                        {value ?? "—"}
                       </p>
                     </div>
-                  ))}
-                </Fragment>
-              ))}
-
-              <div className="border-r border-border">
-                <MetricLabel eyebrow="Telemetry" title="Performance Diagnostics" />
-              </div>
-              {COMPARED_GPUS.map((gpu) => (
-                <div key={`${gpu.name}-telemetry`} className="space-y-3 border-r border-border p-4 last:border-r-0">
-                  <div>
-                    <small className="font-secondary text-[0.62rem] uppercase tracking-[0.2em] text-secondary">Ray Tracing</small>
-                    <ProgressBar value={gpu.telemetry.rayTracing} className="mt-2" variant="neutral" />
-                  </div>
-                  <div>
-                    <small className="font-secondary text-[0.62rem] uppercase tracking-[0.2em] text-secondary">FP32 Compute</small>
-                    <ProgressBar value={gpu.telemetry.fp32Compute} className="mt-2" variant="neutral" />
-                  </div>
-                </div>
-              ))}
-            </div>
+                  );
+                })}
+              </Fragment>
+            ))}
           </div>
+        </div>
 
-          <section className="mt-8 grid gap-5 border border-border bg-background p-5 md:grid-cols-[210px_repeat(3,minmax(0,1fr))]">
-            <h3 className="font-primary italic leading-tight text-foreground">Architect&apos;s Verdict</h3>
-            {COMPARED_GPUS.map((gpu) => (
-              <article key={`${gpu.name}-verdict`} className="border border-border bg-card p-5">
+        {/* notes — real compatibility notes + editor badge */}
+        <section
+          className="mt-8 grid gap-5 border border-border bg-background p-5"
+          style={{ gridTemplateColumns: cols }}
+        >
+          <h3 className="font-primary italic leading-tight text-foreground">Notes</h3>
+          {products.map((p) => {
+            const notes = nestedStr(specObj(p.specs, "compatibility"), "notes");
+            return (
+              <article key={`${p.id}-notes`} className="border border-border bg-card p-5">
                 <span className="inline-block h-2 w-2 rounded-full bg-accent" />
-                <h4 className="mt-3 font-bold text-foreground">{gpu.verdict.title}</h4>
-                <p className="mt-2 text-sm leading-normal text-secondary">{gpu.verdict.body}</p>
-                <small className="mt-5 block font-secondary text-[0.62rem] uppercase tracking-[0.2em] text-accent">
-                  {gpu.verdict.tag}
-                </small>
+                <h4 className="mt-3 font-bold text-foreground">{p.name}</h4>
+                {notes ? (
+                  <p className="mt-2 text-sm leading-normal text-secondary">{notes}</p>
+                ) : (
+                  <p className="mt-2 text-sm leading-normal text-muted-foreground">
+                    No compatibility notes on file.
+                  </p>
+                )}
+                {p.badge ? (
+                  <small className="mt-5 block font-secondary text-[0.62rem] uppercase tracking-[0.2em] text-accent">
+                    {p.badge}
+                  </small>
+                ) : null}
               </article>
-            ))}
-          </section>
-
-          <section className="mt-8 grid gap-4 md:grid-cols-3">
-            {COMPARED_GPUS.map((gpu) => (
-              <article key={`${gpu.name}-recommendation`} className="border border-border bg-background p-6 text-center">
-                <small className="font-secondary text-[0.62rem] uppercase tracking-[0.24em] text-accent">Recommended For</small>
-                <h4 className="mt-3 font-semibold text-foreground">{gpu.recommendation}</h4>
-                <small className="mt-2 block font-secondary text-[0.62rem] uppercase tracking-[0.2em] text-secondary">
-                  {gpu.name}
-                </small>
-              </article>
-            ))}
-          </section>
+            );
+          })}
         </section>
-      </div>
+      </section>
     </PageShell>
+  );
+}
+
+// useSearchParams requires a Suspense boundary in the App Router.
+export default function ProductComparison() {
+  return (
+    <Suspense fallback={<CenteredMessage>Loading…</CenteredMessage>}>
+      <ProductComparisonContent />
+    </Suspense>
   );
 }
