@@ -128,7 +128,9 @@ public class ProductService {
                 .priceInr(p.getPriceInr())
                 .vramGb(p.getVramGb())
                 .inStock(Boolean.TRUE.equals(p.getInStock()))
-                .specs(specs)
+                // Set the raw Map straight from the entity — serializes as plain JSON.
+                // `specs` (the Jackson-2 JsonNode) is used only for the internal reads below.
+                .specs(p.getSpecs())
                 // Common fields present in all categories
                 .tier(   specStr(specs, "tier"))
                 .badge(  specStr(specs, "badge"))

@@ -2,7 +2,6 @@ package com.airigs.modules.build.service;
 
 import com.airigs.modules.build.dto.WizardAnswersDTO;
 import com.airigs.modules.product.dto.ProductDto;
-import com.fasterxml.jackson.databind.JsonNode;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -194,9 +193,9 @@ public class BuildPromptBuilder {
         };
     }
 
-    private String specStr(JsonNode specs, String field) {
-        if (specs == null || specs.isMissingNode()) return null;
-        JsonNode n = specs.path(field);
-        return (n.isNull() || n.isMissingNode()) ? null : n.asText(null);
+    private String specStr(Map<String, Object> specs, String field) {
+        if (specs == null) return null;
+        Object v = specs.get(field);
+        return v == null ? null : v.toString();
     }
 }

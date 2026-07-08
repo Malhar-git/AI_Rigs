@@ -1,11 +1,11 @@
 package com.airigs.modules.product.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.databind.JsonNode;
 import lombok.Builder;
 import lombok.Data;
 
 import java.math.BigDecimal;
+import java.util.Map;
 import java.util.UUID;
 
 @Data
@@ -22,7 +22,10 @@ public class ProductDto {
     private Integer vramGb;
 
     private boolean inStock;
-    private JsonNode specs; // full raw jsonb — frontend can access any field
+    // Full raw jsonb — kept as a Map (not JsonNode) so it serializes as plain JSON.
+    // Under Spring Boot 4 (Jackson 3, tools.jackson.*) a Jackson-2 JsonNode is treated
+    // as a foreign POJO and serialized as its getters; a Map is version-agnostic.
+    private Map<String, Object> specs;
 
     // ── Convenience fields unpacked from specs ────────────────────────────────
     // Populated by ProductService.toDTO() for quick display without jsonb parsing
