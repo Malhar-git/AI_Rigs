@@ -96,3 +96,40 @@ export type PerformanceEstimate = {
   quantization?: string;
   exactMatch?: boolean;
 };
+
+// ────────────────────────────────────────────────────────────
+// PRODUCTS  (backend: ProductDto)
+// ────────────────────────────────────────────────────────────
+export type ProductDto = {
+  id: string;
+  name: string;
+  category: string;
+  brand?: string;
+  priceInr?: number;
+  vramGb?: number;
+  inStock: boolean;              // primitive boolean → always present
+  specs?: Record<string, unknown>; // raw jsonb — arbitrary nested fields
+
+  // convenience fields unpacked from specs by the backend (nullable → optional)
+  tdpWatts?: string;
+  architecture?: string;
+  memoryType?: string;   // e.g. "GDDR7"
+  coreCount?: number;    // GPU: CUDA cores | CPU: cores
+  socket?: string;       // CPU
+  tier?: string;         // flagship | high-end | mid-range | entry
+  badge?: string;        // editor label, e.g. "Best AI GPU"
+  formFactor?: string;   // rack: "4U"
+  aiTops?: number;       // GPU: Tensor TOPS
+  series?: string;
+};
+
+// Generic paged envelope nested inside `data` for paged endpoints
+// (backend: PagedResponse<T>)
+export type PagedResponse<T> = {
+  content: T[];
+  page: number;
+  size: number;
+  totalElements: number;
+  totalPages: number;
+  last: boolean;
+};
