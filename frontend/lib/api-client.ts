@@ -16,6 +16,17 @@ export async function apiGet<T>(path : string) : Promise<T>{
   return handle<T>(res);
 }
 
+// Benchmark endpoints (/api/benchmarks/*) are NOT wrapped in the ApiResponse
+// envelope — they return the payload (a list) directly. Use this instead of
+// apiGet for those, so we don't try to unwrap a `.data` that isn't there.
+export async function apiGetRaw<T>(path : string) : Promise<T>{
+  const res = await fetch(`${BASE}${path}`);
+  if(!res.ok){
+    throw new Error(`Request failed (${res.status})`);
+  }
+  return (await res.json()) as T;
+}
+
 export async function apiPost<T>(path:string, body: unknown): Promise<T> {
   const res = await fetch(`${BASE}${path}`,{
     method: "POST",

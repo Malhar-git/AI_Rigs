@@ -1,54 +1,53 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
-import { useMemo, useState } from "react";
+
+import { useEffect, useMemo, useState } from "react";
 import PageShell from "../components/PageShell";
+import { getModelLeaderboard } from "@/lib/models";
+import type { ModelBenchmark } from "@/lib/types";
 
-const MODELS = [
-  { name: "Apex Alpha", maker: "NovaLabs", params: "N/A", tier: "S", category: "overall", mmlu: 91.0, gpqa: 91.3, code: 95.0, math: 100.0, price: "$15 / $75" },
-  { name: "Apex Sigma", maker: "NovaLabs", params: "N/A", tier: "A", category: "overall", mmlu: 89.3, gpqa: 89.9, code: 92.1, math: 52.8, price: "$3 / $15" },
-  { name: "Helio R1", maker: "BrightMind", tier: "S", params: "671B", category: "reasoning", mmlu: 90.8, gpqa: 71.5, code: 90.2, math: 87.5, price: "$0.28 / $0.42" },
-  { name: "Helio V3.2", maker: "BrightMind", tier: "S", params: "685B", category: "agentic", mmlu: 88.5, gpqa: 79.9, code: 74.1, math: 89.3, price: "$0.28 / $0.42" },
-  { name: "Lumen Pro", maker: "Aurora AI", tier: "A", params: "N/A", category: "coding", mmlu: 91.8, gpqa: 91.9, code: 93.0, math: 100.0, price: "$2 / $12" },
-  { name: "Quartz 5", maker: "Pinecone Labs", tier: "S", params: "744B", category: "agentic", mmlu: 85.0, gpqa: 86.0, code: 90.0, math: 84.0, price: "N/A" },
-  { name: "Forge 5.4", maker: "Vertex Systems", tier: "S", params: "N/A", category: "coding", mmlu: 0, gpqa: 92.8, code: 0, math: 0, price: "$2.50 / $15" },
-  { name: "Mesh 120B", maker: "Vertex Systems", tier: "B", params: "117B", category: "chat", mmlu: 90.0, gpqa: 80.9, code: 88.3, math: 97.9, price: "N/A" },
-  { name: "Tempo X3", maker: "Skyforge", tier: "C", params: "N/A", category: "chat", mmlu: 0, gpqa: 84.6, code: 94.5, math: 93.3, price: "$3 / $15" },
-  { name: "Echo K2.5", maker: "Moonbeam", tier: "S", params: "1T", category: "agentic", mmlu: 92.0, gpqa: 87.6, code: 99.0, math: 96.1, price: "N/A" },
-  { name: "Driftwood 4", maker: "Glacier AI", tier: "C", params: "400B", category: "chat", mmlu: 85.5, gpqa: 69.8, code: 62.0, math: 0, price: "N/A" },
-  { name: "Pulse Flash", maker: "Redfox", tier: "A", params: "309B", category: "agentic", mmlu: 86.7, gpqa: 83.7, code: 84.8, math: 94.1, price: "N/A" },
-  { name: "Cobalt M2.5", maker: "Halcyon", tier: "A", params: "230B", category: "agentic", mmlu: 85.0, gpqa: 85.2, code: 89.6, math: 86.3, price: "$0.30 / $1.20" },
-  { name: "Granite L", maker: "Stonewell", tier: "A", params: "675B", category: "math", mmlu: 85.5, gpqa: 43.9, code: 92.0, math: 88.0, price: "N/A" },
-  { name: "Beacon 253B", maker: "Hyperion", tier: "B", params: "253B", category: "reasoning", mmlu: 0, gpqa: 76.0, code: 0, math: 72.5, price: "N/A" },
-  { name: "Solace 3.5", maker: "Aether", tier: "A", params: "397B", category: "reasoning", mmlu: 88.5, gpqa: 88.4, code: 0, math: 0, price: "N/A" },
-  { name: "Flicker Flash", maker: "Driftcore", tier: "A", params: "196B", category: "coding", mmlu: 0, gpqa: 0, code: 81.1, math: 99.8, price: "$0.10 / $0.30" },
-];
-
+// Categories the arena scraper may populate. Only "coding" has data today;
+// the rest render a friendly empty state until the scraper fills them.
+const CATEGORIES = ["coding", "math", "chat", "reasoning", "agentic"];
 const TIERS = ["S", "A", "B", "C", "D"];
-const CATEGORIES = ["overall", "coding", "math", "chat", "reasoning", "agentic"];
 
-const TIER_COLORS: Record<string, { bg: string; border: string; text: string }> = {
-  S: { bg: "hsl(0, 72%, 59%)", border: "hsl(0, 72%, 59%)", text: "hsl(0, 59%, 30%)" },
-  A: { bg: "hsl(36, 86%, 55%)", border: "hsl(36, 86%, 55%)", text: "hsl(33, 85%, 28%)" },
-  B: { bg: "hsl(210, 71%, 54%)", border: "hsl(210, 71%, 54%)", text: "hsl(210, 82%, 27%)" },
-  C: { bg: "hsl(53, 3%, 52%)", border: "hsl(53, 3%, 52%)", text: "hsl(60, 2%, 26%)" },
-  D: { bg: "hsl(49, 7%, 68%)", border: "hsl(49, 7%, 68%)", text: "hsl(48, 3%, 36%)" },
+// Show the top N ranked models and bucket them into tiers by Elo position.
+const DISPLAY_LIMIT = 60;
+
+const TIER_COLORS: Record<string, { bg: string }> = {
+  S: { bg: "hsl(0, 72%, 59%)" },
+  A: { bg: "hsl(36, 86%, 55%)" },
+  B: { bg: "hsl(210, 71%, 54%)" },
+  C: { bg: "hsl(53, 3%, 52%)" },
+  D: { bg: "hsl(49, 7%, 68%)" },
 };
 
-function ModelChip({ model, onClick }: { model: any; onClick: (m: any) => void }) {
+// Tier from 1-based position in the Elo-sorted, displayed set.
+function tierForPosition(pos: number): string {
+  if (pos <= 5) return "S";
+  if (pos <= 15) return "A";
+  if (pos <= 30) return "B";
+  if (pos <= 45) return "C";
+  return "D";
+}
+
+const num = (n?: number | null) => (n == null ? "—" : n.toLocaleString("en-IN"));
+
+// ─── presentational pieces ────────────────────────────────────────────────────
+function ModelChip({ model, rank }: { model: ModelBenchmark; rank: number }) {
   return (
-    <button
-      onClick={() => onClick(model)}
-      className="px-3 py-2 text-left hover:opacity-80 transition-opacity border border-input"
-    >
-      <div className="text-sm font-medium">{model.name}</div>
+    <div className="border border-input px-3 py-2 text-left" title={model.priceRaw ?? undefined}>
+      <div className="text-sm font-medium">{model.modelName}</div>
       <div className="text-xs opacity-70">
-        {model.maker}{model.params !== "N/A" ? ` · ${model.params}` : ""}
+        #{model.arenaRank ?? rank} · {model.eloScore ?? "—"} Elo
       </div>
-    </button>
+      <div className="text-[0.65rem] uppercase tracking-wide opacity-50">
+        {num(model.votes)} votes{model.license ? ` · ${model.license}` : ""}
+      </div>
+    </div>
   );
 }
 
-function TierRow({ tier, models, onSelect }: { tier: string; models: any[]; onSelect: (m: any) => void }) {
+function TierRow({ tier, models }: { tier: string; models: { model: ModelBenchmark; rank: number }[] }) {
   const c = TIER_COLORS[tier];
   return (
     <div className="flex border-b border-border last:border-b-0">
@@ -59,51 +58,140 @@ function TierRow({ tier, models, onSelect }: { tier: string; models: any[]; onSe
         {models.length === 0 ? (
           <span className="text-sm text-muted-foreground py-2">No models</span>
         ) : (
-          models.map((m: any) => <ModelChip key={m.name} model={m} onClick={onSelect} />)
+          models.map(({ model, rank }) => <ModelChip key={model.id} model={model} rank={rank} />)
         )}
       </div>
     </div>
   );
 }
 
+// ─── page ─────────────────────────────────────────────────────────────────────
 export default function Grossing() {
-  const [category, setCategory] = useState("overall");
-  const [, setDetail] = useState<any>(null);
+  const [category, setCategory] = useState("coding");
+  const [license, setLicense] = useState<string | null>(null);
+  const [rows, setRows] = useState<ModelBenchmark[]>([]);
+  const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState(true);
 
-  const filteredByCategory = category === "overall" ? MODELS : MODELS.filter((m: any) => m.category === category);
+  // (Re)fetch whenever the category changes. License is filtered client-side so
+  // the license options stay derived from the full category set.
+  useEffect(() => {
+    let cancelled = false;
+    setLoading(true);
+    setError(null);
+    setLicense(null);
+    getModelLeaderboard(category)
+      .then((data) => {
+        if (!cancelled) setRows(data);
+      })
+      .catch((e) => {
+        if (!cancelled) setError(e instanceof Error ? e.message : "Failed to load leaderboard");
+      })
+      .finally(() => {
+        if (!cancelled) setLoading(false);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [category]);
 
+  // distinct licenses in this category, for the filter row
+  const licenses = useMemo(
+    () => Array.from(new Set(rows.map((r) => r.license).filter((l): l is string => !!l))).sort(),
+    [rows],
+  );
+
+  // sort by Elo desc, filter by license, take the top slice, bucket into tiers
   const tierGroups = useMemo(() => {
-    const groups: Record<string, any[]> = {};
+    const ranked = [...rows]
+      .sort((a, b) => (b.eloScore ?? 0) - (a.eloScore ?? 0))
+      .filter((r) => !license || r.license === license)
+      .slice(0, DISPLAY_LIMIT)
+      .map((model, i) => ({ model, rank: i + 1 }));
+
+    const groups: Record<string, { model: ModelBenchmark; rank: number }[]> = {};
     TIERS.forEach((t) => (groups[t] = []));
-    filteredByCategory.forEach((m: any) => groups[m.tier]?.push(m));
+    ranked.forEach((entry) => groups[tierForPosition(entry.rank)]?.push(entry));
     return groups;
-  }, [filteredByCategory]);
+  }, [rows, license]);
+
+  const lastSynced = useMemo(() => {
+    const dates = rows.map((r) => r.syncedAt).filter((d): d is string => !!d);
+    return dates.length ? dates.sort().at(-1) : null;
+  }, [rows]);
 
   return (
     <PageShell>
       <div className="max-w-xl">
-        <h4 className="text-secondary">Best LLMs - 2026 Rankings</h4>
-        <h3>Top Grossing Leaderboard</h3>
-        <p>The definitive ranking of LLMs and hardware for retail — compared across quality, speed, hardware requirements, and cost. Find the best for your local AI infrastructure.</p>
+        <h4 className="text-secondary">Best LLMs — 2026 Rankings</h4>
+        <h3>Model Leaderboard</h3>
+        <p>
+          Live LMArena Elo rankings for local and hosted LLMs — ordered by community votes across head-to-head
+          matchups. Tiers are derived from Elo standing.
+        </p>
+        {lastSynced ? (
+          <small className="font-secondary uppercase tracking-wide text-muted-foreground">
+            Data from LMArena · updated {new Date(lastSynced).toLocaleDateString("en-IN")}
+          </small>
+        ) : null}
       </div>
 
+      {/* category tabs */}
       <div className="flex gap-1 flex-wrap mt-6 mb-2">
         {CATEGORIES.map((cat) => (
           <button
             key={cat}
             onClick={() => setCategory(cat)}
-            className="px-3 py-1.5 text-sm capitalize transition-colors bg-muted hover:cursor-pointer"
+            className={`px-3 py-1.5 text-sm capitalize transition-colors hover:cursor-pointer ${
+              cat === category ? "bg-accent text-primary" : "bg-muted hover:bg-border"
+            }`}
           >
             {cat}
           </button>
         ))}
       </div>
 
-      <div className="border border-border overflow-hidden mb-6">
-        {TIERS.map((tier) => (
-          <TierRow key={tier} tier={tier} models={tierGroups[tier]} onSelect={setDetail} />
-        ))}
-      </div>
+      {/* license filter — only shown when there's data with licenses */}
+      {licenses.length > 0 ? (
+        <div className="flex gap-1 flex-wrap mb-4 items-center">
+          <small className="font-secondary uppercase tracking-wide text-secondary mr-1">License</small>
+          <button
+            onClick={() => setLicense(null)}
+            className={`px-2.5 py-1 text-xs transition-colors hover:cursor-pointer ${
+              license === null ? "bg-secondary text-background" : "bg-muted hover:bg-border"
+            }`}
+          >
+            All
+          </button>
+          {licenses.map((l) => (
+            <button
+              key={l}
+              onClick={() => setLicense(l)}
+              className={`px-2.5 py-1 text-xs transition-colors hover:cursor-pointer ${
+                license === l ? "bg-secondary text-background" : "bg-muted hover:bg-border"
+              }`}
+            >
+              {l}
+            </button>
+          ))}
+        </div>
+      ) : null}
+
+      {loading ? (
+        <div className="py-16 text-center text-secondary">Loading leaderboard…</div>
+      ) : error ? (
+        <div className="py-16 text-center text-red-500">{error}</div>
+      ) : rows.length === 0 ? (
+        <div className="py-16 text-center text-muted-foreground">
+          No benchmark data for <span className="capitalize">{category}</span> yet.
+        </div>
+      ) : (
+        <div className="border border-border overflow-hidden mb-6">
+          {TIERS.map((tier) => (
+            <TierRow key={tier} tier={tier} models={tierGroups[tier]} />
+          ))}
+        </div>
+      )}
     </PageShell>
   );
 }

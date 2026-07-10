@@ -133,3 +133,23 @@ export type PagedResponse<T> = {
   totalPages: number;
   last: boolean;
 };
+
+// ────────────────────────────────────────────────────────────
+// BENCHMARKS  (backend: ModelBenchmark entity, arena Elo leaderboard)
+// NOTE: /api/benchmarks/* is returned RAW (no ApiResponse envelope) — the
+// entity is serialized directly, so nullable columns arrive as `null`.
+// ────────────────────────────────────────────────────────────
+export type ModelBenchmark = {
+  id: string;
+  modelName: string;
+  arenaRank?: number | null;
+  eloScore?: number | null;
+  confidenceInterval?: number | null;
+  votes?: number | null;
+  license?: string | null;      // "Proprietary" | "Apache 2.0" | "MIT" | "unknown"
+  priceRaw?: string | null;     // e.g. "$10 / $50"
+  contextRaw?: string | null;   // e.g. "1M"
+  category: string;             // "coding" (only category populated so far)
+  source: string;
+  syncedAt?: string | null;     // ISO-8601
+};
