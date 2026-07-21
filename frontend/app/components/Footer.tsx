@@ -25,11 +25,11 @@ const FOOTER_SECTIONS: FooterSection[] = [
 export default function Footer() {
   return (
     <footer className="border-t border-border bg-muted/35">
-      <div className="mx-6 max-w-7xl py-8">
+      <div className="w-full px-6 py-8">
         <div className="flex flex-col gap-10 md:flex-row md:items-start md:justify-between">
           <section className="md:max-w-xl md:flex-1">
             <h4 className="tracking-wide">AI RIGS</h4>
-            <p className="mt-4 max-w-lg text-secondary">
+            <p className="mt-4 max-w-lg text-muted-foreground">
               Precision-engineered hardware evaluation for the next generation of local AI development.
               Built for architects, researchers, and pioneers.
             </p>
@@ -38,7 +38,7 @@ export default function Footer() {
           <div className="flex flex-col gap-8 sm:flex-row sm:gap-12 ">
             {FOOTER_SECTIONS.map((section) => (
               <section key={section.title}>
-                <small className="text-[0.64rem] uppercase tracking-wider text-secondary">
+                <small className="text-[0.64rem] uppercase tracking-wider text-muted-foreground">
                   {section.title}
                 </small>
                 <ul className="mt-5 space-y-2">
@@ -46,7 +46,7 @@ export default function Footer() {
                     <li key={link.label}>
                       <a
                         href={link.href}
-                        className="text-sm text-secondary transition-colors hover:text-foreground"
+                        className="text-sm text-muted-foreground transition-colors hover:text-foreground"
                       >
                         {link.label}
                       </a>

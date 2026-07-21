@@ -55,11 +55,11 @@ export default function Featured() {
   const router = useRouter();
 
   return (
-    <section className="featured mx-auto w-full max-w-6xl px-4 py-12">
+    <section className="featured w-full px-6 py-12">
       <div className="mb-7">
-        <small className="uppercase tracking-[0.18em] text-secondary">Curated AI Builds</small>
+        <small className="uppercase tracking-[0.18em] text-muted-foreground">Curated AI Builds</small>
         <h3 className="mt-2 max-w-2xl tracking-tight">Three practical build paths by budget</h3>
-        <p className="mt-2 max-w-3xl text-secondary">
+        <p className="mt-2 max-w-3xl text-muted-foreground">
           Pick a low, medium, or high budget baseline with clear hardware targets and realistic AI training and build capabilities.
         </p>
       </div>
@@ -69,10 +69,10 @@ export default function Featured() {
           <article key={card.tier} className="flex h-full flex-col rounded-xl border border-border bg-card p-4">
             <div className="mb-4 flex items-center justify-between gap-3">
               <h4 className="font-semibold tracking-tight">{card.tier} Budget</h4>
-              <small className="rounded-full font-secondary whitespace-nowrap border border-border bg-primary px-3 py-1 text-secondary">{card.budgetRange}</small>
+              <small className="rounded-full font-secondary whitespace-nowrap border border-border bg-primary px-3 py-1 text-muted-foreground">{card.budgetRange}</small>
             </div>
 
-            <p className="mb-4 text-secondary">{card.targetUse}</p>
+            <p className="mb-4 text-muted-foreground">{card.targetUse}</p>
 
             <div className="font-secondary space-y-2 rounded-xl border border-border bg-primary p-2">
               <p>GPU: {card.gpu}</p>
@@ -81,14 +81,14 @@ export default function Featured() {
               <p>Storage: {card.storage}</p>
             </div>
 
-            <div className="mt-4 space-y-2 text-sm text-secondary">
+            <div className="mt-4 space-y-2 text-sm text-muted-foreground">
               <p>Training: {card.trainingCapability}</p>
               <p>Build capability: {card.buildCapability}</p>
             </div>
 
             <div className="mt-auto flex items-center justify-between gap-2 pt-5">
               <Button variant="secondary" className="bg-primary" onClick={() => router.push("/guild-builder")}>Tune This Build</Button>
-              <Button className="bg-claude! " onClick={() => router.push("/product-specification")}>View Spec</Button>
+              <Button variant="accent" onClick={() => router.push("/product-specification")}>View Spec</Button>
             </div>
           </article>
         ))}

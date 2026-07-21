@@ -93,7 +93,7 @@ function RowLabel({ eyebrow, title }: { eyebrow?: string; title: string }) {
 function CenteredMessage({ children, tone }: { children: React.ReactNode; tone?: "error" }) {
   return (
     <PageShell>
-      <div className={`py-24 text-center ${tone === "error" ? "text-red-500" : "text-secondary"}`}>
+      <div className={`py-24 text-center ${tone === "error" ? "text-red-500" : "text-muted-foreground"}`}>
         {children}
       </div>
     </PageShell>
@@ -157,7 +157,7 @@ function ProductComparisonContent() {
     <PageShell>
       <section className="min-w-0">
         <h2>GPU Technical Comparison</h2>
-        <p className="mt-1 text-secondary">
+        <p className="mt-1 text-muted-foreground">
           Side-by-side analysis driven by the live catalog — specs, AI throughput and value for money.
         </p>
 
@@ -172,7 +172,7 @@ function ProductComparisonContent() {
                 </div>
                 <h4 className="mt-2">{p.name}</h4>
                 {p.brand ? (
-                  <small className="font-secondary uppercase tracking-wide text-secondary">{cap(p.brand)}</small>
+                  <small className="font-secondary uppercase tracking-wide text-muted-foreground">{cap(p.brand)}</small>
                 ) : null}
                 <a
                   href={amazonSearch(p.name)}
@@ -197,7 +197,7 @@ function ProductComparisonContent() {
                 {p.aiTops != null ? (
                   <>
                     <ProgressBar value={p.aiTops} max={maxTops} variant="default" />
-                    <small className="mt-2 block font-secondary uppercase tracking-wide text-secondary">
+                    <small className="mt-2 block font-secondary uppercase tracking-wide text-muted-foreground">
                       {p.aiTops} Tensor TOPS
                     </small>
                   </>
@@ -221,7 +221,7 @@ function ProductComparisonContent() {
                   {v > 0 ? (
                     <>
                       <ProgressBar value={v} max={maxValue} variant="neutral" />
-                      <small className="mt-2 block font-secondary uppercase tracking-wide text-secondary">
+                      <small className="mt-2 block font-secondary uppercase tracking-wide text-muted-foreground">
                         {v.toFixed(1)} TOPS / ₹1k
                       </small>
                     </>
@@ -268,7 +268,7 @@ function ProductComparisonContent() {
                     <div key={`${p.id}-${row.label}`} className="border-b border-r border-border p-4 last:border-r-0">
                       <p
                         className={`font-secondary text-sm uppercase tracking-[0.12em] ${
-                          row.highlight ? "font-semibold text-accent" : "text-secondary"
+                          row.highlight ? "font-semibold text-accent" : "text-muted-foreground"
                         }`}
                       >
                         {value ?? "—"}
@@ -294,7 +294,7 @@ function ProductComparisonContent() {
                 <span className="inline-block h-2 w-2 rounded-full bg-accent" />
                 <h4 className="mt-3 font-bold text-foreground">{p.name}</h4>
                 {notes ? (
-                  <p className="mt-2 text-sm leading-normal text-secondary">{notes}</p>
+                  <p className="mt-2 text-sm leading-normal text-muted-foreground">{notes}</p>
                 ) : (
                   <p className="mt-2 text-sm leading-normal text-muted-foreground">
                     No compatibility notes on file.

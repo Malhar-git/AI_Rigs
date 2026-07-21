@@ -94,7 +94,7 @@ function TechnicalMatrix({ specs }: { specs: SpecItem[] }) {
   if (specs.length === 0) return null;
   return (
     <section className="mt-10 rounded-sm px-0 py-3">
-      <h4 className="px-0 pb-4 font-secondary tracking-wide text-secondary">TECHNICAL MATRIX</h4>
+      <h4 className="px-0 pb-4 font-secondary tracking-wide text-muted-foreground">TECHNICAL MATRIX</h4>
       <div className="grid gap-0 bg-muted/60 sm:grid-cols-2 md:grid-cols-4">
         {specs.map((spec) => (
           <SpecCell key={spec.label} label={spec.label} value={spec.value} />
@@ -117,13 +117,13 @@ function Highlights({ product }: { product: ProductDto }) {
         {product.badge ? (
           <div>
             <h4 className="font-bold text-accent">Editor&apos;s Pick</h4>
-            <p className="mt-1 leading-[1.4] text-secondary">{product.badge}</p>
+            <p className="mt-1 leading-[1.4] text-muted-foreground">{product.badge}</p>
           </div>
         ) : null}
         {notes ? (
           <div>
             <h4 className="font-bold text-accent">Best For</h4>
-            <p className="mt-1 leading-[1.4] text-secondary">{notes}</p>
+            <p className="mt-1 leading-[1.4] text-muted-foreground">{notes}</p>
           </div>
         ) : null}
       </div>
@@ -144,11 +144,11 @@ function Highlights({ product }: { product: ProductDto }) {
 function PriceCard({ product }: { product: ProductDto }) {
   return (
     <aside className="m-2 min-w-96 rounded-lg border border-border bg-primary p-5">
-      <small className="font-secondary uppercase tracking-wide text-secondary">Pricing</small>
+      <small className="font-secondary uppercase tracking-wide text-muted-foreground">Pricing</small>
 
       <div className="mt-4 flex items-baseline gap-2">
         <h2 className="leading-none">{inr(product.priceInr)}</h2>
-        <span className="font-secondary text-sm text-secondary">indicative</span>
+        <span className="font-secondary text-sm text-muted-foreground">indicative</span>
       </div>
 
       <div className="mt-4 flex flex-wrap gap-2">
@@ -180,7 +180,7 @@ function PriceCard({ product }: { product: ProductDto }) {
 function CenteredMessage({ children, tone }: { children: React.ReactNode; tone?: "error" }) {
   return (
     <PageShell>
-      <div className={`py-24 text-center ${tone === "error" ? "text-red-500" : "text-secondary"}`}>
+      <div className={`py-24 text-center ${tone === "error" ? "text-red-500" : "text-muted-foreground"}`}>
         {children}
       </div>
     </PageShell>

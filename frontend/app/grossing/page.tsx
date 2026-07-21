@@ -123,7 +123,7 @@ export default function Grossing() {
   return (
     <PageShell>
       <div className="max-w-xl">
-        <h4 className="text-secondary">Best LLMs — 2026 Rankings</h4>
+        <h4 className="text-muted-foreground">Best LLMs — 2026 Rankings</h4>
         <h3>Model Leaderboard</h3>
         <p>
           Live LMArena Elo rankings for local and hosted LLMs — ordered by community votes across head-to-head
@@ -154,11 +154,11 @@ export default function Grossing() {
       {/* license filter — only shown when there's data with licenses */}
       {licenses.length > 0 ? (
         <div className="flex gap-1 flex-wrap mb-4 items-center">
-          <small className="font-secondary uppercase tracking-wide text-secondary mr-1">License</small>
+          <small className="font-secondary uppercase tracking-wide text-muted-foreground mr-1">License</small>
           <button
             onClick={() => setLicense(null)}
             className={`px-2.5 py-1 text-xs transition-colors hover:cursor-pointer ${
-              license === null ? "bg-secondary text-background" : "bg-muted hover:bg-border"
+              license === null ? "bg-secondary text-secondary-foreground" : "bg-muted hover:bg-border"
             }`}
           >
             All
@@ -168,7 +168,7 @@ export default function Grossing() {
               key={l}
               onClick={() => setLicense(l)}
               className={`px-2.5 py-1 text-xs transition-colors hover:cursor-pointer ${
-                license === l ? "bg-secondary text-background" : "bg-muted hover:bg-border"
+                license === l ? "bg-secondary text-secondary-foreground" : "bg-muted hover:bg-border"
               }`}
             >
               {l}
@@ -178,7 +178,7 @@ export default function Grossing() {
       ) : null}
 
       {loading ? (
-        <div className="py-16 text-center text-secondary">Loading leaderboard…</div>
+        <div className="py-16 text-center text-muted-foreground">Loading leaderboard…</div>
       ) : error ? (
         <div className="py-16 text-center text-red-500">{error}</div>
       ) : rows.length === 0 ? (

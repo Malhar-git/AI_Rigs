@@ -70,7 +70,7 @@ function FeaturedGPU({ gpu, vramMax }: { gpu: BuildItem; vramMax: number }) {
               <h3 className="mt-1 text-[19px] font-semibold tracking-tight leading-snug">
                 {gpu.name}
               </h3>
-              <p className="mt-1 font-secondary text-xs text-secondary">{specLine(gpu)}</p>
+              <p className="mt-1 font-secondary text-xs text-muted-foreground">{specLine(gpu)}</p>
             </div>
 
             <div className="shrink-0 text-right">
@@ -109,7 +109,7 @@ function FeaturedGPU({ gpu, vramMax }: { gpu: BuildItem; vramMax: number }) {
 function PartRow({ part }: { part: BuildItem }) {
   return (
     <div className="flex items-center gap-4 rounded border border-border bg-background px-4 py-3.5 transition-colors hover:border-muted-foreground/40">
-      <div className="flex h-[52px] w-[52px] shrink-0 items-center justify-center rounded border border-border bg-muted font-secondary text-[11px] font-semibold tracking-wide text-secondary">
+      <div className="flex h-[52px] w-[52px] shrink-0 items-center justify-center rounded border border-border bg-muted font-secondary text-[11px] font-semibold tracking-wide text-muted-foreground">
         {codeFor(part.category)}
       </div>
       <div className="min-w-0 flex-1">
@@ -117,7 +117,7 @@ function PartRow({ part }: { part: BuildItem }) {
           {cap(part.category)}
         </p>
         <p className="mt-0.5 text-[15.5px] font-semibold tracking-tight">{part.name}</p>
-        <p className="mt-1 font-secondary text-[11.5px] text-secondary">{specLine(part)}</p>
+        <p className="mt-1 font-secondary text-[11.5px] text-muted-foreground">{specLine(part)}</p>
       </div>
       <div className="shrink-0 text-right">
         <p className="font-secondary text-[15px] font-semibold whitespace-nowrap">{inr(part.priceInr)}</p>
@@ -135,7 +135,7 @@ function ComponentManifest({ gpu, parts, vramMax }: { gpu?: BuildItem; parts: Bu
   return (
     <section className="min-w-0">
       <div className="mb-3.5 flex items-center gap-2.5">
-        <span className="font-secondary text-xs font-semibold uppercase tracking-[0.16em] text-secondary">
+        <span className="font-secondary text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground">
           Component Manifest
         </span>
         <span className="h-px flex-1 bg-border" />
@@ -168,7 +168,7 @@ function UpgradePath({ phases }: { phases: Phase[] }) {
     <aside className="sticky top-21 overflow-hidden rounded-md border border-border bg-background">
       <div className="p-5">
         <div className="mb-4 flex items-center gap-2">
-          <span className="font-secondary text-[11px] font-semibold uppercase tracking-[0.14em] text-secondary">
+          <span className="font-secondary text-[11px] font-semibold uppercase tracking-[0.14em] text-muted-foreground">
             Upgrade Path
           </span>
           <span className="h-px flex-1 bg-border" />
@@ -195,7 +195,7 @@ function UpgradePath({ phases }: { phases: Phase[] }) {
                     {phase.label}
                   </span>
                   {phase.delta && (
-                    <span className="rounded-sm bg-muted px-1.5 py-0.5 font-secondary text-[10px] font-semibold text-secondary">
+                    <span className="rounded-sm bg-muted px-1.5 py-0.5 font-secondary text-[10px] font-semibold text-muted-foreground">
                       {phase.delta}
                     </span>
                   )}
@@ -203,7 +203,7 @@ function UpgradePath({ phases }: { phases: Phase[] }) {
               )}
 
               <p className="mt-1 text-sm font-semibold">{phase.title}</p>
-              <p className="mt-0.5 text-[12.5px] leading-snug text-secondary">{phase.description}</p>
+              <p className="mt-0.5 text-[12.5px] leading-snug text-muted-foreground">{phase.description}</p>
             </div>
           ))}
         </div>
@@ -275,7 +275,7 @@ function TotalBuildBar({ total, parts, stats }: { total: number; parts: number; 
 function CenteredMessage({ children, tone }: { children: React.ReactNode; tone?: "error" }) {
   return (
     <PageShell>
-      <div className={`py-24 text-center ${tone === "error" ? "text-red-500" : "text-secondary"}`}>
+      <div className={`py-24 text-center ${tone === "error" ? "text-red-500" : "text-muted-foreground"}`}>
         {children}
       </div>
     </PageShell>
@@ -370,7 +370,7 @@ function RigOverviewContent() {
             {build.buildName}
           </h1>
           {build.summaryReasoning ? (
-            <p className="mt-4 max-w-[52ch] text-[17px] leading-relaxed text-secondary">
+            <p className="mt-4 max-w-[52ch] text-[17px] leading-relaxed text-muted-foreground">
               {build.summaryReasoning}
             </p>
           ) : null}

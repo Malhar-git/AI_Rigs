@@ -5,11 +5,11 @@ import { useRouter } from "next/navigation";
 import Button from "../ui components/Button";
 
 const navItems = [
-  { label: "About" },
+  { label: "About", href: "/about" },
   { label: "Configurator", href: "/guild-builder" },
   { label: "Categories" },
   { label: "Top Grossing", href: "/grossing" },
-  { label: "Contact Us" },
+  { label: "Contact Us", href: "/contact" },
 ];
 
 function parseRgbValues(color: string) {
@@ -80,7 +80,7 @@ function Navigation({ onDarkBackground }: { onDarkBackground: boolean }) {
           onClick={() => {
             if (item.href) router.push(item.href);
           }}
-          className={`rounded-3xl px-1 transition-all duration-250 ease-out will-change-transform hover:cursor-pointer hover:scale-[0.92] hover:translate-y-px hover:bg-background/90 hover:shadow-[inset_0_1px_2px_rgba(0,0,0,0.2)] focus-visible:ring-accent/50 active:scale-[0.9] ${onDarkBackground ? "text-foreground" : "text-foreground"}`}
+          className={`!rounded-3xl px-1 transition-all duration-250 ease-out will-change-transform hover:cursor-pointer hover:scale-[0.92] hover:translate-y-px hover:bg-background/90 hover:shadow-[inset_0_1px_2px_rgba(0,0,0,0.2)] focus-visible:ring-accent/50 active:scale-[0.9] ${onDarkBackground ? "text-foreground" : "text-foreground"}`}
         >
           {item.label}
         </Button>
@@ -137,16 +137,18 @@ export default function Header() {
   }, []);
 
   return (
-    <header ref={headerRef} className="flex sticky top-0 z-50 w-full pt-2 justify-between rounded-xl transition-colors duration-300">
-      <div className="title ml-6">
-        <Link href="/" className="inline-flex items-center">
-          <h3 className={`font-bold ttracking-wider transition-colors duration-300 ${onDarkBackground ? "text-foreground" : "text-foreground"}`}>
-            AI RIGS
-          </h3>
-        </Link>
-      </div>
-      <div className="navigation mr-32">
-        <Navigation onDarkBackground={onDarkBackground} />
+    <header ref={headerRef} className="sticky top-0 z-50 w-full pt-2 rounded-xl transition-colors duration-300">
+      <div className="flex w-full items-center justify-between px-6">
+        <div className="title">
+          <Link href="/" className="inline-flex items-center">
+            <h3 className={`font-bold ttracking-wider transition-colors duration-300 ${onDarkBackground ? "text-foreground" : "text-foreground"}`}>
+              AI RIGS
+            </h3>
+          </Link>
+        </div>
+        <div className="navigation mr-20">
+          <Navigation onDarkBackground={onDarkBackground} />
+        </div>
       </div>
     </header>
   );
