@@ -22,7 +22,7 @@ function SingleSelectStep({
       <div className="space-y-6">
         {step.families.map((family) => (
           <section key={family.id}>
-            <p className="mb-2 font-secondary text-sm uppercase tracking-wide text-secondary">{family.label}</p>
+            <p className="mb-2 font-secondary text-sm uppercase tracking-wide text-(--text-secondary)">{family.label}</p>
             <div className="grid gap-2 md:grid-cols-3">
               {family.options.map((option) => {
                 const selected = answers.targetModel === option.value;
@@ -103,8 +103,8 @@ function MultiSelectStep({
               className={[
                 "rounded-full border px-4 py-2 text-sm transition-colors",
                 selected
-                  ? "border-secondary bg-foreground text-background"
-                  : "border-border bg-background text-secondary hover:bg-muted",
+                  ? "border-secondary bg-accent text-background"
+                  : "border-border bg-background text-(--text-secondary) hover:bg-muted",
                 shouldDisable ? "cursor-not-allowed opacity-40" : "cursor-pointer",
               ].join(" ")}
             >
@@ -113,7 +113,7 @@ function MultiSelectStep({
           );
         })}
       </div>
-      <small className="text-secondary">
+      <small className="text-(--text-secondary)">
         {answers.buildPriorities.length}/{maxSelections} selected
       </small>
     </div>
@@ -136,7 +136,7 @@ function ReviewStep({
             field.highlight ? "bg-background border-border" : "bg-transparent",
           ].join(" ")}
         >
-          <small className="uppercase tracking-wide text-secondary">{field.label}</small>
+          <small className="uppercase tracking-wide text-(--text-secondary)">{field.label}</small>
           <p className="text-right text-foreground">{reviewValues[field.key] ?? "-"}</p>
         </div>
       ))}

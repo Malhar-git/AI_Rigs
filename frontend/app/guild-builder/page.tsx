@@ -75,15 +75,14 @@ export default function Builder() {
 
   return (
     <PageShell width="wide">
-      <div className="grid min-h-[72vh] grid-cols-1 divide-y md:grid-cols-[20%_80%] md:divide-x md:divide-y-0">
-        <aside className="px-0 py-8 mt-14">
+      <div className="grid min-h-[72vh] grid-cols-1 divide-y md:grid-cols-[20%_80%]  md:divide-y-0">
+        <aside className=" px-0 py-8 md:sticky md:top-24 md:self-start">
           <BuilderSidebar visibleSteps={visibleSteps} activeStepIndex={safeStepIndex} />
         </aside>
 
-        <main className="px-4 pt-8 md:px-10">
-          <section className="mx-auto mb-8 w-full">
-            <small className="uppercase tracking-[0.18em] text-secondary">{wizardConfig.wizard.description}</small>
-            <ProgressBar value={progressPercent} variant="neutral" showAnimation className="mt-3 max-w-md" />
+        <main className="px-4 pt-14 py-8 md:px-10">
+          <section className="mx-auto mb-8 w-full flex">
+            <ProgressBar value={progressPercent} variant="default" showAnimation className="mt-3" />
           </section>
 
           <section className="mx-auto w-full space-y-5">
@@ -111,25 +110,25 @@ export default function Builder() {
             })}
           </section>
 
-          <div className="mx-auto mt-12 w-full">
-            <div className="flex flex-wrap items-center justify-between gap-3 rounded-t-xl border border-border bg-muted/70 px-4 py-3 md:px-5">
+          <div className="mx-auto mt-20 w-full gap-0">
+            <div className="flex flex-wrap items-center justify-between gap-3  px-4 py-3 md:px-5">
               <Button variant="secondary" onClick={goBack} disabled={safeStepIndex === 0}>
                 Back
               </Button>
 
               <div className="flex items-center gap-2">
                 {currentStep.skippable ? (
-                  <Button variant="ghost" onClick={onSkipCurrentStep}>
+                  <Button variant="danger" onClick={onSkipCurrentStep}>
                     Skip
                   </Button>
                 ) : null}
 
                 {!isLastStep ? (
-                  <Button onClick={goNext} disabled={!canProceed}>
+                  <Button variant="accent" onClick={goNext} disabled={!canProceed}>
                     Continue
                   </Button>
                 ) : (
-                  <Button onClick={handleGenerate} disabled={isGenerating}>
+                  <Button variant="accent" onClick={handleGenerate} disabled={isGenerating}>
                     {isGenerating ? "Generating…" : (reviewStep?.cta ?? "Generate")}
                   </Button>
                 )}

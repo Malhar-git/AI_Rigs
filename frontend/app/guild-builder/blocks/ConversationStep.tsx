@@ -34,9 +34,10 @@ export default function ConversationStep({
       ].join(" ")}
     >
       <div>
+        {/* question asked */}
         <h4 className="mb-2">{question}</h4>
-        {questionNote ? <small className="block text-secondary">{questionNote}</small> : null}
-        {hint ? <small className="mt-1 block uppercase tracking-wide text-secondary">{hint}</small> : null}
+        {questionNote ? <small className="block text-(--text-secondary)">{questionNote}</small> : null}
+        {hint ? <small className="mt-1 block uppercase tracking-wide text-(--text-secondary)">{hint}</small> : null}
       </div>
 
       <div className={locked ? "mt-4 pointer-events-none opacity-80" : "mt-4"}>{children}</div>
