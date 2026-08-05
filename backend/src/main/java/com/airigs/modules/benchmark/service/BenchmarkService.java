@@ -9,6 +9,7 @@ import com.airigs.modules.benchmark.repository.GpuBenchmarkResultRepository;
 import com.airigs.modules.benchmark.entity.GpuBenchmarkResult;
 import com.airigs.modules.benchmark.repository.ModelBenchmarkRepository;
 import com.airigs.modules.benchmark.entity.ModelBenchmark;
+import com.airigs.modules.benchmark.sync.AIArenaSyncJob;
 import com.airigs.modules.infrastructure.persistence.SyncLogRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -28,6 +29,7 @@ public class BenchmarkService {
     private final GpuBenchmarkResultRepository gpuRepo;
     private final ModelBenchmarkRepository modelRepo;
     private final SyncLogRepository syncLogRepo;
+    private final AIArenaSyncJob aiArenaSyncJob;
 
     private static final Pattern GPU_TOKEN = Pattern.compile(
         "\\b(RTX\\s+\\d+\\w*(?:\\s+Ti)?|GTX\\s+\\d+\\w*(?:\\s+Ti)?" +
@@ -75,11 +77,39 @@ public class BenchmarkService {
     // ── Model leaderboard ─────────────────────────────────────────────────
     public List<ModelBenchmark> getModelLeaderboard(
             String category, String license) {
+        String normalizedCategory = normalizeCategory(category);
         boolean hasLicense = license != null && !license.isBlank();
-        return hasLicense
+
+        List<ModelBenchmark> rows = hasLicense
                 ? modelRepo.findByCategoryAndLicenseOrderByArenaRankAsc(
-                category, license)
-                : modelRepo.findByCategoryOrderByArenaRankAsc(category);
+                normalizedCategory, license)
+                : modelRepo.findByCategoryOrderByArenaRankAsc(normalizedCategory);
+
+        if (rows.isEmpty()) {
+            try {
+                aiArenaSyncJob.syncCategory(normalizedCategory);
+                rows = hasLicense
+                        ? modelRepo.findByCategoryAndLicenseOrderByArenaRankAsc(
+                        normalizedCategory, license)
+                        : modelRepo.findByCategoryOrderByArenaRankAsc(normalizedCategory);
+            } catch (Exception ignored) {
+                // fall back to empty list so the UI can show a friendly empty state
+            }
+        }
+
+        if (rows.isEmpty() && !"coding".equals(normalizedCategory)) {
+            try {
+                aiArenaSyncJob.syncCategory("coding");
+                rows = hasLicense
+                        ? modelRepo.findByCategoryAndLicenseOrderByArenaRankAsc(
+                        normalizedCategory, license)
+                        : modelRepo.findByCategoryOrderByArenaRankAsc(normalizedCategory);
+            } catch (Exception ignored) {
+                // ignore and return whatever rows exist
+            }
+        }
+
+        return rows;
     }
 
     // Latest sync status for both sources.
@@ -124,6 +154,10 @@ public class BenchmarkService {
                         .quantization(r.getModelQuantization())
                         .exactMatch(exactMatch)
                         .build());
+    }
+
+    private String normalizeCategory(String category) {
+        return category == null ? "coding" : category.trim().toLowerCase();
     }
 
     private String extractGpuToken(String productName) {

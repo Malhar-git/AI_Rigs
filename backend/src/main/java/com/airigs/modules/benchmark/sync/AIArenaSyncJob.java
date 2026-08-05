@@ -10,14 +10,17 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 @Service
 public class AIArenaSyncJob {
     private static final String SOURCE = "arena.ai";
-    private static final String CATEGORY = "coding";
     private static final Pattern FIRST_INT_PATTERN = Pattern.compile("(\\d+)");
+    private static final List<String> CATEGORIES_TO_SYNC = List.of("coding", "math", "chat", "reasoning", "agentic");
 
     private final ModelBenchmarkRepository modelBenchmarkRepo;
     private final SyncLogRepository syncLogRepo;
@@ -30,65 +33,87 @@ public class AIArenaSyncJob {
     @Scheduled(cron = "0 0 12 * * *")
     public void sync() {
         int upserted = 0;
-        String status = "success";
+        List<String> failures = new ArrayList<>();
 
-        try {
-            Document doc = Jsoup.connect("https://arena.ai/leaderboard/text/coding")
-                    .userAgent("Mozilla")
-                    .timeout(15000)
-                    .get();
-
-            Elements rows = doc.select("table tbody tr");
-
-            for (Element row : rows) {
-                Elements cols = row.select("td");
-                if (cols.size() < 6) {
-                    continue;
-                }
-
-                String rankText = cols.get(0).text().trim();
-                String modelText = cols.get(2).text().trim(); //Model Column
-                String scoreText = cols.get(3).text().trim(); //Score
-                String votesText = cols.get(4).text().trim(); //Votes
-                String priceText = cols.get(5).text().trim(); //Prices $/M
-                String contextText = cols.size() > 6 ? cols.get(6).text().trim() : null;
-
-                int[] scoreParts = parseScoreAndConfidence(scoreText);
-                int score = scoreParts[0];
-                int confidence = scoreParts[1];
-
-                // Extract model name and provider from the cell
-                // The cell contains provider name + model name concatenated
-                // e.g. "Anthropic claude-opus-4" → split on first space
-                Element modelLink = cols.get(2).selectFirst("a");
-                String modelName = modelLink != null ? modelLink.text().trim() : modelText;
-
-                // Extract license from the cell text after the model link
-                // Format: "Provider · LicenseType"
-                String cellFull = cols.get(2).text().trim();
-                String license = extractLicense(cellFull);
-                int rank = parseRank(rankText);
-
-                modelBenchmarkRepo.upsertByModelNameAndCategory(
-                        modelName,
-                        rank,
-                        score,
-                        confidence,
-                        parseVotes(votesText),
-                        license,
-                        priceText,
-                        contextText,
-                        CATEGORY,
-                        SOURCE,
-                        LocalDateTime.now()
-                );
-                upserted++;
+        for (String category : getCategoriesToSync()) {
+            try {
+                upserted += syncCategory(category);
+            } catch (Exception e) {
+                failures.add(category + ":" + buildFailureStatus(e));
             }
-        } catch (Exception e) {
-            status = buildFailureStatus(e);
         }
 
+        String status = failures.isEmpty() ? "success" : "partial-success:" + String.join(";", failures);
         syncLogRepo.insertLogEntry(SOURCE, status, upserted, LocalDateTime.now());
+    }
+
+    List<String> getCategoriesToSync() {
+        return CATEGORIES_TO_SYNC;
+    }
+
+    String buildLeaderboardUrl(String category) {
+        return "https://arena.ai/leaderboard/text/" + normalizeCategory(category);
+    }
+
+    public int syncCategory(String category) throws Exception {
+        Document doc = Jsoup.connect(buildLeaderboardUrl(category))
+                .userAgent("Mozilla")
+                .timeout(15000)
+                .get();
+
+        Elements rows = doc.select("table tbody tr");
+        int upserted = 0;
+
+        for (Element row : rows) {
+            Elements cols = row.select("td");
+            if (cols.size() < 6) {
+                continue;
+            }
+
+            String rankText = cols.get(0).text().trim();
+            String modelText = cols.get(2).text().trim(); //Model Column
+            String scoreText = cols.get(3).text().trim(); //Score
+            String votesText = cols.get(4).text().trim(); //Votes
+            String priceText = cols.get(5).text().trim(); //Prices $/M
+            String contextText = cols.size() > 6 ? cols.get(6).text().trim() : null;
+
+            int[] scoreParts = parseScoreAndConfidence(scoreText);
+            int score = scoreParts[0];
+            int confidence = scoreParts[1];
+
+            // Extract model name and provider from the cell
+            // The cell contains provider name + model name concatenated
+            // e.g. "Anthropic claude-opus-4" → split on first space
+            Element modelLink = cols.get(2).selectFirst("a");
+            String modelName = modelLink != null ? modelLink.text().trim() : modelText;
+
+            // Extract license from the cell text after the model link
+            // Format: "Provider · LicenseType"
+            String cellFull = cols.get(2).text().trim();
+            String license = extractLicense(cellFull);
+            int rank = parseRank(rankText);
+
+            modelBenchmarkRepo.upsertByModelNameAndCategory(
+                    modelName,
+                    rank,
+                    score,
+                    confidence,
+                    parseVotes(votesText),
+                    license,
+                    priceText,
+                    contextText,
+                    normalizeCategory(category),
+                    SOURCE,
+                    LocalDateTime.now()
+            );
+            upserted++;
+        }
+
+        return upserted;
+    }
+
+    private String normalizeCategory(String category) {
+        return category == null ? "coding" : category.trim().toLowerCase(Locale.ROOT);
     }
 
     private String extractLicense(String cellText) {
