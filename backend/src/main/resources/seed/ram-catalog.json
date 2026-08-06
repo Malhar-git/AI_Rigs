@@ -1,12 +1,68 @@
 {
   "catalog_meta": {
     "version": "1.0",
-    "last_updated": "2026-05-01",
+    "last_updated": "2026-08-06",
     "category": "ram",
-    "total_entries": 7,
+    "total_entries": 8,
     "schema_notes": "All prices USD MSRP. Compatibility fields cross-reference CPU socket, chipset, and DIMM slot count. AI fields describe workload fit and upgrade path."
   },
   "ram": [
+    {
+      "id": "ram-kingston-fury-beast-ddr5-16-5200",
+      "series": "FURY Beast DDR5",
+      "brand": "Kingston",
+      "name": "Kingston FURY Beast DDR5-5200 16GB (1x16GB)",
+      "tier": "entry",
+      "specifications": {
+        "capacity_gb": 16,
+        "kit_sticks": 1,
+        "stick_capacity_gb": 16,
+        "type": "DDR5",
+        "speed_mts": 5200,
+        "latency_cl": 40,
+        "latency_timings": "40-40-40-80",
+        "voltage": 1.1,
+        "form_factor": "UDIMM",
+        "ecc": false,
+        "on_die_ecc": true,
+        "xmp_profile": "XMP 3.0",
+        "expo_profile": false,
+        "bandwidth_gbs": 83.2,
+        "ranks": "1Rx8",
+        "die_manufacturer": "Samsung"
+      },
+      "ai_capabilities": {
+        "ai_use": "Minimum viable DDR5 for essentials-tier AI builds — enough for OS + GPU driver + small model inference at 7B Q4. Upgrade to 32GB later via second slot.",
+        "min_vram_gb_complement": 4,
+        "max_model_params_b": 7,
+        "workload_suitability": ["llm_inference", "ai_dev"],
+        "bottleneck_risk": "16GB will bottleneck CPU-offloaded inference and multi-model setups — upgrade recommended",
+        "dual_channel": false,
+        "bandwidth_notes": "Single-channel at 5200 MT/s is sufficient for GPU-primary inference workloads where model stays on VRAM"
+      },
+      "compatibility": {
+        "socket_support": ["AM5", "LGA1851", "LGA1700"],
+        "compatible_chipsets": ["X870E", "X870", "X670E", "X670", "B650E", "B650", "Z890", "Z790", "B760"],
+        "dimm_slots_required": 1,
+        "max_dimms_per_channel": 1,
+        "voltage_spec": "1.1V native / 1.35V at XMP",
+        "recommended_motherboard_tier": "any",
+        "ecc_board_required": false,
+        "notes": "Single stick — install in A2 slot for optimal signal integrity. Add second identical stick later for dual-channel at 32GB total."
+      },
+      "pricing": {
+        "msrp_usd": 59,
+        "price_source": "manual",
+        "last_updated": "2026-08-06"
+      },
+      "meta": {
+        "release_date": "2023-01-01",
+        "popularity_score": 72,
+        "editor_pick": false,
+        "trending": false,
+        "badge": "Entry DDR5"
+      }
+    },
     {
       "id": "ram-corsair-vengeance-ddr5-32-6000",
       "series": "Vengeance DDR5",

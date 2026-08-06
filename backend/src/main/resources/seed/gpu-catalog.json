@@ -2,7 +2,7 @@
   "catalog_meta": {
     "version": "1.0.0",
     "last_updated": "2026-03-15",
-    "total_entries": 32,
+    "total_entries": 36,
     "notes": "Prices are approximate MSRPs at time of research. Always sync via PA API or manual review. Compatibility fields are structured for AI PC Configurator feature use."
   },
 
@@ -1643,6 +1643,249 @@
         "editor_pick": false,
         "trending": true,
         "badge": "Budget AI"
+      }
+    },
+
+    {
+      "id": "gpu-amd-rx-7900-xtx",
+      "series": "RX 7000",
+      "brand": "AMD",
+      "name": "Radeon RX 7900 XTX",
+      "tier": "flagship",
+      "specifications": {
+        "vram_gb": 24,
+        "vram_type": "GDDR6",
+        "stream_processors": 12288,
+        "compute_units": 96,
+        "tdp_watts": 355,
+        "recommended_psu_watts": 850,
+        "architecture": "RDNA 3",
+        "process_node": "TSMC 5nm + 6nm",
+        "memory_bandwidth_gbs": 960,
+        "memory_bus_bits": 384,
+        "boost_clock_mhz": 2499,
+        "ai_tops": 123,
+        "ai_use": "Best AMD consumer GPU for local LLM inference at FP16/BF16; 24 GB GDDR6 fits Llama 3 70B quantised and Stable Diffusion XL natively"
+      },
+      "ai_capabilities": {
+        "supported_precision": ["FP16", "BF16", "FP32", "INT8"],
+        "ai_instruction_sets": ["ROCm", "HIP", "OpenCL 2.0", "Vulkan Compute"],
+        "compatible_ai_models": [
+          "Stable Diffusion XL", "Flux", "Llama 3 13B (FP16)", "Llama 3 70B (Q4)",
+          "Whisper Large v3", "CLIP", "Mistral 7B"
+        ]
+      },
+      "compatibility": {
+        "pcie_version": "4.0",
+        "pcie_lanes": 16,
+        "pcie_minimum_supported": "4.0",
+        "pcie_slot_width": "x16",
+        "power_connector": "2x 8-pin",
+        "multi_gpu": false,
+        "slot_size": "3-slot",
+        "length_mm": 287,
+        "height_mm": 120,
+        "compatible_sockets": ["LGA1700", "LGA1851", "AM4", "AM5"],
+        "resizable_bar": true,
+        "display_outputs": ["2x DisplayPort 2.1", "1x HDMI 2.1", "1x USB-C"],
+        "notes": "Excellent value flagship AMD GPU. ROCm support for Linux AI workloads. Best-in-class memory bandwidth for consumer tier."
+      },
+      "pricing": {
+        "msrp_usd": 999,
+        "price_source": "manual",
+        "last_updated": "2026-03-15",
+        "affiliate": {
+          "amazon": { "asin": "B0BQQXXXXXXXTX", "tag": "airigs-21", "url": "https://www.amazon.in/s?k=AMD+Radeon+RX+7900+XTX&tag=airigs-21" }
+        }
+      },
+      "meta": {
+        "release_date": "2022-12-13",
+        "popularity_score": 82,
+        "editor_pick": true,
+        "trending": false,
+        "badge": "AMD Flagship"
+      }
+    },
+
+    {
+      "id": "gpu-amd-rx-7900-xt",
+      "series": "RX 7000",
+      "brand": "AMD",
+      "name": "Radeon RX 7900 XT",
+      "tier": "high-end",
+      "specifications": {
+        "vram_gb": 20,
+        "vram_type": "GDDR6",
+        "stream_processors": 10752,
+        "compute_units": 84,
+        "tdp_watts": 315,
+        "recommended_psu_watts": 800,
+        "architecture": "RDNA 3",
+        "process_node": "TSMC 5nm + 6nm",
+        "memory_bandwidth_gbs": 800,
+        "memory_bus_bits": 320,
+        "boost_clock_mhz": 2394,
+        "ai_tops": 108,
+        "ai_use": "20 GB VRAM fits medium-to-large quantised models; good for daily LLM inference and AI-assisted development workflows"
+      },
+      "ai_capabilities": {
+        "supported_precision": ["FP16", "BF16", "FP32", "INT8"],
+        "ai_instruction_sets": ["ROCm", "HIP", "OpenCL 2.0", "Vulkan Compute"],
+        "compatible_ai_models": [
+          "Stable Diffusion XL", "Llama 3 13B (FP16)", "Llama 3 70B (Q4)",
+          "Whisper Large v3", "Mistral 7B"
+        ]
+      },
+      "compatibility": {
+        "pcie_version": "4.0",
+        "pcie_lanes": 16,
+        "pcie_minimum_supported": "4.0",
+        "pcie_slot_width": "x16",
+        "power_connector": "2x 8-pin",
+        "multi_gpu": false,
+        "slot_size": "3-slot",
+        "length_mm": 276,
+        "height_mm": 115,
+        "compatible_sockets": ["LGA1700", "LGA1851", "AM4", "AM5"],
+        "resizable_bar": true,
+        "display_outputs": ["2x DisplayPort 2.1", "1x HDMI 2.1", "1x USB-C"],
+        "notes": "Strong mid-flagship AMD GPU with 20 GB for VRAM-intensive workloads."
+      },
+      "pricing": {
+        "msrp_usd": 849,
+        "price_source": "manual",
+        "last_updated": "2026-03-15",
+        "affiliate": {
+          "amazon": { "asin": "B0BQQXXXXXXXT", "tag": "airigs-21", "url": "https://www.amazon.in/s?k=AMD+Radeon+RX+7900+XT&tag=airigs-21" }
+        }
+      },
+      "meta": {
+        "release_date": "2022-12-13",
+        "popularity_score": 74,
+        "editor_pick": false,
+        "trending": false,
+        "badge": "High-End AMD"
+      }
+    },
+
+    {
+      "id": "gpu-amd-rx-7800-xt",
+      "series": "RX 7000",
+      "brand": "AMD",
+      "name": "Radeon RX 7800 XT",
+      "tier": "mid-high",
+      "specifications": {
+        "vram_gb": 16,
+        "vram_type": "GDDR6",
+        "stream_processors": 3840,
+        "compute_units": 60,
+        "tdp_watts": 263,
+        "recommended_psu_watts": 700,
+        "architecture": "RDNA 3",
+        "process_node": "TSMC 6nm",
+        "memory_bandwidth_gbs": 624,
+        "memory_bus_bits": 256,
+        "boost_clock_mhz": 2430,
+        "ai_tops": 77,
+        "ai_use": "16 GB for Stable Diffusion XL, LoRA fine-tuning on 7B models, and daily AI-assisted development at a mid-range price"
+      },
+      "ai_capabilities": {
+        "supported_precision": ["FP16", "BF16", "FP32", "INT8"],
+        "ai_instruction_sets": ["ROCm", "HIP", "OpenCL 2.0", "Vulkan Compute"],
+        "compatible_ai_models": [
+          "Stable Diffusion XL", "Llama 3 7B (FP16)", "Llama 3 13B (Q4)",
+          "Whisper Large v3", "CLIP"
+        ]
+      },
+      "compatibility": {
+        "pcie_version": "4.0",
+        "pcie_lanes": 16,
+        "pcie_minimum_supported": "3.0",
+        "pcie_slot_width": "x16",
+        "power_connector": "2x 8-pin",
+        "multi_gpu": false,
+        "slot_size": "2-slot",
+        "length_mm": 267,
+        "height_mm": 115,
+        "compatible_sockets": ["LGA1700", "LGA1851", "AM4", "AM5"],
+        "resizable_bar": true,
+        "display_outputs": ["2x DisplayPort 2.1", "1x HDMI 2.1", "1x USB-C"],
+        "notes": "Best mid-range AMD GPU for AI hobbyists. Excellent price-per-GB ratio at 16 GB GDDR6."
+      },
+      "pricing": {
+        "msrp_usd": 499,
+        "price_source": "manual",
+        "last_updated": "2026-03-15",
+        "affiliate": {
+          "amazon": { "asin": "B0CBXXXXXXXT", "tag": "airigs-21", "url": "https://www.amazon.in/s?k=AMD+Radeon+RX+7800+XT&tag=airigs-21" }
+        }
+      },
+      "meta": {
+        "release_date": "2023-09-06",
+        "popularity_score": 71,
+        "editor_pick": true,
+        "trending": true,
+        "badge": "Best AMD Value"
+      }
+    },
+
+    {
+      "id": "gpu-amd-rx-7600",
+      "series": "RX 7000",
+      "brand": "AMD",
+      "name": "Radeon RX 7600",
+      "tier": "mid-range",
+      "specifications": {
+        "vram_gb": 8,
+        "vram_type": "GDDR6",
+        "stream_processors": 2048,
+        "compute_units": 32,
+        "tdp_watts": 165,
+        "recommended_psu_watts": 550,
+        "architecture": "RDNA 3",
+        "process_node": "TSMC 6nm",
+        "memory_bandwidth_gbs": 288,
+        "memory_bus_bits": 128,
+        "boost_clock_mhz": 2655,
+        "ai_tops": 42,
+        "ai_use": "Entry-level AMD AI GPU for Stable Diffusion 1.5/XL at reduced settings and 7B model inference with Q4 quantisation on a tight budget"
+      },
+      "ai_capabilities": {
+        "supported_precision": ["FP16", "FP32", "INT8"],
+        "ai_instruction_sets": ["ROCm", "HIP", "OpenCL 2.0", "Vulkan Compute"],
+        "compatible_ai_models": [
+          "Stable Diffusion 1.5", "Llama 3 7B (Q4)", "Whisper Medium", "CLIP"
+        ]
+      },
+      "compatibility": {
+        "pcie_version": "4.0",
+        "pcie_lanes": 8,
+        "pcie_minimum_supported": "3.0",
+        "pcie_slot_width": "x8",
+        "power_connector": "1x 8-pin",
+        "multi_gpu": false,
+        "slot_size": "2-slot",
+        "length_mm": 213,
+        "height_mm": 105,
+        "compatible_sockets": ["LGA1700", "LGA1851", "AM4", "AM5"],
+        "resizable_bar": true,
+        "display_outputs": ["3x DisplayPort 2.0", "1x HDMI 2.1"],
+        "notes": "Budget AMD GPU. 8 GB limits larger models; ideal for essentials-tier AI builds."
+      },
+      "pricing": {
+        "msrp_usd": 269,
+        "price_source": "manual",
+        "last_updated": "2026-03-15",
+        "affiliate": {
+          "amazon": { "asin": "B0CDXXXXXXXX", "tag": "airigs-21", "url": "https://www.amazon.in/s?k=AMD+Radeon+RX+7600&tag=airigs-21" }
+        }
+      },
+      "meta": {
+        "release_date": "2023-05-24",
+        "popularity_score": 65,
+        "editor_pick": false,
+        "trending": false,
+        "badge": "Budget AMD"
       }
     }
 
