@@ -1,6 +1,6 @@
 "use client";
 
-import { Suspense, useEffect, useState } from "react";
+import { Suspense, useCallback, useEffect, useRef, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import PageShell from "../components/PageShell";
 import { getBuild } from "@/lib/builds";
@@ -108,15 +108,15 @@ function FeaturedGPU({ gpu, vramMax }: { gpu: BuildItem; vramMax: number }) {
 // ─── part row ──────────────────────────────────────────────────────────────────
 function PartRow({ part }: { part: BuildItem }) {
   return (
-    <div className="flex items-center gap-4 rounded border border-border bg-background px-4 py-3.5 transition-colors hover:border-muted-foreground/40">
-      <div className="flex h-[52px] w-[52px] shrink-0 items-center justify-center rounded border border-border bg-muted font-secondary text-[11px] font-semibold tracking-wide text-muted-foreground">
+    <div className="flex items-center gap-4 rounded border border-border bg-background px-4 py-3.5 transition-colors hover:border-accent border-2">
+      <div className="flex h-13 w-13 shrink-0 items-center justify-center rounded border border-border bg-muted font-secondary tracking-wide text-muted-foreground">
         {codeFor(part.category)}
       </div>
       <div className="min-w-0 flex-1">
         <p className="font-secondary text-[10px] uppercase tracking-[0.14em] text-muted-foreground">
           {cap(part.category)}
         </p>
-        <p className="mt-0.5 text-[15.5px] font-semibold tracking-tight">{part.name}</p>
+        <h6 className="mt-0.5 text-[15.5px] font-semibold tracking-tight">{part.name}</h6>
         <p className="mt-1 font-secondary text-[11.5px] text-muted-foreground">{specLine(part)}</p>
       </div>
       <div className="shrink-0 text-right">
@@ -135,7 +135,7 @@ function ComponentManifest({ gpu, parts, vramMax }: { gpu?: BuildItem; parts: Bu
   return (
     <section className="min-w-0">
       <div className="mb-3.5 flex items-center gap-2.5">
-        <span className="font-secondary text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground">
+        <span className="font-secondary text-xs font-semibold uppercase tracking-widest text-(--text-secondary)">
           Component Manifest
         </span>
         <span className="h-px flex-1 bg-border" />
@@ -159,70 +159,443 @@ function ComponentManifest({ gpu, parts, vramMax }: { gpu?: BuildItem; parts: Bu
   );
 }
 
-// ─── upgrade path ────────────────────────────────────────────────────────────────
-type Phase = { label: string; delta: string; title: string; description: string; active: boolean };
+// ─── upgrade advisor ─────────────────────────────────────────────────────────────
 
-function UpgradePath({ phases }: { phases: Phase[] }) {
-  const lastIndex = phases.length - 1;
+type UpgradeTier = {
+  rank: "current" | "good" | "better" | "best";
+  label: string;          // "Now · Live" | "Good" | "Better" | "Best"
+  gpuName: string;
+  vramGb: number;
+  costDeltaInr?: number;  // upgrade spend relative to current GPU
+  models: string[];       // models this VRAM tier unlocks
+  highlight?: string;     // one-liner selling point
+  tag?: string;           // e.g. "Recommended"
+};
+
+/** Build a set of upgrade tiers from what the build tells us. */
+function deriveUpgradeTiers(
+  currentGpuName: string,
+  currentVramGb: number,
+  task: string | undefined,
+): UpgradeTier[] {
+  const isFine = (task ?? "").includes("fine");
+
+  // ── model capability map: VRAM floor → model list ──────────────────────────
+  const MODEL_UNLOCKS: { vram: number; models: string[] }[] = [
+    { vram: 8,  models: ["Llama 3.1 7B", "Mistral 7B", "Phi-3 Mini"] },
+    { vram: 16, models: ["Llama 3.1 13B", "Gemma 2 9B", "Qwen2 14B"] },
+    { vram: 24, models: ["Llama 3.1 34B", "Codestral 22B", "Yi-34B"] },
+    { vram: 48, models: ["Llama 3.1 70B", "Mixtral 8×7B", "Qwen2 72B"] },
+    { vram: 80, models: ["Llama 3.1 405B", "DeepSeek-V3", "Mixtral 8×22B"] },
+  ];
+  const modelsFor = (vram: number) =>
+    MODEL_UNLOCKS.filter((m) => m.vram <= vram).flatMap((m) => m.models).slice(-4);
+
+  // ── GPU tiers above current VRAM ──────────────────────────────────────────
+  type GpuSpec = { name: string; vramGb: number; priceInr: number; highlight: string };
+  const GPU_LADDER: GpuSpec[] = [
+    { name: "Radeon RX 7900 XTX",         vramGb: 24,  priceInr: 89_000,  highlight: "24 GB GDDR6 — runs 34B models natively" },
+    { name: "NVIDIA RTX 4090",             vramGb: 24,  priceInr: 175_000, highlight: "CUDA ecosystem, fastest local inference" },
+    { name: "NVIDIA RTX 4090 + 4090",      vramGb: 48,  priceInr: 350_000, highlight: "Dual-GPU NVLink — 70B at full precision" },
+    { name: "NVIDIA RTX 6000 Ada",         vramGb: 48,  priceInr: 520_000, highlight: "Workstation-grade, ECC VRAM, PCIe 5" },
+    { name: "NVIDIA H100 80GB SXM",        vramGb: 80,  priceInr: 3_500_000, highlight: "Data-centre class — 405B at fp16" },
+  ];
+
+  const aboveCurrent = GPU_LADDER.filter((g) => g.vramGb > currentVramGb);
+  // Pick three evenly-spaced steps: VRAM jump categories 24, 48, 80+
+  const good   = aboveCurrent.find((g) => g.vramGb === 24) ?? aboveCurrent[0];
+  const better = aboveCurrent.find((g) => g.vramGb === 48) ?? aboveCurrent[1];
+  const best   = aboveCurrent.find((g) => g.vramGb >= 80)  ?? aboveCurrent[aboveCurrent.length - 1];
+
+  const tiers: UpgradeTier[] = [
+    {
+      rank: "current",
+      label: "Now · Live",
+      gpuName: currentGpuName,
+      vramGb: currentVramGb,
+      models: modelsFor(currentVramGb),
+      highlight: isFine
+        ? `LoRA fine-tuning up to 13B at Q8 — solid start`
+        : `Inference at 16 GB VRAM — runs 13B models`,
+    },
+    ...(good ? [{
+      rank: "good" as const,
+      label: "Good",
+      gpuName: good.name,
+      vramGb: good.vramGb,
+      costDeltaInr: good.priceInr,
+      models: modelsFor(good.vramGb),
+      highlight: good.highlight,
+      tag: "Most popular",
+    }] : []),
+    ...(better && better !== good ? [{
+      rank: "better" as const,
+      label: "Better",
+      gpuName: better.name,
+      vramGb: better.vramGb,
+      costDeltaInr: better.priceInr,
+      models: modelsFor(better.vramGb),
+      highlight: better.highlight,
+      tag: "Recommended",
+    }] : []),
+    ...(best && best !== better ? [{
+      rank: "best" as const,
+      label: "Best",
+      gpuName: best.name,
+      vramGb: best.vramGb,
+      costDeltaInr: best.priceInr,
+      models: modelsFor(best.vramGb),
+      highlight: best.highlight,
+    }] : []),
+  ];
+
+  return tiers;
+}
+
+/** Mini horizontal VRAM bar */
+function VramBar({ value, max }: { value: number; max: number }) {
+  const pct = Math.round((value / max) * 100);
+  return (
+    <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-muted">
+      <div
+        className="h-full rounded-full bg-accent transition-all duration-500"
+        style={{ width: `${pct}%` }}
+      />
+    </div>
+  );
+}
+
+/** Rank → colour mapping for tier pills */
+const RANK_STYLE: Record<string, string> = {
+  current: "bg-accent/10 text-accent border border-accent/25",
+  good:    "bg-muted text-muted-foreground border border-border",
+  better:  "bg-highlight/10 text-highlight border border-highlight/25",
+  best:    "bg-warning/10 text-warning border border-warning/25",
+};
+
+function UpgradeAdvisor({
+  build,
+}: {
+  build: BuildResponse;
+}) {
+  const components = build.components ?? [];
+  const gpu =
+    components.find((c) => c.isPrimary) ??
+    components.find((c) => (c.category ?? "").toLowerCase() === "gpu");
+
+  const currentVram  = gpu?.vramGb ?? 0;
+  const currentName  = gpu?.name   ?? "Current GPU";
+  const task         = build.task;
+  const modelName    = build.modelName;
+
+  const tiers    = deriveUpgradeTiers(currentName, currentVram, task);
+  const maxVram  = tiers.at(-1)?.vramGb ?? currentVram;
+
+  // Bottleneck feedback line
+  const isFine   = (task ?? "").includes("fine");
+  const feedback = isFine
+    ? `${currentVram} GB VRAM supports Q8 LoRA fine-tuning up to ~13B. Full-precision (fp16) fine-tuning of 30B+ models needs ≥48 GB.`
+    : `${currentVram} GB handles inference for models up to 13B. Larger models require more VRAM — see tiers below.`;
+
   return (
     <aside className="sticky top-21 overflow-hidden rounded-md border border-border bg-background">
-      <div className="p-5">
-        <div className="mb-4 flex items-center gap-2">
-          <span className="font-secondary text-[11px] font-semibold uppercase tracking-[0.14em] text-muted-foreground">
-            Upgrade Path
-          </span>
-          <span className="h-px flex-1 bg-border" />
+      {/* Header */}
+      <div className="flex items-center gap-2 border-b border-border px-5 py-3.5">
+        <span className="font-secondary text-[11px] font-semibold uppercase tracking-[0.14em] text-muted-foreground">
+          Upgrade Path
+        </span>
+        <span className="h-px flex-1 bg-border" />
+        <span className="rounded-sm bg-muted px-2 py-0.5 font-secondary text-[10px] font-semibold text-muted-foreground">
+          {tiers.length - 1} options
+        </span>
+      </div>
+
+      {/* Bottleneck callout */}
+      <div className="mx-4 mt-4 rounded-md border border-warning/30 bg-warning/5 px-3.5 py-3">
+        <p className="font-secondary text-[9.5px] font-semibold uppercase tracking-[0.12em] text-warning">
+          ⚠ Current Bottleneck
+        </p>
+        <p className="mt-1 text-[12px] leading-relaxed text-muted-foreground">
+          {feedback}
+        </p>
+      </div>
+
+      {/* Tier cards */}
+      <div className="flex flex-col gap-0 divide-y divide-border">
+        {tiers.map((tier) => (
+          <div
+            key={tier.rank}
+            className={`relative px-5 py-4 ${
+              tier.rank === "current"
+                ? "bg-accent/[0.03]"
+                : "transition-colors hover:bg-muted/50"
+            }`}
+          >
+            {/* Tier label row */}
+            <div className="flex items-center gap-2">
+              <span
+                className={`inline-flex items-center rounded-sm px-1.5 py-0.5 font-secondary text-[9.5px] font-semibold uppercase tracking-[0.1em] ${
+                  RANK_STYLE[tier.rank]
+                }`}
+              >
+                {tier.label}
+              </span>
+              {tier.tag && (
+                <span className="rounded-sm bg-accent/10 px-1.5 py-0.5 font-secondary text-[9px] font-semibold uppercase tracking-[0.1em] text-accent">
+                  {tier.tag}
+                </span>
+              )}
+              {tier.rank !== "current" && tier.costDeltaInr != null && (
+                <span className="ml-auto font-secondary text-[11px] font-semibold text-muted-foreground">
+                  {inr(tier.costDeltaInr)}
+                </span>
+              )}
+            </div>
+
+            {/* GPU name */}
+            <p className="mt-1.5 text-[13.5px] font-semibold leading-snug tracking-tight">
+              {tier.gpuName}
+            </p>
+
+            {/* Highlight line */}
+            {tier.highlight && (
+              <p className="mt-0.5 font-secondary text-[11px] leading-relaxed text-muted-foreground">
+                {tier.highlight}
+              </p>
+            )}
+
+            {/* VRAM bar */}
+            <div className="mt-2 flex items-center gap-2">
+              <span className="font-secondary text-[10px] text-muted-foreground">
+                VRAM
+              </span>
+              <span className="font-secondary text-[11px] font-semibold text-foreground">
+                {tier.vramGb} GB
+              </span>
+              <div className="flex-1">
+                <VramBar value={tier.vramGb} max={maxVram} />
+              </div>
+            </div>
+
+            {/* Models unlocked */}
+            <div className="mt-2.5 flex flex-wrap gap-1">
+              {tier.models.map((m) => (
+                <span
+                  key={m}
+                  className={`rounded px-1.5 py-0.5 font-secondary text-[9.5px] font-medium ${
+                    modelName && m.toLowerCase().includes(modelName.split(" ")[1]?.toLowerCase() ?? "")
+                      ? "bg-accent/15 text-accent"
+                      : "bg-muted text-muted-foreground"
+                  }`}
+                >
+                  {m}
+                </span>
+              ))}
+            </div>
+
+            {/* Amazon search link for upgrades */}
+            {tier.rank !== "current" && (
+              <a
+                href={amazonSearch(tier.gpuName)}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-3 inline-flex items-center gap-1 rounded-md bg-[#ffd814] px-3 py-1.5 font-secondary text-[10.5px] font-semibold text-[#0f1111] transition-colors hover:bg-[#f3c400]"
+              >
+                Shop {tier.gpuName.split(" ").slice(-2).join(" ")} ↗
+              </a>
+            )}
+          </div>
+        ))}
+      </div>
+
+      {/* Footer note */}
+      <p className="px-5 py-3 font-secondary text-[9.5px] leading-relaxed tracking-wide text-muted-foreground/60">
+        Prices indicative · Amazon.in. VRAM requirements shown at Q8 quantization unless noted.
+      </p>
+    </aside>
+  );
+}
+
+// ─── build sheet modal ───────────────────────────────────────────────────────────
+function BuildSheetModal({
+  build,
+  onClose,
+}: {
+  build: BuildResponse;
+  onClose: () => void;
+}) {
+  const components = build.components ?? [];
+  const [copied, setCopied] = useState(false);
+  const [shopping, setShopping] = useState(false);
+  const overlayRef = useRef<HTMLDivElement>(null);
+
+  // Close on Escape
+  useEffect(() => {
+    const handler = (e: KeyboardEvent) => { if (e.key === "Escape") onClose(); };
+    window.addEventListener("keydown", handler);
+    return () => window.removeEventListener("keydown", handler);
+  }, [onClose]);
+
+  // Staggered "open all" — opens each Amazon search tab 500 ms apart so
+  // browsers don't collapse them. The first window.open fires from within the
+  // click handler (trusted user gesture), so it's never blocked.
+  const handleShopAll = useCallback(() => {
+    setShopping(true);
+    components.forEach((part, i) => {
+      setTimeout(() => {
+        window.open(amazonSearch(part.name), `_ai_rig_${i}`);
+        if (i === components.length - 1) setShopping(false);
+      }, i * 500);
+    });
+  }, [components]);
+
+  const handleCopy = useCallback(() => {
+    const lines = [
+      `# ${build.buildName}`,
+      `Total: ${inr(build.totalPriceInr)} · ${components.length} parts`,
+      "",
+      ...components.map(
+        (c) =>
+          `${(c.category ?? "Part").padEnd(14)} ${c.name.padEnd(46)} ${inr(c.priceInr)}`,
+      ),
+      "",
+      build.summaryReasoning ?? "",
+      "",
+      `Built with AI Rigs · airigs.in`,
+    ];
+    navigator.clipboard.writeText(lines.join("\n")).then(() => {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    });
+  }, [build, components]);
+
+  return (
+    <div
+      ref={overlayRef}
+      className="fixed inset-0 z-[100] flex items-end justify-center sm:items-center"
+      onClick={(e) => { if (e.target === overlayRef.current) onClose(); }}
+    >
+      {/* Backdrop */}
+      <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" />
+
+      {/* Sheet */}
+      <div className="relative z-10 flex max-h-[90vh] w-full max-w-2xl flex-col overflow-hidden rounded-t-2xl border border-border bg-background shadow-2xl sm:rounded-2xl">
+        {/* Header */}
+        <div className="flex items-center justify-between border-b border-border px-6 py-4">
+          <div>
+            <p className="font-secondary text-[10.5px] font-semibold uppercase tracking-[0.14em] text-accent">
+              Build Sheet
+            </p>
+            <h3 className="mt-0.5 text-lg font-semibold tracking-tight">{build.buildName}</h3>
+          </div>
+          <button
+            type="button"
+            onClick={onClose}
+            className="flex h-8 w-8 items-center justify-center rounded-full text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+            aria-label="Close"
+          >
+            ✕
+          </button>
         </div>
 
-        <div className="relative pl-7">
-          <div className="absolute bottom-2 left-1.75 top-[7px] w-0.5 bg-border" />
-
-          {phases.map((phase, i) => (
-            <div key={phase.label} className={i < lastIndex ? "relative mb-5" : "relative"}>
-              <div
-                className={`absolute -left-7 top-0.5 h-4 w-4 rounded-full border-2 ${
-                  phase.active ? "border-accent bg-accent" : "border-border bg-background"
-                }`}
-              />
-
-              {phase.active ? (
-                <p className="font-secondary text-[9.5px] font-semibold uppercase tracking-[0.14em] text-accent">
-                  {phase.label}
-                </p>
-              ) : (
-                <div className="flex items-center justify-between gap-2">
-                  <span className="font-secondary text-[9.5px] font-semibold uppercase tracking-[0.14em] text-muted-foreground">
-                    {phase.label}
-                  </span>
-                  {phase.delta && (
-                    <span className="rounded-sm bg-muted px-1.5 py-0.5 font-secondary text-[10px] font-semibold text-muted-foreground">
-                      {phase.delta}
-                    </span>
+        {/* Component list */}
+        <div className="flex-1 overflow-y-auto px-6 py-4">
+          <div className="flex flex-col divide-y divide-border">
+            {components.map((part) => (
+              <div key={part.productId} className="flex items-center gap-4 py-3.5">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded border border-border bg-muted font-secondary text-[10px] font-semibold tracking-wide text-muted-foreground">
+                  {codeFor(part.category)}
+                </div>
+                <div className="min-w-0 flex-1">
+                  <p className="font-secondary text-[9.5px] uppercase tracking-[0.12em] text-muted-foreground">
+                    {cap(part.category)}
+                  </p>
+                  <p className="mt-0.5 truncate text-sm font-semibold">{part.name}</p>
+                  {part.reason && (
+                    <p className="mt-0.5 font-secondary text-[10.5px] text-muted-foreground line-clamp-1">
+                      {part.reason}
+                    </p>
                   )}
                 </div>
-              )}
-
-              <p className="mt-1 text-sm font-semibold">{phase.title}</p>
-              <p className="mt-0.5 text-[12.5px] leading-snug text-muted-foreground">{phase.description}</p>
-            </div>
-          ))}
+                <div className="shrink-0 text-right">
+                  <p className="font-secondary text-sm font-semibold">{inr(part.priceInr)}</p>
+                  <a
+                    href={amazonSearch(part.name)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-1.5 inline-flex items-center gap-1 rounded bg-[#ffd814] px-2.5 py-1 font-secondary text-[9.5px] font-semibold text-[#0f1111] transition-colors hover:bg-[#f3c400]"
+                  >
+                    Buy ↗
+                  </a>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
 
-        <button
-          type="button"
-          className="mt-5 w-full rounded border border-border bg-background py-2.5 font-secondary text-[11px] font-semibold uppercase tracking-[0.1em] text-foreground transition-colors hover:bg-muted"
-        >
-          Plan an upgrade ↗
-        </button>
+        {/* Footer */}
+        <div className="border-t border-border bg-muted/30 px-6 py-4">
+          {/* Total */}
+          <div className="mb-4 flex items-baseline justify-between">
+            <span className="font-secondary text-[11px] uppercase tracking-[0.14em] text-muted-foreground">
+              Total Build Cost
+            </span>
+            <span className="font-secondary text-2xl font-semibold tracking-tight">
+              {inr(build.totalPriceInr)}
+            </span>
+          </div>
+
+          {/* Note about multi-tab */}
+          <p className="mb-3 font-secondary text-[10.5px] leading-relaxed text-muted-foreground">
+            <span className="font-semibold text-foreground">"Shop All on Amazon"</span> opens a separate Amazon.in
+            search tab for each part, staggered to avoid popup-blocker issues. Allow popups for this
+            site if asked.
+          </p>
+
+          {/* Actions */}
+          <div className="flex flex-wrap gap-2.5">
+            <button
+              type="button"
+              onClick={handleShopAll}
+              disabled={shopping}
+              className="flex-1 rounded-md bg-[#ffd814] px-5 py-2.5 font-secondary text-sm font-semibold text-[#0f1111] transition-opacity hover:opacity-90 disabled:opacity-60"
+            >
+              {shopping
+                ? `Opening ${components.length} tabs…`
+                : `🛒 Shop All on Amazon (${components.length} parts)`}
+            </button>
+            <button
+              type="button"
+              onClick={handleCopy}
+              className="rounded-md border border-border bg-background px-5 py-2.5 font-secondary text-sm font-semibold transition-colors hover:bg-muted"
+            >
+              {copied ? "✓ Copied!" : "Copy build"}
+            </button>
+          </div>
+
+          <p className="mt-3 font-secondary text-[9px] text-muted-foreground/60">
+            As an Amazon Associate, AI Rigs earns from qualifying purchases.
+          </p>
+        </div>
       </div>
-    </aside>
+    </div>
   );
 }
 
 // ─── total build bar ─────────────────────────────────────────────────────────────
 type BuildStat = { value: string; unit: string; label: string; accent: boolean };
 
-function TotalBuildBar({ total, parts, stats }: { total: number; parts: number; stats: BuildStat[] }) {
+function TotalBuildBar({
+  total,
+  parts,
+  stats,
+  onExport,
+}: {
+  total: number;
+  parts: number;
+  stats: BuildStat[];
+  onExport: () => void;
+}) {
   return (
     <div className="fixed inset-x-0 bottom-0 z-50 border-t border-border bg-background/90 shadow-[0_-8px_24px_rgba(0,0,0,0.07)] backdrop-blur-md">
       <div className="mx-auto max-w-7xl px-4 py-3.5 sm:px-6 lg:px-8">
@@ -260,6 +633,7 @@ function TotalBuildBar({ total, parts, stats }: { total: number; parts: number; 
             </div>
             <button
               type="button"
+              onClick={onExport}
               className="h-11 rounded bg-accent px-7 font-primary text-[15px] font-semibold text-white transition-opacity hover:opacity-90"
             >
               Export build sheet
@@ -290,6 +664,7 @@ function RigOverviewContent() {
   const [build, setBuild] = useState<BuildResponse | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
+  const [sheetOpen, setSheetOpen] = useState(false);
 
   useEffect(() => {
     if (!id) {
@@ -325,32 +700,7 @@ function RigOverviewContent() {
     components.find((c) => (c.category ?? "").toLowerCase() === "gpu");
   const parts = components.filter((c) => c !== gpu);
 
-  const upgrades = build.upgradePaths ?? [];
-  const hasGpuUpgrade = upgrades.some((u) => (u.target ?? "").toLowerCase() === "gpu");
   const vramNow = gpu?.vramGb ?? 0;
-  const vramMax = hasGpuUpgrade ? vramNow * 2 : vramNow;
-
-  // upgrade timeline: a live "now" node, then any backend-provided upgrade paths
-  const phases: Phase[] = [
-    {
-      label: "Now · Live",
-      delta: "",
-      title: gpu ? `${gpu.name}${vramNow ? ` · ${vramNow} GB` : ""}` : build.buildName,
-      description: build.modelName
-        ? `Runs ${build.modelName} today.`
-        : build.summaryReasoning ?? "Your configured build.",
-      active: true,
-    },
-    ...upgrades.map((u, i) => ({
-      label: `Phase 0${i + 2}`,
-      delta: u.maxPossible ?? "",
-      title: `Expand ${cap(u.target)}`,
-      description:
-        [u.currentSpec, u.maxPossible].filter(Boolean).join(" → ") +
-        (u.slotsFree ? ` · ${u.slotsFree} free` : ""),
-      active: false,
-    })),
-  ];
 
   const perf = build.performanceEstimate;
   const stats: BuildStat[] = [
@@ -364,27 +714,36 @@ function RigOverviewContent() {
 
   return (
     <>
-      <PageShell>
-        <div className="py-2.5">
-          <h1 className="m-0 max-w-[16ch] text-[clamp(2.5rem,5vw,4rem)] font-semibold leading-[0.98] tracking-[-0.035em]">
+      <PageShell width="wide">
+        <div className="mt-6 flex justify-between">
+          <h2 className="max-w-[14ch] text-[clamp(2.5rem,5vw,4rem)] text-(--text-primary) tracking-tight">
             {build.buildName}
-          </h1>
+          </h2>
           {build.summaryReasoning ? (
-            <p className="mt-4 max-w-[52ch] text-[17px] leading-relaxed text-muted-foreground">
+            <h4 className="mt-4 max-w-[42ch] line-clamp-5 text-base text-(--text-secondary) mr-18 leading-relaxed">
               {build.summaryReasoning}
-            </p>
+            </h4>
           ) : null}
         </div>
 
         <div className="mt-7 grid grid-cols-1 items-start gap-6 lg:grid-cols-[1fr_326px]">
-          <ComponentManifest gpu={gpu} parts={parts} vramMax={vramMax} />
-          <UpgradePath phases={phases} />
+          <ComponentManifest gpu={gpu} parts={parts} vramMax={vramNow} />
+          <UpgradeAdvisor build={build} />
         </div>
 
         <div className="h-36" />
       </PageShell>
 
-      <TotalBuildBar total={build.totalPriceInr} parts={components.length} stats={stats} />
+      <TotalBuildBar
+        total={build.totalPriceInr}
+        parts={components.length}
+        stats={stats}
+        onExport={() => setSheetOpen(true)}
+      />
+
+      {sheetOpen && (
+        <BuildSheetModal build={build} onClose={() => setSheetOpen(false)} />
+      )}
     </>
   );
 }
