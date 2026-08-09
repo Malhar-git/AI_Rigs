@@ -131,7 +131,8 @@ public class BenchmarkService {
         String gpuToken = extractGpuToken(gpuProductName);
         if (gpuToken.isBlank()) return Optional.empty();
 
-        List<GpuBenchmarkResult> candidates = gpuRepo.findByGpuAndModel(gpuToken, modelName);
+        String safeModelName = modelName == null ? "" : modelName;
+        List<GpuBenchmarkResult> candidates = gpuRepo.findByGpuAndModel(gpuToken, safeModelName);
         if (candidates.isEmpty()) return Optional.empty();
 
         String quantPrefix = mapPrecisionToQuantPrefix(precision);

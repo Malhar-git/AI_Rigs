@@ -43,7 +43,7 @@ public interface GpuBenchmarkResultRepository extends JpaRepository<GpuBenchmark
     @Query("""
         SELECT r FROM GpuBenchmarkResult r
         WHERE LOWER(r.acceleratorName) LIKE LOWER(CONCAT('%', :gpuToken, '%'))
-          AND (:modelName IS NULL OR LOWER(r.modelName) LIKE LOWER(CONCAT('%', :modelName, '%')))
+          AND LOWER(r.modelName) LIKE LOWER(CONCAT('%', :modelName, '%'))
         ORDER BY r.localscore DESC NULLS LAST
         """)
     List<GpuBenchmarkResult> findByGpuAndModel(
