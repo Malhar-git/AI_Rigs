@@ -7,7 +7,7 @@ import Button from "../ui components/Button";
 const navItems = [
   { label: "About", href: "/about" },
   { label: "Configurator", href: "/guild-builder" },
-  { label: "Categories" },
+  { label: "Products", href: "/products" },
   { label: "Top Grossing", href: "/grossing" },
   { label: "Contact Us", href: "/contact" },
 ];
@@ -80,7 +80,7 @@ function Navigation({ onDarkBackground }: { onDarkBackground: boolean }) {
           onClick={() => {
             if (item.href) router.push(item.href);
           }}
-          className={`!rounded-3xl px-1 transition-all duration-250 ease-out will-change-transform hover:cursor-pointer hover:scale-[0.92] hover:translate-y-px hover:bg-background/90 hover:shadow-[inset_0_1px_2px_rgba(0,0,0,0.2)] focus-visible:ring-accent/50 active:scale-[0.9] ${onDarkBackground ? "text-foreground" : "text-foreground"}`}
+          className={`rounded-3xl! px-1 transition-all duration-250 ease-out will-change-transform hover:cursor-pointer hover:scale-[0.92] hover:translate-y-px hover:bg-background/90 hover:shadow-[inset_0_1px_2px_rgba(0,0,0,0.2)] focus-visible:ring-accent/50 active:scale-[0.9] ${onDarkBackground ? "text-foreground" : "text-foreground"}`}
         >
           {item.label}
         </Button>
@@ -138,15 +138,18 @@ export default function Header() {
 
   return (
     <header ref={headerRef} className="sticky top-0 z-50 w-full pt-2 rounded-xl transition-colors duration-300">
-      <div className="flex w-full items-center justify-between px-6">
-        <div className="title">
+      <div className="flex w-full flex-col items-center gap-3 px-4 sm:px-6 md:flex-row md:items-center md:justify-between">
+        <div className="title flex w-full justify-center md:w-auto md:justify-start">
           <Link href="/" className="inline-flex items-center">
-            <h3 className={`font-bold ttracking-wider transition-colors duration-300 ${onDarkBackground ? "text-foreground" : "text-foreground"}`}>
+            <h3
+              style={{ fontSize: "clamp(1.17em, 1.17em + 1vw, 2.5rem)" }}
+              className={`font-bold tracking-wider transition-colors duration-300  ${onDarkBackground ? "text-foreground" : "text-foreground"}`}
+            >
               AI RIGS
             </h3>
           </Link>
         </div>
-        <div className="navigation mr-20">
+        <div className="navigation flex w-full justify-center md:mr-20 md:w-auto md:justify-end">
           <Navigation onDarkBackground={onDarkBackground} />
         </div>
       </div>

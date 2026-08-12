@@ -81,9 +81,6 @@ export default function Builder() {
         </aside>
 
         <main className="px-4 pt-14 py-8 md:px-10">
-          <section className="mx-auto mb-8 w-full flex">
-            <ProgressBar value={progressPercent} variant="default" showAnimation className="mt-3" />
-          </section>
 
           <section className="mx-auto w-full space-y-5">
             {renderedSteps.map((step, index) => {
@@ -110,7 +107,7 @@ export default function Builder() {
             })}
           </section>
 
-          <div className="mx-auto mt-20 w-full gap-0">
+          <div className="mx-auto mt-10 w-full gap-0">
             <div className="flex flex-wrap items-center justify-between gap-3  px-4 py-3 md:px-5">
               <Button variant="secondary" onClick={goBack} disabled={safeStepIndex === 0}>
                 Back
@@ -135,8 +132,12 @@ export default function Builder() {
               </div>
             </div>
 
+            <div className="px-4 pt-3 pb-1 md:px-5">
+              <ProgressBar value={progressPercent} variant="default" showAnimation />
+            </div>
+
             {error ? (
-              <p className="mt-2 px-4 text-sm text-red-500 md:px-5">{error}</p>
+              <p className="mt-1 px-4 text-sm text-red-500 md:px-5">{error}</p>
             ) : null}
           </div>
         </main>
