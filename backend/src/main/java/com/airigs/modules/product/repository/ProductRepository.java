@@ -21,17 +21,27 @@ public interface ProductRepository extends JpaRepository<Product, UUID> {
 
     // ── Core filter used by BuildService ─────────────────────────────────────
     // Returns all in-stock products within budget AND meeting VRAM floor.
-    // vramMin is applied only to GPUs — other categories are unaffected.
-    // GPUs with null vram_gb are excluded from eligible (they don't prove VRAM fit).
+    //
+    // Key rules:
+    //  - budgetMin/Max represent the TOTAL BUILD budget, not per-component price.
+    //  - GPUs: included if priceInr <= budgetMax AND vramGb >= vramMin.
+    //    (budgetMin is NOT applied to individual GPUs — a ₹1,34K RTX 4090 is
+    //     perfectly valid in a ₹1,80K–₹3,50K serious build.)
+    //  - Non-GPU components (CPU/mobo/RAM/PSU/rack) are capped at 30% of
+    //    budgetMax so HEDT/datacenter parts don't appear in budget builds, while
+    //    all practical consumer parts are always eligible.
+    //  - GPUs with null vram_gb are excluded (can't prove VRAM fit).
     @Query("""
         SELECT p FROM Product p
         WHERE p.inStock = true
-          AND p.priceInr >= :budgetMin
-          AND p.priceInr <= :budgetMax
           AND (
-                p.category != 'gpu'
-                OR p.vramGb >= :vramMin
-              )
+                (p.category = 'gpu'
+                 AND p.priceInr <= :budgetMax
+                 AND p.vramGb   >= :vramMin)
+              OR
+                (p.category != 'gpu'
+                 AND p.priceInr <= (:budgetMax * 0.30))
+          )
         ORDER BY p.category ASC, p.priceInr ASC
         """)
     List<Product> findEligibleForBuild(@Param("budgetMin") BigDecimal budgetMin,

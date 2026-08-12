@@ -34,7 +34,10 @@ public class BuildPromptBuilder {
             1. Only recommend products from the provided catalog. Never invent components.
                Each catalog entry has a catalog_id that is a UUID (e.g. "a1b2c3d4-...").
                Copy it character-for-character into your response — do not shorten, guess, or rephrase it.
-            2. Total price of all selected components MUST NOT exceed budget_max INR.
+            2. budget_max is the TOTAL price of ALL selected components combined — it is NOT a per-component limit.
+               Individual CPUs, motherboards, RAM, and PSUs are typically far cheaper than the total budget.
+               Always select one component from EACH of these categories: gpu, cpu, motherboard, ram, psu.
+               Never omit a category — if a premium option exceeds budget, choose a more affordable one from the catalog.
             3. If vram_floor_gb > 0, the selected GPU must have vram_gb >= vram_floor_gb.
                If no GPU meets this, pick the highest VRAM available and explain in summary_reasoning.
             4. brand=nvidia → only NVIDIA GPUs. brand=amd → only AMD GPUs. brand=open → best option.
@@ -46,7 +49,9 @@ public class BuildPromptBuilder {
                primary compute component.
 
             OUTPUT — respond ONLY with valid JSON matching this exact schema.
-            No markdown fences, no preamble, no trailing text outside the JSON:
+            No markdown fences, no preamble, no trailing text outside the JSON.
+            NEVER include internal notes, constraint explanations, disclaimers, or
+            apologies in any field — all fields are displayed directly to the end user:
 
             {
               "build_name": "string (creative 3-5 word name)",
@@ -58,10 +63,10 @@ public class BuildPromptBuilder {
                   "price_inr":    number,
                   "vram_gb":      number or null,
                   "is_primary":   boolean,
-                  "reason":       "string — max 1 sentence"
+                  "reason":       "string — max 1 sentence, user-facing benefit only"
                 }
               ],
-              "summary_reasoning": "string — 3-4 sentences explaining the overall build rationale",
+              "summary_reasoning": "string — exactly 1 concise sentence (max 40 words) describing what this build does best. Do NOT mention budget overruns, unavailable parts, or constraint trade-offs.",
               "canvas_hints": {
                 "focus_skus":     ["catalog_id of primary component"],
                 "secondary_skus": ["catalog_id", "..."],
@@ -70,13 +75,23 @@ public class BuildPromptBuilder {
               },
               "upgrade_paths": [
                 {
-                  "target":       "ram | gpu | storage | cpu",
-                  "current_spec": "string",
-                  "max_possible": "string",
-                  "slots_free":   number
+                  "target":            "ram | gpu | storage | cpu",
+                  "current_spec":      "string — what is installed now, e.g. '32 GB DDR5-6000'",
+                  "max_possible":      "string — realistic ceiling, e.g. '128 GB (4× 32 GB)'",
+                  "slots_free":        number,
+                  "why":               "string — 1 sentence: user-facing benefit of this upgrade",
+                  "cost_estimate_inr": "string — rough cost range, e.g. '₹12,000–₹18,000'"
                 }
               ]
             }
+
+            UPGRADE PATH RULES (hard):
+            - Always include 2–4 upgrade_paths entries. Never return an empty array.
+            - Each entry must be a realistic, feasible next step for this specific build.
+            - Include at minimum: RAM expansion (if slots free) and GPU upgrade (next tier up).
+            - If storage was not selected, include an NVMe storage addition as an upgrade path.
+            - cost_estimate_inr must be a plausible Indian market estimate (not zero).
+            - All text in upgrade_paths is shown directly on the UI — be concise and user-friendly.
             """;
     }
 
