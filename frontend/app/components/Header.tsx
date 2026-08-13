@@ -64,6 +64,7 @@ function isBackgroundLightFromElement(element: Element | null) {
   return true;
 }
 
+// ── Desktop pill nav (unchanged) ─────────────────────────────────────────────
 function Navigation({ onDarkBackground }: { onDarkBackground: boolean }) {
   const router = useRouter();
 
@@ -89,6 +90,88 @@ function Navigation({ onDarkBackground }: { onDarkBackground: boolean }) {
   );
 }
 
+// ── Mobile hamburger menu ─────────────────────────────────────────────────────
+function MobileMenu({ onDarkBackground }: { onDarkBackground: boolean }) {
+  const [open, setOpen] = useState(false);
+  const router = useRouter();
+  const menuRef = useRef<HTMLDivElement>(null);
+
+  // Close on outside click
+  useEffect(() => {
+    if (!open) return;
+    const handler = (e: MouseEvent) => {
+      if (menuRef.current && !menuRef.current.contains(e.target as Node)) {
+        setOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handler);
+    return () => document.removeEventListener("mousedown", handler);
+  }, [open]);
+
+  // Close on route change (ESC key)
+  useEffect(() => {
+    const handler = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setOpen(false);
+    };
+    document.addEventListener("keydown", handler);
+    return () => document.removeEventListener("keydown", handler);
+  }, []);
+
+  return (
+    <div ref={menuRef} className="relative">
+      {/* Hamburger toggle button */}
+      <button
+        aria-label={open ? "Close menu" : "Open menu"}
+        aria-expanded={open}
+        onClick={() => setOpen((prev) => !prev)}
+        className={`flex h-9 w-9 flex-col items-center justify-center gap-[5px] rounded-full transition-colors duration-200 hover:cursor-pointer
+          ${onDarkBackground ? "bg-background/45 backdrop-blur-md hover:bg-background/60" : "bg-muted/95 hover:bg-muted"}`}
+      >
+        <span
+          className={`block h-[1.5px] w-5 rounded-full bg-foreground transition-all duration-300 origin-center ${open ? "translate-y-[6.5px] rotate-45" : ""}`}
+        />
+        <span
+          className={`block h-[1.5px] w-5 rounded-full bg-foreground transition-all duration-300 ${open ? "opacity-0 scale-x-0" : ""}`}
+        />
+        <span
+          className={`block h-[1.5px] w-5 rounded-full bg-foreground transition-all duration-300 origin-center ${open ? "-translate-y-[6.5px] -rotate-45" : ""}`}
+        />
+      </button>
+
+      {/* Dropdown panel */}
+      {open && (
+        <div
+          className="absolute right-0 top-[calc(100%+8px)] z-50 min-w-[180px] overflow-hidden rounded-xl border border-border bg-background shadow-lg"
+          style={{ animation: "mobile-menu-in 0.18s cubic-bezier(0.4,0,0.2,1) forwards" }}
+        >
+          <nav aria-label="Mobile navigation" className="flex flex-col py-1">
+            {navItems.map((item) => (
+              <button
+                key={item.label}
+                onClick={() => {
+                  setOpen(false);
+                  router.push(item.href);
+                }}
+                className="w-full px-5 py-3 text-left text-sm font-medium text-foreground transition-colors duration-150 hover:bg-muted hover:cursor-pointer"
+              >
+                {item.label}
+              </button>
+            ))}
+          </nav>
+        </div>
+      )}
+
+      <style>{`
+        @keyframes mobile-menu-in {
+          from { opacity: 0; transform: translateY(-6px) scale(0.97); }
+          to   { opacity: 1; transform: translateY(0)   scale(1);    }
+        }
+      `}</style>
+    </div>
+  );
+}
+
+// ── Header ────────────────────────────────────────────────────────────────────
 export default function Header() {
   const headerRef = useRef<HTMLElement | null>(null);
   const [onDarkBackground, setOnDarkBackground] = useState(false);
@@ -139,17 +222,27 @@ export default function Header() {
   return (
     <header ref={headerRef} className="sticky top-0 z-50 w-full pt-2 rounded-xl transition-colors duration-300">
       <div className="flex w-full flex-col items-center gap-3 px-4 sm:px-6 md:flex-row md:items-center md:justify-between">
-        <div className="title flex w-full justify-center md:w-auto md:justify-start">
-          <Link href="/" className="inline-flex items-center">
-            <h3
-              style={{ fontSize: "clamp(1.17em, 1.17em + 1vw, 2.5rem)" }}
-              className={`font-bold tracking-wider transition-colors duration-300  ${onDarkBackground ? "text-foreground" : "text-foreground"}`}
-            >
-              AI RIGS
-            </h3>
-          </Link>
+        <div className="flex w-full items-center justify-between md:contents">
+          {/* Logo */}
+          <div className="title flex md:w-auto md:justify-start">
+            <Link href="/" className="inline-flex items-center">
+              <h3
+                style={{ fontSize: "clamp(1.17em, 1.17em + 1vw, 2.5rem)" }}
+                className={`font-bold tracking-wider transition-colors duration-300  ${onDarkBackground ? "text-foreground" : "text-foreground"}`}
+              >
+                AI RIGS
+              </h3>
+            </Link>
+          </div>
+
+          {/* Hamburger — mobile only */}
+          <div className="md:hidden">
+            <MobileMenu onDarkBackground={onDarkBackground} />
+          </div>
         </div>
-        <div className="navigation flex w-full justify-center md:mr-20 md:w-auto md:justify-end">
+
+        {/* Desktop pill nav — hidden on mobile */}
+        <div className="navigation hidden md:flex md:w-auto md:justify-end md:mr-20">
           <Navigation onDarkBackground={onDarkBackground} />
         </div>
       </div>

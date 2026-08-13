@@ -15,7 +15,7 @@ export default function PageShell({ children, width = "default", className }: Pr
       <main
         className={clsx(
           "flex-1",
-          width !== "full" && "mx-auto w-full px-4 py-8 sm:px-6 lg:px-8",
+          width !== "full" && "mx-auto w-full px-4 sm:px-6 lg:px-8",
           width === "default" && "max-w-7xl",
           className,
         )}
