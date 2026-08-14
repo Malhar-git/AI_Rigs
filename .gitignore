@@ -1,1 +1,7 @@
 /node_modules
+/backend/src/main/resources/application.yaml
+backend/ROADMAP.md
+backend/docs/SQL_GUIDE.md
+frontend/.vscode/settings.json
+frontend/.vscode/settings.json
+frontend/public/design_handoff_ai_rig_overview/AI Rig Overview v2.dc.html

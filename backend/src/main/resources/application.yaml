@@ -8,8 +8,8 @@ spring:
       enabled: false
   datasource:
     url: jdbc:postgresql://127.0.0.1:55433/airigs_db
-    username: postgres
-    password: postgres
+    username: ${PG_USERNAME}
+    password: ${PG_PASSWORD}
   data:
     redis:
       host: 127.0.0.1
@@ -34,6 +34,6 @@ app:
       backfill:
         run-on-startup: false
   gemini:
-    api-key: ${GEMINI_API_KEY:}
+    api-key: ${GEMINI_API_KEY}
     model: gemini-2.5-flash
     max-token: 8192
