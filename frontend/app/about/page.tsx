@@ -98,13 +98,13 @@ const SOURCES: { name: string; href: string; body: string }[] = [
 export default function AboutPage() {
   return (
     <PageShell>
-      <article className="mx-auto w-full max-w-2xl py-16 sm:py-24">
+      <article className="mx-auto w-full max-w-3xl mt-10 sm:mt-16 px-0">
         {/* ── Masthead ── */}
         <header>
           <small className="font-secondary block text-[0.68rem] uppercase tracking-[0.1em] text-muted-foreground">
             Field Notes
           </small>
-          <h1 className="mt-4 text-4xl tracking-tight sm:text-5xl">
+          <h1 className="mt-4 text-3xl sm:text-4xl lg:text-5xl tracking-tight">
             How AI Rigs builds a workstation
           </h1>
           <p className="mt-5 text-justify text-base leading-relaxed text-muted-foreground">
@@ -143,8 +143,8 @@ export default function AboutPage() {
             often the difference between needing one GPU and needing three, so we make it explicit:
           </p>
 
-          <div className="mt-4 overflow-hidden border border-border">
-            <table className="w-full border-collapse text-left">
+          <div className="mt-4 overflow-x-auto border border-border">
+            <table className="w-full min-w-[420px] border-collapse text-left">
               <thead>
                 <tr className="bg-muted/60">
                   <th className="font-secondary px-4 py-2 text-xs uppercase tracking-normal text-muted-foreground">
@@ -247,7 +247,7 @@ export default function AboutPage() {
           <p className="text-muted-foreground">
             That&apos;s the whole method. The best way to see it is to run it.
           </p>
-          <div className="mt-5 flex flex-wrap justify-center gap-3">
+          <div className="mt-5 mb-10 flex flex-wrap justify-center gap-3">
             <Link
               href="/guild-builder"
               className="font-primary inline-flex h-11 items-center justify-center rounded-lg bg-foreground px-6 text-sm font-semibold text-background no-underline transition hover:opacity-90"
