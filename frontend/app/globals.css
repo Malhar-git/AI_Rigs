@@ -14,28 +14,40 @@
   /* Core Semantic Colors — cool blue-tinted neutrals tuned to the hero image.
      Neutral tokens keep the SAME lightness steps as before; only hue/saturation
      were added, so the squint/value hierarchy is unchanged. */
-  --color-background: hsl(0 0% 100%); /* Clean white (kept pure for max card separation) */
+  --color-background: hsl(
+    0 0% 100%
+  ); /* Clean white (kept pure for max card separation) */
   --color-foreground: hsl(210 14% 12%); /* Cool near-black */
 
   /* Cards & Layers (The Squish Test fix) */
-  --color-card: hsl(210 20% 98%); /* Off-white w/ cool cast for subtle card separation */
+  --color-card: hsl(
+    210 20% 98%
+  ); /* Off-white w/ cool cast for subtle card separation */
   --color-card-foreground: hsl(210 14% 12%);
   --color-popover: hsl(0 0% 100%);
   --color-popover-foreground: hsl(210 14% 12%);
 
   /* Primary & Accents */
   --color-primary: hsl(0 0% 100%); /* White Primary */
-  --color-primary-foreground: hsl(210 14% 9%); /* Cool deep black for contrast */
+  --color-primary-foreground: hsl(
+    210 14% 9%
+  ); /* Cool deep black for contrast */
 
-  --color-secondary: hsl(204 28% 70%); /* Light bluish gray — SURFACE/element fill, not text */
-  --color-secondary-foreground: hsl(210 25% 20%); /* Dark text for use on secondary surfaces */
+  --color-secondary: hsl(
+    204 24% 90%
+  ); /* Light bluish gray — SURFACE/element fill, not text */
+  --color-secondary-foreground: hsl(
+    210 25% 20%
+  ); /* Dark text for use on secondary surfaces */
 
   /* Accent — hero teal (primary action / selection / focus) */
   --color-accent: hsl(176 62% 36%);
   --color-accent-foreground: hsl(0 0% 100%);
 
   --color-claude: hsl(20, 91%, 48%);
-  --color-highlight: hsl(20 91% 48%); /* Orange — emphasis only (recommended, VRAM floor, key specs) */
+  --color-highlight: hsl(
+    20 91% 48%
+  ); /* Orange — emphasis only (recommended, VRAM floor, key specs) */
 
   /* Radius scale (two-tier): containers share one radius; pills stay fully round. */
   --radius-card: 0.5rem; /* every container: cards, panels, sections, review, nav bar */
@@ -53,10 +65,9 @@
 
   /* Text Colors */
   --text-primary: hsl(210 14% 9%); /* Cool near-black */
-  --text-secondary: hsl(210 11% 35%); /* Cool dark gray */
+  --text-secondary: hsl(210 11% 45%); /* Cool dark gray */
   --text-muted: hsl(210 9% 55%); /* Cool medium gray */
 }
-
 
 *,
 *::before,
@@ -83,8 +94,8 @@ h1 {
 }
 
 h2 {
-  font-size: 2.5rem;
-  font-weight: 700;
+  font-size: 3rem;
+  font-weight: 600;
   line-height: 1.2;
 }
 

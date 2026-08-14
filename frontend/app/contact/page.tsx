@@ -58,7 +58,7 @@ function ContactCard({
 export default function ContactPage() {
   return (
     <PageShell>
-      <div className="mx-auto w-full max-w-3xl py-16 sm:py-24">
+      <div className="mx-auto w-full mt-16">
         {/* ── Header ── */}
         <header className="max-w-xl">
           <small className="font-secondary block text-[0.68rem] uppercase tracking-[0.1em] text-muted-foreground">
@@ -140,13 +140,12 @@ export default function ContactPage() {
           </div>
         </section>
 
-        <p className="mt-12 text-sm text-muted-foreground">
-          Curious how the builds are actually reasoned about?{" "}
+        <h4 className="mt-12 mb-12 text-sm text-muted-foreground flex justify-center items-center gap-2">
+          Curious how the builds are actually reasoned about?
           <Link href="/about" className="text-foreground underline underline-offset-2 hover:text-accent">
-            Read the methodology
+            Read the methodology.
           </Link>
-          .
-        </p>
+        </h4>
       </div>
     </PageShell>
   );

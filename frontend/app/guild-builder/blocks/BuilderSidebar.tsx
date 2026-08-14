@@ -1,5 +1,6 @@
 import { getStepDisplayName } from "../builder-utils";
 import type { WizardStep } from "../types/wizard-steps";
+import { CheckIcon } from "@/app/ui components/OptionCard";
 
 type BuilderSidebarProps = {
   visibleSteps: WizardStep[];
@@ -18,17 +19,12 @@ export default function BuilderSidebar({ visibleSteps, activeStepIndex }: Builde
             <div className="ml-6 flex items-center gap-2">
               <div
                 className={[
-                  "flex h-6 w-6 items-center justify-center rounded-full border text-xs",
-                  isActive
-                    ? "border-foreground text-foreground"
-                    : isComplete
-                      ? "border-secondary bg-secondary text-background"
-                      : "border-secondary/30 text-muted-foreground",
+                  "flex h-6 w-6 items-center justify-center rounded-full text-xs"
                 ].join(" ")}
               >
-                {isComplete ? "✓" : step.display_index ?? String(step.step)}
+                {isComplete ? <CheckIcon /> : step.display_index ?? String(step.step)}
               </div>
-              <p className={["text-md leading-none tracking-tight", isActive ? "text-foreground" : "text-secondary"].join(" ")}>
+              <p className={["text-md leading-none tracking-tight", isActive ? "`text`-(--text-primary)" : "text-(--text-secondary)"].join(" ")}>
                 {getStepDisplayName(step)}
               </p>
             </div>

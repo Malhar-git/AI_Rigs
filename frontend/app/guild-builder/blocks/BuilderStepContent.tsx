@@ -127,7 +127,7 @@ function ReviewStep({
   if (!reviewStep?.review_fields) return null;
 
   return (
-    <div className="space-y-3 rounded-xl border border-border bg-muted/60 p-4">
+    <div className="rounded-lg border border-accent p-4">
       {reviewStep.review_fields.map((field) => (
         <div
           key={field.key}
@@ -136,8 +136,8 @@ function ReviewStep({
             field.highlight ? "bg-background border-border" : "bg-transparent",
           ].join(" ")}
         >
-          <small className="uppercase tracking-wide text-(--text-secondary)">{field.label}</small>
-          <p className="text-right text-foreground">{reviewValues[field.key] ?? "-"}</p>
+          <p className="uppercase tracking-wide text-(--text-secondary)">{field.label}</p>
+          <h6 className="text-right text-(--text-primary)">{reviewValues[field.key] ?? "-"}</h6>
         </div>
       ))}
     </div>
