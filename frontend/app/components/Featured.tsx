@@ -1,6 +1,6 @@
 "use client";
 
-import Button from "../ui components/Button";
+import Button from "../ui-components/Button";
 import { useRouter } from "next/navigation";
 
 type CuratedBuild = {

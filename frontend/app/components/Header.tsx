@@ -2,7 +2,7 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import Button from "../ui components/Button";
+import Button from "../ui-components/Button";
 
 const navItems = [
   { label: "About", href: "/about" },

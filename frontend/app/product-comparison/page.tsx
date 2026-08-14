@@ -3,8 +3,8 @@
 import { Fragment, Suspense, useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import Image from "next/image";
-import { ProgressBar } from "../ui components/ProgressBar";
-import Label from "../ui components/Label";
+import { ProgressBar } from "../ui-components/ProgressBar";
+import Label from "../ui-components/Label";
 import PageShell from "../components/PageShell";
 import { getProduct, getProducts } from "@/lib/products";
 import type { ProductDto } from "@/lib/types";

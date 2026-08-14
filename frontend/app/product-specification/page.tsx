@@ -3,7 +3,7 @@
 import { Suspense, useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import Image from "next/image";
-import Label from "../ui components/Label";
+import Label from "../ui-components/Label";
 import PageShell from "../components/PageShell";
 import { getProduct } from "@/lib/products";
 import type { ProductDto } from "@/lib/types";

@@ -2,9 +2,9 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import Button from "../ui components/Button";
+import Button from "../ui-components/Button";
 import PageShell from "../components/PageShell";
-import { ProgressBar } from "../ui components/ProgressBar";
+import { ProgressBar } from "../ui-components/ProgressBar";
 import BuilderSidebar from "./blocks/BuilderSidebar";
 import BuilderStepContent from "./blocks/BuilderStepContent";
 import ConversationStep from "./blocks/ConversationStep";

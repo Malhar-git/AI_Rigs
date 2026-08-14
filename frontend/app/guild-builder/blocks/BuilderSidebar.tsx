@@ -1,6 +1,6 @@
 import { getStepDisplayName } from "../builder-utils";
 import type { WizardStep } from "../types/wizard-steps";
-import { CheckIcon } from "@/app/ui components/OptionCard";
+import { CheckIcon } from "@/app/ui-components/OptionCard";
 
 type BuilderSidebarProps = {
   visibleSteps: WizardStep[];

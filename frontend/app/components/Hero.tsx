@@ -1,6 +1,6 @@
 "use client";
 import { useRouter } from "next/navigation";
-import Button from "../ui components/Button";
+import Button from "../ui-components/Button";
 import Image from "next/image";
 
 export default function Hero() {

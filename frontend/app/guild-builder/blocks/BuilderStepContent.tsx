@@ -1,4 +1,4 @@
-import OptionCard from "../../ui components/OptionCard";
+import OptionCard from "../../ui-components/OptionCard";
 import type { WizardAnswers } from "../types/builder-types";
 import { getOptionTitle, getSelectedValueForSingleStep } from "../builder-utils";
 import type { WizardStep } from "../types/wizard-steps";

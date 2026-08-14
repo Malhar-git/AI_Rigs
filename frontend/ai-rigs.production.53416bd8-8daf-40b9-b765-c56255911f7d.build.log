@@ -1,0 +1,347 @@
+2026-07-30T12:20:27.860Z	Initializing build environment...
+2026-07-30T12:20:30.507Z	Success: Finished initializing build environment
+2026-07-30T12:20:31.258Z	Cloning repository...
+2026-07-30T12:20:34.126Z	Restoring from dependencies cache
+2026-07-30T12:20:34.128Z	Restoring from build output cache
+2026-07-30T12:20:34.132Z	Detected the following tools from environment: pnpm@10.11.1, nodejs@22.16.0
+2026-07-30T12:20:34.229Z	Installing project dependencies: pnpm install --frozen-lockfile
+2026-07-30T12:20:35.955Z	Lockfile is up to date, resolution step is skipped
+2026-07-30T12:20:36.006Z	Progress: resolved 1, reused 0, downloaded 0, added 0
+2026-07-30T12:20:36.069Z	Packages: +417
+2026-07-30T12:20:36.069Z	++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2026-07-30T12:20:37.007Z	Progress: resolved 417, reused 0, downloaded 26, added 12
+2026-07-30T12:20:38.012Z	Progress: resolved 417, reused 0, downloaded 42, added 27
+2026-07-30T12:20:39.009Z	Progress: resolved 417, reused 0, downloaded 113, added 102
+2026-07-30T12:20:41.400Z	Progress: resolved 417, reused 0, downloaded 114, added 102
+2026-07-30T12:20:42.402Z	Progress: resolved 417, reused 0, downloaded 127, added 113
+2026-07-30T12:20:43.403Z	Progress: resolved 417, reused 0, downloaded 128, added 113
+2026-07-30T12:20:44.403Z	Progress: resolved 417, reused 0, downloaded 216, added 209
+2026-07-30T12:20:45.405Z	Progress: resolved 417, reused 0, downloaded 367, added 358
+2026-07-30T12:20:45.951Z	Progress: resolved 417, reused 0, downloaded 417, added 417, done
+2026-07-30T12:20:46.157Z	.../node_modules/unrs-resolver postinstall$ napi-postinstall unrs-resolver 1.11.1 check
+2026-07-30T12:20:46.158Z	.../sharp@0.34.5/node_modules/sharp install$ node install/check.js || npm run build
+2026-07-30T12:20:46.238Z	.../node_modules/unrs-resolver postinstall: Done
+2026-07-30T12:20:46.284Z	.../sharp@0.34.5/node_modules/sharp install: Done
+2026-07-30T12:20:46.375Z	
+2026-07-30T12:20:46.375Z	dependencies:
+2026-07-30T12:20:46.375Z	+ @remixicon/react 4.9.0
+2026-07-30T12:20:46.376Z	+ @tremor/react 3.18.7
+2026-07-30T12:20:46.376Z	+ next 16.1.6
+2026-07-30T12:20:46.376Z	+ react 19.2.3
+2026-07-30T12:20:46.377Z	+ react-dom 19.2.3
+2026-07-30T12:20:46.377Z	
+2026-07-30T12:20:46.377Z	devDependencies:
+2026-07-30T12:20:46.377Z	+ @tailwindcss/postcss 4.2.1
+2026-07-30T12:20:46.377Z	+ @types/node 20.19.37
+2026-07-30T12:20:46.378Z	+ @types/react 19.2.14
+2026-07-30T12:20:46.378Z	+ @types/react-dom 19.2.3
+2026-07-30T12:20:46.378Z	+ eslint 9.39.4
+2026-07-30T12:20:46.379Z	+ eslint-config-next 16.1.6
+2026-07-30T12:20:46.380Z	+ tailwindcss 4.2.1
+2026-07-30T12:20:46.380Z	+ typescript 5.9.3
+2026-07-30T12:20:46.380Z	
+2026-07-30T12:20:46.390Z	Done in 11.1s
+2026-07-30T12:20:46.636Z	Executing user build command: pnpm run build
+2026-07-30T12:20:47.096Z	
+2026-07-30T12:20:47.096Z	> frontend@0.1.0 build /opt/buildhome/repo/frontend
+2026-07-30T12:20:47.096Z	> next build
+2026-07-30T12:20:47.096Z	
+2026-07-30T12:20:47.927Z	⚠ Warning: Next.js inferred your workspace root, but it may not be correct.
+2026-07-30T12:20:47.927Z	 We detected multiple lockfiles and selected the directory of /opt/buildhome/repo/pnpm-lock.yaml as the root directory.
+2026-07-30T12:20:47.927Z	 To silence this warning, set `turbopack.root` in your Next.js config, or consider removing one of the lockfiles if it's not needed.
+2026-07-30T12:20:47.927Z	   See https://nextjs.org/docs/app/api-reference/config/next-config-js/turbopack#root-directory for more information.
+2026-07-30T12:20:47.927Z	 Detected additional lockfiles: 
+2026-07-30T12:20:47.927Z	   * /opt/buildhome/repo/frontend/pnpm-lock.yaml
+2026-07-30T12:20:47.927Z	
+2026-07-30T12:20:47.929Z	⚠ No build cache found. Please configure build caching for faster rebuilds. Read more: https://nextjs.org/docs/messages/no-cache
+2026-07-30T12:20:47.933Z	Attention: Next.js now collects completely anonymous telemetry regarding usage.
+2026-07-30T12:20:47.933Z	This information is used to shape Next.js' roadmap and prioritize features.
+2026-07-30T12:20:47.933Z	You can learn more, including how to opt-out if you'd not like to participate in this anonymous program, by visiting the following URL:
+2026-07-30T12:20:47.933Z	https://nextjs.org/telemetry
+2026-07-30T12:20:47.933Z	
+2026-07-30T12:20:47.943Z	▲ Next.js 16.1.6 (Turbopack)
+2026-07-30T12:20:47.943Z	
+2026-07-30T12:20:48.015Z	  Creating an optimized production build ...
+2026-07-30T12:20:50.949Z	Error: Can't resolve '@tailwindcss/forms' in '/opt/buildhome/repo/frontend/app'
+2026-07-30T12:20:50.950Z	    [at finishWithoutResolve (/opt/buildhome/repo/frontend/node_modules/.pnpm/enhanced-resolve@5.20.0/node_modules/enhanced-resolve/lib/Resolver.js:586:18)]
+2026-07-30T12:20:50.950Z	    [at /opt/buildhome/repo/frontend/node_modules/.pnpm/enhanced-resolve@5.20.0/node_modules/enhanced-resolve/lib/Resolver.js:678:14]
+2026-07-30T12:20:50.950Z	    [at /opt/buildhome/repo/frontend/node_modules/.pnpm/enhanced-resolve@5.20.0/node_modules/enhanced-resolve/lib/Resolver.js:739:5]
+2026-07-30T12:20:50.950Z	    [at eval (eval at create (/opt/buildhome/repo/frontend/node_modules/.pnpm/tapable@2.3.0/node_modules/tapable/lib/HookCodeFactory.js:31:10), <anonymous>:15:1)]
+2026-07-30T12:20:50.950Z	    [at /opt/buildhome/repo/frontend/node_modules/.pnpm/enhanced-resolve@5.20.0/node_modules/enhanced-resolve/lib/Resolver.js:739:5]
+2026-07-30T12:20:50.953Z	    [at eval (eval at create (/opt/buildhome/repo/frontend/node_modules/.pnpm/tapable@2.3.0/node_modules/tapable/lib/HookCodeFactory.js:31:10), <anonymous>:27:1)]
+2026-07-30T12:20:50.953Z	    [at /opt/buildhome/repo/frontend/node_modules/.pnpm/enhanced-resolve@5.20.0/node_modules/enhanced-resolve/lib/DescriptionFilePlugin.js:89:43]
+2026-07-30T12:20:50.953Z	    [at /opt/buildhome/repo/frontend/node_modules/.pnpm/enhanced-resolve@5.20.0/node_modules/enhanced-resolve/lib/Resolver.js:739:5]
+2026-07-30T12:20:50.953Z	    [at eval (eval at create (/opt/buildhome/repo/frontend/node_modules/.pnpm/tapable@2.3.0/node_modules/tapable/lib/HookCodeFactory.js:31:10), <anonymous>:15:1)]
+2026-07-30T12:20:50.953Z	    [at /opt/buildhome/repo/frontend/node_modules/.pnpm/enhanced-resolve@5.20.0/node_modules/enhanced-resolve/lib/Resolver.js:739:5] {
+2026-07-30T12:20:50.953Z	  details: "resolve '@tailwindcss/forms' in '/opt/buildhome/repo/frontend/app'\n" +
+2026-07-30T12:20:50.953Z	    '  Parsed request is a module\n' +
+2026-07-30T12:20:50.954Z	    '  using description file: /opt/buildhome/repo/frontend/package.json (relative path: ./app)\n' +
+2026-07-30T12:20:50.954Z	    '    resolve as module\n' +
+2026-07-30T12:20:50.954Z	    "      /opt/buildhome/repo/frontend/app/node_modules doesn't exist or is not a directory\n" +
+2026-07-30T12:20:50.954Z	    '      looking for modules in /opt/buildhome/repo/frontend/node_modules\n' +
+2026-07-30T12:20:50.955Z	    '        single file module\n' +
+2026-07-30T12:20:50.955Z	    '          using description file: /opt/buildhome/repo/frontend/package.json (relative path: ./node_modules/@tailwindcss/forms)\n' +
+2026-07-30T12:20:50.956Z	    '            no extension\n' +
+2026-07-30T12:20:50.956Z	    "              /opt/buildhome/repo/frontend/node_modules/@tailwindcss/forms doesn't exist\n" +
+2026-07-30T12:20:50.957Z	    '            .js\n' +
+2026-07-30T12:20:50.957Z	    "              /opt/buildhome/repo/frontend/node_modules/@tailwindcss/forms.js doesn't exist\n" +
+2026-07-30T12:20:50.957Z	    '            .json\n' +
+2026-07-30T12:20:50.957Z	    "              /opt/buildhome/repo/frontend/node_modules/@tailwindcss/forms.json doesn't exist\n" +
+2026-07-30T12:20:50.957Z	    '            .node\n' +
+2026-07-30T12:20:50.957Z	    "              /opt/buildhome/repo/frontend/node_modules/@tailwindcss/forms.node doesn't exist\n" +
+2026-07-30T12:20:50.957Z	    '            .ts\n' +
+2026-07-30T12:20:50.957Z	    "              /opt/buildhome/repo/frontend/node_modules/@tailwindcss/forms.ts doesn't exist\n" +
+2026-07-30T12:20:50.957Z	    "        /opt/buildhome/repo/frontend/node_modules/@tailwindcss/forms doesn't exist\n" +
+2026-07-30T12:20:50.957Z	    "      /opt/buildhome/repo/node_modules doesn't exist or is not a directory\n" +
+2026-07-30T12:20:50.957Z	    "      /opt/buildhome/node_modules doesn't exist or is not a directory\n" +
+2026-07-30T12:20:50.957Z	    "      /opt/node_modules doesn't exist or is not a directory\n" +
+2026-07-30T12:20:50.958Z	    "      /node_modules doesn't exist or is not a directory\n" +
+2026-07-30T12:20:50.958Z	    '      looking for modules in /opt/buildhome/repo/frontend/node_modules/.pnpm/next@16.1.6_@babel+core@7.29.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/bin/node_modules:/opt/buildhome/repo/frontend/node_modules/.pnpm/next@16.1.6_@babel+core@7.29.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/node_modules:/opt/buildhome/repo/frontend/node_modules/.pnpm/next@16.1.6_@babel+core@7.29.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/node_modules:/opt/buildhome/repo/frontend/node_modules/.pnpm/next@16.1.6_@babel+core@7.29.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules:/opt/buildhome/repo/frontend/node_modules/.pnpm/node_modules\n' +
+2026-07-30T12:20:50.958Z	    '        single file module\n' +
+2026-07-30T12:20:50.958Z	    '          using description file: /opt/buildhome/repo/frontend/node_modules/.pnpm/next@16.1.6_@babel+core@7.29.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/package.json (relative path: ./dist/bin/node_modules:/opt/buildhome/repo/frontend/node_modules/.pnpm/next@16.1.6_@babel+core@7.29.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/node_modules:/opt/buildhome/repo/frontend/node_modules/.pnpm/next@16.1.6_@babel+core@7.29.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/node_modules:/opt/buildhome/repo/frontend/node_modules/.pnpm/next@16.1.6_@babel+core@7.29.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules:/opt/buildhome/repo/frontend/node_modules/.pnpm/node_modules/@tailwindcss/forms)\n' +
+2026-07-30T12:20:50.958Z	    '            no extension\n' +
+2026-07-30T12:20:50.959Z	    "              /opt/buildhome/repo/frontend/node_modules/.pnpm/next@16.1.6_@babel+core@7.29.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/bin/node_modules:/opt/buildhome/repo/frontend/node_modules/.pnpm/next@16.1.6_@babel+core@7.29.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/node_modules:/opt/buildhome/repo/frontend/node_modules/.pnpm/next@16.1.6_@babel+core@7.29.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/node_modules:/opt/buildhome/repo/frontend/node_modules/.pnpm/next@16.1.6_@babel+core@7.29.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules:/opt/buildhome/repo/frontend/node_modules/.pnpm/node_modules/@tailwindcss/forms doesn't exist\n" +
+2026-07-30T12:20:50.959Z	    '            .js\n' +
+2026-07-30T12:20:50.959Z	    "              /opt/buildhome/repo/frontend/node_modules/.pnpm/next@16.1.6_@babel+core@7.29.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/bin/node_modules:/opt/buildhome/repo/frontend/node_modules/.pnpm/next@16.1.6_@babel+core@7.29.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/node_modules:/opt/buildhome/repo/frontend/node_modules/.pnpm/next@16.1.6_@babel+core@7.29.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/node_modules:/opt/buildhome/repo/frontend/node_modules/.pnpm/next@16.1.6_@babel+core@7.29.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules:/opt/buildhome/repo/frontend/node_modules/.pnpm/node_modules/@tailwindcss/forms.js doesn't exist\n" +
+2026-07-30T12:20:50.959Z	    '            .json\n' +
+2026-07-30T12:20:50.959Z	    "              /opt/buildhome/repo/frontend/node_modules/.pnpm/next@16.1.6_@babel+core@7.29.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/bin/node_modules:/opt/buildhome/repo/frontend/node_modules/.pnpm/next@16.1.6_@babel+core@7.29.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/node_modules:/opt/buildhome/repo/frontend/node_modules/.pnpm/next@16.1.6_@babel+core@7.29.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/node_modules:/opt/buildhome/repo/frontend/node_modules/.pnpm/next@16.1.6_@babel+core@7.29.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules:/opt/buildhome/repo/frontend/node_modules/.pnpm/node_modules/@tailwindcss/forms.json doesn't exist\n" +
+2026-07-30T12:20:50.960Z	    '            .node\n' +
+2026-07-30T12:20:50.960Z	    "              /opt/buildhome/repo/frontend/node_modules/.pnpm/next@16.1.6_@babel+core@7.29.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/bin/node_modules:/opt/buildhome/repo/frontend/node_modules/.pnpm/next@16.1.6_@babel+core@7.29.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/node_modules:/opt/buildhome/repo/frontend/node_modules/.pnpm/next@16.1.6_@babel+core@7.29.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/node_modules:/opt/buildhome/repo/frontend/node_modules/.pnpm/next@16.1.6_@babel+core@7.29.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules:/opt/buildhome/repo/frontend/node_modules/.pnpm/node_modules/@tailwindcss/forms.node doesn't exist\n" +
+2026-07-30T12:20:50.960Z	    '            .ts\n' +
+2026-07-30T12:20:50.963Z	    "              /opt/buildhome/repo/frontend/node_modules/.pnpm/next@16.1.6_@babel+core@7.29.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/bin/node_modules:/opt/buildhome/repo/frontend/node_modules/.pnpm/next@16.1.6_@babel+core@7.29.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/node_modules:/opt/buildhome/repo/frontend/node_modules/.pnpm/next@16.1.6_@babel+core@7.29.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/node_modules:/opt/buildhome/repo/frontend/node_modules/.pnpm/next@16.1.6_@babel+core@7.29.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules:/opt/buildhome/repo/frontend/node_modules/.pnpm/node_modules/@tailwindcss/forms.ts doesn't exist\n" +
+2026-07-30T12:20:50.964Z	    "        /opt/buildhome/repo/frontend/node_modules/.pnpm/next@16.1.6_@babel+core@7.29.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/bin/node_modules:/opt/buildhome/repo/frontend/node_modules/.pnpm/next@16.1.6_@babel+core@7.29.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/node_modules:/opt/buildhome/repo/frontend/node_modules/.pnpm/next@16.1.6_@babel+core@7.29.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/node_modules:/opt/buildhome/repo/frontend/node_modules/.pnpm/next@16.1.6_@babel+core@7.29.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules:/opt/buildhome/repo/frontend/node_modules/.pnpm/node_modules/@tailwindcss/forms doesn't exist"
+2026-07-30T12:20:50.964Z	}
+2026-07-30T12:20:55.542Z	
+2026-07-30T12:20:55.545Z	> Build error occurred
+2026-07-30T12:20:55.548Z	Error: Turbopack build failed with 9 errors:
+2026-07-30T12:20:55.549Z	./frontend/app/globals.css
+2026-07-30T12:20:55.549Z	Error evaluating Node.js code
+2026-07-30T12:20:55.549Z	CssSyntaxError: tailwindcss: /opt/buildhome/repo/frontend/app/globals.css:1:1: Can't resolve '@tailwindcss/forms' in '/opt/buildhome/repo/frontend/app'
+2026-07-30T12:20:55.549Z	    at Input.error (frontend/node_modules/.pnpm/postcss@8.4.31/node_modules/postcss/lib/input.js:106:16) [/opt/buildhome/repo/frontend/.next/build/chunks/9e883__pnpm_9553e888._.js:4132:22]
+2026-07-30T12:20:55.549Z	    at Root.error (frontend/node_modules/.pnpm/postcss@8.4.31/node_modules/postcss/lib/node.js:115:32) [/opt/buildhome/repo/frontend/.next/build/chunks/9e883__pnpm_9553e888._.js:895:38]
+2026-07-30T12:20:55.549Z	    [at Object.Once (/opt/buildhome/repo/frontend/node_modules/.pnpm/@tailwindcss+postcss@4.2.1/node_modules/@tailwindcss/postcss/dist/index.js:10:6913)]
+2026-07-30T12:20:55.549Z	    at async LazyResult.runAsync (frontend/node_modules/.pnpm/postcss@8.4.31/node_modules/postcss/lib/lazy-result.js:261:11) [/opt/buildhome/repo/frontend/.next/build/chunks/9e883__pnpm_9553e888._.js:6052:21]
+2026-07-30T12:20:55.549Z	    at async transform (turbopack:///[turbopack-node]/transforms/postcss.ts:70:34) [/opt/buildhome/repo/frontend/.next/build/chunks/[root-of-the-server]__188e9cb8._.js:146:36]
+2026-07-30T12:20:55.549Z	    at async run (turbopack:///[turbopack-node]/ipc/evaluate.ts:92:23) [/opt/buildhome/repo/frontend/.next/build/chunks/[root-of-the-server]__3b54a99d._.js:443:31]
+2026-07-30T12:20:55.549Z	
+2026-07-30T12:20:55.549Z	Import trace:
+2026-07-30T12:20:55.550Z	  Client Component Browser:
+2026-07-30T12:20:55.550Z	    ./frontend/app/globals.css [Client Component Browser]
+2026-07-30T12:20:55.550Z	    ./frontend/app/layout.tsx [Server Component]
+2026-07-30T12:20:55.550Z	
+2026-07-30T12:20:55.550Z	
+2026-07-30T12:20:55.550Z	./frontend/app/guild-builder/blocks/BuilderStepContent.tsx:1:1
+2026-07-30T12:20:55.551Z	Module not found: Can't resolve '../../ui components/OptionCard'
+2026-07-30T12:20:55.551Z	> 1 | import OptionCard from "../../ui components/OptionCard";
+2026-07-30T12:20:55.551Z	    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-07-30T12:20:55.553Z	  2 | import type { WizardAnswers } from "../types/builder-types";
+2026-07-30T12:20:55.553Z	  3 | import { getOptionTitle, getSelectedValueForSingleStep } from "../builder-utils";
+2026-07-30T12:20:55.553Z	  4 | import type { WizardStep } from "../types/wizard-steps";
+2026-07-30T12:20:55.553Z	
+2026-07-30T12:20:55.553Z	
+2026-07-30T12:20:55.553Z	
+2026-07-30T12:20:55.553Z	Import traces:
+2026-07-30T12:20:55.553Z	  Client Component Browser:
+2026-07-30T12:20:55.553Z	    ./frontend/app/guild-builder/blocks/BuilderStepContent.tsx [Client Component Browser]
+2026-07-30T12:20:55.553Z	    ./frontend/app/guild-builder/page.tsx [Client Component Browser]
+2026-07-30T12:20:55.553Z	    ./frontend/app/guild-builder/page.tsx [Server Component]
+2026-07-30T12:20:55.553Z	
+2026-07-30T12:20:55.554Z	  Client Component SSR:
+2026-07-30T12:20:55.554Z	    ./frontend/app/guild-builder/blocks/BuilderStepContent.tsx [Client Component SSR]
+2026-07-30T12:20:55.557Z	    ./frontend/app/guild-builder/page.tsx [Client Component SSR]
+2026-07-30T12:20:55.557Z	    ./frontend/app/guild-builder/page.tsx [Server Component]
+2026-07-30T12:20:55.557Z	
+2026-07-30T12:20:55.557Z	https://nextjs.org/docs/messages/module-not-found
+2026-07-30T12:20:55.557Z	
+2026-07-30T12:20:55.557Z	
+2026-07-30T12:20:55.557Z	./frontend/app/components/Featured.tsx:3:1
+2026-07-30T12:20:55.557Z	Module not found: Can't resolve '../ui components/Button'
+2026-07-30T12:20:55.557Z	  1 | "use client";
+2026-07-30T12:20:55.557Z	  2 |
+2026-07-30T12:20:55.557Z	> 3 | import Button from "../ui components/Button";
+2026-07-30T12:20:55.557Z	    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-07-30T12:20:55.557Z	  4 | import { useRouter } from "next/navigation";
+2026-07-30T12:20:55.557Z	  5 |
+2026-07-30T12:20:55.557Z	  6 | type CuratedBuild = {
+2026-07-30T12:20:55.557Z	
+2026-07-30T12:20:55.557Z	
+2026-07-30T12:20:55.557Z	
+2026-07-30T12:20:55.557Z	Import trace:
+2026-07-30T12:20:55.558Z	  Server Component:
+2026-07-30T12:20:55.558Z	    ./frontend/app/components/Featured.tsx
+2026-07-30T12:20:55.558Z	    ./frontend/app/page.tsx
+2026-07-30T12:20:55.558Z	
+2026-07-30T12:20:55.558Z	https://nextjs.org/docs/messages/module-not-found
+2026-07-30T12:20:55.558Z	
+2026-07-30T12:20:55.558Z	
+2026-07-30T12:20:55.558Z	./frontend/app/components/Header.tsx:5:1
+2026-07-30T12:20:55.558Z	Module not found: Can't resolve '../ui components/Button'
+2026-07-30T12:20:55.558Z	  3 | import Link from "next/link";
+2026-07-30T12:20:55.558Z	  4 | import { useRouter } from "next/navigation";
+2026-07-30T12:20:55.558Z	> 5 | import Button from "../ui components/Button";
+2026-07-30T12:20:55.558Z	    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-07-30T12:20:55.558Z	  6 |
+2026-07-30T12:20:55.558Z	  7 | const navItems = [
+2026-07-30T12:20:55.558Z	  8 |   { label: "About" },
+2026-07-30T12:20:55.558Z	
+2026-07-30T12:20:55.558Z	
+2026-07-30T12:20:55.559Z	
+2026-07-30T12:20:55.561Z	Import traces:
+2026-07-30T12:20:55.561Z	  Server Component:
+2026-07-30T12:20:55.561Z	    ./frontend/app/components/Header.tsx
+2026-07-30T12:20:55.561Z	    ./frontend/app/components/PageShell.tsx
+2026-07-30T12:20:55.561Z	    ./frontend/app/page.tsx
+2026-07-30T12:20:55.561Z	
+2026-07-30T12:20:55.561Z	  Client Component Browser:
+2026-07-30T12:20:55.561Z	    ./frontend/app/components/Header.tsx [Client Component Browser]
+2026-07-30T12:20:55.561Z	    ./frontend/app/components/PageShell.tsx [Client Component Browser]
+2026-07-30T12:20:55.561Z	    ./frontend/app/product-specification/page.tsx [Client Component Browser]
+2026-07-30T12:20:55.561Z	    ./frontend/app/product-specification/page.tsx [Server Component]
+2026-07-30T12:20:55.561Z	
+2026-07-30T12:20:55.562Z	  Client Component SSR:
+2026-07-30T12:20:55.562Z	    ./frontend/app/components/Header.tsx [Client Component SSR]
+2026-07-30T12:20:55.562Z	    ./frontend/app/components/PageShell.tsx [Client Component SSR]
+2026-07-30T12:20:55.562Z	    ./frontend/app/product-specification/page.tsx [Client Component SSR]
+2026-07-30T12:20:55.562Z	    ./frontend/app/product-specification/page.tsx [Server Component]
+2026-07-30T12:20:55.562Z	
+2026-07-30T12:20:55.562Z	https://nextjs.org/docs/messages/module-not-found
+2026-07-30T12:20:55.562Z	
+2026-07-30T12:20:55.562Z	
+2026-07-30T12:20:55.562Z	./frontend/app/components/Hero.tsx:1:1
+2026-07-30T12:20:55.565Z	Module not found: Can't resolve '../ui components/Button'
+2026-07-30T12:20:55.565Z	> 1 | import Button from "../ui components/Button";
+2026-07-30T12:20:55.569Z	    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-07-30T12:20:55.569Z	  2 | import Image from "next/image";
+2026-07-30T12:20:55.569Z	  3 |
+2026-07-30T12:20:55.569Z	  4 | export default function Hero() {
+2026-07-30T12:20:55.570Z	
+2026-07-30T12:20:55.570Z	
+2026-07-30T12:20:55.570Z	
+2026-07-30T12:20:55.570Z	Import trace:
+2026-07-30T12:20:55.570Z	  Server Component:
+2026-07-30T12:20:55.570Z	    ./frontend/app/components/Hero.tsx
+2026-07-30T12:20:55.570Z	    ./frontend/app/page.tsx
+2026-07-30T12:20:55.570Z	
+2026-07-30T12:20:55.570Z	https://nextjs.org/docs/messages/module-not-found
+2026-07-30T12:20:55.570Z	
+2026-07-30T12:20:55.570Z	
+2026-07-30T12:20:55.570Z	./frontend/app/guild-builder/page.tsx:4:1
+2026-07-30T12:20:55.570Z	Module not found: Can't resolve '../ui components/Button'
+2026-07-30T12:20:55.570Z	  2 |
+2026-07-30T12:20:55.570Z	  3 | import { useRouter } from "next/navigation";
+2026-07-30T12:20:55.570Z	> 4 | import Button from "../ui components/Button";
+2026-07-30T12:20:55.571Z	    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-07-30T12:20:55.571Z	  5 | import PageShell from "../components/PageShell";
+2026-07-30T12:20:55.571Z	  6 | import { ProgressBar } from "../ui components/ProgressBar";
+2026-07-30T12:20:55.571Z	  7 | import BuilderSidebar from "./blocks/BuilderSidebar";
+2026-07-30T12:20:55.571Z	
+2026-07-30T12:20:55.571Z	
+2026-07-30T12:20:55.571Z	
+2026-07-30T12:20:55.571Z	Import traces:
+2026-07-30T12:20:55.571Z	  Client Component Browser:
+2026-07-30T12:20:55.571Z	    ./frontend/app/guild-builder/page.tsx [Client Component Browser]
+2026-07-30T12:20:55.571Z	    ./frontend/app/guild-builder/page.tsx [Server Component]
+2026-07-30T12:20:55.571Z	
+2026-07-30T12:20:55.571Z	  Client Component SSR:
+2026-07-30T12:20:55.571Z	    ./frontend/app/guild-builder/page.tsx [Client Component SSR]
+2026-07-30T12:20:55.572Z	    ./frontend/app/guild-builder/page.tsx [Server Component]
+2026-07-30T12:20:55.572Z	
+2026-07-30T12:20:55.572Z	https://nextjs.org/docs/messages/module-not-found
+2026-07-30T12:20:55.572Z	
+2026-07-30T12:20:55.572Z	
+2026-07-30T12:20:55.572Z	./frontend/app/product-comparison/page.tsx:7:1
+2026-07-30T12:20:55.572Z	Module not found: Can't resolve '../ui components/Button'
+2026-07-30T12:20:55.573Z	   5 | import { ProgressBar } from "../ui components/ProgressBar";
+2026-07-30T12:20:55.573Z	   6 | import { Fragment } from "react";
+2026-07-30T12:20:55.573Z	>  7 | import Button from "../ui components/Button";
+2026-07-30T12:20:55.573Z	     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-07-30T12:20:55.573Z	   8 | import PageShell from "../components/PageShell";
+2026-07-30T12:20:55.573Z	   9 |
+2026-07-30T12:20:55.573Z	  10 | type ComparedGpu = {
+2026-07-30T12:20:55.573Z	
+2026-07-30T12:20:55.573Z	
+2026-07-30T12:20:55.573Z	
+2026-07-30T12:20:55.577Z	Import traces:
+2026-07-30T12:20:55.577Z	  Client Component Browser:
+2026-07-30T12:20:55.577Z	    ./frontend/app/product-comparison/page.tsx [Client Component Browser]
+2026-07-30T12:20:55.577Z	    ./frontend/app/product-comparison/page.tsx [Server Component]
+2026-07-30T12:20:55.577Z	
+2026-07-30T12:20:55.577Z	  Client Component SSR:
+2026-07-30T12:20:55.577Z	    ./frontend/app/product-comparison/page.tsx [Client Component SSR]
+2026-07-30T12:20:55.577Z	    ./frontend/app/product-comparison/page.tsx [Server Component]
+2026-07-30T12:20:55.577Z	
+2026-07-30T12:20:55.577Z	https://nextjs.org/docs/messages/module-not-found
+2026-07-30T12:20:55.577Z	
+2026-07-30T12:20:55.578Z	
+2026-07-30T12:20:55.578Z	./frontend/app/components/PageShell.tsx:1:1
+2026-07-30T12:20:55.578Z	Module not found: Can't resolve 'clsx'
+2026-07-30T12:20:55.578Z	> 1 | import clsx from "clsx";
+2026-07-30T12:20:55.578Z	    | ^^^^^^^^^^^^^^^^^^^^^^^^
+2026-07-30T12:20:55.580Z	  2 | import Footer from "./Footer";
+2026-07-30T12:20:55.580Z	  3 | import Header from "./Header";
+2026-07-30T12:20:55.581Z	  4 |
+2026-07-30T12:20:55.581Z	
+2026-07-30T12:20:55.581Z	
+2026-07-30T12:20:55.581Z	
+2026-07-30T12:20:55.581Z	Import traces:
+2026-07-30T12:20:55.581Z	  Server Component:
+2026-07-30T12:20:55.581Z	    ./frontend/app/components/PageShell.tsx
+2026-07-30T12:20:55.581Z	    ./frontend/app/page.tsx
+2026-07-30T12:20:55.581Z	
+2026-07-30T12:20:55.581Z	  Client Component Browser:
+2026-07-30T12:20:55.581Z	    ./frontend/app/components/PageShell.tsx [Client Component Browser]
+2026-07-30T12:20:55.581Z	    ./frontend/app/grossing/page.tsx [Client Component Browser]
+2026-07-30T12:20:55.581Z	    ./frontend/app/grossing/page.tsx [Server Component]
+2026-07-30T12:20:55.582Z	
+2026-07-30T12:20:55.582Z	  Client Component SSR:
+2026-07-30T12:20:55.582Z	    ./frontend/app/components/PageShell.tsx [Client Component SSR]
+2026-07-30T12:20:55.582Z	    ./frontend/app/grossing/page.tsx [Client Component SSR]
+2026-07-30T12:20:55.582Z	    ./frontend/app/grossing/page.tsx [Server Component]
+2026-07-30T12:20:55.582Z	
+2026-07-30T12:20:55.582Z	https://nextjs.org/docs/messages/module-not-found
+2026-07-30T12:20:55.582Z	
+2026-07-30T12:20:55.582Z	
+2026-07-30T12:20:55.582Z	./frontend/app/ui components/Label.tsx:1:1
+2026-07-30T12:20:55.582Z	Module not found: Can't resolve 'clsx'
+2026-07-30T12:20:55.585Z	> 1 | import clsx from "clsx";
+2026-07-30T12:20:55.585Z	    | ^^^^^^^^^^^^^^^^^^^^^^^^
+2026-07-30T12:20:55.585Z	  2 |
+2026-07-30T12:20:55.585Z	  3 | type Variant = "default" | "active" | "special" | "specialCompact" | "error";
+2026-07-30T12:20:55.585Z	  4 |
+2026-07-30T12:20:55.585Z	
+2026-07-30T12:20:55.585Z	
+2026-07-30T12:20:55.585Z	
+2026-07-30T12:20:55.585Z	Import traces:
+2026-07-30T12:20:55.585Z	  Client Component Browser:
+2026-07-30T12:20:55.585Z	    ./frontend/app/ui components/Label.tsx [Client Component Browser]
+2026-07-30T12:20:55.585Z	    ./frontend/app/product-specification/page.tsx [Client Component Browser]
+2026-07-30T12:20:55.585Z	    ./frontend/app/product-specification/page.tsx [Server Component]
+2026-07-30T12:20:55.585Z	
+2026-07-30T12:20:55.585Z	  Client Component SSR:
+2026-07-30T12:20:55.585Z	    ./frontend/app/ui components/Label.tsx [Client Component SSR]
+2026-07-30T12:20:55.585Z	    ./frontend/app/product-specification/page.tsx [Client Component SSR]
+2026-07-30T12:20:55.585Z	    ./frontend/app/product-specification/page.tsx [Server Component]
+2026-07-30T12:20:55.585Z	
+2026-07-30T12:20:55.585Z	https://nextjs.org/docs/messages/module-not-found
+2026-07-30T12:20:55.586Z	
+2026-07-30T12:20:55.587Z	
+2026-07-30T12:20:55.587Z	    at async transform (turbopack:///[turbopack-node]/transforms/postcss.ts:70:34) [/opt/buildhome/repo/frontend/.next/build/chunks/[root-of-the-server]__188e9cb8._.js:146:36])
+2026-07-30T12:20:55.587Z	    at async run (turbopack:///[turbopack-node]/ipc/evaluate.ts:92:23) [/opt/buildhome/repo/frontend/.next/build/chunks/[root-of-the-server]__3b54a99d._.js:443:31])
+2026-07-30T12:20:55.587Z	    at <unknown> (./frontend/app/guild-builder/blocks/BuilderStepContent.tsx:1:1)
+2026-07-30T12:20:55.587Z	    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+2026-07-30T12:20:55.587Z	    at <unknown> (./frontend/app/components/Featured.tsx:3:1)
+2026-07-30T12:20:55.588Z	    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+2026-07-30T12:20:55.588Z	    at <unknown> (./frontend/app/components/Header.tsx:5:1)
+2026-07-30T12:20:55.588Z	    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+2026-07-30T12:20:55.588Z	    at <unknown> (./frontend/app/components/Hero.tsx:1:1)
+2026-07-30T12:20:55.588Z	    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+2026-07-30T12:20:55.588Z	    at <unknown> (./frontend/app/guild-builder/page.tsx:4:1)
+2026-07-30T12:20:55.588Z	    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+2026-07-30T12:20:55.588Z	    at <unknown> (./frontend/app/product-comparison/page.tsx:7:1)
+2026-07-30T12:20:55.588Z	    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+2026-07-30T12:20:55.588Z	    at <unknown> (./frontend/app/components/PageShell.tsx:1:1)
+2026-07-30T12:20:55.588Z	    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+2026-07-30T12:20:55.588Z	    at <unknown> (./frontend/app/ui components/Label.tsx:1:1)
+2026-07-30T12:20:55.588Z	    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+2026-07-30T12:20:55.979Z	 ELIFECYCLE  Command failed with exit code 1.
+2026-07-30T12:20:56.038Z	Failed: error occurred while running build command
